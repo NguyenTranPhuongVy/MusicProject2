@@ -17,7 +17,7 @@ namespace Music.Model.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public National()
         {
-            this.MusicsLists = new HashSet<MusicsList>();
+            this.Musics = new HashSet<Music>();
         }
     
         public int nation_id { get; set; }
@@ -29,6 +29,6 @@ namespace Music.Model.EF
         public Nullable<bool> nation_option { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MusicsList> MusicsLists { get; set; }
+        public virtual ICollection<Music> Musics { get; set; }
     }
 }

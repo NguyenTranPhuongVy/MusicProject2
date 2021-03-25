@@ -17,6 +17,10 @@ namespace Music.FrontEnd.Function
         public User CookieID()
         {
             HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies["user_id"];
+            if(cookie == null)
+            {
+                return null;
+            }
             User users = db.Users.Find(Int32.Parse(cookie.Value.ToString()));
             return users;
 

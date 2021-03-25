@@ -12,7 +12,7 @@ namespace Music.Model.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class favorite
+    public partial class Favorite
     {
         public int favorite_id { get; set; }
         public Nullable<bool> favorite_active { get; set; }
@@ -23,7 +23,7 @@ namespace Music.Model.EF
         public Nullable<int> music_id { get; set; }
         public Nullable<int> user_id { get; set; }
     
-        public virtual MusicsList MusicsList { get; set; }
+        public virtual Music Music { get; set; }
         public virtual User User { get; set; }
     }
 }

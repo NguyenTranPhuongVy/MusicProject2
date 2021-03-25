@@ -45,6 +45,7 @@ namespace Music.Model.DAO
         {
             try
             {
+                user.user_img = "336a83ff-73bf-451e-9671-3cc9968fc53cerik.jpg";
                 user.user_datecreate = DateTime.Now;
                 user.user_datelogin = DateTime.Now;
                 user.user_token = Guid.NewGuid().ToString();

@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="257e38090c084d18b38feb8f36206aa7" Name="Diagram1">
+      <Diagram DiagramId="a48f5bf51416473e92c3e2ea34a44ab1" Name="Diagram1">
         <EntityTypeShape EntityType="MusicProjectDataModel.Album" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MusicProjectDataModel.Author" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MusicProjectDataModel.Category" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MusicProjectDataModel.Comment" Width="1.5" PointX="6" PointY="19" IsExpanded="true" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.favorite" Width="1.5" PointX="6" PointY="15.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.MusicsList" Width="1.5" PointX="6" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Favorite" Width="1.5" PointX="6" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Music" Width="1.5" PointX="6" PointY="23.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MusicProjectDataModel.National" Width="1.5" PointX="3.75" PointY="27.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MusicProjectDataModel.Package" Width="1.5" PointX="0.75" PointY="25.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MusicProjectDataModel.Pay" Width="1.5" PointX="3" PointY="23.375" IsExpanded="true" />

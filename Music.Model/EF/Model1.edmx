@@ -67,7 +67,7 @@
           <Property Name="user_id" Type="int" />
           <Property Name="music_id" Type="int" />
         </EntityType>
-        <EntityType Name="favorite">
+        <EntityType Name="Favorite">
           <Key>
             <PropertyRef Name="favorite_id" />
           </Key>
@@ -80,7 +80,7 @@
           <Property Name="music_id" Type="int" />
           <Property Name="user_id" Type="int" />
         </EntityType>
-        <EntityType Name="MusicsList">
+        <EntityType Name="Musics">
           <Key>
             <PropertyRef Name="music_id" />
           </Key>
@@ -254,10 +254,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Comment_MusicsList">
-          <End Role="MusicsList" Type="Self.MusicsList" Multiplicity="0..1" />
+          <End Role="Musics" Type="Self.Musics" Multiplicity="0..1" />
           <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MusicsList">
+            <Principal Role="Musics">
               <PropertyRef Name="music_id" />
             </Principal>
             <Dependent Role="Comment">
@@ -278,49 +278,49 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_favorite_MusicsList">
-          <End Role="MusicsList" Type="Self.MusicsList" Multiplicity="0..1" />
-          <End Role="favorite" Type="Self.favorite" Multiplicity="*" />
+          <End Role="Musics" Type="Self.Musics" Multiplicity="0..1" />
+          <End Role="Favorite" Type="Self.Favorite" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MusicsList">
+            <Principal Role="Musics">
               <PropertyRef Name="music_id" />
             </Principal>
-            <Dependent Role="favorite">
+            <Dependent Role="Favorite">
               <PropertyRef Name="music_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_favorite_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-          <End Role="favorite" Type="Self.favorite" Multiplicity="*" />
+          <End Role="Favorite" Type="Self.Favorite" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="user_id" />
             </Principal>
-            <Dependent Role="favorite">
+            <Dependent Role="Favorite">
               <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Musics_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-          <End Role="MusicsList" Type="Self.MusicsList" Multiplicity="*" />
+          <End Role="Musics" Type="Self.Musics" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="user_id" />
             </Principal>
-            <Dependent Role="MusicsList">
+            <Dependent Role="Musics">
               <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MusicsList_National">
           <End Role="National" Type="Self.National" Multiplicity="0..1" />
-          <End Role="MusicsList" Type="Self.MusicsList" Multiplicity="*" />
+          <End Role="Musics" Type="Self.Musics" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="National">
               <PropertyRef Name="nation_id" />
             </Principal>
-            <Dependent Role="MusicsList">
+            <Dependent Role="Musics">
               <PropertyRef Name="nation_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -386,10 +386,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Videos_MusicsList">
-          <End Role="MusicsList" Type="Self.MusicsList" Multiplicity="0..1" />
+          <End Role="Musics" Type="Self.Musics" Multiplicity="0..1" />
           <End Role="Videos" Type="Self.Videos" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MusicsList">
+            <Principal Role="Musics">
               <PropertyRef Name="music_id" />
             </Principal>
             <Dependent Role="Videos">
@@ -414,8 +414,8 @@
           <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="favorite" EntityType="Self.favorite" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MusicsList" EntityType="Self.MusicsList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Favorite" EntityType="Self.Favorite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Musics" EntityType="Self.Musics" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="National" EntityType="Self.National" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Packages" EntityType="Self.Packages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pays" EntityType="Self.Pays" Schema="dbo" store:Type="Tables" />
@@ -437,7 +437,7 @@
             <End Role="Categories" EntitySet="Categories" />
           </AssociationSet>
           <AssociationSet Name="FK_Comment_MusicsList" Association="Self.FK_Comment_MusicsList">
-            <End Role="MusicsList" EntitySet="MusicsList" />
+            <End Role="Musics" EntitySet="Musics" />
             <End Role="Comment" EntitySet="Comment" />
           </AssociationSet>
           <AssociationSet Name="FK_Comment_Users" Association="Self.FK_Comment_Users">
@@ -445,20 +445,20 @@
             <End Role="Comment" EntitySet="Comment" />
           </AssociationSet>
           <AssociationSet Name="FK_favorite_MusicsList" Association="Self.FK_favorite_MusicsList">
-            <End Role="MusicsList" EntitySet="MusicsList" />
-            <End Role="favorite" EntitySet="favorite" />
+            <End Role="Musics" EntitySet="Musics" />
+            <End Role="Favorite" EntitySet="Favorite" />
           </AssociationSet>
           <AssociationSet Name="FK_favorite_Users" Association="Self.FK_favorite_Users">
             <End Role="Users" EntitySet="Users" />
-            <End Role="favorite" EntitySet="favorite" />
+            <End Role="Favorite" EntitySet="Favorite" />
           </AssociationSet>
           <AssociationSet Name="FK_Musics_Users" Association="Self.FK_Musics_Users">
             <End Role="Users" EntitySet="Users" />
-            <End Role="MusicsList" EntitySet="MusicsList" />
+            <End Role="Musics" EntitySet="Musics" />
           </AssociationSet>
           <AssociationSet Name="FK_MusicsList_National" Association="Self.FK_MusicsList_National">
             <End Role="National" EntitySet="National" />
-            <End Role="MusicsList" EntitySet="MusicsList" />
+            <End Role="Musics" EntitySet="Musics" />
           </AssociationSet>
           <AssociationSet Name="FK_Pays_Packages" Association="Self.FK_Pays_Packages">
             <End Role="Packages" EntitySet="Packages" />
@@ -481,7 +481,7 @@
             <End Role="Singers" EntitySet="Singers" />
           </AssociationSet>
           <AssociationSet Name="FK_Videos_MusicsList" Association="Self.FK_Videos_MusicsList">
-            <End Role="MusicsList" EntitySet="MusicsList" />
+            <End Role="Musics" EntitySet="Musics" />
             <End Role="Videos" EntitySet="Videos" />
           </AssociationSet>
           <AssociationSet Name="FK_Videos_Users" Association="Self.FK_Videos_Users">
@@ -558,11 +558,11 @@
           <Property Name="comment_bin" Type="Boolean" />
           <Property Name="user_id" Type="Int32" />
           <Property Name="music_id" Type="Int32" />
-          <NavigationProperty Name="MusicsList" Relationship="Self.FK_Comment_MusicsList" FromRole="Comment" ToRole="MusicsList" />
+          <NavigationProperty Name="Music" Relationship="Self.FK_Comment_MusicsList" FromRole="Comment" ToRole="Musics" />
           <NavigationProperty Name="User" Relationship="Self.FK_Comment_Users" FromRole="Comment" ToRole="Users" />
           <NavigationProperty Name="Replies" Relationship="Self.FK_Reply_Comment" FromRole="Comment" ToRole="Reply" />
         </EntityType>
-        <EntityType Name="favorite">
+        <EntityType Name="Favorite">
           <Key>
             <PropertyRef Name="favorite_id" />
           </Key>
@@ -574,10 +574,10 @@
           <Property Name="favorite_dateupdate" Type="DateTime" Precision="0" />
           <Property Name="music_id" Type="Int32" />
           <Property Name="user_id" Type="Int32" />
-          <NavigationProperty Name="MusicsList" Relationship="Self.FK_favorite_MusicsList" FromRole="favorite" ToRole="MusicsList" />
-          <NavigationProperty Name="User" Relationship="Self.FK_favorite_Users" FromRole="favorite" ToRole="Users" />
+          <NavigationProperty Name="Music" Relationship="Self.FK_favorite_MusicsList" FromRole="Favorite" ToRole="Musics" />
+          <NavigationProperty Name="User" Relationship="Self.FK_favorite_Users" FromRole="Favorite" ToRole="Users" />
         </EntityType>
-        <EntityType Name="MusicsList">
+        <EntityType Name="Music">
           <Key>
             <PropertyRef Name="music_id" />
           </Key>
@@ -597,11 +597,11 @@
           <Property Name="music_bin" Type="Boolean" />
           <Property Name="music_option" Type="Boolean" />
           <Property Name="nation_id" Type="Int32" />
-          <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_MusicsList" FromRole="MusicsList" ToRole="Comment" />
-          <NavigationProperty Name="favorites" Relationship="Self.FK_favorite_MusicsList" FromRole="MusicsList" ToRole="favorite" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Musics_Users" FromRole="MusicsList" ToRole="Users" />
-          <NavigationProperty Name="National" Relationship="Self.FK_MusicsList_National" FromRole="MusicsList" ToRole="National" />
-          <NavigationProperty Name="Videos" Relationship="Self.FK_Videos_MusicsList" FromRole="MusicsList" ToRole="Videos" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_MusicsList" FromRole="Musics" ToRole="Comment" />
+          <NavigationProperty Name="Favorites" Relationship="Self.FK_favorite_MusicsList" FromRole="Musics" ToRole="Favorite" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Musics_Users" FromRole="Musics" ToRole="Users" />
+          <NavigationProperty Name="National" Relationship="Self.FK_MusicsList_National" FromRole="Musics" ToRole="National" />
+          <NavigationProperty Name="Videos" Relationship="Self.FK_Videos_MusicsList" FromRole="Musics" ToRole="Videos" />
         </EntityType>
         <EntityType Name="National">
           <Key>
@@ -614,7 +614,7 @@
           <Property Name="nation_datecreate" Type="DateTime" Precision="3" />
           <Property Name="nation_dateupdate" Type="DateTime" Precision="3" />
           <Property Name="nation_option" Type="Boolean" />
-          <NavigationProperty Name="MusicsLists" Relationship="Self.FK_MusicsList_National" FromRole="National" ToRole="MusicsList" />
+          <NavigationProperty Name="Musics" Relationship="Self.FK_MusicsList_National" FromRole="National" ToRole="Musics" />
         </EntityType>
         <EntityType Name="Package">
           <Key>
@@ -713,8 +713,8 @@
           <NavigationProperty Name="Authors" Relationship="Self.FK_Authors_Users" FromRole="Users" ToRole="Authors" />
           <NavigationProperty Name="Categories" Relationship="Self.FK_Categories_Users" FromRole="Users" ToRole="Categories" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Users" FromRole="Users" ToRole="Comment" />
-          <NavigationProperty Name="favorites" Relationship="Self.FK_favorite_Users" FromRole="Users" ToRole="favorite" />
-          <NavigationProperty Name="MusicsLists" Relationship="Self.FK_Musics_Users" FromRole="Users" ToRole="MusicsList" />
+          <NavigationProperty Name="Favorites" Relationship="Self.FK_favorite_Users" FromRole="Users" ToRole="Favorite" />
+          <NavigationProperty Name="Musics" Relationship="Self.FK_Musics_Users" FromRole="Users" ToRole="Musics" />
           <NavigationProperty Name="Pays" Relationship="Self.FK_Pays_Users" FromRole="Users" ToRole="Pays" />
           <NavigationProperty Name="Profiles" Relationship="Self.FK_Profiles_Users" FromRole="Users" ToRole="Profiles" />
           <NavigationProperty Name="Singers" Relationship="Self.FK_Singers_Users" FromRole="Users" ToRole="Singers" />
@@ -735,7 +735,7 @@
           <Property Name="video_favorite" Type="Int32" />
           <Property Name="music_id" Type="Int32" />
           <Property Name="user_id" Type="Int32" />
-          <NavigationProperty Name="MusicsList" Relationship="Self.FK_Videos_MusicsList" FromRole="Videos" ToRole="MusicsList" />
+          <NavigationProperty Name="Music" Relationship="Self.FK_Videos_MusicsList" FromRole="Videos" ToRole="Musics" />
           <NavigationProperty Name="User" Relationship="Self.FK_Videos_Users" FromRole="Videos" ToRole="Users" />
         </EntityType>
         <Association Name="FK_Albums_Users">
@@ -775,10 +775,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Comment_MusicsList">
-          <End Role="MusicsList" Type="Self.MusicsList" Multiplicity="0..1" />
+          <End Role="Musics" Type="Self.Music" Multiplicity="0..1" />
           <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MusicsList">
+            <Principal Role="Musics">
               <PropertyRef Name="music_id" />
             </Principal>
             <Dependent Role="Comment">
@@ -811,58 +811,58 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_favorite_MusicsList">
-          <End Role="MusicsList" Type="Self.MusicsList" Multiplicity="0..1" />
-          <End Role="favorite" Type="Self.favorite" Multiplicity="*" />
+          <End Role="Musics" Type="Self.Music" Multiplicity="0..1" />
+          <End Role="Favorite" Type="Self.Favorite" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MusicsList">
+            <Principal Role="Musics">
               <PropertyRef Name="music_id" />
             </Principal>
-            <Dependent Role="favorite">
+            <Dependent Role="Favorite">
               <PropertyRef Name="music_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_favorite_Users">
           <End Role="Users" Type="Self.User" Multiplicity="0..1" />
-          <End Role="favorite" Type="Self.favorite" Multiplicity="*" />
+          <End Role="Favorite" Type="Self.Favorite" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="user_id" />
             </Principal>
-            <Dependent Role="favorite">
+            <Dependent Role="Favorite">
               <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Musics_Users">
           <End Role="Users" Type="Self.User" Multiplicity="0..1" />
-          <End Role="MusicsList" Type="Self.MusicsList" Multiplicity="*" />
+          <End Role="Musics" Type="Self.Music" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="user_id" />
             </Principal>
-            <Dependent Role="MusicsList">
+            <Dependent Role="Musics">
               <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MusicsList_National">
           <End Role="National" Type="Self.National" Multiplicity="0..1" />
-          <End Role="MusicsList" Type="Self.MusicsList" Multiplicity="*" />
+          <End Role="Musics" Type="Self.Music" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="National">
               <PropertyRef Name="nation_id" />
             </Principal>
-            <Dependent Role="MusicsList">
+            <Dependent Role="Musics">
               <PropertyRef Name="nation_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Videos_MusicsList">
-          <End Role="MusicsList" Type="Self.MusicsList" Multiplicity="0..1" />
+          <End Role="Musics" Type="Self.Music" Multiplicity="0..1" />
           <End Role="Videos" Type="Self.Video" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MusicsList">
+            <Principal Role="Musics">
               <PropertyRef Name="music_id" />
             </Principal>
             <Dependent Role="Videos">
@@ -935,8 +935,8 @@
           <EntitySet Name="Authors" EntityType="Self.Author" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Comments" EntityType="Self.Comment" />
-          <EntitySet Name="favorites" EntityType="Self.favorite" />
-          <EntitySet Name="MusicsLists" EntityType="Self.MusicsList" />
+          <EntitySet Name="Favorites" EntityType="Self.Favorite" />
+          <EntitySet Name="Musics" EntityType="Self.Music" />
           <EntitySet Name="Nationals" EntityType="Self.National" />
           <EntitySet Name="Packages" EntityType="Self.Package" />
           <EntitySet Name="Pays" EntityType="Self.Pay" />
@@ -958,7 +958,7 @@
             <End Role="Categories" EntitySet="Categories" />
           </AssociationSet>
           <AssociationSet Name="FK_Comment_MusicsList" Association="Self.FK_Comment_MusicsList">
-            <End Role="MusicsList" EntitySet="MusicsLists" />
+            <End Role="Musics" EntitySet="Musics" />
             <End Role="Comment" EntitySet="Comments" />
           </AssociationSet>
           <AssociationSet Name="FK_Comment_Users" Association="Self.FK_Comment_Users">
@@ -970,23 +970,23 @@
             <End Role="Reply" EntitySet="Replies" />
           </AssociationSet>
           <AssociationSet Name="FK_favorite_MusicsList" Association="Self.FK_favorite_MusicsList">
-            <End Role="MusicsList" EntitySet="MusicsLists" />
-            <End Role="favorite" EntitySet="favorites" />
+            <End Role="Musics" EntitySet="Musics" />
+            <End Role="Favorite" EntitySet="Favorites" />
           </AssociationSet>
           <AssociationSet Name="FK_favorite_Users" Association="Self.FK_favorite_Users">
             <End Role="Users" EntitySet="Users" />
-            <End Role="favorite" EntitySet="favorites" />
+            <End Role="Favorite" EntitySet="Favorites" />
           </AssociationSet>
           <AssociationSet Name="FK_Musics_Users" Association="Self.FK_Musics_Users">
             <End Role="Users" EntitySet="Users" />
-            <End Role="MusicsList" EntitySet="MusicsLists" />
+            <End Role="Musics" EntitySet="Musics" />
           </AssociationSet>
           <AssociationSet Name="FK_MusicsList_National" Association="Self.FK_MusicsList_National">
             <End Role="National" EntitySet="Nationals" />
-            <End Role="MusicsList" EntitySet="MusicsLists" />
+            <End Role="Musics" EntitySet="Musics" />
           </AssociationSet>
           <AssociationSet Name="FK_Videos_MusicsList" Association="Self.FK_Videos_MusicsList">
-            <End Role="MusicsList" EntitySet="MusicsLists" />
+            <End Role="Musics" EntitySet="Musics" />
             <End Role="Videos" EntitySet="Videos" />
           </AssociationSet>
           <AssociationSet Name="FK_Pays_Packages" Association="Self.FK_Pays_Packages">
@@ -1082,9 +1082,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="favorites">
-            <EntityTypeMapping TypeName="MusicProjectDataModel.favorite">
-              <MappingFragment StoreEntitySet="favorite">
+          <EntitySetMapping Name="Favorites">
+            <EntityTypeMapping TypeName="MusicProjectDataModel.Favorite">
+              <MappingFragment StoreEntitySet="Favorite">
                 <ScalarProperty Name="favorite_id" ColumnName="favorite_id" />
                 <ScalarProperty Name="favorite_active" ColumnName="favorite_active" />
                 <ScalarProperty Name="favorite_option" ColumnName="favorite_option" />
@@ -1096,9 +1096,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MusicsLists">
-            <EntityTypeMapping TypeName="MusicProjectDataModel.MusicsList">
-              <MappingFragment StoreEntitySet="MusicsList">
+          <EntitySetMapping Name="Musics">
+            <EntityTypeMapping TypeName="MusicProjectDataModel.Music">
+              <MappingFragment StoreEntitySet="Musics">
                 <ScalarProperty Name="music_id" ColumnName="music_id" />
                 <ScalarProperty Name="music_name" ColumnName="music_name" />
                 <ScalarProperty Name="music_img" ColumnName="music_img" />

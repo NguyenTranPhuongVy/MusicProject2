@@ -266,7 +266,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
         {
             if(del != "del")
             {
-                List<MusicsList> musics = db.MusicsLists.Where(n => n.music_bin == false).OrderBy(n => n.music_name).ToList();
+                List<Music.Model.EF.Music> musics = db.Musics.Where(n => n.music_bin == false).OrderBy(n => n.music_name).ToList();
                 List<jMusics> list = musics.Select(n => new jMusics
                 {
                     music_name = n.music_name,
@@ -291,7 +291,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             }    
             else
             {
-                List<MusicsList> musics = db.MusicsLists.Where(n => n.music_bin == true).OrderBy(n => n.music_name).ToList();
+                List<Music.Model.EF.Music> musics = db.Musics.Where(n => n.music_bin == true).OrderBy(n => n.music_name).ToList();
                 List<jMusics> list = musics.Select(n => new jMusics
                 {
                     music_name = n.music_name,

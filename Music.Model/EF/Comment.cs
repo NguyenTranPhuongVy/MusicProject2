@@ -30,7 +30,7 @@ namespace Music.Model.EF
         public Nullable<int> user_id { get; set; }
         public Nullable<int> music_id { get; set; }
     
-        public virtual MusicsList MusicsList { get; set; }
+        public virtual Music Music { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reply> Replies { get; set; }

@@ -23,7 +23,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
 
         public ActionResult Delete()
         {
-            return View(db.MusicsLists.Where(n => n.music_bin == true).ToList());
+            return View(db.Musics.Where(n => n.music_bin == true).ToList());
         }
 
         [HttpGet]
@@ -32,7 +32,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
             var dao = new MusicsDAO();
             if (dao.Active(id))
             {
-                List<MusicsList> musics = db.MusicsLists.Where(n => n.music_bin == false).OrderBy(n => n.music_name).ToList();
+                List<Music.Model.EF.Music> musics = db.Musics.Where(n => n.music_bin == false).OrderBy(n => n.music_name).ToList();
                 List<jMusics> list = musics.Select(n => new jMusics
                 {
                     music_name = n.music_name,
@@ -66,7 +66,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
             var dao = new MusicsDAO();
             if (dao.Option(id))
             {
-                List<MusicsList> musics = db.MusicsLists.Where(n => n.music_bin == false).OrderBy(n => n.music_name).ToList();
+                List<Music.Model.EF.Music> musics = db.Musics.Where(n => n.music_bin == false).OrderBy(n => n.music_name).ToList();
                 List<jMusics> list = musics.Select(n => new jMusics
                 {
                     music_name = n.music_name,
@@ -97,7 +97,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
 
         //Hàm thêm
         [HttpPost]
-        public ActionResult Add(MusicsList musics, HttpPostedFileBase IMG, HttpPostedFileBase MP3, string del)
+        public ActionResult Add(Music.Model.EF.Music musics, HttpPostedFileBase IMG, HttpPostedFileBase MP3, string del)
         {
             //Cập nhật có thay đổi
             musics.music_option = true;
@@ -153,9 +153,9 @@ namespace Music.Frontend.Areas.Admin.Controllers
         //Hàm sửa
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(MusicsList musics, HttpPostedFileBase IMG, HttpPostedFileBase MP3)
+        public ActionResult Edit(Music.Model.EF.Music musics, HttpPostedFileBase IMG, HttpPostedFileBase MP3)
         {
-            MusicsList mus = db.MusicsLists.Find(musics.music_id);
+            Music.Model.EF.Music mus = db.Musics.Find(musics.music_id);
 
             musics.music_active = mus.music_active;
             musics.music_datecreate = mus.music_datecreate;
@@ -213,7 +213,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
             var dao = new MusicsDAO();
             if (dao.Del(id))
             {
-                List<MusicsList> musics = db.MusicsLists.Where(n => n.music_bin == false).OrderBy(n => n.music_name).ToList();
+                List<Music.Model.EF.Music> musics = db.Musics.Where(n => n.music_bin == false).OrderBy(n => n.music_name).ToList();
                 List<jMusics> list = musics.Select(n => new jMusics
                 {
                     music_name = n.music_name,
@@ -249,7 +249,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
             var dao = new MusicsDAO();
             if (dao.Restore(id))
             {
-                List<MusicsList> musics = db.MusicsLists.Where(n => n.music_bin == true).OrderBy(n => n.music_name).ToList();
+                List<Music.Model.EF.Music> musics = db.Musics.Where(n => n.music_bin == true).OrderBy(n => n.music_name).ToList();
                 List<jMusics> list = musics.Select(n => new jMusics
                 {
                     music_name = n.music_name,
@@ -285,7 +285,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
             var j = new JsonAdminController();
             if (dao.Delete(id))
             {
-                List<MusicsList> musics = db.MusicsLists.Where(n => n.music_bin == true).OrderBy(n => n.music_name).ToList();
+                List<Music.Model.EF.Music> musics = db.Musics.Where(n => n.music_bin == true).OrderBy(n => n.music_name).ToList();
                 List<jMusics> list = musics.Select(n => new jMusics
                 {
                     music_name = n.music_name,

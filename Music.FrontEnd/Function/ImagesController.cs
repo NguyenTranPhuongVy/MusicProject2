@@ -19,7 +19,7 @@ namespace Music.FrontEnd.Function
             var fileimg = Path.GetFileName(IMG.FileName);
             var pa = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Images/" + LinkImages), code + fileimg);
             IMG.SaveAs(pa);
-            return fileimg;
+            return code + fileimg;
         }
 
         public string AddMP3(HttpPostedFileBase MP3, string LinkMP3, string code)

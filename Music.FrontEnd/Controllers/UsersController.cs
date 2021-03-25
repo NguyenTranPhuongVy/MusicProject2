@@ -15,6 +15,7 @@ namespace Music.FrontEnd.Controllers
     {
         UsersDAO usersDAO = new UsersDAO();
         FunctionController function = new FunctionController();
+        ImagesController images = new ImagesController();
         MusicProjectDataEntities db = new MusicProjectDataEntities();
         // GET: Users
         public ActionResult Registration()
@@ -65,7 +66,7 @@ namespace Music.FrontEnd.Controllers
                         var user = db.Users.FirstOrDefault(t => t.user_email == login.Email);
                         HttpCookie cookie = new HttpCookie("user_id", user.user_id.ToString());
                         cookie.Expires.AddDays(10);
-                        Request.Cookies.Add(cookie);
+                        Response.Cookies.Set(cookie);
                         return Redirect("/");
                     case -1:
                         TempData["noti_login"] = "Sai tài khoản hoặc mật khẩu!";
@@ -90,7 +91,19 @@ namespace Music.FrontEnd.Controllers
             {
                 return RedirectToAction("Login");
             }
-            return View(function.CookieID());
+            return View();
+        }
+        [HttpPost]
+        public JsonResult Edit(User user, HttpPostedFileBase img)
+        {
+            if (ModelState.IsValid)
+            {
+                user.user_img = images.AddImages(img, "User", Guid.NewGuid().ToString());
+                usersDAO.Edit(user);
+
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            return Json(false, JsonRequestBehavior.AllowGet);
         }
     }
 }

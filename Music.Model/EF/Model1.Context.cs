@@ -29,8 +29,8 @@ namespace Music.Model.EF
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<favorite> favorites { get; set; }
-        public virtual DbSet<MusicsList> MusicsLists { get; set; }
+        public virtual DbSet<Favorite> Favorites { get; set; }
+        public virtual DbSet<Music> Musics { get; set; }
         public virtual DbSet<National> Nationals { get; set; }
         public virtual DbSet<Package> Packages { get; set; }
         public virtual DbSet<Pay> Pays { get; set; }

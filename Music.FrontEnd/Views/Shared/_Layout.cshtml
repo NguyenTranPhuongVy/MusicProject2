@@ -1,5 +1,5 @@
 ﻿@{ 
-    var cookie = Response.Cookies["user_id"];
+    HttpCookie cookie = Request.Cookies["user_id"];
     Music.Model.EF.MusicProjectDataEntities db = new Music.Model.EF.MusicProjectDataEntities();
 }
 <!DOCTYPE html>

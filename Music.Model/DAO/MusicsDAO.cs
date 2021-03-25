@@ -12,7 +12,7 @@ namespace Music.Model.DAO
     {
         private MusicProjectDataEntities db = new MusicProjectDataEntities();
         //Hàm thêm
-        public bool Add(MusicsList musics)
+        public bool Add(Music.Model.EF.Music musics)
         {
             try
             {
@@ -22,7 +22,7 @@ namespace Music.Model.DAO
                 musics.music_view = 1;
                 musics.music_dowload = 0;
 
-                db.MusicsLists.Add(musics);
+                db.Musics.Add(musics);
                 db.SaveChanges();
 
                 return true;
@@ -33,7 +33,7 @@ namespace Music.Model.DAO
             }
         }
         //Hàm sửa
-        public bool Edit(MusicsList musics)
+        public bool Edit(Music.Model.EF.Music musics)
         {
             try
             {
@@ -52,8 +52,8 @@ namespace Music.Model.DAO
         {
             try
             {
-                MusicsList musics = db.MusicsLists.Find(id);
-                db.MusicsLists.Remove(musics);
+                Music.Model.EF.Music musics = db.Musics.Find(id);
+                db.Musics.Remove(musics);
                 db.SaveChanges();
 
                 return true;
@@ -69,7 +69,7 @@ namespace Music.Model.DAO
         {
             try
             {
-                MusicsList musics = db.MusicsLists.Find(id);
+                Music.Model.EF.Music musics = db.Musics.Find(id);
                 musics.music_active = !musics.music_active;
                 db.SaveChanges();
                 return true;
@@ -84,7 +84,7 @@ namespace Music.Model.DAO
         {
             try
             {
-                MusicsList musics = db.MusicsLists.Find(id);
+                Music.Model.EF.Music musics = db.Musics.Find(id);
                 musics.music_option = !musics.music_option;
                 db.SaveChanges();
                 return true;
@@ -100,7 +100,7 @@ namespace Music.Model.DAO
         {
             try
             {
-                MusicsList musics = db.MusicsLists.Find(id);
+                Music.Model.EF.Music musics = db.Musics.Find(id);
                 musics.music_bin = true;
 
                 db.SaveChanges();
@@ -118,7 +118,7 @@ namespace Music.Model.DAO
         {
             try
             {
-                MusicsList musics = db.MusicsLists.Find(id);
+                Music.Model.EF.Music musics = db.Musics.Find(id);
                 musics.music_bin = false;
 
                 db.SaveChanges();
