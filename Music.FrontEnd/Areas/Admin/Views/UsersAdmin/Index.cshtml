@@ -1,0 +1,342 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .font_color a {
+        color: black;
+        font-size: 20px;
+    }
+
+        .font_color a:hover {
+            color: royalblue;
+        }
+
+    .tableCenter {
+        align-items: center;
+        align-content: center;
+        text-align: center;
+    }
+</style>
+<div ng-app="myApp">
+    <div ng-controller="myCtrl">
+        <div class="card-box mb-30">
+            <div class="pd-20">
+                <h4 class="text-black-50 h4">Có {{(list | filter:textSearch).length}} Người Dùng</h4>
+            </div>
+            <div class="pd-20 ui form">
+                <div class="three fields">
+                    <div class="field">
+                        <div class="ui search">
+                            <div class="ui icon input">
+                                <input class="prompt" type="text" placeholder="Nhập Người Dùng..." ng-model="textSearch.user_name">
+                                <i class="search icon"></i>
+                            </div>
+                            <div class="results"></div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <select class="ui dropdown">
+                            <option>Tất Cả</option>
+                            <option>Hoạt Động</option>
+                            <option>Hiển Thị</option>
+                            <option>Ngừng Hoạt Động</option>
+                            <option>Ngừng Hiển Thị</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <button ng-click="linkDel()" class="ui secondary button">
+                            <i class="icon-copy dw dw-trash1"></i> Thùng Rác
+                        </button>
+                        <button data-toggle="modal" data-target="#create-Admin" class="ui button">
+                            <i class="icon-copy dw dw-add"></i> Thêm Admin
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="pb-20">
+                <table class="checkbox-datatable table nowrap">
+                    <thead>
+                        <tr>
+                            <th><i class="icon-copy dw dw-list2"></i>  Tên Người Dùng</th>
+                            <th><i class="icon-copy dw dw-image1"></i>  Hình Ảnh</th>
+                            <th><i class="icon-copy dw dw-battery1"></i>  Trạng Thái</th>
+                            <th><i class="icon-copy dw dw-monitor"></i>  Tình Trạng</th>
+                            <th><i class="icon-copy dw dw-calendar-11"></i>  Ngày Đăng</th>
+                            <th><i class="icon-copy dw dw-calendar1"></i>  Ngày Sửa</th>
+                            <th><i class="icon-copy dw dw-magic-wand"></i>  Tuỳ Chọn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="tableCenter" ng-repeat="list in list | filter: textSearch">
+                            <td>{{list.user_name}}</td>
+                            <td>
+                                <img class="ui medium rounded image" style="width: 50px; height: 50px" src="~/Images/User/{{list.user_img}}">
+                            </td>
+                            <td>
+                                <div ng-show="list.user_active == true">
+                                    <button ng-click="active(list.user_id)" class="ui inverted primary button">Hoạt Động</button>
+                                </div>
+                                <div ng-show="list.user_active == false">
+                                    <button ng-click="active(list.user_id)" class="ui inverted red button">Không Hoạt Động</button>
+                                </div>
+                            </td>
+                            <td>
+                                <div ng-show="list.user_option == true">
+                                    <button ng-click="option(list.user_id)" class="ui inverted green button">Hiển Thị</button>
+                                </div>
+                                <div ng-show="list.user_option == false">
+                                    <button ng-click="option(list.user_id)" class="ui inverted red button">Không Hiển Thị</button>
+                                </div>
+                            </td>
+                            <td>{{list.user_datecreate}}</td>
+                            <td>{{list.user_datelogin}}</td>
+                            <td>
+                                <center class="font_color">
+                                    <a data-toggle="modal" data-target="#details-Admin{{list.user_id}}"><i class="icon-copy dw dw-eye"></i></a> |
+                                    <a ng-click="bin(list.user_id)"><i class="icon-copy dw dw-trash1"></i></a> |
+                                    <a data-toggle="modal" data-target="#edit-Admin{{list.user_id}}"><i class="icon-copy dw dw-edit2"></i></a>
+                                </center>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--Modal Edit-->
+        <div ng-repeat="list in list" class="col-md-4 col-sm-12 mb-30">
+            <div class="modal fade bs-example-modal-lg" id="edit-Admin{{list.user_id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myLargeModalLabel">Người Dùng {{list.user_name}}</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="ui form" action="@Url.Action("Edit", "UsersAdmin")" method="post" enctype="multipart/form-data">
+                                @Html.AntiForgeryToken()
+                                <input value="{{list.user_id}}" type="hidden" name="user_id" />
+                                <p>Chỉnh sửa các thông tin cần thiết: </p>
+                                <div class="two fields">
+                                    <div class="field">
+                                        <label>Hình Ảnh</label>
+                                        <input type="file" name="IMG" value="user_img">
+                                        <label></label>
+                                        <img class="ui medium rounded image" style="height: 200px; width: 100% " src="~/Images/User/{{list.user_img}}">
+                                    </div> 
+                                </div>
+                                <div class="three fields">
+                                    <div class="field">
+                                        <label>Tên Người Dùng</label>
+                                        <input value="{{list.user_name}}" name="user_name" type="text">
+                                    </div>
+                                    <div class="field">
+                                        <label>Email Người Dùng</label>
+                                        <input value="{{list.user_email}}" name="user_email" type="text">
+                                    </div>
+                                    <div class="field">
+                                        <label>Mật Khẩu Người Dùng</label>
+                                        <input value="{{list.user_pass}}" name="user_pass" type="password">
+                                    </div>
+                                </div>
+                                <div class="two fields">
+                                    <div class="field">
+                                        <label>Ngày VIP</label>
+                                        <input  name="user_deadline" value="{{list.user_deadline | date: 'dd/MM/yyyy'}}" type="text" />
+                                    </div>
+                                    <div class="field">
+                                        <label>Điểm Cá Nhân</label>
+                                        <input name="user_point" value="{{list.user_point}}" type="text" />
+                                    </div>
+                                </div>
+                                <button type="submit" class="ui primary submit button right">Sửa</button>
+                                <div class="ui error message"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modal-->
+        <!--Modal details-->
+        <div ng-repeat="list in list" class="col-md-4 col-sm-12 mb-30">
+            <div class="modal fade bs-example-modal-lg" id="details-Admin{{list.user_id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myLargeModalLabel">Người Dùng: {{list.user_name}}</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="ui form">
+                                <div class="three fields">
+                                    <div class="field">
+                                        <label>Tên Người Dùng</label>
+                                        <input value="{{list.user_name}}" type="text">
+                                    </div>
+                                    <div class="field">
+                                        <label>Email Người Dùng</label>
+                                        <input value="{{list.user_email}}" type="text">
+                                    </div>
+                                    <div class="field">
+                                        <label>Password</label>
+                                        <input value="{{list.user_pass}}" type="password">
+                                    </div>
+                                </div>
+                                <div class="two fields">
+                                    <div class="field">
+                                        <label>Hình Ảnh</label>
+                                        <img class="ui medium rounded image" style="height: 200px; width: 100% " src="~/Images/User/{{list.user_img}}">
+                                    </div>
+                                </div>
+                                <div class="two fields">
+                                    <div class="field">
+                                        <label>Trạng Thái</label>
+                                        <div ng-show="list.user_active == true" class="ui checked checkbox">
+                                            <input type="checkbox" checked="" disabled>
+                                            <label>Hoạt Động</label>
+                                        </div>
+                                        <div ng-show="list.user_active == false" class="ui checked checkbox">
+                                            <input type="checkbox" disabled>
+                                            <label>Không Hoạt Động</label>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label>Tình Trạng</label>
+                                        <div ng-show="list.user_option == true" class="ui checked checkbox">
+                                            <input type="checkbox" checked="" disabled>
+                                            <label>Hiển Thị</label>
+                                        </div>
+                                        <div ng-show="list.user_option == false" class="ui checked checkbox">
+                                            <input type="checkbox" disabled>
+                                            <label>Không Hiển Thị</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="three fields">
+                                    <div class="field">
+                                        <label>Ngày Tạo</label>
+                                        <input value="{{list.user_datecreate}}" type="text">
+                                    </div>
+                                    <div class="field">
+                                        <label>Ngày Đăng Nhập</label>
+                                        <input value="{{list.user_datelogin}}" type="text">
+                                    </div>
+                                    <div class="field">
+                                        <label>Ngày VIP</label>
+                                        <input value="{{list.user_deadline}}" type="text">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modal-->
+    </div>
+</div>
+<!-- Checkbox select Datatable End -->
+<!--Modal create-->
+<div class="col-md-4 col-sm-12 mb-30">
+    <div class="pd-20">
+        <div class="modal fade bs-example-modal-lg" id="create-Admin" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myLargeModalLabel">Người Dùng</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="@Url.Action("Add", "UsersAdmin")" method="post" enctype="multipart/form-data" class="ui form">
+                            <p>Nhập đủ các thông tin sau: </p>
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Tên Người Dùng</label>
+                                    <input placeholder="Nhập tên Người Dùng" name="user_name" type="text">
+                                </div>
+                                <div class="field">
+                                    <label>Hình Ảnh</label>
+                                    <input type="file" name="IMG">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Trạng Thái</label>
+                                <select class="ui dropdown" name="user_active">
+                                    <option value="true">Cho Phép Hoạt Động</option>
+                                    <option value="false">Không Phép Hoạt Động</option>
+                                </select>
+                            </div>
+                            <div class="ui primary submit button right">Thêm</div>
+                            <div class="ui error message"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Modal-->
+<!-- Success modal -->
+<div class="modal fade" id="noteDel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center font-18">
+                <h3 class="mb-20">Chuyển Vào Thùng Rác Thành Công!</h3>
+                <div class="mb-30 text-center"><img src="~/Content/LayoutAdmin/vendors/images/success.png"></div>
+                Dữ liệu đã được chuyển vào thùng rác.
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal-->
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope, $http) {
+        $http({
+            method: "GET",
+            url: "/JsonAdmin/Users?del="
+        }).then(function mySuccess(response) {
+            $scope.list = response.data;
+
+            $scope.active = function (id) {
+                $http.get("/UsersAdmin/Active?id=" + id)
+                    .then(function (response) {
+                        $scope.list = response.data;
+                    });
+            };
+
+            $scope.option = function (id) {
+                $http.get("/Admin/UsersAdmin/Option?id=" + id)
+                    .then(function (response) {
+                        $scope.list = response.data;
+                    });
+            };
+
+            $scope.bin = function (id) {
+                $http.get("/Admin/UsersAdmin/Del?id=" + id)
+                    .then(function (response) {
+                        $scope.list = response.data;
+
+                        $(document).ready(function () {
+                            $('#noteDel').modal('show');
+                        })
+                    });
+            };
+
+            $scope.linkDel = function () {
+                window.location.href = '/Admin/UsersAdmin/Delete';
+            };
+
+
+        }, function myError(response) {
+            $scope.list = response.statusText;
+        });
+    });
+</script>
+

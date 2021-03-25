@@ -1,0 +1,85 @@
+﻿@{
+    var a = "@";
+}
+<script>
+    $('.ui.form')
+        .form({
+            inline: true,
+            on: 'blur',
+            fields: {
+                user_name: {
+                    identifier: 'user_name',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Không Được Phép Để Trống.'
+                        },
+                        {
+                            type: 'maxLength[30]',
+                            prompt: 'Tên Người Dùng Không Vượt Quá 30 Kí Tự.'
+                        },
+                        {
+                            type: 'minLength[5]',
+                            prompt: 'Tên Người Dùng Trên 5 Kí Tự.'
+                        }
+                    ]
+                },
+                user_pass: {
+                    identifier: 'user_pass',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Không Được Phép Để Trống.'
+                        }
+                    ]
+                },
+                user_email: {
+                    identifier: 'user_email',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Không Được Phép Để Trống.'
+                        },
+                        {
+                            type: 'email',
+                            prompt: 'Email Sai Định Dạng.'
+                        }
+                    ]
+                },
+                user_repeat: {
+                    identifier: 'user_repeat',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Không Được Phép Để Trống.'
+                        },
+                        {
+                            type: 'match[user_pass]',
+                            prompt: 'Mật Khẩu Sát Nhận Không Trùng Khớp.'
+                        }
+                    ]
+                },
+                user_pass: {
+                    identifier: 'user_pass',
+                    rules: [
+                        {
+                            type: 'regExp[^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@a#\$%\^&\*])(?=.{8,})]',
+                            prompt: 'Mật Khẩu Trên 8 Ký Tự Bao Gồm(Chữ Thường, Chữ Hoa, Ký Tự Đặt Biệt, Số).'
+                        }
+                    ]
+                },
+
+                terms: {
+                    identifier: 'terms',
+                    rules: [
+                        {
+                            type: 'checked',
+                            prompt: 'Bạn Chưa Đồng Ý Với Điều Khoản Của Chúng Tôi.'
+                        }
+                    ]
+                },
+
+            }
+        })
+        ;
+</script>

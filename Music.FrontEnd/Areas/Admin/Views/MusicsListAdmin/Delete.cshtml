@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .font_color a {
+        color: black;
+        font-size: 20px;
+    }
+
+        .font_color a:hover {
+            color: royalblue;
+        }
+</style>
+<div ng-app="myApp">
+    <div ng-controller="myCtrl">
+        <div class="card-box mb-30">
+            <div class="pd-20">
+                <h4 class="text-black-50 h4">Có {{(list | filter:textSearch).length}} Thể Loại</h4>
+            </div>
+            <div class="pd-20 ui form">
+                <div class="three fields">
+                    <div class="field">
+                        <div class="ui search">
+                            <div class="ui icon input">
+                                <input class="prompt" type="text" placeholder="Nhập Bài Hát..." ng-model="textSearch.music_name">
+                                <i class="search icon"></i>
+                            </div>
+                            <div class="results"></div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <select class="ui dropdown">
+                            <option>Tất Cả</option>
+                            <option>Hoạt Động</option>
+                            <option>Hiển Thị</option>
+                            <option>Ngừng Hoạt Động</option>
+                            <option>Ngừng Hiển Thị</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <button ng-click="linkDel()" class="ui secondary button">
+                            <i class="icon-copy dw dw-undo1"></i> Trở Lại
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="pb-20">
+                <table class="checkbox-datatable table nowrap">
+                    <thead>
+                        <tr>
+                            <th><i class="icon-copy dw dw-list2"></i>  Tên Bài Hát</th>
+                            <th><i class="icon-copy dw dw-image1"></i>  Hình Ảnh</th>
+                            <th><i class="icon-copy dw dw-battery1"></i>  Trạng Thái</th>
+                            <th><i class="icon-copy dw dw-monitor"></i>  Tình Trạng</th>
+                            <th><i class="icon-copy dw dw-calendar-11"></i>  Ngày Đăng</th>
+                            <th><i class="icon-copy dw dw-calendar1"></i>  Ngày Sửa</th>
+                            <th><i class="icon-copy dw dw-magic-wand"></i>  Tuỳ Chọn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="list in list | filter: textSearch">
+                            <td>{{list.music_name}}</td>
+                            <td>
+                                <img class="ui medium rounded image" style="width: 50px; height: 50px" src="~/Images/Music/{{list.music_img}}">
+                            </td>
+                            <td>
+                                <div ng-show="list.music_active == true">
+                                    <button ng-click="active(list.music_id)" class="ui inverted primary button">Hoạt Động</button>
+                                </div>
+                                <div ng-show="list.music_active == false">
+                                    <button ng-click="active(list.music_id)" class="ui inverted red button">Không Hoạt Động</button>
+                                </div>
+                            </td>
+                            <td>
+                                <div ng-show="list.music_option == true">
+                                    <button ng-click="option(list.music_id)" class="ui inverted green button">Hiển Thị</button>
+                                </div>
+                                <div ng-show="list.music_option == false">
+                                    <button ng-click="option(list.music_id)" class="ui inverted red button">Không Hiển Thị</button>
+                                </div>
+                            </td>
+                            <td>{{list.music_datecreate}}</td>
+                            <td>{{list.music_dateedit}}</td>
+                            <td>
+                                <center class="font_color">
+                                    <a ng-click="delete(list.music_id)"><i class="icon-copy dw dw-trash1"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                                    <a ng-click="restore(list.music_id)"><i class="icon-copy dw dw-recycle-1"></i></a>
+                                </center>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--Modal khôi phục-->
+        <div class="modal fade" id="note-Res" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body text-center font-18">
+                        <h3 class="mb-20">Đã Khôi Phục!</h3>
+                        <div class="mb-30 text-center"><img src="~/Content/LayoutAdmin/vendors/images/success.png"></div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modal-->
+        <!--Modal xoá-->
+        <div class="modal fade" id="note-Delete" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body text-center font-18">
+                        <h3 class="mb-20">Đã Xoá Vĩnh Viễn!</h3>
+                        <div class="mb-30 text-center"><img src="~/Content/LayoutAdmin/vendors/images/success.png"></div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modal-->
+    </div>
+</div>
+<!-- Checkbox select Datatable End -->
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope, $http) {
+        $http({
+            method: "GET",
+            url: "/JsonAdmin/Musics?del=del"
+        }).then(function mySuccess(response) {
+            $scope.list = response.data;
+
+            $scope.active = function (id) {
+                $http.get("/MusicsListAdmin/Active?id=" + id)
+                    .then(function (response) {
+                        $scope.list = response.data;
+                    });
+            };
+
+            $scope.option = function (id) {
+                $http.get("/Admin/MusicsListAdmin/Option?id=" + id)
+                    .then(function (response) {
+                        $scope.list = response.data;
+                    });
+            };
+
+            $scope.restore = function (id) {
+                $http.get("/Admin/MusicsListAdmin/Restore?id=" + id)
+                    .then(function (response) {
+                        $scope.list = response.data;
+
+                        $(document).ready(function () {
+                            $('#note-Res').modal('show');
+                        })
+                    });
+            };
+
+            $scope.delete = function (id) {
+                $http.get("/Admin/MusicsListAdmin/DeleteMusic?id=" + id)
+                    .then(function (response) {
+                        $scope.list = response.data;
+
+                        $(document).ready(function () {
+                            $('#note-Delete').modal('show');
+                        })
+                    });
+            };
+
+            $scope.linkDel = function () {
+                window.location.href = '/Admin/MusicsListAdmin/Index';
+            };
+
+
+        }, function myError(response) {
+            $scope.list = response.statusText;
+        });
+    });
+</script>
+

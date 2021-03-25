@@ -1,0 +1,214 @@
+﻿@{ 
+    var cookie = Response.Cookies["user_id"];
+    Music.Model.EF.MusicProjectDataEntities db = new Music.Model.EF.MusicProjectDataEntities();
+}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Videograph Template">
+    <meta name="keywords" content="Videograph, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Videograph | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/Content/Layout/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/Layout/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/Layout/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/Layout/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/Layout/css/slicknav.min.css" type="text/css">
+    <link href="~/Content/fontawesome-free-5.15.2-web/css/fontawesome.min.css" rel="stylesheet" />
+    <script src="~/Content/fontawesome-free-5.15.2-web/js/all.min.js"></script>
+    <link href="~/Content/Layout/css/music.css" rel="stylesheet" />
+    <link href="~/Content/Layout/css/albums.css" rel="stylesheet" />
+    <link href="~/Content/Layout/css/style-layout.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/Content/Semantic-UI-CSS-master/semantic.min.css" rel="stylesheet" />
+    <script src="~/Content/Semantic-UI-CSS-master/semantic.min.js"></script>
+    <style>
+        table {
+            display: table;
+            border-collapse: separate;
+            box-sizing: border-box;
+            text-indent: initial;
+            border-spacing: 2px;
+            border-color: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="header__logo">
+                        <a href="@Url.Action("Index", "Home")"><img src="~/Content/Layout/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="header__nav__option">
+                        <nav class="header__nav__menu mobile-menu">
+                            <ul>
+                                <li class="active"><a href="@Url.Action("Index", "Home")">TRANG CHỦ</a></li>
+                                <li>
+                                    <a href="./about.html">TOP 100</a>
+                                    <ul class="dropdown">
+                                        <li><a href="./about.html">Nhạc Việt</a></li>
+                                        <li><a href="./portfolio.html">Nhạc Trẻ</a></li>
+                                        <li><a href="./blog.html">Nhạc K-POP</a></li>
+                                        <li><a href="./blog-details.html">Nhạc Âu Mỹ</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="./services.html">BẢNG XẾP HẠNG</a></li>
+                                <li><a href="@Url.Action("VideoMV", "Videos")">MV</a></li>
+                                <li><a href="./contact.html">Contact</a></li>
+                                <li>
+                                    @if (cookie == null)
+                                    {
+                                        <a href="@Url.Action("Registration", "Users")">TÀI KHOẢN</a>
+                                        <ul class="dropdown">
+                                            <li><a href="/Users/Login">Đăng Ký / Đăng Nhập</a></li>
+                                            <li><a href="./portfolio.html">Portfolio</a></li>
+                                            <li><a href="./blog.html">Blog</a></li>
+                                            <li><a href="./blog-details.html">Blog Details</a></li>
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        var user = db.Users.Find(int.Parse(cookie.Value.ToString()));
+                                        <a href="#">@user.user_name</a>
+                                        <ul class="dropdown">
+                                            <li><a href="/Users/Profile">Thông tin cá nhân</a></li>
+                                        </ul>
+                                    }
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="header__nav__social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-dribbble"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </header>
+    <!-- Header End -->
+    @RenderBody()
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__top">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer__top__logo">
+                            <a href="#"><img src="~/Content/Layout/img/logo.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer__top__social">
+                            <a href="#"><i class="fab fa-facebook-f" style="font-size: 18px"></i></a>
+                            <a href="#"><i class="fab fa-twitter" style="font-size: 18px"></i></a>
+                            <a href="#"><i class="fab fa-dribbble" style="font-size: 18px"></i></a>
+                            <a href="#"><i class="fab fa-instagram" style="font-size: 18px"></i></a>
+                            <a href="#"><i class="fab fa-youtube" style="font-size: 18px"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__option">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="footer__option__item">
+                            <h5>About us</h5>
+                            <p>
+                                Formed in 2006 by Matt Hobbs and Cael Jones, Videoprah is an award-winning, full-service
+                                production company specializing.
+                            </p>
+                            <a href="#" class="read__more">Read more <span class="arrow_right"></span></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3">
+                        <div class="footer__option__item">
+                            <h5>Who we are</h5>
+                            <ul>
+                                <li><a href="#">Team</a></li>
+                                <li><a href="#">Carrers</a></li>
+                                <li><a href="#">Contact us</a></li>
+                                <li><a href="#">Locations</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3">
+                        <div class="footer__option__item">
+                            <h5>Our work</h5>
+                            <ul>
+                                <li><a href="#">Feature</a></li>
+                                <li><a href="#">Latest</a></li>
+                                <li><a href="#">Browse Archive</a></li>
+                                <li><a href="#">Video for web</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="footer__option__item">
+                            <h5>Newsletter</h5>
+                            <p>Videoprah is an award-winning, full-service production company specializing.</p>
+                            <form action="#">
+                                <input type="text" placeholder="Email">
+                                <button type="submit"><i class="fa fa-send"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__copyright">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p class="footer__copyright__text">
+                            Copyright &copy;
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            All rights reserved | This template is made with <i class="fa fa-heart-o"
+                                                                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+    <!-- Js Plugins -->
+    <script src="~/Content/Layout/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/Layout/js/bootstrap.min.js"></script>
+    <script src="~/Content/Layout/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/Layout/js/mixitup.min.js"></script>
+    <script src="~/Content/Layout/js/masonry.pkgd.min.js"></script>
+    <script src="~/Content/Layout/js/jquery.slicknav.js"></script>
+    <script src="~/Content/Layout/js/owl.carousel.min.js"></script>
+    <script src="~/Content/Layout/js/main.js"></script>
+    @Html.Action("Validation", "View")
+</body>
+
+</html>

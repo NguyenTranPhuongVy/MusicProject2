@@ -1,0 +1,1114 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<!-- Hero Section Begin -->
+<section class="hero">
+    <div class="hero__slider owl-carousel">
+        <div class="hero__item set-bg" data-setbg="../../Content/Layout/img/hero/hero-1.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="hero__text">
+                            <span>For website and video editing</span>
+                            <h2>Videographer’s Portfolio</h2>
+                            <a href="#" class="primary-btn">See more about us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero__item set-bg" data-setbg="../../Content/Layout/img/hero/hero-1.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="hero__text">
+                            <span>For website and video editing</span>
+                            <h2>Videographer’s Portfolio</h2>
+                            <a href="#" class="primary-btn">See more about us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero__item set-bg" data-setbg="../../Content/Layout/img/hero/hero-1.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="hero__text">
+                            <span>For website and video editing</span>
+                            <h2>Videographer’s Portfolio</h2>
+                            <a href="#" class="primary-btn">See more about us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section End -->
+<!-- Nhạc mới nhất -->
+<section class="services spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="services__title">
+                    <div class="section-title">
+                        <span>Mới Nhất</span>
+                        <h2>Hôm Nay Nghe Gì?</h2>
+                    </div>
+                    <p>
+                        If you hire a videographer of our team you will get a video professional to make a custom
+                        video for your business and, once the project is over.
+                    </p>
+                    <a href="#" class="primary-btn">Xem Tất Cả Bài Hát</a>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        @for (int i = 0; i < 5; i++)
+                        {
+                            <div class="card-media">
+                                <!-- media container -->
+                                <div class="card-media-object-container">
+                                    <div class="card-media-object" style="background-image: url(https://s9.postimg.cc/y0sfm95gv/prince_f.jpg);"></div>
+                                    <span class="card-media-object-tag subtle">Selling Fast</span>
+                                    <ul class="card-media-object-social-list">
+                                        <li>
+                                            <img src="https://s10.postimg.cc/3rjjbzcvd/profile_f.jpg" class="">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- body container -->
+                                <div class="card-media-body">
+                                    <div class="card-media-body-top">
+                                        <span class="subtle">Mon, APR 09, 7:00 PM</span>
+                                        <div class="card-media-body-top-icons u-float-right">
+                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
+                                            </svg>
+                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z" />
+                                                <path d="M0 0h24v24H0z" fill="none" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="card-media-body-heading" style="font-size: 11px !important">This Thing Called Life: A Celebration of Prince and His Legacy at MEZZANINE SF</span>
+                                    <div class="card-media-body-supporting-bottom">
+                                        <span class="card-media-body-supporting-bottom-text subtle u-float-right">Free &ndash; $30</span>
+                                    </div>
+                                    <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
+                                        <span class="card-media-body-supporting-bottom-text subtle">#Music #Party</span>
+                                        <a href="@Url.Action("DetailsMusic", "Musics")" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        @for (int i = 0; i < 5; i++)
+                        {
+                            <div class="card-media">
+                                <!-- media container -->
+                                <div class="card-media-object-container">
+                                    <div class="card-media-object" style="background-image: url(https://s9.postimg.cc/y0sfm95gv/prince_f.jpg);"></div>
+                                    <span class="card-media-object-tag subtle">Selling Fast</span>
+                                    <ul class="card-media-object-social-list">
+                                        <li>
+                                            <img src="https://s10.postimg.cc/3rjjbzcvd/profile_f.jpg" class="">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- body container -->
+                                <div class="card-media-body">
+                                    <div class="card-media-body-top">
+                                        <span class="subtle">Mon, APR 09, 7:00 PM</span>
+                                        <div class="card-media-body-top-icons u-float-right">
+                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
+                                            </svg>
+                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z" />
+                                                <path d="M0 0h24v24H0z" fill="none" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="card-media-body-heading" style="font-size: 11px !important">This Thing Called Life: A Celebration of Prince and His Legacy at MEZZANINE SF</span>
+                                    <div class="card-media-body-supporting-bottom">
+                                        <span class="card-media-body-supporting-bottom-text subtle u-float-right">Free &ndash; $30</span>
+                                    </div>
+                                    <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
+                                        <span class="card-media-body-supporting-bottom-text subtle">#Music #Party</span>
+                                        <a href="@Url.Action("DetailsMusic", "Musics")" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Nhạc Mới Nhất -->
+<!-- Album Mới Nhất -->
+<section class="services spad" style="margin-top: -10%">
+    <div class="container">
+        <div class="services__title">
+            <div class="section-title">
+                <span>Album</span>
+                <h2>Mới Phát Hành</h2>
+            </div>
+            <p>
+                If you hire a videographer of our team you will get a video professional to make a custom
+                video for your business and, once the project is over.
+            </p>
+            <a href="#" class="primary-btn">Xem Tất Cả Album</a>
+        </div>
+        <div id="billboard-bar">
+            <div id="scroll">
+                <i class="fas fa-angle-left color-shade scroll-item"></i>
+                <i class="fas fa-angle-right color-shade scroll-item"></i>
+            </div>
+        </div>
+        <div id="overflow-scroll">
+            <div id="cards">
+                <div class="card-content">
+                    <img class="thumbnail" src="https://i.imgur.com/XuOF9OK.jpg" alt="coloring-book" />
+                    <h3 class="text-white">Coloring Book</h3>
+                    <p class="para">Pop King</p>
+                </div>
+                <div class="card-content">
+                    <img class="thumbnail" src="https://vignette.wikia.nocookie.net/troye/images/e/e4/BN.jpg/revision/latest/top-crop/width/360/height/450?cb=20161230003218" alt="blue-neighbourhood" />
+                    <h3 class="text-white">Blue Neighbourhood</h3>
+                    <p class="para">Troye Sivan</p>
+                </div>
+                <div class="card-content">
+                    <img class="thumbnail" src="https://sagadasmusicas.files.wordpress.com/2017/01/the-weeknd.jpg?w=350&h=200&crop=1" alt="starboy" />
+                    <h3 class="text-white">Starboy</h3>
+                    <p class="para">The Weekend</p>
+                </div>
+                <div class="card-content">
+                    <img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/Baahubali_the_Conclusion.jpg/220px-Baahubali_the_Conclusion.jpg" alt="baahubali" />
+                    <h3 class="text-white">Baahubali</h3>
+                    <p class="para">Keeravani</p>
+                </div>
+                <div class="card-content">
+                    <img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/Baahubali_the_Conclusion.jpg/220px-Baahubali_the_Conclusion.jpg" alt="baahubali" />
+                    <h3 class="text-white">Baahubali</h3>
+                    <p class="para">Keeravani</p>
+                </div>
+                <div class="card-content">
+                    <img class="thumbnail" src="https://i.imgur.com/XuOF9OK.jpg" alt="coloring-book" />
+                    <h3 class="text-white">Coloring Book</h3>
+                    <p class="para">Pop King</p>
+                </div>
+                <div class="card-content">
+                    <img class="thumbnail" src="https://vignette.wikia.nocookie.net/troye/images/e/e4/BN.jpg/revision/latest/top-crop/width/360/height/450?cb=20161230003218" alt="blue-neighbourhood" />
+                    <h3 class="text-white">Blue Neighbourhood</h3>
+                    <p class="para">Troye Sivan</p>
+                </div>
+                <div class="card-content">
+                    <img class="thumbnail" src="https://i.imgur.com/XuOF9OK.jpg" alt="coloring-book" />
+                    <h3 class="text-white">Coloring Book</h3>
+                    <p class="para">Pop King</p>
+                </div>
+                <div class="card-content">
+                    <img class="thumbnail" src="https://vignette.wikia.nocookie.net/troye/images/e/e4/BN.jpg/revision/latest/top-crop/width/360/height/450?cb=20161230003218" alt="blue-neighbourhood" />
+                    <h3 class="text-white">Blue Neighbourhood</h3>
+                    <p class="para">Troye Sivan</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Album mới nhất -->
+<!-- Ca sĩ -->
+<section class="team spad set-bg" data-setbg="../../Content/Layout/img/team-bg.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title team__title">
+                    <span>Ca Sĩ</span>
+                    <h2>Trending</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @for (int i = 0; i < 12; i++)
+            {
+                <div class="col-lg-3 col-md-6 col-sm-6 mb-3 p-0">
+                    <div class="team__item set-bg" data-setbg="../../Content/Layout/img/team/team-1.jpg" style="width: 80%; height: 200px; border-radius: 10%">
+                        <div class="team__item__text">
+                            <h4>AMANDA STONE</h4>
+                            <p>Videographer</p>
+                            <div class="team__item__social">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-dribbble"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="col-lg-12 mt-5 p-0">
+                <div class="team__btn">
+                    <a href="#" class="primary-btn">Xem Tất Cả</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Ca sĩ hot -->
+<!-- Nhạc phổ biến nhất -->
+<section class="services spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="services__title">
+                    <div class="section-title">
+                        <span>Trending</span>
+                        <h2>Nhạc Phổ Biến Nhất</h2>
+                    </div>
+                    <p>
+                        If you hire a videographer of our team you will get a video professional to make a custom
+                        video for your business and, once the project is over.
+                    </p>
+                    <a href="#" class="primary-btn">Xem Tất Cả</a>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        @for (int i = 0; i < 5; i++)
+                        {
+                            <div class="card-media">
+                                <!-- media container -->
+                                <div class="card-media-object-container">
+                                    <div class="card-media-object" style="background-image: url(https://s9.postimg.cc/y0sfm95gv/prince_f.jpg);"></div>
+                                    <span class="card-media-object-tag subtle">Selling Fast</span>
+                                    <ul class="card-media-object-social-list">
+                                        <li>
+                                            <img src="https://s10.postimg.cc/3rjjbzcvd/profile_f.jpg" class="">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- body container -->
+                                <div class="card-media-body">
+                                    <div class="card-media-body-top">
+                                        <span class="subtle">Mon, APR 09, 7:00 PM</span>
+                                        <div class="card-media-body-top-icons u-float-right">
+                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
+                                            </svg>
+                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z" />
+                                                <path d="M0 0h24v24H0z" fill="none" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="card-media-body-heading" style="font-size: 11px !important">This Thing Called Life: A Celebration of Prince and His Legacy at MEZZANINE SF</span>
+                                    <div class="card-media-body-supporting-bottom">
+                                        <span class="card-media-body-supporting-bottom-text subtle u-float-right">Free &ndash; $30</span>
+                                    </div>
+                                    <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
+                                        <span class="card-media-body-supporting-bottom-text subtle">#Music #Party</span>
+                                        <a href="@Url.Action("DetailsMusic", "Musics")" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        @for (int i = 0; i < 5; i++)
+                        {
+                            <div class="card-media">
+                                <!-- media container -->
+                                <div class="card-media-object-container">
+                                    <div class="card-media-object" style="background-image: url(https://s9.postimg.cc/y0sfm95gv/prince_f.jpg);"></div>
+                                    <span class="card-media-object-tag subtle">Selling Fast</span>
+                                    <ul class="card-media-object-social-list">
+                                        <li>
+                                            <img src="https://s10.postimg.cc/3rjjbzcvd/profile_f.jpg" class="">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- body container -->
+                                <div class="card-media-body">
+                                    <div class="card-media-body-top">
+                                        <span class="subtle">Mon, APR 09, 7:00 PM</span>
+                                        <div class="card-media-body-top-icons u-float-right">
+                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
+                                            </svg>
+                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z" />
+                                                <path d="M0 0h24v24H0z" fill="none" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="card-media-body-heading" style="font-size: 11px !important">This Thing Called Life: A Celebration of Prince and His Legacy at MEZZANINE SF</span>
+                                    <div class="card-media-body-supporting-bottom">
+                                        <span class="card-media-body-supporting-bottom-text subtle u-float-right">Free &ndash; $30</span>
+                                    </div>
+                                    <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
+                                        <span class="card-media-body-supporting-bottom-text subtle">#Music #Party</span>
+                                        <a href="@Url.Action("DetailsMusic", "Musics")" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Nhạc phổ biến Nhất -->
+<!-- Album Phổ biến -->
+<section class="services spad" style="margin-top: -10%">
+    <div class="container">
+        <div class="services__title">
+            <div class="section-title">
+                <span>Album</span>
+                <h2>Phổ Biến Hiện Nay</h2>
+            </div>
+            <p>
+                If you hire a videographer of our team you will get a video professional to make a custom
+                video for your business and, once the project is over.
+            </p>
+            <a href="#" class="primary-btn">Xem Tất Cả Album</a>
+        </div>
+        <div id="billboard-bar">
+            <div id="scroll">
+                <i class="fas fa-angle-left color-shade scroll-item"></i>
+                <i class="fas fa-angle-right color-shade scroll-item"></i>
+            </div>
+        </div>
+        <div id="overflow-scroll">
+            <div id="cards">
+                <div class="card-content">
+                    <img class="thumbnail" src="https://i.imgur.com/XuOF9OK.jpg" alt="coloring-book" />
+                    <h3 class="text-white">Coloring Book</h3>
+                    <p class="para">Pop King</p>
+                </div>
+                <div class="card-content">
+                    <img class="thumbnail" src="https://vignette.wikia.nocookie.net/troye/images/e/e4/BN.jpg/revision/latest/top-crop/width/360/height/450?cb=20161230003218" alt="blue-neighbourhood" />
+                    <h3 class="text-white">Blue Neighbourhood</h3>
+                    <p class="para">Troye Sivan</p>
+                </div>
+                <div class="card-content">
+                    <img class="thumbnail" src="https://sagadasmusicas.files.wordpress.com/2017/01/the-weeknd.jpg?w=350&h=200&crop=1" alt="starboy" />
+                    <h3 class="text-white">Starboy</h3>
+                    <p class="para">The Weekend</p>
+                </div>
+                <div class="card-content">
+                    <img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/Baahubali_the_Conclusion.jpg/220px-Baahubali_the_Conclusion.jpg" alt="baahubali" />
+                    <h3 class="text-white">Baahubali</h3>
+                    <p class="para">Keeravani</p>
+                </div>
+                <div class="card-content">
+                    <img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/Baahubali_the_Conclusion.jpg/220px-Baahubali_the_Conclusion.jpg" alt="baahubali" />
+                    <h3 class="text-white">Baahubali</h3>
+                    <p class="para">Keeravani</p>
+                </div>
+                <div class="card-content">
+                    <img class="thumbnail" src="https://i.imgur.com/XuOF9OK.jpg" alt="coloring-book" />
+                    <h3 class="text-white">Coloring Book</h3>
+                    <p class="para">Pop King</p>
+                </div>
+                <div class="card-content">
+                    <img class="thumbnail" src="https://vignette.wikia.nocookie.net/troye/images/e/e4/BN.jpg/revision/latest/top-crop/width/360/height/450?cb=20161230003218" alt="blue-neighbourhood" />
+                    <h3 class="text-white">Blue Neighbourhood</h3>
+                    <p class="para">Troye Sivan</p>
+                </div>
+                <div class="card-content">
+                    <img class="thumbnail" src="https://i.imgur.com/XuOF9OK.jpg" alt="coloring-book" />
+                    <h3 class="text-white">Coloring Book</h3>
+                    <p class="para">Pop King</p>
+                </div>
+                <div class="card-content">
+                    <img class="thumbnail" src="https://vignette.wikia.nocookie.net/troye/images/e/e4/BN.jpg/revision/latest/top-crop/width/360/height/450?cb=20161230003218" alt="blue-neighbourhood" />
+                    <h3 class="text-white">Blue Neighbourhood</h3>
+                    <p class="para">Troye Sivan</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Album phổ biến -->
+<!-- Top Thịnh Hành -->
+<section class="services spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="services__title">
+                    <div class="section-title">
+                        <span>Thịnh Hành</span>
+                        <h2>TOP Nổi Bật</h2>
+                    </div>
+                    <p>
+                        If you hire a videographer of our team you will get a video professional to make a custom
+                        video for your business and, once the project is over.
+                    </p>
+                    <a href="#" class="primary-btn">Album Thịnh Hành</a>
+                </div>
+                <div id="billboard-bar">
+                    <div id="scroll" style="color: white">
+                        <i class="fas fa-angle-left color-shade scroll-item"></i>
+                        <i class="fas fa-angle-right color-shade scroll-item"></i>
+                    </div>
+                </div>
+                <div id="overflow-scroll">
+                    <div id="cards">
+                        <div class="card-content">
+                            <img class="thumbnail" src="https://i.imgur.com/XuOF9OK.jpg" alt="coloring-book" />
+                            <h3 class="text-white">Coloring Book</h3>
+                            <p class="para">Pop King</p>
+                        </div>
+                        <div class="card-content">
+                            <img class="thumbnail" src="https://vignette.wikia.nocookie.net/troye/images/e/e4/BN.jpg/revision/latest/top-crop/width/360/height/450?cb=20161230003218" alt="blue-neighbourhood" />
+                            <h3 class="text-white">Blue Neighbourhood</h3>
+                            <p class="para">Troye Sivan</p>
+                        </div>
+                        <div class="card-content">
+                            <img class="thumbnail" src="https://sagadasmusicas.files.wordpress.com/2017/01/the-weeknd.jpg?w=350&h=200&crop=1" alt="starboy" />
+                            <h3 class="text-white">Starboy</h3>
+                            <p class="para">The Weekend</p>
+                        </div>
+                        <div class="card-content">
+                            <img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/Baahubali_the_Conclusion.jpg/220px-Baahubali_the_Conclusion.jpg" alt="baahubali" />
+                            <h3 class="text-white">Baahubali</h3>
+                            <p class="para">Keeravani</p>
+                        </div>
+                        <div class="card-content">
+                            <img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/Baahubali_the_Conclusion.jpg/220px-Baahubali_the_Conclusion.jpg" alt="baahubali" />
+                            <h3 class="text-white">Baahubali</h3>
+                            <p class="para">Keeravani</p>
+                        </div>
+                        <div class="card-content">
+                            <img class="thumbnail" src="https://i.imgur.com/XuOF9OK.jpg" alt="coloring-book" />
+                            <h3 class="text-white">Coloring Book</h3>
+                            <p class="para">Pop King</p>
+                        </div>
+                        <div class="card-content">
+                            <img class="thumbnail" src="https://vignette.wikia.nocookie.net/troye/images/e/e4/BN.jpg/revision/latest/top-crop/width/360/height/450?cb=20161230003218" alt="blue-neighbourhood" />
+                            <h3 class="text-white">Blue Neighbourhood</h3>
+                            <p class="para">Troye Sivan</p>
+                        </div>
+                        <div class="card-content">
+                            <img class="thumbnail" src="https://i.imgur.com/XuOF9OK.jpg" alt="coloring-book" />
+                            <h3 class="text-white">Coloring Book</h3>
+                            <p class="para">Pop King</p>
+                        </div>
+                        <div class="card-content">
+                            <img class="thumbnail" src="https://vignette.wikia.nocookie.net/troye/images/e/e4/BN.jpg/revision/latest/top-crop/width/360/height/450?cb=20161230003218" alt="blue-neighbourhood" />
+                            <h3 class="text-white">Blue Neighbourhood</h3>
+                            <p class="para">Troye Sivan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        @for (int i = 0; i < 5; i++)
+                        {
+                            <div class="card-media">
+                                <!-- media container -->
+                                <div class="card-media-object-container">
+                                    <div class="card-media-object" style="background-image: url(https://s9.postimg.cc/y0sfm95gv/prince_f.jpg);"></div>
+                                    <span class="card-media-object-tag subtle">Selling Fast</span>
+                                    <ul class="card-media-object-social-list">
+                                        <li>
+                                            <img src="https://s10.postimg.cc/3rjjbzcvd/profile_f.jpg" class="">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- body container -->
+                                <div class="card-media-body">
+                                    <div class="card-media-body-top">
+                                        <span class="subtle">Mon, APR 09, 7:00 PM</span>
+                                        <div class="card-media-body-top-icons u-float-right">
+                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
+                                            </svg>
+                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z" />
+                                                <path d="M0 0h24v24H0z" fill="none" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="card-media-body-heading" style="font-size: 11px !important">This Thing Called Life: A Celebration of Prince and His Legacy at MEZZANINE SF</span>
+                                    <div class="card-media-body-supporting-bottom">
+                                        <span class="card-media-body-supporting-bottom-text subtle u-float-right">Free &ndash; $30</span>
+                                    </div>
+                                    <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
+                                        <span class="card-media-body-supporting-bottom-text subtle">#Music #Party</span>
+                                        <a href="@Url.Action("DetailsMusic", "Musics")" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        @for (int i = 0; i < 5; i++)
+                        {
+                            <div class="card-media">
+                                <!-- media container -->
+                                <div class="card-media-object-container">
+                                    <div class="card-media-object" style="background-image: url(https://s9.postimg.cc/y0sfm95gv/prince_f.jpg);"></div>
+                                    <span class="card-media-object-tag subtle">Selling Fast</span>
+                                    <ul class="card-media-object-social-list">
+                                        <li>
+                                            <img src="https://s10.postimg.cc/3rjjbzcvd/profile_f.jpg" class="">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- body container -->
+                                <div class="card-media-body">
+                                    <div class="card-media-body-top">
+                                        <span class="subtle">Mon, APR 09, 7:00 PM</span>
+                                        <div class="card-media-body-top-icons u-float-right">
+                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
+                                            </svg>
+                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z" />
+                                                <path d="M0 0h24v24H0z" fill="none" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="card-media-body-heading" style="font-size: 11px !important">This Thing Called Life: A Celebration of Prince and His Legacy at MEZZANINE SF</span>
+                                    <div class="card-media-body-supporting-bottom">
+                                        <span class="card-media-body-supporting-bottom-text subtle u-float-right">Free &ndash; $30</span>
+                                    </div>
+                                    <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
+                                        <span class="card-media-body-supporting-bottom-text subtle">#Music #Party</span>
+                                        <a href="@Url.Action("DetailsMusic", "Musics")" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-lg-12 mt-5 p-0">
+                    <div class="team__btn">
+                        <a href="#" class="primary-btn">Bài Hát Thịnh Hành</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Nhạc phổ biến Nhất -->
+<!-- Ca Sỹ -->
+<section class="testimonial spad set-bg" data-setbg="../../Content/Layout/img/testimonial-bg.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title center-title">
+                    <span>Ca Sỹ</span>
+                    <h2>Có Thể Bạn Cần?</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="testimonial__slider owl-carousel">
+                <div class="col-lg-4">
+                    <div class="testimonial__item">
+                        <div class="testimonial__text">
+                            <p>
+                                Delivers such a great service that it can benefit all kinds of people from any number
+                                of industries.
+                            </p>
+                        </div>
+                        <div class="testimonial__author">
+                            <div class="testimonial__author__pic">
+                                <img src="~/Content/Layout/img/testimonial/ta-1.jpg" alt="">
+                            </div>
+                            <div class="testimonial__author__text">
+                                <h5>Krista Attorn</h5>
+                                <span>Web Designer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="testimonial__item">
+                        <div class="testimonial__text">
+                            <p>
+                                Videographer delivers such a great service that it can benefit all kinds of people
+                                from any number.
+                            </p>
+                        </div>
+                        <div class="testimonial__author">
+                            <div class="testimonial__author__pic">
+                                <img src="~/Content/Layout/img/testimonial/ta-2.jpg" alt="">
+                            </div>
+                            <div class="testimonial__author__text">
+                                <h5>Krista Attorn</h5>
+                                <span>Web Designer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="testimonial__item">
+                        <div class="testimonial__text">
+                            <p>
+                                Videographer delivers such a great service that it can benefit all kinds of people
+                                from any number.
+                            </p>
+                        </div>
+                        <div class="testimonial__author">
+                            <div class="testimonial__author__pic">
+                                <img src="~/Content/Layout/img/testimonial/ta-3.jpg" alt="">
+                            </div>
+                            <div class="testimonial__author__text">
+                                <h5>Krista Attorn</h5>
+                                <span>Web Designer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="testimonial__item">
+                        <div class="testimonial__text">
+                            <p>
+                                Delivers such a great service that it can benefit all kinds of people from any number
+                                of industries.
+                            </p>
+                        </div>
+                        <div class="testimonial__author">
+                            <div class="testimonial__author__pic">
+                                <img src="~/Content/Layout/img/testimonial/ta-1.jpg" alt="">
+                            </div>
+                            <div class="testimonial__author__text">
+                                <h5>Krista Attorn</h5>
+                                <span>Web Designer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="testimonial__item">
+                        <div class="testimonial__text">
+                            <p>
+                                Videographer delivers such a great service that it can benefit all kinds of people
+                                from any number.
+                            </p>
+                        </div>
+                        <div class="testimonial__author">
+                            <div class="testimonial__author__pic">
+                                <img src="~/Content/Layout/img/testimonial/ta-2.jpg" alt="">
+                            </div>
+                            <div class="testimonial__author__text">
+                                <h5>Krista Attorn</h5>
+                                <span>Web Designer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Ca sỹ -->
+<!-- Services Section Begin -->
+<section class="services spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="services__title">
+                    <div class="section-title">
+                        <span>Our services</span>
+                        <h2>What We do?</h2>
+                    </div>
+                    <p>
+                        If you hire a videographer of our team you will get a video professional to make a custom
+                        video for your business and, once the project is over.
+                    </p>
+                    <a href="#" class="primary-btn">View all services</a>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="services__item">
+                            <div class="services__item__icon">
+                                <img src="~/Content/Layout/img/icons/si-1.png" alt="">
+                            </div>
+                            <h4>Motion graphics</h4>
+                            <p>
+                                Whether you’re halfway through the editing process, or you haven’t even started, our
+                                post production services can put the finishing touches.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="services__item">
+                            <div class="services__item__icon">
+                                <img src="~/Content/Layout/img/icons/si-2.png" alt="">
+                            </div>
+                            <h4>Scriptwriting and editing</h4>
+                            <p>
+                                Whether you’re halfway through the editing process, or you haven’t even started, our
+                                post production services can put the finishing touches.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="services__item">
+                            <div class="services__item__icon">
+                                <img src="~/Content/Layout/img/icons/si-3.png" alt="">
+                            </div>
+                            <h4>Video distribution</h4>
+                            <p>
+                                Whether you’re halfway through the editing process, or you haven’t even started, our
+                                post production services can put the finishing touches.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="services__item">
+                            <div class="services__item__icon">
+                                <img src="~/Content/Layout/img/icons/si-4.png" alt="">
+                            </div>
+                            <h4>Video hosting</h4>
+                            <p>
+                                Whether you’re halfway through the editing process, or you haven’t even started, our
+                                post production services can put the finishing touches.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Services Section End -->
+<!-- Work Section Begin -->
+<section class="work">
+    <div class="work__gallery">
+        <div class="grid-sizer"></div>
+        <div class="work__item wide__item set-bg" data-setbg="../../Content/Layout/img/work/work-1.jpg">
+            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="play-btn video-popup">
+                <i class="fa fa-play"></i>
+            </a>
+            <div class="work__item__hover">
+                <h4>VIP Auto Tires & Service</h4>
+                <ul>
+                    <li>eCommerce</li>
+                    <li>Magento</li>
+                </ul>
+            </div>
+        </div>
+        <div class="work__item small__item set-bg" data-setbg="../../Content/Layout/img/work/work-2.jpg">
+            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="play-btn video-popup">
+                <i class="fa fa-play"></i>
+            </a>
+        </div>
+        <div class="work__item small__item set-bg" data-setbg="../../Content/Layout/img/work/work-3.jpg">
+            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="play-btn video-popup">
+                <i class="fa fa-play"></i>
+            </a>
+        </div>
+        <div class="work__item large__item set-bg" data-setbg="../../Content/Layout/img/work/work-4.jpg">
+            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="play-btn video-popup">
+                <i class="fa fa-play"></i>
+            </a>
+            <div class="work__item__hover">
+                <h4>VIP Auto Tires & Service</h4>
+                <ul>
+                    <li>eCommerce</li>
+                    <li>Magento</li>
+                </ul>
+            </div>
+        </div>
+        <div class="work__item small__item set-bg" data-setbg="../../Content/Layout/img/work/work-5.jpg">
+            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="play-btn video-popup">
+                <i class="fa fa-play"></i>
+            </a>
+        </div>
+        <div class="work__item small__item set-bg" data-setbg="../../Content/Layout/img/work/work-6.jpg">
+            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="play-btn video-popup">
+                <i class="fa fa-play"></i>
+            </a>
+        </div>
+        <div class="work__item wide__item set-bg" data-setbg="../../Content/Layout/img/work/work-7.jpg">
+            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="play-btn video-popup">
+                <i class="fa fa-play"></i>
+            </a>
+            <div class="work__item__hover">
+                <h4>VIP Auto Tires & Service</h4>
+                <ul>
+                    <li>eCommerce</li>
+                    <li>Magento</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Work Section End -->
+<!-- Counter Section Begin -->
+<section class="counter">
+    <div class="container">
+        <div class="counter__content">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="counter__item">
+                        <div class="counter__item__text">
+                            <img src="~/Content/Layout/img/icons/ci-1.png" alt="">
+                            <h2 class="counter_num">230</h2>
+                            <p>Compled Projects</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="counter__item second__item">
+                        <div class="counter__item__text">
+                            <img src="~/Content/Layout/img/icons/ci-2.png" alt="">
+                            <h2 class="counter_num">1068</h2>
+                            <p>Happy clients</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="counter__item third__item">
+                        <div class="counter__item__text">
+                            <img src="~/Content/Layout/img/icons/ci-3.png" alt="">
+                            <h2 class="counter_num">230</h2>
+                            <p>Perspective clients</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="counter__item four__item">
+                        <div class="counter__item__text">
+                            <img src="~/Content/Layout/img/icons/ci-4.png" alt="">
+                            <h2 class="counter_num">230</h2>
+                            <p>Compled Projects</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Counter Section End -->
+<!-- Team Section Begin -->
+<section class="team spad set-bg" data-setbg="../../Content/Layout/img/team-bg.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title team__title">
+                    <span>Nice to meet</span>
+                    <h2>OUR Team</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 p-0">
+                <div class="team__item set-bg" data-setbg="../../Content/Layout/img/team/team-1.jpg">
+                    <div class="team__item__text">
+                        <h4>AMANDA STONE</h4>
+                        <p>Videographer</p>
+                        <div class="team__item__social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-dribbble"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 p-0">
+                <div class="team__item team__item--second set-bg" data-setbg="../../Content/Layout/img/team/team-2.jpg">
+                    <div class="team__item__text">
+                        <h4>AMANDA STONE</h4>
+                        <p>Videographer</p>
+                        <div class="team__item__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 p-0">
+                <div class="team__item team__item--third set-bg" data-setbg="../../Content/Layout/img/team/team-3.jpg">
+                    <div class="team__item__text">
+                        <h4>AMANDA STONE</h4>
+                        <p>Videographer</p>
+                        <div class="team__item__social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-dribbble"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 p-0">
+                <div class="team__item team__item--four set-bg" data-setbg="../../Content/Layout/img/team/team-4.jpg">
+                    <div class="team__item__text">
+                        <h4>AMANDA STONE</h4>
+                        <p>Videographer</p>
+                        <div class="team__item__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 p-0">
+                <div class="team__btn">
+                    <a href="#" class="primary-btn">Meet Our Team</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Team Section End -->
+<!-- Latest Blog Section Begin -->
+<section class="latest spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title center-title">
+                    <span>Our Blog</span>
+                    <h2>Blog Update</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="latest__slider owl-carousel">
+                <div class="col-lg-4">
+                    <div class="blog__item latest__item">
+                        <h4>What Makes Users Want to Share a Video on Social Media?</h4>
+                        <ul>
+                            <li>Jan 03, 2020</li>
+                            <li>05 Comment</li>
+                        </ul>
+                        <p>
+                            We recently launched a new website for a Vital client and wanted to share some of the
+                            cool features we were able...
+                        </p>
+                        <a href="#">Read more <span class="arrow_right"></span></a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog__item latest__item">
+                        <h4>Bumper Ads: How to Tell a Story in 6 Seconds</h4>
+                        <ul>
+                            <li>Jan 03, 2020</li>
+                            <li>05 Comment</li>
+                        </ul>
+                        <p>
+                            We recently launched a new website for a Vital client and wanted to share some of the
+                            cool features we were able...
+                        </p>
+                        <a href="#">Read more <span class="arrow_right"></span></a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog__item latest__item">
+                        <h4>What Makes Users Want to Share a Video on Social Media?</h4>
+                        <ul>
+                            <li>Jan 03, 2020</li>
+                            <li>05 Comment</li>
+                        </ul>
+                        <p>
+                            We recently launched a new website for a Vital client and wanted to share some of the
+                            cool features we were able...
+                        </p>
+                        <a href="#">Read more <span class="arrow_right"></span></a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog__item latest__item">
+                        <h4>Bumper Ads: How to Tell a Story in 6 Seconds</h4>
+                        <ul>
+                            <li>Jan 03, 2020</li>
+                            <li>05 Comment</li>
+                        </ul>
+                        <p>
+                            We recently launched a new website for a Vital client and wanted to share some of the
+                            cool features we were able...
+                        </p>
+                        <a href="#">Read more <span class="arrow_right"></span></a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog__item latest__item">
+                        <h4>What Makes Users Want to Share a Video on Social Media?</h4>
+                        <ul>
+                            <li>Jan 03, 2020</li>
+                            <li>05 Comment</li>
+                        </ul>
+                        <p>
+                            We recently launched a new website for a Vital client and wanted to share some of the
+                            cool features we were able...
+                        </p>
+                        <a href="#">Read more <span class="arrow_right"></span></a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog__item latest__item">
+                        <h4>What Makes Users Want to Share a Video on Social Media?</h4>
+                        <ul>
+                            <li>Jan 03, 2020</li>
+                            <li>05 Comment</li>
+                        </ul>
+                        <p>
+                            We recently launched a new website for a Vital client and wanted to share some of the
+                            cool features we were able...
+                        </p>
+                        <a href="#">Read more <span class="arrow_right"></span></a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog__item latest__item">
+                        <h4>What Makes Users Want to Share a Video on Social Media?</h4>
+                        <ul>
+                            <li>Jan 03, 2020</li>
+                            <li>05 Comment</li>
+                        </ul>
+                        <p>
+                            We recently launched a new website for a Vital client and wanted to share some of the
+                            cool features we were able...
+                        </p>
+                        <a href="#">Read more <span class="arrow_right"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Latest Blog Section End -->
+<!-- Call To Action Section Begin -->
+<section class="callto spad set-bg" data-setbg="../../Content/Layout/img/callto-bg.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="callto__text">
+                    <h2>Fresh Ideas, Fresh Moments Giving Wings to your Stories.</h2>
+                    <p>INC5000, Best places to work 2019</p>
+                    <a href="#">Start your stories</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->

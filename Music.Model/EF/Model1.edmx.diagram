@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="257e38090c084d18b38feb8f36206aa7" Name="Diagram1">
+        <EntityTypeShape EntityType="MusicProjectDataModel.Album" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Author" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Category" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Comment" Width="1.5" PointX="6" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.favorite" Width="1.5" PointX="6" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.MusicsList" Width="1.5" PointX="6" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.National" Width="1.5" PointX="3.75" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Package" Width="1.5" PointX="0.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Pay" Width="1.5" PointX="3" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Profile" Width="1.5" PointX="3" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Reply" Width="1.5" PointX="8.25" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Singer" Width="1.5" PointX="3" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.User" Width="1.5" PointX="0.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Video" Width="1.5" PointX="8.25" PointY="23.25" IsExpanded="true" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Albums_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Authors_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Categories_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Comment_MusicsList" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Comment_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Reply_Comment" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_favorite_MusicsList" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_favorite_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Musics_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_MusicsList_National" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Videos_MusicsList" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Pays_Packages" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Pays_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Profiles_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Singers_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Videos_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,305 @@
+﻿
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .font_color a {
+        color: black;
+        font-size: 20px;
+    }
+
+        .font_color a:hover {
+            color: royalblue;
+        }
+</style>
+<div ng-app="myApp">
+    <div ng-controller="myCtrl">
+        <div class="card-box mb-30">
+            <div class="pd-20">
+                <h4 class="text-black-50 h4">Có {{(list | filter:textSearch).length}} Quốc Gia</h4>
+            </div>
+            <div class="pd-20 ui form">
+                <div class="three fields">
+                    <div class="field">
+                        <div class="ui search">
+                            <div class="ui icon input">
+                                <input class="prompt" type="text" placeholder="Nhập Quốc Gia..." ng-model="textSearch.nation_name">
+                                <i class="search icon"></i>
+                            </div>
+                            <div class="results"></div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <select class="ui dropdown">
+                            <option>Tất Cả</option>
+                            <option>Hoạt Động</option>
+                            <option>Hiển Thị</option>
+                            <option>Ngừng Hoạt Động</option>
+                            <option>Ngừng Hiển Thị</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <button ng-click="linkDel()" class="ui secondary button">
+                            <i class="icon-copy dw dw-undo1"></i> Trở Lại
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="pb-20">
+                <table class="checkbox-datatable table nowrap">
+                    <thead>
+                        <tr>
+                            <th><i class="icon-copy dw dw-list2"></i>  Tên Quốc Gia</th>
+                            <th><i class="icon-copy dw dw-battery1"></i>  Trạng Thái</th>
+                            <th><i class="icon-copy dw dw-monitor"></i>  Tình Trạng</th>
+                            <th><i class="icon-copy dw dw-calendar-11"></i>  Ngày Đăng</th>
+                            <th><i class="icon-copy dw dw-calendar1"></i>  Ngày Sửa</th>
+                            <th><i class="icon-copy dw dw-magic-wand"></i>  Tuỳ Chọn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="list in list | filter: textSearch">
+                            <td>{{list.nation_name}}</td>
+                            <td>
+                                <div ng-show="list.nation_active == true">
+                                    <button ng-click="active(list.nation_id)" class="ui inverted primary button">Hoạt Động</button>
+                                </div>
+                                <div ng-show="list.nation_active == false">
+                                    <button ng-click="active(list.nation_id)" class="ui inverted red button">Không Hoạt Động</button>
+                                </div>
+                            </td>
+                            <td>
+                                <div ng-show="list.nation_option == true">
+                                    <button ng-click="option(list.nation_id)" class="ui inverted green button">Hiển Thị</button>
+                                </div>
+                                <div ng-show="list.nation_option == false">
+                                    <button ng-click="option(list.nation_id)" class="ui inverted red button">Không Hiển Thị</button>
+                                </div>
+                            </td>
+                            <td>{{list.nation_datecreate}}</td>
+                            <td>{{list.nation_dateupdate}}</td>
+                            <td>
+                                <center class="font_color">
+                                    <a ng-click="delete(list.nation_id)"><i class="icon-copy dw dw-trash1"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                                    <a ng-click="restore(list.nation_id)"><i class="icon-copy dw dw-recycle-1"></i></a>
+                                </center>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--Modal Edit-->
+        <div ng-repeat="list in list" class="col-md-4 col-sm-12 mb-30">
+            <div class="modal fade bs-example-modal-lg" id="edit-Admin{{list.nation_id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myLargeModalLabel">Quốc Gia {{list.nation_name}}</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="ui form" action="@Url.Action("Edit", "NationsAdmin")" method="post" enctype="multipart/form-data">
+                                @Html.AntiForgeryToken()
+                                <input value="{{list.nation_id}}" type="hidden" name="nation_id" />
+                                <p>Chỉnh sửa các thông tin cần thiết: </p>
+                                <div class="field">
+                                    <label>Tên Quốc Gia</label>
+                                    <input value="{{list.nation_name}}" name="nation_name" type="text">
+                                </div>
+                                <button type="submit" class="ui primary submit button right">Sửa</button>
+                                <div class="ui error message"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modal-->
+        <!--Modal details-->
+        <div ng-repeat="list in list" class="col-md-4 col-sm-12 mb-30">
+            <div class="modal fade bs-example-modal-lg" id="details-Admin{{list.nation_id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myLargeModalLabel">Quốc Gia: {{list.nation_name}}</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="ui form">
+                                <div class="two fields">
+                                    <div class="field">
+                                        <label>Tên Quốc Gia</label>
+                                        <input value="{{list.nation_name}}" type="text">
+                                    </div>
+                                </div>
+                                <div class="two fields">
+                                    <div class="field">
+                                        <label>Trạng Thái</label>
+                                        <div ng-show="list.nation_active == true" class="ui checked checkbox">
+                                            <input type="checkbox" checked="" disabled>
+                                            <label>Hoạt Động</label>
+                                        </div>
+                                        <div ng-show="list.nation_active == false" class="ui checked checkbox">
+                                            <input type="checkbox" disabled>
+                                            <label>Không Hoạt Động</label>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label>Tình Trạng</label>
+                                        <div ng-show="list.nation_option == true" class="ui checked checkbox">
+                                            <input type="checkbox" checked="" disabled>
+                                            <label>Hiển Thị</label>
+                                        </div>
+                                        <div ng-show="list.nation_option == false" class="ui checked checkbox">
+                                            <input type="checkbox" disabled>
+                                            <label>Không Hiển Thị</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="two fields">
+                                    <div class="field">
+                                        <label>Ngày Tạo</label>
+                                        <input value="{{list.nation_datecreate}}" type="text">
+                                    </div>
+                                    <div class="field">
+                                        <label>Ngày Cập Nhật</label>
+                                        <input value="{{list.nation_dateupdate}}" type="text">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modal-->
+        <!--Modal khôi phục-->
+        <div class="modal fade" id="note-Res" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body text-center font-18">
+                        <h3 class="mb-20">Đã Khôi Phục!</h3>
+                        <div class="mb-30 text-center"><img src="~/Content/LayoutAdmin/vendors/images/success.png"></div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modal-->
+        <!--Modal xoá-->
+        <div class="modal fade" id="note-Delete" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body text-center font-18">
+                        <h3 class="mb-20">Đã Xoá Vĩnh Viễn!</h3>
+                        <div class="mb-30 text-center"><img src="~/Content/LayoutAdmin/vendors/images/success.png"></div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modal-->
+    </div>
+</div>
+<!-- Checkbox select Datatable End -->
+<!--Modal create-->
+<div class="col-md-4 col-sm-12 mb-30">
+    <div class="pd-20">
+        <div class="modal fade bs-example-modal-lg" id="create-Admin" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myLargeModalLabel">Quốc Gia</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="@Url.Action("Add", "NationsAdmin")" method="post" enctype="multipart/form-data" class="ui form">
+                            <p>Nhập đủ các thông tin sau: </p>
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Tên Quốc Gia</label>
+                                    <input placeholder="Nhập tên Quốc Gia" name="nation_name" type="text">
+                                </div>
+                                <div class="field">
+                                    <label>Hình Ảnh</label>
+                                    <input type="file" name="IMG">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Trạng Thái</label>
+                                <select class="ui dropdown" name="nation_active">
+                                    <option value="true">Cho Phép Hoạt Động</option>
+                                    <option value="false">Không Phép Hoạt Động</option>
+                                </select>
+                            </div>
+                            <div class="ui primary submit button right">Thêm</div>
+                            <div class="ui error message"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Modal-->
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope, $http) {
+        $http({
+            method: "GET",
+            url: "/JsonAdmin/Nations?del=del"
+        }).then(function mySuccess(response) {
+            $scope.list = response.data;
+
+            $scope.active = function (id) {
+                $http.get("/NationsAdmin/Active?id=" + id)
+                    .then(function (response) {
+                        $scope.list = response.data;
+                    });
+            };
+
+            $scope.option = function (id) {
+                $http.get("/Admin/NationsAdmin/Option?id=" + id)
+                    .then(function (response) {
+                        $scope.list = response.data;
+                    });
+            };
+
+            $scope.restore = function (id) {
+                $http.get("/Admin/NationsAdmin/Restore?id=" + id)
+                    .then(function (response) {
+                        $scope.list = response.data;
+
+                        $(document).ready(function () {
+                            $('#note-Res').modal('show');
+                        })
+                    });
+            };
+
+            $scope.delete = function (id) {
+                $http.get("/Admin/NationsAdmin/DeleteNation?id=" + id)
+                    .then(function (response) {
+                        $scope.list = response.data;
+
+                        $(document).ready(function () {
+                            $('#note-Delete').modal('show');
+                        })
+                    });
+            };
+
+            $scope.linkDel = function () {
+                window.location.href = '/Admin/NationsAdmin/Index';
+            };
+
+
+        }, function myError(response) {
+            $scope.list = response.statusText;
+        });
+    });
+</script>

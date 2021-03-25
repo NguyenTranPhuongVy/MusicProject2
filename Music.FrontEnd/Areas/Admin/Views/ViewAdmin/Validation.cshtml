@@ -1,0 +1,128 @@
+﻿<script>
+    $('.ui.form')
+        .form({
+            inline: true,
+            on: 'blur',
+            fields: {
+                //Để trống
+                category_name: {
+                    identifier: 'category_name',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Vui lòng nhập dữ liệu'
+                        }
+                    ]
+                },
+
+                IMG: {
+                    identifier: 'IMG',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Vui lòng chọn dữ liệu'
+                        }
+                    ]
+                },
+
+                MP3: {
+                    identifier: 'MP3',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Vui lòng chọn dữ liệu'
+                        }
+                    ]
+                },
+
+                album_name: {
+                    identifier: 'album_name',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Vui lòng nhập dữ liệu'
+                        }
+                    ]
+                },
+
+                author_name: {
+                    identifier: 'author_name',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Vui lòng nhập dữ liệu'
+                        }
+                    ]
+                },
+
+                music_name: {
+                    identifier: 'music_name',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Vui lòng nhập dữ liệu'
+                        }
+                    ]
+                },
+
+                nation_name: {
+                    identifier: 'nation_name',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Vui lòng nhập dữ liệu'
+                        }
+                    ]
+                },
+
+                singer_name: {
+                    identifier: 'singer_name',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Vui lòng nhập dữ liệu'
+                        }
+                    ]
+                },
+
+                user_name: {
+                    identifier: 'user_name',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Vui lòng nhập dữ liệu'
+                        },
+                        {
+                            type: 'minLength[5]',
+                            prompt: 'Vui lòng nhập tên trên 5 ký tự'
+                        }
+                    ]
+                },
+
+                music_lyric: {
+                    identifier: 'music_lyric',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Vui lòng nhập dữ liệu'
+                        }
+                    ]
+                },
+
+                music_time: {
+                    identifier: 'music_time',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Vui lòng nhập dữ liệu'
+                        }
+                    ]
+                },
+
+
+                
+            }
+        })
+        ;
+</script>
+
