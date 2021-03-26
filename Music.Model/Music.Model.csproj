@@ -53,12 +53,14 @@
     <Compile Include="DAO\AlbumsDAO.cs" />
     <Compile Include="DAO\AuthorsDAO.cs" />
     <Compile Include="DAO\CategoriesDAO.cs" />
+    <Compile Include="DAO\CommentDAO.cs" />
     <Compile Include="DAO\GroupDAO.cs" />
     <Compile Include="DAO\MusicsDAO.cs" />
     <Compile Include="DAO\NationsDAO.cs" />
     <Compile Include="DAO\PackagesDAO.cs" />
     <Compile Include="DAO\PaysDAO.cs" />
     <Compile Include="DAO\ProfilesDAO.cs" />
+    <Compile Include="DAO\ReplyDAO.cs" />
     <Compile Include="DAO\SingersDAO.cs" />
     <Compile Include="DAO\UsersDAO.cs" />
     <Compile Include="EF\Album.cs">
