@@ -103,7 +103,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             if (IMG != null)
             {
                 var code = Guid.NewGuid().ToString();
-                var img = new ImagesController();
+                var img = new FilesController();
                 img.AddImages(IMG, Common.Link.IMG_ALBUM, code);
                 album.album_img = code + IMG.FileName;
             }
@@ -140,11 +140,11 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             album.album_option = al.album_option;
             album.user_id = al.user_id;
 
-            var i = new ImagesController();
+            var i = new FilesController();
             if (IMG != null)
             {
                 var code = Guid.NewGuid().ToString();
-                var img = new ImagesController();
+                var img = new FilesController();
                 img.AddImages(IMG, Common.Link.IMG_ALBUM, code);
                 album.album_img = code + IMG.FileName;
             }

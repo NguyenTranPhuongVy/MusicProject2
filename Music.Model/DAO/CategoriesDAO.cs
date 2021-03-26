@@ -17,11 +17,28 @@ namespace Music.Model.DAO
             try
             {
                 category.category_datecreate = DateTime.Now;
-                category.category_dateupdate = DateTime.Now;
-
-                category.category_view = 1;
+                category.category_active = true;
+                category.category_bin = false;
+                category.category_view = 0;
 
                 db.Categories.Add(category);
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        //Hàm sua
+        public bool Edit(Category category)
+        {
+            try
+            {
+                category.category_dateupdate = DateTime.Now;
+
+                db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
 
                 return true;
@@ -48,21 +65,6 @@ namespace Music.Model.DAO
                 return false;
             }
         }
-        //Hàm sửa
-        public bool Edit(Category category)
-        {
-            try
-            {
-                db.Entry(category).State = EntityState.Modified;
-                db.SaveChanges();
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
 
         //Active
         public bool Active(int ? id)
@@ -80,28 +82,28 @@ namespace Music.Model.DAO
             }
         }
         //Option
-        public bool Option(int? id)
-        {
-            try
-            {
-                Category category = db.Categories.Find(id);
-                category.category_option = !category.category_option;
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
+        //public bool Option(int? id)
+        //{
+        //    try
+        //    {
+        //        Category category = db.Categories.Find(id);
+        //        category.category_option = !category.category_option;
+        //        db.SaveChanges();
+        //        return true;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return false;
+        //    }
+        //}
 
-        //Thùng rác
-        public bool Del(int? id)
+        // Thay doi trang thai Thùng rác
+        public bool ChangeBin(int? id)
         {
             try
             {
                 Category category = db.Categories.Find(id);
-                category.category_bin = true;
+                db.Categories.Find(id).category_bin = !category.category_bin;
 
                 db.SaveChanges();
 
@@ -114,21 +116,21 @@ namespace Music.Model.DAO
         }
 
         //Khôi Phục
-        public bool Restore(int ? id)
-        {
-            try
-            {
-                Category category = db.Categories.Find(id);
-                category.category_bin = false;
+        //public bool Restore(int ? id)
+        //{
+        //    try
+        //    {
+        //        Category category = db.Categories.Find(id);
+        //        category.category_bin = false;
 
-                db.SaveChanges();
+        //        db.SaveChanges();
 
-                return true;
-            }
-            catch(Exception)
-            {
-                return false;
-            }
-        }
+        //        return true;
+        //    }
+        //    catch(Exception)
+        //    {
+        //        return false;
+        //    }
+        //}
     }
 }

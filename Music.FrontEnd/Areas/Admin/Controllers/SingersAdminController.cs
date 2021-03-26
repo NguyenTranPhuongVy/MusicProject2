@@ -40,7 +40,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     singer_img = n.singer_img,
                     singer_name = n.singer_name,
                     singer_note = n.singer_note,
-                    user_id = n.user_id,
                     singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
                     singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
                     singer_option = n.singer_option,
@@ -67,7 +66,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     singer_img = n.singer_img,
                     singer_name = n.singer_name,
                     singer_note = n.singer_note,
-                    user_id = n.user_id,
                     singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
                     singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
                     singer_option = n.singer_option,
@@ -99,7 +97,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             if (IMG != null)
             {
                 var code = Guid.NewGuid().ToString();
-                var img = new ImagesController();
+                var img = new FilesController();
                 img.AddImages(IMG, Common.Link.IMG_SINGER, code);
                 singer.singer_img = code + IMG.FileName;
             }
@@ -135,13 +133,12 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             singer.singer_name = sing.singer_name;
             singer.singer_note = sing.singer_note;
             singer.singer_option = sing.singer_option;
-            singer.user_id = sing.user_id;
 
-            var i = new ImagesController();
+            var i = new FilesController();
             if (IMG != null)
             {
                 var code = Guid.NewGuid().ToString();
-                var img = new ImagesController();
+                var img = new FilesController();
                 img.AddImages(IMG, Common.Link.IMG_SINGER, code);
                 singer.singer_img = code + IMG.FileName;
             }
@@ -178,7 +175,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     singer_img = n.singer_img,
                     singer_name = n.singer_name,
                     singer_note = n.singer_note,
-                    user_id = n.user_id,
                     singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
                     singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
                     singer_option = n.singer_option,
@@ -207,7 +203,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     singer_img = n.singer_img,
                     singer_name = n.singer_name,
                     singer_note = n.singer_note,
-                    user_id = n.user_id,
                     singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
                     singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
                     singer_option = n.singer_option,
@@ -236,7 +231,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     singer_img = n.singer_img,
                     singer_name = n.singer_name,
                     singer_note = n.singer_note,
-                    user_id = n.user_id,
                     singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
                     singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
                     singer_option = n.singer_option,

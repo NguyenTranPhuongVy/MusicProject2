@@ -14,6 +14,12 @@ namespace Music.Model.EF
     
     public partial class Category
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Category()
+        {
+            this.Groups = new HashSet<Group>();
+        }
+    
         public int category_id { get; set; }
         public string category_name { get; set; }
         public Nullable<bool> category_active { get; set; }
@@ -26,6 +32,7 @@ namespace Music.Model.EF
         public string category_img { get; set; }
         public Nullable<bool> category_option { get; set; }
     
-        public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Group> Groups { get; set; }
     }
 }

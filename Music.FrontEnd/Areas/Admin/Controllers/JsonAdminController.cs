@@ -69,7 +69,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     singer_img = n.singer_img,
                     singer_name = n.singer_name,
                     singer_note = n.singer_note,
-                    user_id = n.user_id,
                     singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
                     singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
                     singer_option = n.singer_option,
@@ -87,7 +86,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     singer_img = n.singer_img,
                     singer_name = n.singer_name,
                     singer_note = n.singer_note,
-                    user_id = n.user_id,
                     singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
                     singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
                     singer_option = n.singer_option,
@@ -112,7 +110,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_name = n.author_name,
                     author_note = n.author_note,
                     author_option = n.author_option,
-                    user_id = n.user_id
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             } 
@@ -130,7 +127,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_name = n.author_name,
                     author_note = n.author_note,
                     author_option = n.author_option,
-                    user_id = n.user_id
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }    
@@ -278,7 +274,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     music_id = n.music_id,
                     music_img = n.music_img,
                     music_linkdow = n.music_linkdow,
-                    music_favorite = n.music_favorite,
                     music_lyric = n.music_lyric,
                     music_option = n.music_option,
                     music_time = n.music_time,
@@ -303,7 +298,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     music_id = n.music_id,
                     music_img = n.music_img,
                     music_linkdow = n.music_linkdow,
-                    music_favorite = n.music_favorite,
                     music_lyric = n.music_lyric,
                     music_option = n.music_option,
                     music_time = n.music_time,

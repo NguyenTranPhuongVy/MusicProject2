@@ -19,7 +19,6 @@ namespace Music.Model.EF
         {
             this.Comments = new HashSet<Comment>();
             this.Favorites = new HashSet<Favorite>();
-            this.Videos = new HashSet<Video>();
         }
     
         public int music_id { get; set; }
@@ -29,7 +28,6 @@ namespace Music.Model.EF
         public string music_time { get; set; }
         public Nullable<int> music_view { get; set; }
         public Nullable<int> music_dowload { get; set; }
-        public Nullable<int> music_favorite { get; set; }
         public Nullable<int> user_id { get; set; }
         public string music_linkdow { get; set; }
         public Nullable<System.DateTime> music_datecreate { get; set; }
@@ -38,6 +36,10 @@ namespace Music.Model.EF
         public Nullable<bool> music_bin { get; set; }
         public Nullable<bool> music_option { get; set; }
         public Nullable<int> nation_id { get; set; }
+        public string music_video { get; set; }
+        public Nullable<int> genres_id { get; set; }
+        public Nullable<int> author_id { get; set; }
+        public string music_mp3 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
@@ -45,7 +47,8 @@ namespace Music.Model.EF
         public virtual ICollection<Favorite> Favorites { get; set; }
         public virtual User User { get; set; }
         public virtual National National { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Video> Videos { get; set; }
+        public virtual Author Author { get; set; }
+        public virtual Author Author1 { get; set; }
+        public virtual Genre Genre { get; set; }
     }
 }

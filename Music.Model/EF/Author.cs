@@ -14,17 +14,23 @@ namespace Music.Model.EF
     
     public partial class Author
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Author()
+        {
+            this.Musics = new HashSet<Music>();
+        }
+    
         public int author_id { get; set; }
         public string author_name { get; set; }
         public Nullable<bool> author_active { get; set; }
         public Nullable<bool> author_bin { get; set; }
         public string author_note { get; set; }
-        public Nullable<int> user_id { get; set; }
         public Nullable<bool> author_option { get; set; }
         public Nullable<System.DateTime> author_datecreate { get; set; }
         public Nullable<System.DateTime> author_dateupdate { get; set; }
         public string author_img { get; set; }
     
-        public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Music> Musics { get; set; }
     }
 }

@@ -17,7 +17,9 @@ namespace Music.Model.DAO
             try
             {
                 singer.singer_datecreate = DateTime.Now;
-                singer.singer_dateupdate = DateTime.Now;
+                singer.singer_active = true;
+                singer.singer_bin = false;
+                singer.singer_option = true;
 
                 db.Singers.Add(singer);
                 db.SaveChanges();
@@ -29,14 +31,13 @@ namespace Music.Model.DAO
                 return false;
             }
         }
-        //Hàm xoá
-        public bool Delete(int? id)
+
+        //Hàm sửa
+        public bool Edit(Singer singer)
         {
             try
             {
-                Singer singer = db.Singers.Find(id);
-                db.Singers.Remove(singer);
-
+                db.Entry(singer).State = EntityState.Modified;
                 db.SaveChanges();
 
                 return true;
@@ -47,12 +48,14 @@ namespace Music.Model.DAO
             }
         }
 
-        //Hàm sửa
-        public bool Edit(Singer singer)
+        //Hàm xoá
+        public bool Delete(int? id)
         {
             try
             {
-                db.Entry(singer).State = EntityState.Modified;
+                Singer singer = db.Singers.Find(id);
+                db.Singers.Remove(singer);
+
                 db.SaveChanges();
 
                 return true;

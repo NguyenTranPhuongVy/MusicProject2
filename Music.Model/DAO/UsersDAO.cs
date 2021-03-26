@@ -166,5 +166,22 @@ namespace Music.Model.DAO
                 return false;
             }
         }
+
+        //reset password
+        public bool ResetPassword(int? id, string password)
+        {
+            try
+            {
+                db.Users.Find(id).user_pass = password;
+
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

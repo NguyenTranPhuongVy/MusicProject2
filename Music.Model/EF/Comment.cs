@@ -25,8 +25,6 @@ namespace Music.Model.EF
         public Nullable<System.DateTime> comment_datecreate { get; set; }
         public Nullable<System.DateTime> comment_dateupdate { get; set; }
         public Nullable<bool> comment_active { get; set; }
-        public Nullable<bool> comment_option { get; set; }
-        public Nullable<bool> comment_bin { get; set; }
         public Nullable<int> user_id { get; set; }
         public Nullable<int> music_id { get; set; }
     

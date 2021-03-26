@@ -15,7 +15,7 @@ namespace Music.FrontEnd.Controllers
     {
         UsersDAO usersDAO = new UsersDAO();
         FunctionController function = new FunctionController();
-        ImagesController images = new ImagesController();
+        FilesController images = new FilesController();
         MusicProjectDataEntities db = new MusicProjectDataEntities();
         // GET: Users
         public ActionResult Registration()
@@ -104,6 +104,29 @@ namespace Music.FrontEnd.Controllers
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
             return Json(false, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ResetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ResetPassword(ViewResetPassword resetPassword)
+        {
+            if (function.CookieID() != null)
+            {
+                return Redirect("/");
+            }
+            else if (ModelState.IsValid)
+            {
+                var cookie = function.CookieID();
+                if(resetPassword.OldPassword == db.Users.Find(cookie.user_id).user_pass)
+                {
+                    usersDAO.ResetPassword(cookie.user_id, resetPassword.NewPassword);
+                    return Redirect("/");
+                }
+            }
+            return View(resetPassword);
         }
     }
 }

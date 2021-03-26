@@ -107,7 +107,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             if (IMG != null)
             {
                 var code = Guid.NewGuid().ToString();
-                var img = new ImagesController();
+                var img = new FilesController();
                 img.AddImages(IMG, Common.Link.IMG_USER, code);
                 user.user_img = code + IMG.FileName;
             }
@@ -145,11 +145,11 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             user.user_code = us.user_code;
             user.user_token = us.user_token;
 
-            var i = new ImagesController();
+            var i = new FilesController();
             if (IMG != null)
             {
                 var code = Guid.NewGuid().ToString();
-                var img = new ImagesController();
+                var img = new FilesController();
                 img.AddImages(IMG, Common.Link.IMG_USER, code);
                 user.user_img = code + IMG.FileName;
             }

@@ -5,26 +5,52 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Music.Model.EF;
+using Music.Model.DAO;
 
 namespace Music.Model.DAO
 {
     public class MusicsDAO
     {
         private MusicProjectDataEntities db = new MusicProjectDataEntities();
+        GroupDAO groupDAO = new GroupDAO();
+
         //Hàm thêm
-        public bool Add(Music.Model.EF.Music musics)
+        public bool Add(Music.Model.EF.Music musics, int[] category, int[] singer)
         {
             try
             {
                 musics.music_datecreate = DateTime.Now;
-                musics.music_dateedit = DateTime.Now;
-                musics.music_favorite = 1;
                 musics.music_view = 1;
                 musics.music_dowload = 0;
+                musics.music_active = false;
+                musics.music_option = true ;
+                musics.music_bin = false ;
 
                 db.Musics.Add(musics);
                 db.SaveChanges();
 
+                // get music id
+                var music_id = db.Musics.FirstOrDefault(t => t.user_id == musics.user_id && t.music_bin == false && t.music_active == false).music_id;
+
+                // add category
+                foreach(var item in category)
+                {
+                    groupDAO.Add(new Group()
+                    {
+                        category_id = item,
+                        music_id = music_id
+                    });
+                }
+
+                // add singer
+                foreach (var item in singer)
+                {
+                    groupDAO.Add(new Group()
+                    {
+                        category_id = item,
+                        music_id = music_id
+                    });
+                }
                 return true;
             }
             catch
@@ -33,13 +59,32 @@ namespace Music.Model.DAO
             }
         }
         //Hàm sửa
-        public bool Edit(Music.Model.EF.Music musics)
+        public bool Edit(Music.Model.EF.Music musics, int[] category, int[] singer)
         {
             try
             {
                 db.Entry(musics).State = EntityState.Modified;
                 db.SaveChanges();
 
+                // add category
+                foreach (var item in category)
+                {
+                    groupDAO.Add(new Group()
+                    {
+                        category_id = item,
+                        music_id = musics.music_id
+                    });
+                }
+
+                // add singer
+                foreach (var item in singer)
+                {
+                    groupDAO.Add(new Group()
+                    {
+                        category_id = item,
+                        music_id = musics.music_id
+                    });
+                }
                 return true;
             }
             catch (Exception)

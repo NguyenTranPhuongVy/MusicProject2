@@ -12,25 +12,19 @@ namespace Music.Model.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class Singer
+    public partial class Genre
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Singer()
+        public Genre()
         {
-            this.Groups = new HashSet<Group>();
+            this.Musics = new HashSet<Music>();
         }
     
-        public int singer_id { get; set; }
-        public string singer_name { get; set; }
-        public Nullable<bool> singer_active { get; set; }
-        public Nullable<bool> singer_bin { get; set; }
-        public string singer_note { get; set; }
-        public string singer_img { get; set; }
-        public Nullable<bool> singer_option { get; set; }
-        public Nullable<System.DateTime> singer_datecreate { get; set; }
-        public Nullable<System.DateTime> singer_dateupdate { get; set; }
+        public int genres_id { get; set; }
+        public string genres_name { get; set; }
+        public Nullable<System.DateTime> genres_datecreate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Group> Groups { get; set; }
+        public virtual ICollection<Music> Musics { get; set; }
     }
 }

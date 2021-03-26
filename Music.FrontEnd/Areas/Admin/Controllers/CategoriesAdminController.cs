@@ -56,34 +56,34 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             }
         }
 
-        public JsonResult Option(int? id)
-        {
-            var dao = new CategoriesDAO();
-            if (dao.Option(id))
-            {
-                List<Category> categories = db.Categories.Where(n => n.category_bin == false).OrderBy(n => n.category_name).ToList();
-                List<jCategories> list = categories.Select(n => new jCategories
-                {
-                    category_active = n.category_active,
-                    category_bin = n.category_bin,
-                    category_id = n.category_id,
-                    category_name = n.category_name,
-                    category_note = n.category_note,
-                    category_view = n.category_view,
-                    user_id = n.user_id,
-                    category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy"),
-                    category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy"),
-                    category_img = n.category_img,
-                    category_option = n.category_option
+        //public JsonResult Option(int? id)
+        //{
+        //    var dao = new CategoriesDAO();
+        //    if (dao.Option(id))
+        //    {
+        //        List<Category> categories = db.Categories.Where(n => n.category_bin == false).OrderBy(n => n.category_name).ToList();
+        //        List<jCategories> list = categories.Select(n => new jCategories
+        //        {
+        //            category_active = n.category_active,
+        //            category_bin = n.category_bin,
+        //            category_id = n.category_id,
+        //            category_name = n.category_name,
+        //            category_note = n.category_note,
+        //            category_view = n.category_view,
+        //            user_id = n.user_id,
+        //            category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy"),
+        //            category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy"),
+        //            category_img = n.category_img,
+        //            category_option = n.category_option
 
-                }).ToList();
-                return Json(list, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(null);
-            }
-        }
+        //        }).ToList();
+        //        return Json(list, JsonRequestBehavior.AllowGet);
+        //    }
+        //    else
+        //    {
+        //        return Json(null);
+        //    }
+        //}
 
         //Hàm thêm
         [HttpPost]
@@ -104,7 +104,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             if (IMG != null)
             {
                 var code = Guid.NewGuid().ToString();
-                var img = new ImagesController();
+                var img = new FilesController();
                 img.AddImages(IMG, Common.Link.IMG_CATEGORY, code);
                 category.category_img = code + IMG.FileName;
             }
@@ -142,11 +142,11 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             category.category_view = cate.category_view;
             category.user_id = cate.user_id;
 
-            var i = new ImagesController();
+            var i = new FilesController();
             if (IMG != null)
             {
                 var code = Guid.NewGuid().ToString();
-                var img = new ImagesController();
+                var img = new FilesController();
                 img.AddImages(IMG, Common.Link.IMG_CATEGORY, code);
                 category.category_img = code + IMG.FileName;
             }
@@ -172,7 +172,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
         public JsonResult Del(int? id)
         {
             var dao = new CategoriesDAO();
-            if (dao.Del(id))
+            if (dao.ChangeBin(id))
             {
                 List<Category> categories = db.Categories.Where(n => n.category_bin == false).OrderBy(n => n.category_name).ToList();
                 List<jCategories> list = categories.Select(n => new jCategories
@@ -203,7 +203,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
         public JsonResult Restore(int? id)
         {
             var dao = new CategoriesDAO();
-            if (dao.Restore(id))
+            if (dao.ChangeBin(id))
             {
                 List<Category> categories = db.Categories.Where(n => n.category_bin == true).OrderBy(n => n.category_name).ToList();
                 List<jCategories> list = categories.Select(n => new jCategories

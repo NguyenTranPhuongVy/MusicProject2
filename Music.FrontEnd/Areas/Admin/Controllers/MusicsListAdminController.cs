@@ -44,7 +44,6 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     music_id = n.music_id,
                     music_img = n.music_img,
                     music_linkdow = n.music_linkdow,
-                    music_favorite = n.music_favorite,
                     music_lyric = n.music_lyric,
                     music_option = n.music_option,
                     music_time = n.music_time,
@@ -78,7 +77,6 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     music_id = n.music_id,
                     music_img = n.music_img,
                     music_linkdow = n.music_linkdow,
-                    music_favorite = n.music_favorite,
                     music_lyric = n.music_lyric,
                     music_option = n.music_option,
                     music_time = n.music_time,
@@ -97,7 +95,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
 
         //Hàm thêm
         [HttpPost]
-        public ActionResult Add(Music.Model.EF.Music musics, HttpPostedFileBase IMG, HttpPostedFileBase MP3, string del)
+        public ActionResult Add(Music.Model.EF.Music musics, HttpPostedFileBase IMG, HttpPostedFileBase MP3, string del, int[] category, int[] singer)
         {
             //Cập nhật có thay đổi
             musics.music_option = true;
@@ -114,7 +112,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
             if (IMG != null)
             {
                 var code = Guid.NewGuid().ToString();
-                var img = new ImagesController();
+                var img = new FilesController();
                 img.AddImages(IMG, Common.Link.IMG_MUSIC, code);
                 musics.music_img = code + IMG.FileName;
             }
@@ -128,8 +126,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
             if (MP3 != null)
             {
                 var code = Guid.NewGuid().ToString();
-                var mp3 = new ImagesController();
-                mp3.AddMP3(MP3, Common.Link.MP3_MUSIC, code);
+                var mp3 = new FilesController();
+                mp3.AddMuscis(MP3, Common.Link.MP3_MUSIC, code);
                 musics.music_linkdow= code + MP3.FileName;
             }
             else
@@ -140,7 +138,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
             var dao = new MusicsDAO();
             var j = new JsonAdminController();
 
-            if (dao.Add(musics))
+            if (dao.Add(musics, category, singer))
             {
                 return Redirect("/Admin/MusicsListAdmin");
             }
@@ -153,7 +151,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
         //Hàm sửa
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Music.Model.EF.Music musics, HttpPostedFileBase IMG, HttpPostedFileBase MP3)
+        public ActionResult Edit(Music.Model.EF.Music musics, HttpPostedFileBase IMG, HttpPostedFileBase MP3, int[] category, int[] singer)
         {
             Music.Model.EF.Music mus = db.Musics.Find(musics.music_id);
 
@@ -163,15 +161,14 @@ namespace Music.Frontend.Areas.Admin.Controllers
             musics.music_bin = mus.music_bin;
             musics.music_option = mus.music_option;
             musics.music_view = mus.music_view;
-            musics.music_favorite = mus.music_favorite;
             musics.user_id = mus.user_id;
             musics.music_dowload = mus.music_dowload;
 
-            var i = new ImagesController();
+            var i = new FilesController();
             if (IMG != null)
             {
                 var code = Guid.NewGuid().ToString();
-                var img = new ImagesController();
+                var img = new FilesController();
                 img.AddImages(IMG, Common.Link.IMG_MUSIC, code);
                 musics.music_img = code + IMG.FileName;
             }
@@ -184,8 +181,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
             if (MP3 != null)
             {
                 var code = Guid.NewGuid().ToString();
-                var mp3 = new ImagesController();
-                mp3.AddMP3(MP3, Common.Link.MP3_MUSIC, code);
+                var mp3 = new FilesController();
+                mp3.AddMuscis(MP3, Common.Link.MP3_MUSIC, code);
                 musics.music_linkdow = code + MP3.FileName;
             }
             else
@@ -196,7 +193,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
 
 
             var dao = new MusicsDAO();
-            if (dao.Edit(musics))
+            if (dao.Edit(musics, category, singer))
             {
                 return Redirect("/Admin/MusicsListAdmin");
             }
@@ -225,7 +222,6 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     music_id = n.music_id,
                     music_img = n.music_img,
                     music_linkdow = n.music_linkdow,
-                    music_favorite = n.music_favorite,
                     music_lyric = n.music_lyric,
                     music_option = n.music_option,
                     music_time = n.music_time,
@@ -261,7 +257,6 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     music_id = n.music_id,
                     music_img = n.music_img,
                     music_linkdow = n.music_linkdow,
-                    music_favorite = n.music_favorite,
                     music_lyric = n.music_lyric,
                     music_option = n.music_option,
                     music_time = n.music_time,
@@ -297,7 +292,6 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     music_id = n.music_id,
                     music_img = n.music_img,
                     music_linkdow = n.music_linkdow,
-                    music_favorite = n.music_favorite,
                     music_lyric = n.music_lyric,
                     music_option = n.music_option,
                     music_time = n.music_time,

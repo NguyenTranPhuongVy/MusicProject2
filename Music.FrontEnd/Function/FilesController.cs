@@ -11,7 +11,7 @@ using Music.Model.EF;
 
 namespace Music.FrontEnd.Function
 {
-    public class ImagesController : Controller
+    public class FilesController : Controller
     {
         // GET: Images
         public string AddImages(HttpPostedFileBase IMG, string LinkImages, string code)
@@ -22,11 +22,11 @@ namespace Music.FrontEnd.Function
             return code + fileimg;
         }
 
-        public string AddMP3(HttpPostedFileBase MP3, string LinkMP3, string code)
+        public string AddMuscis(HttpPostedFileBase Music, string Link, string code)
         {
-            var filemp3 = Path.GetFileName(MP3.FileName);
-            var pa = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/LinkMP3/" + LinkMP3), code + filemp3);
-            MP3.SaveAs(pa);
+            var filemp3 = Path.GetFileName(Music.FileName);
+            var pa = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Link/" + Link), code + filemp3);
+            Music.SaveAs(pa);
             return filemp3;
         }
     }

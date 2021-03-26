@@ -17,8 +17,6 @@ namespace Music.Model.EF
         public int rep_id { get; set; }
         public string rep_content { get; set; }
         public Nullable<bool> rep_active { get; set; }
-        public Nullable<bool> rep_option { get; set; }
-        public Nullable<bool> rep_bin { get; set; }
         public Nullable<System.DateTime> rep_datecreate { get; set; }
         public Nullable<System.DateTime> rep_dateupdate { get; set; }
         public Nullable<int> comment_id { get; set; }

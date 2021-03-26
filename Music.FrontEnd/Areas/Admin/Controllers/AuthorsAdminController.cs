@@ -39,7 +39,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_id = n.author_id,
                     author_name = n.author_name,
                     author_note = n.author_note,
-                    user_id = n.user_id,
                     author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy"),
                     author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy"),
                     author_img = n.author_img,
@@ -67,7 +66,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_id = n.author_id,
                     author_name = n.author_name,
                     author_note = n.author_note,
-                    user_id = n.user_id,
                     author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy"),
                     author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy"),
                     author_img = n.author_img,
@@ -101,7 +99,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             if (IMG != null)
             {
                 var code = Guid.NewGuid().ToString();
-                var img = new ImagesController();
+                var img = new FilesController();
                 img.AddImages(IMG, Common.Link.IMG_AUTHOR, code);
                 author.author_img = code + IMG.FileName;
             }
@@ -136,13 +134,12 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             author.author_dateupdate = DateTime.Now;
             author.author_bin = au.author_bin;
             author.author_option = au.author_option;
-            author.user_id = au.user_id;
 
-            var i = new ImagesController();
+            var i = new FilesController();
             if (IMG != null)
             {
                 var code = Guid.NewGuid().ToString();
-                var img = new ImagesController();
+                var img = new FilesController();
                 img.AddImages(IMG, Common.Link.IMG_AUTHOR, code);
                 author.author_img = code + IMG.FileName;
             }
@@ -178,7 +175,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_id = n.author_id,
                     author_name = n.author_name,
                     author_note = n.author_note,
-                    user_id = n.user_id,
                     author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy"),
                     author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy"),
                     author_img = n.author_img,
@@ -208,7 +204,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_id = n.author_id,
                     author_name = n.author_name,
                     author_note = n.author_note,
-                    user_id = n.user_id,
                     author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy"),
                     author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy"),
                     author_img = n.author_img,
@@ -238,7 +233,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_id = n.author_id,
                     author_name = n.author_name,
                     author_note = n.author_note,
-                    user_id = n.user_id,
                     author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy"),
                     author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy"),
                     author_img = n.author_img,

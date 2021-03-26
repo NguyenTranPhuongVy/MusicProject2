@@ -12,16 +12,14 @@ namespace Music.Model.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class Favorite
+    public partial class QuestGroup
     {
-        public int favorite_id { get; set; }
-        public Nullable<bool> favorite_active { get; set; }
-        public Nullable<bool> favorite_bin { get; set; }
-        public Nullable<System.DateTime> favorite_datecreate { get; set; }
-        public Nullable<int> music_id { get; set; }
+        public int qg_id { get; set; }
+        public Nullable<int> quest_id { get; set; }
         public Nullable<int> user_id { get; set; }
+        public Nullable<System.DateTime> qg_datecreate { get; set; }
     
-        public virtual Music Music { get; set; }
+        public virtual Quest Quest { get; set; }
         public virtual User User { get; set; }
     }
 }

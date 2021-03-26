@@ -25,8 +25,5 @@ namespace Music.Model.EF
         public Nullable<int> video_favorite { get; set; }
         public Nullable<int> music_id { get; set; }
         public Nullable<int> user_id { get; set; }
-    
-        public virtual Music Music { get; set; }
-        public virtual User User { get; set; }
     }
 }

@@ -25,19 +25,24 @@ namespace Music.Model.EF
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Album> Albums { get; set; }
-        public virtual DbSet<Author> Authors { get; set; }
-        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Favorite> Favorites { get; set; }
         public virtual DbSet<Music> Musics { get; set; }
         public virtual DbSet<National> Nationals { get; set; }
         public virtual DbSet<Package> Packages { get; set; }
         public virtual DbSet<Pay> Pays { get; set; }
-        public virtual DbSet<Profile> Profiles { get; set; }
         public virtual DbSet<Reply> Replies { get; set; }
-        public virtual DbSet<Singer> Singers { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Album> Albums { get; set; }
+        public virtual DbSet<Author> Authors { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Genre> Genres { get; set; }
+        public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<Profile> Profiles { get; set; }
+        public virtual DbSet<Singer> Singers { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Video> Videos { get; set; }
+        public virtual DbSet<Quest> Quests { get; set; }
+        public virtual DbSet<QuestGroup> QuestGroups { get; set; }
     }
 }

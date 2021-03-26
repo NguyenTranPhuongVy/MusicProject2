@@ -12,25 +12,26 @@ namespace Music.Model.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class Singer
+    public partial class Quest
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Singer()
+        public Quest()
         {
-            this.Groups = new HashSet<Group>();
+            this.QuestGroups = new HashSet<QuestGroup>();
         }
     
-        public int singer_id { get; set; }
-        public string singer_name { get; set; }
-        public Nullable<bool> singer_active { get; set; }
-        public Nullable<bool> singer_bin { get; set; }
-        public string singer_note { get; set; }
-        public string singer_img { get; set; }
-        public Nullable<bool> singer_option { get; set; }
-        public Nullable<System.DateTime> singer_datecreate { get; set; }
-        public Nullable<System.DateTime> singer_dateupdate { get; set; }
+        public int quest_id { get; set; }
+        public Nullable<int> quest_name { get; set; }
+        public Nullable<int> quest_limit { get; set; }
+        public Nullable<int> quest_progress { get; set; }
+        public Nullable<System.DateTime> quest_datecreate { get; set; }
+        public Nullable<System.DateTime> quest_dateend { get; set; }
+        public Nullable<bool> quest_active { get; set; }
+        public Nullable<int> quest_category { get; set; }
+        public Nullable<int> quest_national { get; set; }
+        public Nullable<int> quest_singer { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Group> Groups { get; set; }
+        public virtual ICollection<QuestGroup> QuestGroups { get; set; }
     }
 }
