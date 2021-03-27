@@ -83,7 +83,6 @@ namespace Music.Model.DAO
             try
             {
                 Album album = db.Albums.Find(id);
-                album.album_option = !album.album_option;
                 db.SaveChanges();
                 return true;
             }

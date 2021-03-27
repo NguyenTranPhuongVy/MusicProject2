@@ -29,7 +29,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy"),
                     category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy"),
                     category_img = n.category_img,
-                    category_option = n.category_option
 
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -49,7 +48,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy"),
                     category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy"),
                     category_img = n.category_img,
-                    category_option = n.category_option
 
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -71,7 +69,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     singer_note = n.singer_note,
                     singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
                     singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
-                    singer_option = n.singer_option,
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }    
@@ -88,7 +85,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     singer_note = n.singer_note,
                     singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
                     singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
-                    singer_option = n.singer_option,
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }    
@@ -109,7 +105,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_img = n.author_img,
                     author_name = n.author_name,
                     author_note = n.author_note,
-                    author_option = n.author_option,
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             } 
@@ -126,7 +121,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_img = n.author_img,
                     author_name = n.author_name,
                     author_note = n.author_note,
-                    author_option = n.author_option,
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }    
@@ -197,7 +191,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     album_favorite = n.album_favorite,
                     album_note = n.album_note,
                     album_view = n.album_view,
-                    album_option = n.album_option,
                     user_id = n.user_id
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -217,7 +210,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     album_favorite = n.album_favorite,
                     album_note = n.album_note,
                     album_view = n.album_view,
-                    album_option = n.album_option,
                     user_id = n.user_id
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);

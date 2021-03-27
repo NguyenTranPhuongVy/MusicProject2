@@ -83,7 +83,6 @@ namespace Music.Model.DAO
             try
             {
                 Author author = db.Authors.Find(id);
-                author.author_option = !author.author_option;
                 db.SaveChanges();
                 return true;
             }

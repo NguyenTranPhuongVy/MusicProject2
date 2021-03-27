@@ -45,7 +45,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy"),
                     category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy"),
                     category_img = n.category_img,
-                    category_option = n.category_option
 
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -90,7 +89,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
         public ActionResult Add(Category category, HttpPostedFileBase IMG, string del)
         {
             //Cập nhật có thay đổi
-            category.category_option = true;
             category.category_bin = false;
 
             //Kiem tra thay đổi value
@@ -138,7 +136,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             category.category_datecreate = cate.category_datecreate;
             category.category_dateupdate = DateTime.Now;
             category.category_bin = cate.category_bin;
-            category.category_option = cate.category_option;
             category.category_view = cate.category_view;
             category.user_id = cate.user_id;
 
@@ -187,7 +184,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy"),
                     category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy"),
                     category_img = n.category_img,
-                    category_option = n.category_option
 
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -218,7 +214,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy"),
                     category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy"),
                     category_img = n.category_img,
-                    category_option = n.category_option
 
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -249,7 +244,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy"),
                     category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy"),
                     category_img = n.category_img,
-                    category_option = n.category_option
 
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
