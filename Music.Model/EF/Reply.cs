@@ -20,7 +20,9 @@ namespace Music.Model.EF
         public Nullable<System.DateTime> rep_datecreate { get; set; }
         public Nullable<System.DateTime> rep_dateupdate { get; set; }
         public Nullable<int> comment_id { get; set; }
+        public Nullable<int> user_id { get; set; }
     
         public virtual Comment Comment { get; set; }
+        public virtual User User { get; set; }
     }
 }

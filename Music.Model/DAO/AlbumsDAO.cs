@@ -17,9 +17,9 @@ namespace Music.Model.DAO
             try
             {
                 album.album_datecreate = DateTime.Now;
-                album.album_dateedit = DateTime.Now;
+                album.album_active = true;
+                album.album_bin = false;
                 album.album_view = 1;
-                album.album_favorite = 1;
 
                 db.Albums.Add(album);
                 db.SaveChanges();
@@ -36,6 +36,7 @@ namespace Music.Model.DAO
         {
             try
             {
+                album.album_dateedit = DateTime.Now;
                 db.Entry(album).State = EntityState.Modified;
                 db.SaveChanges();
 

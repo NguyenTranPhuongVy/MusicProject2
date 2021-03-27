@@ -18,7 +18,8 @@ namespace Music.Model.EF
         public Music()
         {
             this.Comments = new HashSet<Comment>();
-            this.Favorites = new HashSet<Favorite>();
+            this.Groups = new HashSet<Group>();
+            this.PlayLists = new HashSet<PlayList>();
         }
     
         public int music_id { get; set; }
@@ -43,12 +44,14 @@ namespace Music.Model.EF
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Favorite> Favorites { get; set; }
         public virtual User User { get; set; }
         public virtual National National { get; set; }
         public virtual Author Author { get; set; }
         public virtual Author Author1 { get; set; }
         public virtual Genre Genre { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Group> Groups { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PlayList> PlayLists { get; set; }
     }
 }

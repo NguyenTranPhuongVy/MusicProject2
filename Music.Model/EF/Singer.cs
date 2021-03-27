@@ -26,7 +26,6 @@ namespace Music.Model.EF
         public Nullable<bool> singer_bin { get; set; }
         public string singer_note { get; set; }
         public string singer_img { get; set; }
-        public Nullable<bool> singer_option { get; set; }
         public Nullable<System.DateTime> singer_datecreate { get; set; }
         public Nullable<System.DateTime> singer_dateupdate { get; set; }
     

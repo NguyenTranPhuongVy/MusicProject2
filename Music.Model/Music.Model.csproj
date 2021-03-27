@@ -59,7 +59,10 @@
     <Compile Include="DAO\NationsDAO.cs" />
     <Compile Include="DAO\PackagesDAO.cs" />
     <Compile Include="DAO\PaysDAO.cs" />
+    <Compile Include="DAO\PlayListDAO.cs" />
     <Compile Include="DAO\ProfilesDAO.cs" />
+    <Compile Include="DAO\QuestDAO.cs" />
+    <Compile Include="DAO\QuestGroupDAO.cs" />
     <Compile Include="DAO\ReplyDAO.cs" />
     <Compile Include="DAO\SingersDAO.cs" />
     <Compile Include="DAO\UsersDAO.cs" />
@@ -73,9 +76,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\Comment.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF\Favorite.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\Genre.cs">
@@ -111,7 +111,7 @@
     <Compile Include="EF\Pay.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF\Profile.cs">
+    <Compile Include="EF\PlayList.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\Quest.cs">
@@ -130,9 +130,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\User.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF\Video.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

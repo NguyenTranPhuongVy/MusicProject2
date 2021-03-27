@@ -18,12 +18,11 @@ namespace Music.Model.EF
         public User()
         {
             this.Comments = new HashSet<Comment>();
-            this.Favorites = new HashSet<Favorite>();
             this.Musics = new HashSet<Music>();
             this.Pays = new HashSet<Pay>();
             this.Albums = new HashSet<Album>();
-            this.Profiles = new HashSet<Profile>();
             this.QuestGroups = new HashSet<QuestGroup>();
+            this.Replies = new HashSet<Reply>();
         }
     
         public int user_id { get; set; }
@@ -40,11 +39,15 @@ namespace Music.Model.EF
         public string user_code { get; set; }
         public Nullable<int> user_point { get; set; }
         public Nullable<System.DateTime> user_deadline { get; set; }
+        public Nullable<System.DateTime> user_birth { get; set; }
+        public string user_phone { get; set; }
+        public string user_note { get; set; }
+        public string user_address { get; set; }
+        public Nullable<bool> user_vip { get; set; }
+        public Nullable<System.DateTime> user_datevip { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Favorite> Favorites { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Music> Musics { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -52,8 +55,8 @@ namespace Music.Model.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Album> Albums { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Profile> Profiles { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuestGroup> QuestGroups { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reply> Replies { get; set; }
     }
 }

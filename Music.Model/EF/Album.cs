@@ -14,6 +14,12 @@ namespace Music.Model.EF
     
     public partial class Album
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Album()
+        {
+            this.PlayLists = new HashSet<PlayList>();
+        }
+    
         public int album_id { get; set; }
         public string album_name { get; set; }
         public Nullable<System.DateTime> album_datecreate { get; set; }
@@ -25,8 +31,9 @@ namespace Music.Model.EF
         public string album_note { get; set; }
         public string album_img { get; set; }
         public Nullable<int> user_id { get; set; }
-        public Nullable<bool> album_option { get; set; }
     
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PlayList> PlayLists { get; set; }
     }
 }

@@ -30,7 +30,6 @@ namespace Music.Model.EF
         public Nullable<System.DateTime> category_datecreate { get; set; }
         public Nullable<System.DateTime> category_dateupdate { get; set; }
         public string category_img { get; set; }
-        public Nullable<bool> category_option { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Group> Groups { get; set; }

@@ -18,6 +18,9 @@ namespace Music.Model.EF
         public Nullable<int> quest_id { get; set; }
         public Nullable<int> user_id { get; set; }
         public Nullable<System.DateTime> qg_datecreate { get; set; }
+        public Nullable<bool> qg_status { get; set; }
+        public Nullable<int> qg_top { get; set; }
+        public Nullable<int> qg_progress { get; set; }
     
         public virtual Quest Quest { get; set; }
         public virtual User User { get; set; }
