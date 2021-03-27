@@ -23,7 +23,6 @@ namespace Music.Model.EF
         public int quest_id { get; set; }
         public Nullable<int> quest_name { get; set; }
         public Nullable<int> quest_limit { get; set; }
-        public Nullable<int> quest_progress { get; set; }
         public Nullable<System.DateTime> quest_datecreate { get; set; }
         public Nullable<System.DateTime> quest_dateend { get; set; }
         public Nullable<bool> quest_active { get; set; }

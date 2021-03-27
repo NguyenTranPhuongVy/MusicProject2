@@ -1021,7 +1021,6 @@
           <Property Name="quest_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="quest_name" Type="Int32" />
           <Property Name="quest_limit" Type="Int32" />
-          <Property Name="quest_progress" Type="Int32" />
           <Property Name="quest_datecreate" Type="DateTime" Precision="3" />
           <Property Name="quest_dateend" Type="DateTime" Precision="3" />
           <Property Name="quest_active" Type="Boolean" />
