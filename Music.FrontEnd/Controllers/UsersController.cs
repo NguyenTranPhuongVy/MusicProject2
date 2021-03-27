@@ -136,5 +136,56 @@ namespace Music.FrontEnd.Controllers
             }
             return View(resetPassword);
         }
+        public ActionResult EditImages(HttpPostedFileBase IMG)
+        {
+            var id = function.CookieID();
+            User user = db.Users.Find(id.user_id);
+
+            if (IMG == null)
+            {
+                user.user_img = id.user_img;
+            }
+            else
+            {
+                var code = Guid.NewGuid().ToString();
+                var img = new FilesController();
+                img.AddImages(IMG, Common.Link.IMG_USER, code);
+                user.user_img = code + IMG.FileName;
+            }
+
+            db.SaveChanges();
+            return Redirect("/Users/Profile");
+        }
+        public JsonResult EditAll(string name, string phone)
+        {
+
+            var id = function.CookieID();
+            User user = db.Users.Find(id.user_id);
+
+            if (name != null)
+            {
+                user.user_name = name;
+            }
+            else if(phone != null)
+            {
+                user.user_phone = phone;
+            }
+            else
+            {
+
+            }
+            db.SaveChanges();
+
+
+            var list = from item in db.Users
+                       where item.user_id == id.user_id
+                       select new
+                       {
+                           name = item.user_name,
+                           phone = item.user_phone
+
+                       };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
 }

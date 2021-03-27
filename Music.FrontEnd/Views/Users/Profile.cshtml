@@ -1,7 +1,232 @@
-﻿
+﻿@using Music.FrontEnd.Function
 @{
+    var fu = new FunctionController();
+    var id = fu.CookieID();
     ViewBag.Title = "Profile";
 }
 
-<h2>Profile</h2>
+<section class="services spad" ng-app="myApp">
+    <div class="container" ng-controller="myCtrl">
+        <div class="row" ng-repeat="list in list">
+            <div class="col-lg-12">
+                <h2 class="text-white font-weight-bold">THÔNG TIN CÁ NHÂN</h2>
+                <style>
+                    .hv:hover {
+                        border: 1px dashed white;
+                    }
+                </style>
+                <table id="default" class="text-white table" style="font-size: 17px; cursor: pointer">
+                    <tr data-toggle="modal" data-target="#img">
+                        <td><b>ẢNH CÁ NHÂN</b> </td>
+                        <td>
+                            Ảnh của bạn
 
+                        </td>
+                        <td>
+                            @if (id.user_img == null)
+                            {
+                                <img data-toggle="modal" data-target="#img" src="~/Images/User/336a83ff-73bf-451e-9671-3cc9968fc53cerik.jpg" class="float-right hv" style="width: 50px; height: 50px;border-radius: 50%" />
+                            }
+                            else
+                            {
+                                <img data-toggle="modal" data-target="#img" src="~/Images/User/@id.user_img" style="width: 50px; height: 50px; border-radius: 50%" class="float-right hv" />
+                            }
+                            <!-- Modal -->
+                            <div class="modal fade" id="img" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-primary">
+                                            <h5 class="modal-title text-white" id="exampleModalLabel">Thay đổi ảnh cá nhân</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="@Url.Action("EditImages","Users")" enctype="multipart/form-data" method="post">
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        @if (id.user_img == null)
+                                                        {
+                                                            <img id="output_image" src="~/Images/User/336a83ff-73bf-451e-9671-3cc9968fc53cerik.jpg" class="float-right hv" style="width: 200px; height: 100px;" />
+                                                        }
+                                                        else
+                                                        {
+                                                            <img id="output_image" src="~/Images/User/@id.user_img" style="width: 200px; height: 100px;" class="float-right hv" />
+                                                        }
+                                                    </div>
+                                                    <div class="col-lg-8">
+                                                        <label class="font-weight-bold text-dark">Ảnh</label>
+                                                        <input type="file" class="form-control" name="IMG" style="height: 40px" accept="image/*" onchange="preview_imagebanner(event)" />
+                                                    </div>
+                                                    <script>
+                                                        function preview_image(event) {
+                                                            var reader = new FileReader();
+                                                            reader.onload = function () {
+                                                                var output = document.getElementById('output_image');
+                                                                output.src = reader.result;
+                                                            }
+                                                            reader.readAsDataURL(event.target.files[0]);
+                                                        }
+                                                    </script>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                                <button type="submit" class="btn btn-primary">Lưu ảnh</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="cursor: not-allowed">
+                        <td><b>EMAIL</b> </td>
+                        <td>
+                            @id.user_email<br /><br />
+                        </td>
+                        <td><i class="fa fa-chevron-right float-right"></i></td>
+                    </tr>
+                    <tr ng-click="name()" style="cursor: pointer">
+                        <td><b>TÊN</b> </td>
+                        <td>
+                            {{list.name}}<br /><br />
+                        </td>
+                        <td><i class="fa fa-chevron-right float-right"></i></td>
+                    </tr>
+                    <tr ng-click="phone()" style="cursor: pointer">
+                        <td><b>SỐ ĐIỆN THOẠI</b> </td>
+                        <td>
+                            <div ng-show="list.phone == null">
+                                Vui lòng cập nhật số điện thoại!
+                            </div>
+                            <div ng-show="list.phone != null">
+                                {{list.phone}}
+                            </div>
+                            <br /><br />
+                        </td>
+                        <td><i class="fa fa-chevron-right float-right"></i></td>
+                    </tr>
+                    <tr>
+                        <td><b>MẬT KHẨU</b> </td>
+                        <td>
+                            ****************
+                            <p>Thay đổi lần gần đây 2 th 19</p>
+                        </td>
+                        <td><i class="fa fa-chevron-right float-right"></i></td>
+                    </tr>
+                    <tr style="cursor: not-allowed">
+                        <td><b>TÀI KHOẢN</b> </td>
+                        <td>
+                            @if (id.user_vip == false)
+                            {
+                                <span>Tài khoản miễn phí</span>
+                            }
+                            else
+                            {
+                                <span>Tài khoản cao cấp</span>
+                            }<br /><br />
+                        </td>
+                        <td><b class="float-right">Nâng cấp</b></td>
+                    </tr>
+                    <tr style="cursor: not-allowed">
+                        <td><b>NGÀY HẾT HẠN VIP</b> </td>
+                        <td>
+                            @id.user_datevip<br /><br />
+                        </td>
+                        <td><b class="float-right">Nâng cấp</b></td>
+                    </tr>
+                </table>
+                <table class="table" id="name" style="display: none">
+                    <tr>
+                        <td colspan="2">
+                            <h2 class="text-white"><i style="cursor: pointer" ng-click="exit()" class="fa fa-arrow-circle-left">&nbsp;</i> Thay đổi tên</h2>
+                            <input type="text" value="{{list.name}}" name="name" class="form-control" placeholder="Tên hiển thị" />
+                            <br />
+                            <button ng-click="createname()" class="btn btn-danger"><i class="fa fa-save"></i>Thay đổi</button>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table" id="phone" style="display: none">
+                    <tr>
+                        <td colspan="2">
+                            <h2 class="text-white"><i style="cursor: pointer" ng-click="exit()" class="fa fa-arrow-circle-left">&nbsp;</i> Thay đổi số điện thoại</h2>
+                            <input type="text" value="{{list.phone}}" name="phone" class="form-control" placeholder="Số điện thoại" />
+                            <br />
+                            <button ng-click="createphone()" class="btn btn-danger"><i class="fa fa-save"></i>Thay đổi</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+      $http({
+        method : "GET",
+          url : "/Json/Users"
+      }).then(function mySuccess(response) {
+          $scope.list = response.data;
+
+          $scope.name = function () {
+              document.getElementById("default").style = "display: none";
+              document.getElementById("name").style = "";
+          }
+
+          $scope.createname = function () {
+              var name = document.getElementsByName("name")[0].value;
+              $http({
+                  method: "GET",
+                  url: "/Users/EditAll?name=" + name
+              }).then(function mySuccess(response) {
+                  $scope.list = response.data;
+
+                  reset();
+                  document.getElementById("default").style = "";
+                  document.getElementById("name").style = "display: none";
+              }, function myError(response) {
+                  $scope.list = response.statusText;
+              });
+          }
+
+
+          $scope.phone = function () {
+              reset();
+              document.getElementById("default").style = "display: none";
+              document.getElementById("phone").style = "";
+          }
+
+          $scope.createphone = function () {
+              var phone = document.getElementsByName("phone")[0].value;
+              $http({
+                  method: "GET",
+                  url: "/Users/EditAll?phone=" + phone
+              }).then(function mySuccess(response) {
+                  $scope.list = response.data;
+
+                  reset();
+                  document.getElementById("default").style = "";
+              }, function myError(response) {
+                  $scope.list = response.statusText;
+              });
+          }
+
+
+          $scope.exit = function () {
+              document.getElementById("default").style = "";
+              reset();
+          }
+
+
+          function reset() {
+              document.getElementById("name").style = "display: none";
+              document.getElementById("phone").style = "display: none";
+          }
+
+      }, function myError(response) {
+        $scope.list = response.statusText;
+      });
+    });
+</script>

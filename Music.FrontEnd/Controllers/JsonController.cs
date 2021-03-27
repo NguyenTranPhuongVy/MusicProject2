@@ -5,11 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using Music.FrontEnd.Function;
 using Music.FrontEnd.Models;
+using Music.Model.EF;
 
 namespace Music.FrontEnd.Controllers
 {
     public class JsonController : Controller
     {
+        MusicProjectDataEntities db = new MusicProjectDataEntities();
         FunctionController function = new FunctionController();
         // GET: Json
         public ActionResult Index()
@@ -42,6 +44,19 @@ namespace Music.FrontEnd.Controllers
                 user_token = user.user_token
             };
             return Json(juser, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult Users()
+        {
+            var id = function.CookieID();
+            var list = from item in db.Users
+                       where item.user_id == id.user_id
+                       select new
+                       {
+                           name = item.user_name,
+                           phone = item.user_phone
+
+                       };
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
     }
 }
