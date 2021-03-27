@@ -42,5 +42,6 @@ namespace Music.Model.EF
         public virtual DbSet<Quest> Quests { get; set; }
         public virtual DbSet<QuestGroup> QuestGroups { get; set; }
         public virtual DbSet<PlayList> PlayLists { get; set; }
+        public virtual DbSet<Slider> Sliders { get; set; }
     }
 }

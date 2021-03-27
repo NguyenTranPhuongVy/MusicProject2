@@ -51,7 +51,7 @@
     </div>
 
     <!-- Header Section Begin -->
-    <header class="header">
+    <header class="header" style="background-color: black;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-2">
@@ -90,9 +90,18 @@
                                     else
                                     {
                                         var user = db.Users.Find(int.Parse(cookie.Value.ToString()));
-                                        <a href="#">@user.user_name</a>
-                                        <ul class="dropdown">
-                                            <li><a href="/Users/Profile">Thông tin cá nhân</a></li>
+                                        <a href="#">Chào: @user.user_name</a>
+                                        <ul class="dropdown" style="width: 300px">
+                                            <li><a href="/Users/Profile"><i class="fa fa-user">&nbsp;</i> Thông tin cá nhân</a></li>
+                                            <li><a href="/Users/Profile"><i class="fa fa-music">&nbsp;</i> Đăng nhạc <b class="text-warning float-right">(Vip)</b></a></li>
+                                            <li><a href="/Users/Profile"><i class="fa fa-play">&nbsp;</i> Quản lý âm nhạc của bạn <b class="text-warning float-right">(Vip)</b></a></li>
+                                            <li><a href="/Users/Profile"><i class="fa fa-user">&nbsp;</i> Abums của bạn</a></li>
+                                            <li><a href="/Users/Profile"><i class="fa fa-question-circle">&nbsp;</i> Danh sách nhiệm vụ</a></li>
+                                            <li><a href="/Users/Profile"><i class="fa fa-gifts">&nbsp;</i> Đổi thưởng</a></li>
+                                            <li><a href="/Users/Profile"><i class="fa fa-headphones">&nbsp;</i> Lịch sử tải nhạc</a></li>
+                                            <li><a href="/Users/Profile"><i class="fa fa-history">&nbsp;</i> Lịch sử thanh toán</a></li>
+                                            <li><a href="/Users/Profile"><i class="fa fa-key">&nbsp;</i> Đổi mật khẩu</a></li>
+                                            <li><a href="/Users/Profile"><i class="fa fa-sign-out-alt">&nbsp;</i> Thoát</a></li>
                                         </ul>
                                     }
                                 </li>

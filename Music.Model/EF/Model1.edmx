@@ -205,6 +205,17 @@
           <Property Name="singer_datecreate" Type="datetime" />
           <Property Name="singer_dateupdate" Type="datetime" />
         </EntityType>
+        <EntityType Name="Sliders">
+          <Key>
+            <PropertyRef Name="slider_id" />
+          </Key>
+          <Property Name="slider_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="slider_img" Type="nvarchar(max)" />
+          <Property Name="slider_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="slider_link" Type="nvarchar(max)" />
+          <Property Name="slider_datecreate" Type="datetime" />
+          <Property Name="slider_active" Type="bit" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -460,6 +471,7 @@
           <EntitySet Name="QuestGroup" EntityType="Self.QuestGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reply" EntityType="Self.Reply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Singers" EntityType="Self.Singers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sliders" EntityType="Self.Sliders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Albums_Users" Association="Self.FK_Albums_Users">
@@ -847,6 +859,7 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Reply" EntitySet="Replies" />
           </AssociationSet>
+          <EntitySet Name="Sliders" EntityType="MusicProjectDataModel.Slider" />
         </EntityContainer>
         <EntityType Name="Album">
           <Key>
@@ -1130,6 +1143,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Slider">
+          <Key>
+            <PropertyRef Name="slider_id" />
+          </Key>
+          <Property Name="slider_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="slider_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="slider_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="slider_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="slider_datecreate" Type="DateTime" Precision="3" />
+          <Property Name="slider_active" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1385,6 +1409,18 @@
                 <ScalarProperty Name="music_id" ColumnName="music_id" />
                 <ScalarProperty Name="albums_id" ColumnName="albums_id" />
                 <ScalarProperty Name="playlist_id" ColumnName="playlist_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sliders">
+            <EntityTypeMapping TypeName="MusicProjectDataModel.Slider">
+              <MappingFragment StoreEntitySet="Sliders">
+                <ScalarProperty Name="slider_active" ColumnName="slider_active" />
+                <ScalarProperty Name="slider_datecreate" ColumnName="slider_datecreate" />
+                <ScalarProperty Name="slider_link" ColumnName="slider_link" />
+                <ScalarProperty Name="slider_name" ColumnName="slider_name" />
+                <ScalarProperty Name="slider_img" ColumnName="slider_img" />
+                <ScalarProperty Name="slider_id" ColumnName="slider_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

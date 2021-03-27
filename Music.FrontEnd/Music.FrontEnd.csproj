@@ -2885,6 +2885,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\Banner\" />
     <Folder Include="Link\MP4\" />
     <Folder Include="Views\Albums\" />
     <Folder Include="Views\Comment\" />
