@@ -42,7 +42,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy"),
                     author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy"),
                     author_img = n.author_img,
-                    author_option = n.author_option
 
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -69,7 +68,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy"),
                     author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy"),
                     author_img = n.author_img,
-                    author_option = n.author_option
 
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -85,7 +83,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
         public ActionResult Add(Author author, HttpPostedFileBase IMG, string del)
         {
             //Cập nhật có thay đổi
-            author.author_option = true;
             author.author_bin = false;
 
             //Kiem tra thay đổi value
@@ -133,7 +130,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             author.author_datecreate = au.author_datecreate;
             author.author_dateupdate = DateTime.Now;
             author.author_bin = au.author_bin;
-            author.author_option = au.author_option;
 
             var i = new FilesController();
             if (IMG != null)
@@ -178,7 +174,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy"),
                     author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy"),
                     author_img = n.author_img,
-                    author_option = n.author_option
 
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -207,7 +202,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy"),
                     author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy"),
                     author_img = n.author_img,
-                    author_option = n.author_option
 
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -236,7 +230,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy"),
                     author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy"),
                     author_img = n.author_img,
-                    author_option = n.author_option
 
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);

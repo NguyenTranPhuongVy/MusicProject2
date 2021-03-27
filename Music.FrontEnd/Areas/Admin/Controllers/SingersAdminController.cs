@@ -42,7 +42,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     singer_note = n.singer_note,
                     singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
                     singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
-                    singer_option = n.singer_option,
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }
@@ -68,7 +67,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     singer_note = n.singer_note,
                     singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
                     singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
-                    singer_option = n.singer_option,
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }
@@ -83,7 +81,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
         public ActionResult Add(Singer singer, HttpPostedFileBase IMG, string del)
         {
             //Cập nhật có thay đổi
-            singer.singer_option = true;
             singer.singer_bin = false;
 
             //Kiem tra thay đổi value
@@ -132,7 +129,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             singer.singer_dateupdate = DateTime.Now;
             singer.singer_name = sing.singer_name;
             singer.singer_note = sing.singer_note;
-            singer.singer_option = sing.singer_option;
 
             var i = new FilesController();
             if (IMG != null)
@@ -177,7 +173,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     singer_note = n.singer_note,
                     singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
                     singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
-                    singer_option = n.singer_option,
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }
@@ -205,7 +200,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     singer_note = n.singer_note,
                     singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
                     singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
-                    singer_option = n.singer_option,
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }
@@ -233,7 +227,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     singer_note = n.singer_note,
                     singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
                     singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
-                    singer_option = n.singer_option,
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }

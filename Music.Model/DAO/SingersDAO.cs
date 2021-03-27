@@ -19,7 +19,6 @@ namespace Music.Model.DAO
                 singer.singer_datecreate = DateTime.Now;
                 singer.singer_active = true;
                 singer.singer_bin = false;
-                singer.singer_option = true;
 
                 db.Singers.Add(singer);
                 db.SaveChanges();
@@ -88,7 +87,6 @@ namespace Music.Model.DAO
             try
             {
                 Singer singer = db.Singers.Find(id);
-                singer.singer_option = !singer.singer_option;
 
                 db.SaveChanges();
                 return true;

@@ -44,7 +44,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     album_favorite = n.album_favorite,
                     album_note = n.album_note,
                     album_view = n.album_view,
-                    album_option = n.album_option,
                     user_id = n.user_id
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -73,7 +72,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     album_favorite = n.album_favorite,
                     album_note = n.album_note,
                     album_view = n.album_view,
-                    album_option = n.album_option,
                     user_id = n.user_id
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -89,7 +87,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
         public ActionResult Add(Album album, HttpPostedFileBase IMG, string del)
         {
             //Cập nhật có thay đổi
-            album.album_option = true;
             album.album_bin = false;
 
             //Kiem tra thay đổi value
@@ -137,7 +134,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             album.album_datecreate = al.album_datecreate;
             album.album_dateedit = DateTime.Now;
             album.album_bin = al.album_bin;
-            album.album_option = al.album_option;
             album.user_id = al.user_id;
 
             var i = new FilesController();
@@ -185,7 +181,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     album_favorite = n.album_favorite,
                     album_note = n.album_note,
                     album_view = n.album_view,
-                    album_option = n.album_option,
                     user_id = n.user_id
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -216,7 +211,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     album_favorite = n.album_favorite,
                     album_note = n.album_note,
                     album_view = n.album_view,
-                    album_option = n.album_option,
                     user_id = n.user_id
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -247,7 +241,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     album_favorite = n.album_favorite,
                     album_note = n.album_note,
                     album_view = n.album_view,
-                    album_option = n.album_option,
                     user_id = n.user_id
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
