@@ -85,6 +85,14 @@ namespace Music.FrontEnd.Controllers
             return View(login);
         }
 
+        public ActionResult Logoff()
+        {
+            HttpCookie cookie = Request.Cookies["user_id"];
+            cookie.Expires = DateTime.Now.AddDays(-1);
+            Request.Cookies.Set(cookie);
+            return RedirectToAction("Login");
+        }
+
         public ActionResult Profile()
         {
             if (function.CookieID() == null)

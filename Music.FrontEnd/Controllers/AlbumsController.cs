@@ -16,7 +16,7 @@ namespace Music.FrontEnd.Controllers
         AlbumsDAO albumsDAO = new AlbumsDAO();
         FilesController filesfunction = new FilesController();
         // GET: Albums
-        public ActionResult Index()
+        public ActionResult MyAlbums()
         {
             return View();
         }

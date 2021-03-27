@@ -188,6 +188,7 @@
     <Compile Include="Controllers\JsonController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MusicsController.cs" />
+    <Compile Include="Controllers\PackageController.cs" />
     <Compile Include="Controllers\PlayListController.cs" />
     <Compile Include="Controllers\QuestController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -2898,15 +2899,18 @@
     <Content Include="Views\Users\Profile.cshtml" />
     <Content Include="Views\Users\ResetPassword.cshtml" />
     <Content Include="Views\Musics\Create.cshtml" />
+    <Content Include="Views\Musics\MyMusisc.cshtml" />
+    <Content Include="Views\Albums\MyAlbums.cshtml" />
+    <Content Include="Views\Quest\Index.cshtml" />
+    <Content Include="Views\Package\Index.cshtml" />
+    <Content Include="Views\Musics\HistoryDownload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\Banner\" />
     <Folder Include="Link\MP4\" />
-    <Folder Include="Views\Albums\" />
     <Folder Include="Views\Comment\" />
     <Folder Include="Views\PlayList\" />
-    <Folder Include="Views\Quest\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

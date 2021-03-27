@@ -17,6 +17,10 @@ namespace Music.FrontEnd.Controllers
         MusicsDAO musicsDAO = new MusicsDAO();
 
         // GET: Musics
+        public ActionResult MyMusisc()
+        {
+            return View();
+        }
         public ActionResult DetailsMusic(int? id)
         {
             var music = db.Musics.Find(id);
@@ -24,6 +28,11 @@ namespace Music.FrontEnd.Controllers
         }
 
         public ActionResult AllMusic()
+        {
+            return View();
+        }
+
+        public ActionResult HistoryDownload()
         {
             return View();
         }
