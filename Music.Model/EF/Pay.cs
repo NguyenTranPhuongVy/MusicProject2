@@ -20,6 +20,8 @@ namespace Music.Model.EF
         public Nullable<System.DateTime> pay_datecreate { get; set; }
         public Nullable<System.DateTime> pay_dateexpiration { get; set; }
         public Nullable<decimal> pay_summoney { get; set; }
+        public Nullable<System.DateTime> pay_active { get; set; }
+        public Nullable<bool> pay_status { get; set; }
     
         public virtual Package Package { get; set; }
         public virtual User User { get; set; }

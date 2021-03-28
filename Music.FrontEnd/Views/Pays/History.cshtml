@@ -1,0 +1,78 @@
+﻿@using Music.Model.EF
+@using Music.FrontEnd.Function
+@model List<Pay> 
+@{
+    var coo = new FunctionController();
+    var id = coo.CookieID();
+
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="services spad" ng-app="myApp">
+    <div class="container" ng-controller="myCtrl">
+        <div class="row" ng-repeat="list in list">
+            <div class="col-lg-12">
+                <h3 style="font-size: 50px" class="text-white font-weight-bold text-center mt-3">Lịch sử thanh toán</h3>
+                <center>
+                    <p style="font-size: 20px">
+                        Đơn hàng thất bại sau 10 ngày sẽ tự động xóa.
+                    </p>
+                </center>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table text-white table-bordered">
+                            <tr class="bg-danger">
+                                <td>Mã thanh toán</td>
+                                <td>Gói</td>
+                                <td>Giá tiền</td>
+                                <td>Ngày hết hạn</td>
+                                <td>Ngày thanh toán</td>
+                                <td>Trạng thái</td>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.pay_id</td>
+                                    <td>@item.Package.package_name</td>
+                                    <td>@item.Package.pakage_price</td>
+                                    <td>@id.user_deadline</td>
+                                    <td>@item.pay_datecreate</td>
+                                    <td>
+                                        @(item.pay_status == true ? "Thành công" : "Thất bại")
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+                <style>
+                    .hv:hover {
+                        border: 1px dashed white;
+                    }
+                </style>
+                <table class="table" id="name" style="display: none">
+                    <tr>
+                        <td colspan="2">
+                            <h2 class="text-white"><i style="cursor: pointer" ng-click="exit()" class="fa fa-arrow-circle-left">&nbsp;</i> Thay đổi tên</h2>
+                            <input type="text" value="{{list.name}}" name="name" class="form-control" placeholder="Tên hiển thị" />
+                            <br />
+                            <button ng-click="createname()" class="btn btn-danger"><i class="fa fa-save"></i>Thay đổi</button>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table" id="phone" style="display: none">
+                    <tr>
+                        <td colspan="2">
+                            <h2 class="text-white"><i style="cursor: pointer" ng-click="exit()" class="fa fa-arrow-circle-left">&nbsp;</i> Thay đổi số điện thoại</h2>
+                            <input type="text" value="{{list.phone}}" name="phone" class="form-control" placeholder="Số điện thoại" />
+                            <br />
+                            <button ng-click="createphone()" class="btn btn-danger"><i class="fa fa-save"></i>Thay đổi</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+

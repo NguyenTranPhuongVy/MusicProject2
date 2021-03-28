@@ -4,117 +4,154 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<section class="services spad" ng-app="myApp">
+    <div class="container" ng-controller="myCtrl">
+        <div class="row" ng-repeat="list in list">
+            <div class="col-lg-12">
+                <h1 style="font-size: 50px" class="text-white font-weight-bold text-center mt-3">TẢI NHẠC CỦA BẠN NGAY</h1>
+                <center>
+                    <p style="font-size: 20px">
+                        Lưu giữ nhạc và chia sẽ cho mọi người
+                    </p>
+                </center>
+                @using (Html.BeginForm("Create", "Musics", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "ui form segment" }))
+                {
+                    @Html.AntiForgeryToken()
 
-@using (Html.BeginForm("Create", "Musics", FormMethod.Post, new { @enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <label class="control-label col-md-2 font-weight-bold">Tên bài hát</label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.music_name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.music_name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-    <div class="form-horizontal">
-        <h4>Music</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.music_name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.music_name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.music_name, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 font-weight-bold">Ảnh bài hát</label>
+                            <div class="col-md-10">
+                                <input type="file" name="img" class="btn btn-danger" />
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.music_img, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="img" class="btn btn-danger" />
-            </div>
-        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 font-weight-bold">Lời bài hát</label>
+                            <div class="col-md-10">
+                                <textarea name="music_lyric" class="form-control"></textarea>
+                                @Html.ValidationMessageFor(model => model.music_lyric, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.music_lyric, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.music_lyric, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.music_lyric, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        @*<div class="form-group">
+                            @Html.LabelFor(model => model.music_time, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.music_time, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.music_time, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.music_time, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.music_time, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.music_time, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        @*<div class="form-group">
+                            @Html.LabelFor(model => model.music_view, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.music_view, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.music_view, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.music_view, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.music_view, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.music_view, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 font-weight-bold">Link dowload</label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.music_dowload, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.music_dowload, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.music_dowload, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.music_dowload, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.music_dowload, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.music_linkdow, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="file" name="mp3" class="btn btn-danger" />
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.music_linkdow, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="mp3" class="btn btn-danger" />
-            </div>
-        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.nation_id, "nation_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select class="ui fluid search dropdown">
+                                    @foreach (var item in db.Nationals)
+                                    {
+                                        <option value="@item.nation_id">@item.nation_name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.nation_id, "nation_id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <select class="ui fluid search dropdown">
-                    @foreach (var item in db.Nationals)
-                    {
-                        <option value="@item.nation_id">@item.nation_name</option>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.music_video, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="file" class="btn btn-danger" name="mp4" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.genres_id, "genres_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select class="ui fluid search dropdown">
+                                    <option value="">Chọn thể loại</option>
+                                    @foreach (var item in db.Genres)
+                                    {
+                                        <option value="@item.genres_id">@item.genres_name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <select class="ui fluid search dropdown" multiple="">
+                            <option value="">Chọn danh mục</option>
+                            @foreach (var item in db.Categories.Where(x => x.category_bin == false && x.category_active == true))
+                            {
+                                <option value="@item.category_id">@item.category_name</option>
+                            }
+                        </select>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                <style>
+                    .hv:hover {
+                        border: 1px dashed white;
                     }
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.music_video, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" class="btn btn-danger" name="mp4" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.genres_id, "genres_id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <select class="ui fluid search dropdown">
-                    <option value="">Chọn thể loại</option>
-                    @foreach (var item in db.Genres)
-                    {
-                        <option value="@item.genres_id">@item.genres_name</option>
-                    }
-                </select>
-            </div>
-        </div>
-
-        <select class="ui fluid search dropdown" multiple="">
-            <option value="">Chọn danh mục</option>
-            @foreach (var item in db.Categories.Where(x => x.category_bin == false && x.category_active == true))
-            {
-                <option value="@item.category_id">@item.category_name</option>
-            }
-        </select>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                </style>
+                <table class="table" id="name" style="display: none">
+                    <tr>
+                        <td colspan="2">
+                            <h2 class="text-white"><i style="cursor: pointer" ng-click="exit()" class="fa fa-arrow-circle-left">&nbsp;</i> Thay đổi tên</h2>
+                            <input type="text" value="{{list.name}}" name="name" class="form-control" placeholder="Tên hiển thị" />
+                            <br />
+                            <button ng-click="createname()" class="btn btn-danger"><i class="fa fa-save"></i>Thay đổi</button>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table" id="phone" style="display: none">
+                    <tr>
+                        <td colspan="2">
+                            <h2 class="text-white"><i style="cursor: pointer" ng-click="exit()" class="fa fa-arrow-circle-left">&nbsp;</i> Thay đổi số điện thoại</h2>
+                            <input type="text" value="{{list.phone}}" name="phone" class="form-control" placeholder="Số điện thoại" />
+                            <br />
+                            <button ng-click="createphone()" class="btn btn-danger"><i class="fa fa-save"></i>Thay đổi</button>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
-}
+</section>
+
+
 
 <script>
     $(".ui.fluid.search.dropdown").dropdown();

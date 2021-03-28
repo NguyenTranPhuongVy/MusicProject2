@@ -188,7 +188,7 @@
     <Compile Include="Controllers\JsonController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MusicsController.cs" />
-    <Compile Include="Controllers\PackageController.cs" />
+    <Compile Include="Controllers\PaysController.cs" />
     <Compile Include="Controllers\PlayListController.cs" />
     <Compile Include="Controllers\QuestController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -211,6 +211,8 @@
     <Compile Include="Models\jSingers.cs" />
     <Compile Include="Models\jUsers.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Momo\MoMoSecurity.cs" />
+    <Compile Include="Momo\PaymentRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ViewAccount.cs" />
@@ -2904,6 +2906,9 @@
     <Content Include="Views\Quest\Index.cshtml" />
     <Content Include="Views\Package\Index.cshtml" />
     <Content Include="Views\Musics\HistoryDownload.cshtml" />
+    <Content Include="Views\Pays\Index.cshtml" />
+    <Content Include="Views\Pays\Details.cshtml" />
+    <Content Include="Views\Pays\History.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2953,7 +2958,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50274</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44325/</IISUrl>
+          <IISUrl>https://localhost:44325</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>https://localhost:44325</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -30,6 +30,7 @@ namespace Music.Model.EF
         public Nullable<int> pakage_price { get; set; }
         public Nullable<System.DateTime> pakege_deadline { get; set; }
         public Nullable<bool> package_option { get; set; }
+        public Nullable<int> package_month { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pay> Pays { get; set; }

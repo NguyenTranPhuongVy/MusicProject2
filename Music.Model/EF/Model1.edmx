@@ -129,6 +129,7 @@
           <Property Name="pakage_price" Type="int" />
           <Property Name="pakege_deadline" Type="datetime" />
           <Property Name="package_option" Type="bit" />
+          <Property Name="package_month" Type="int" />
         </EntityType>
         <EntityType Name="Pays">
           <Key>
@@ -140,6 +141,8 @@
           <Property Name="pay_datecreate" Type="datetime" />
           <Property Name="pay_dateexpiration" Type="datetime" />
           <Property Name="pay_summoney" Type="money" />
+          <Property Name="pay_active" Type="datetime" />
+          <Property Name="pay_status" Type="bit" />
         </EntityType>
         <EntityType Name="PlayList">
           <Key>
@@ -622,6 +625,7 @@
           <Property Name="pakege_deadline" Type="DateTime" Precision="3" />
           <Property Name="package_option" Type="Boolean" />
           <NavigationProperty Name="Pays" Relationship="Self.FK_Pays_Packages" FromRole="Packages" ToRole="Pays" />
+          <Property Name="package_month" Type="Int32" />
         </EntityType>
         <EntityType Name="Pay">
           <Key>
@@ -635,6 +639,8 @@
           <Property Name="pay_summoney" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="Package" Relationship="Self.FK_Pays_Packages" FromRole="Pays" ToRole="Packages" />
           <NavigationProperty Name="User" Relationship="Self.FK_Pays_Users" FromRole="Pays" ToRole="Users" />
+          <Property Name="pay_active" Type="DateTime" Precision="3" />
+          <Property Name="pay_status" Type="Boolean" />
         </EntityType>
         <EntityType Name="Reply">
           <Key>
@@ -1214,6 +1220,7 @@
           <EntitySetMapping Name="Packages">
             <EntityTypeMapping TypeName="MusicProjectDataModel.Package">
               <MappingFragment StoreEntitySet="Packages">
+                <ScalarProperty Name="package_month" ColumnName="package_month" />
                 <ScalarProperty Name="package_id" ColumnName="package_id" />
                 <ScalarProperty Name="package_name" ColumnName="package_name" />
                 <ScalarProperty Name="package_money" ColumnName="package_money" />
@@ -1230,6 +1237,8 @@
           <EntitySetMapping Name="Pays">
             <EntityTypeMapping TypeName="MusicProjectDataModel.Pay">
               <MappingFragment StoreEntitySet="Pays">
+                <ScalarProperty Name="pay_status" ColumnName="pay_status" />
+                <ScalarProperty Name="pay_active" ColumnName="pay_active" />
                 <ScalarProperty Name="pay_id" ColumnName="pay_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="pakage_id" ColumnName="pakage_id" />
