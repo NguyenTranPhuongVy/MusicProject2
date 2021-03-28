@@ -52,7 +52,7 @@
                             <div class="card-media">
                                 <!-- media container -->
                                 <div class="card-media-object-container">
-                                    <div class="card-media-object" style="background-image: url('../../Images/Music/@item.music_img');"></div>
+                                    <div class="card-media-object w-100" style="background-image: url('../../Images/Music/@item.music_img');"></div>
                                     <span class="card-media-object-tag subtle">Selling Fast</span>
                                     <ul class="card-media-object-social-list">
                                         <li>
@@ -81,7 +81,7 @@
                                     </div>
                                     <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
                                         <span class="card-media-body-supporting-bottom-text subtle">#Music #Party</span>
-                                        <a href="@Url.Action("DetailsMusic", "Musics")" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                        <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
                                     </div>
                                 </div>
                             </div>
