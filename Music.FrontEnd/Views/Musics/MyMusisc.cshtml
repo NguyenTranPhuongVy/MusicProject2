@@ -5,3 +5,24 @@
 
 <h2>MyMusisc</h2>
 
+<div ng-app="MyApp">
+    <div ng-controller="MyCtrl">
+
+    </div>
+</div>
+
+<!-- angular -->
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope, $http) {
+        $http({
+            method: "GET",
+            url: "/Json/AllCode"
+        }).then(function mySuccess(response) {
+            $scope.list = response.data;
+        }, function myError(response) {
+            $scope.list = response.statusText;
+        })
+    });
+
+</script>

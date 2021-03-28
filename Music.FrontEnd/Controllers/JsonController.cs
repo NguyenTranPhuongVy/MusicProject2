@@ -18,7 +18,28 @@ namespace Music.FrontEnd.Controllers
         {
             return View();
         }
+        
+        // Music
+        // lấy tất cả nhạc
+        public ActionResult GetAllMusic()
+        {
+            var user_id = function.CookieID();
+            var music = from m in db.Musics
+                        where m.music_bin == false
+                        select new
+                        {
+                            id = m.music_id,
+                            name = m.music_name,
+                            img = m.music_img,
+                            lyric = m.music_lyric,
+                            time = m.music_time,
+                            view = m.music_view,
+                            download = m.music_dowload,
+                            author = m.Author.author_name,
 
+                        };
+            return Json(music, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult JProfile()
         {
             //if (function.CookieID() == null)

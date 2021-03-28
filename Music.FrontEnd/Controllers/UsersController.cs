@@ -88,8 +88,9 @@ namespace Music.FrontEnd.Controllers
         public ActionResult Logoff()
         {
             HttpCookie cookie = Request.Cookies["user_id"];
-            cookie.Expires = DateTime.Now.AddDays(-1);
-            Request.Cookies.Set(cookie);
+            cookie.Expires = DateTime.Now.AddDays(-10d);
+            //Request.Cookies.Set(cookie);
+            Response.SetCookie(cookie);
             return RedirectToAction("Login");
         }
 
