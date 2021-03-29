@@ -96,6 +96,7 @@ namespace Music.FrontEnd.Controllers
             {
 
                 user.user_datevip = DateTime.Now.AddMonths((int)pakage.package_month);
+                user.user_vip = true;
                 db.SaveChanges();
 
 

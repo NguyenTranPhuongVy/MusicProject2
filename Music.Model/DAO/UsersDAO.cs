@@ -52,8 +52,9 @@ namespace Music.Model.DAO
                 user.user_code = "#Music_Admin";
                 user.user_bin = false;
                 user.user_active = true;
-                user.user_point = 0;
+                user.user_point = 200;
                 user.user_option = true;
+                user.user_vip = false;
 
                 db.Users.Add(user);
                 db.SaveChanges();

@@ -1,6 +1,13 @@
-﻿
+﻿@using Music.FrontEnd.Function
 @{
     ViewBag.Title = "MyMusisc";
+    var coo = new FunctionController();
+    var id = coo.CookieID();
+
+    if (id.user_vip == false)
+    {
+        Response.Redirect("/");
+    }
 }
 
 <section class="services spad" ng-app="myApp">
@@ -35,22 +42,22 @@
                                 <img class="thumbnail" src="~/Images/Music/{{list.img}}" alt="coloring-book" />
                                 <h3 class="text-white">{{list.name}}</h3>
                                 <p class="para">
-                                    <i class="fa fa-eye"></i> | 
-                                    <i class="fa fa-trash"></i> | 
-                                    <i class="fa fa-edit"></i> 
+                                    <i class="fa fa-eye"></i> |
+                                    <i class="fa fa-trash"></i> |
+                                    <i class="fa fa-edit"></i>
                                 </p>
                             </div>
                         </div>
                     </div>
-                <style>
-                    .hv:hover {
-                        border: 1px dashed white;
-                    }
-                </style>
+                    <style>
+                        .hv:hover {
+                            border: 1px dashed white;
+                        }
+                    </style>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </section>
 
 <!-- angular -->

@@ -1,7 +1,18 @@
-﻿@model Music.Model.EF.Music
+﻿@using Music.FrontEnd.Function
+@model Music.Model.EF.Music
 @{
+    var coo = new FunctionController();
+    var id = coo.CookieID();
+
     Music.Model.EF.MusicProjectDataEntities db = new Music.Model.EF.MusicProjectDataEntities();
     ViewBag.Title = "Create";
+
+    if(id.user_vip == false)
+    {
+        Response.Redirect("/");
+    }
+
+
 }
 
 <section class="services spad" ng-app="myApp">
