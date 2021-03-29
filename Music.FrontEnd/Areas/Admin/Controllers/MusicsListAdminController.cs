@@ -26,6 +26,11 @@ namespace Music.Frontend.Areas.Admin.Controllers
             return View(db.Musics.Where(n => n.music_bin == true).ToList());
         }
 
+        public ActionResult Censorship()
+        {
+            return View(db.Musics.Where(n => n.music_active == false && n.music_option == true && n.music_bin == false).ToList());
+        }
+
         [HttpGet]
         public JsonResult Active(int? id)
         {
@@ -35,22 +40,26 @@ namespace Music.Frontend.Areas.Admin.Controllers
                 List<Music.Model.EF.Music> musics = db.Musics.Where(n => n.music_bin == false).OrderBy(n => n.music_name).ToList();
                 List<jMusics> list = musics.Select(n => new jMusics
                 {
-                    music_name = n.music_name,
                     music_active = n.music_active,
+                    music_dowload = n.music_dowload,
                     music_bin = n.music_bin,
                     music_datecreate = n.music_datecreate.Value.ToString("dd/MM/yyyy"),
                     music_dateedit = n.music_dateedit.Value.ToString("dd/MM/yyyy"),
-                    music_dowload = n.music_dowload,
                     music_id = n.music_id,
                     music_img = n.music_img,
                     music_linkdow = n.music_linkdow,
                     music_lyric = n.music_lyric,
+                    music_mp3 = n.music_mp3,
+                    music_name = n.music_name,
                     music_option = n.music_option,
                     music_time = n.music_time,
+                    music_video = n.music_video,
                     music_view = n.music_view,
+                    author_id = n.author_id,
+                    genres_id = n.genres_id,
                     nation_id = n.nation_id,
+                    singer_id = n.singer_id,
                     user_id = n.user_id,
-                    nationname = n.National.nation_name
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }
@@ -68,22 +77,26 @@ namespace Music.Frontend.Areas.Admin.Controllers
                 List<Music.Model.EF.Music> musics = db.Musics.Where(n => n.music_bin == false).OrderBy(n => n.music_name).ToList();
                 List<jMusics> list = musics.Select(n => new jMusics
                 {
-                    music_name = n.music_name,
                     music_active = n.music_active,
+                    music_dowload = n.music_dowload,
                     music_bin = n.music_bin,
                     music_datecreate = n.music_datecreate.Value.ToString("dd/MM/yyyy"),
                     music_dateedit = n.music_dateedit.Value.ToString("dd/MM/yyyy"),
-                    music_dowload = n.music_dowload,
                     music_id = n.music_id,
                     music_img = n.music_img,
                     music_linkdow = n.music_linkdow,
                     music_lyric = n.music_lyric,
+                    music_mp3 = n.music_mp3,
+                    music_name = n.music_name,
                     music_option = n.music_option,
                     music_time = n.music_time,
+                    music_video = n.music_video,
                     music_view = n.music_view,
+                    author_id = n.author_id,
+                    genres_id = n.genres_id,
                     nation_id = n.nation_id,
+                    singer_id = n.singer_id,
                     user_id = n.user_id,
-                    nationname = n.National.nation_name
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }
@@ -213,22 +226,26 @@ namespace Music.Frontend.Areas.Admin.Controllers
                 List<Music.Model.EF.Music> musics = db.Musics.Where(n => n.music_bin == false).OrderBy(n => n.music_name).ToList();
                 List<jMusics> list = musics.Select(n => new jMusics
                 {
-                    music_name = n.music_name,
                     music_active = n.music_active,
+                    music_dowload = n.music_dowload,
                     music_bin = n.music_bin,
                     music_datecreate = n.music_datecreate.Value.ToString("dd/MM/yyyy"),
                     music_dateedit = n.music_dateedit.Value.ToString("dd/MM/yyyy"),
-                    music_dowload = n.music_dowload,
                     music_id = n.music_id,
                     music_img = n.music_img,
                     music_linkdow = n.music_linkdow,
                     music_lyric = n.music_lyric,
+                    music_mp3 = n.music_mp3,
+                    music_name = n.music_name,
                     music_option = n.music_option,
                     music_time = n.music_time,
+                    music_video = n.music_video,
                     music_view = n.music_view,
+                    author_id = n.author_id,
+                    genres_id = n.genres_id,
                     nation_id = n.nation_id,
+                    singer_id = n.singer_id,
                     user_id = n.user_id,
-                    nationname = n.National.nation_name
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }
@@ -248,22 +265,26 @@ namespace Music.Frontend.Areas.Admin.Controllers
                 List<Music.Model.EF.Music> musics = db.Musics.Where(n => n.music_bin == true).OrderBy(n => n.music_name).ToList();
                 List<jMusics> list = musics.Select(n => new jMusics
                 {
-                    music_name = n.music_name,
                     music_active = n.music_active,
+                    music_dowload = n.music_dowload,
                     music_bin = n.music_bin,
                     music_datecreate = n.music_datecreate.Value.ToString("dd/MM/yyyy"),
                     music_dateedit = n.music_dateedit.Value.ToString("dd/MM/yyyy"),
-                    music_dowload = n.music_dowload,
                     music_id = n.music_id,
                     music_img = n.music_img,
                     music_linkdow = n.music_linkdow,
                     music_lyric = n.music_lyric,
+                    music_mp3 = n.music_mp3,
+                    music_name = n.music_name,
                     music_option = n.music_option,
                     music_time = n.music_time,
+                    music_video = n.music_video,
                     music_view = n.music_view,
+                    author_id = n.author_id,
+                    genres_id = n.genres_id,
                     nation_id = n.nation_id,
+                    singer_id = n.singer_id,
                     user_id = n.user_id,
-                    nationname = n.National.nation_name
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }
@@ -283,22 +304,26 @@ namespace Music.Frontend.Areas.Admin.Controllers
                 List<Music.Model.EF.Music> musics = db.Musics.Where(n => n.music_bin == true).OrderBy(n => n.music_name).ToList();
                 List<jMusics> list = musics.Select(n => new jMusics
                 {
-                    music_name = n.music_name,
                     music_active = n.music_active,
+                    music_dowload = n.music_dowload,
                     music_bin = n.music_bin,
                     music_datecreate = n.music_datecreate.Value.ToString("dd/MM/yyyy"),
                     music_dateedit = n.music_dateedit.Value.ToString("dd/MM/yyyy"),
-                    music_dowload = n.music_dowload,
                     music_id = n.music_id,
                     music_img = n.music_img,
                     music_linkdow = n.music_linkdow,
                     music_lyric = n.music_lyric,
+                    music_mp3 = n.music_mp3,
+                    music_name = n.music_name,
                     music_option = n.music_option,
                     music_time = n.music_time,
+                    music_video = n.music_video,
                     music_view = n.music_view,
+                    author_id = n.author_id,
+                    genres_id = n.genres_id,
                     nation_id = n.nation_id,
+                    singer_id = n.singer_id,
                     user_id = n.user_id,
-                    nationname = n.National.nation_name
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }

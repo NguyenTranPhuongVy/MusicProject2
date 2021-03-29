@@ -1,12 +1,10 @@
 ﻿@using Music.Model.EF
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Censorship";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
-
     MusicProjectDataEntities db = new MusicProjectDataEntities();
     List<National> nationals = db.Nationals.ToList();
 }
-
 <style>
     .font_color a {
         color: black;
@@ -17,11 +15,11 @@
             color: royalblue;
         }
 </style>
-<div ng-app="myApp">
-    <div ng-controller="myCtrl">
+<div @*ng-app="myApp"*@>
+    <div @*ng-controller="myCtrl"*@>
         <div class="card-box mb-30">
             <div class="pd-20">
-                <h4 class="text-black-50 h4">Có {{(list | filter:textSearch).length}} Bài Hát</h4>
+                <h4 class="text-black-50 h4">Có @*{{(list | filter:textSearch).length}}*@ Bài Hát</h4>
             </div>
             <div class="pd-20 ui form">
                 <div class="four fields">
@@ -52,9 +50,9 @@
                         </button>
                     </div>
                     <div class="field">
-                        <a href="/MusicsListAdmin/Censorship" class="ui secondary button">
+                        <button ng-click="linkCen()" class="ui secondary button">
                             <i class="icon-copy dw dw-trash1"></i> Kiểm Duyệt Người Dùng
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -72,37 +70,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="list in list | filter: textSearch">
-                            <td>{{list.music_name}}</td>
-                            <td>
-                                <img class="ui medium rounded image" style="width: 50px; height: 50px" src="~/Images/Music/{{list.music_img}}">
-                            </td>
-                            <td>
-                                <div ng-show="list.music_active == true">
-                                    <button ng-click="active(list.music_id)" class="ui inverted primary button">Hoạt Động</button>
-                                </div>
-                                <div ng-show="list.music_active == false">
-                                    <button ng-click="active(list.music_id)" class="ui inverted red button">Không Hoạt Động</button>
-                                </div>
-                            </td>
-                            <td>
-                                <div ng-show="list.music_option == true">
-                                    <button ng-click="option(list.music_id)" class="ui inverted green button">Hiển Thị</button>
-                                </div>
-                                <div ng-show="list.music_option == false">
-                                    <button ng-click="option(list.music_id)" class="ui inverted red button">Không Hiển Thị</button>
-                                </div>
-                            </td>
-                            <td>{{list.music_datecreate}}</td>
-                            <td>{{list.music_dateedit}}</td>
-                            <td>
+                        @foreach(var item in Model)
+                        {
+                            <tr>
+                                <td>@item.music_name</td>
+                                <td>
+                                    <img class="ui medium rounded image" style="width: 50px; height: 50px" src="~/Images/Music/@item.music_img">
+                                </td>
+                                <td>
+                                    @item.music_active
+                                </td>
+                                <td>
+                                    @item.music_option
+                                </td>
+                                <td>
+                                    @item.music_datecreate
+                                </td>
+                                <td>
+                                    @item.music_dateedit
+                                </td>
+                                <td>
                                 <center class="font_color">
-                                    <a data-toggle="modal" data-target="#details-Admin{{list.music_id}}"><i class="icon-copy dw dw-eye"></i></a> |
-                                    <a ng-click="bin(list.music_id)"><i class="icon-copy dw dw-trash1"></i></a> |
-                                    <a data-toggle="modal" data-target="#edit-Admin{{list.music_id}}"><i class="icon-copy dw dw-edit2"></i></a>
+                                    <a data-toggle="modal" @*data-target="#details-Admin{{list.music_id}}"*@><i class="icon-copy dw dw-eye"></i></a> |
+                                    <a @*ng-click="bin(list.music_id)"*@><i class="icon-copy dw dw-trash1"></i></a> |
+                                    <a data-toggle="modal" @*data-target="#edit-Admin{{list.music_id}}"*@><i class="icon-copy dw dw-edit2"></i></a>
                                 </center>
                             </td>
-                        </tr>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
@@ -128,7 +123,7 @@
                                     </div>
                                     <div class="field">
                                         <label>Link Bài Hát</label>
-                                        <input value="{{list.music_linkdow}}" name="MP3" type="file"/>
+                                        <input value="{{list.music_linkdow}}" name="MP3" type="file" />
                                     </div>
                                 </div>
                                 <div class="two fields">
@@ -139,7 +134,7 @@
                                     <div class="field">
                                         <label>Quốc Gia</label>
                                         <select name="nation_id" class="ui dropdown">
-                                            @foreach(var item in nationals)
+                                            @foreach (var item in nationals)
                                             {
                                                 <option value="@item.nation_id">@item.nation_name</option>
                                             }
