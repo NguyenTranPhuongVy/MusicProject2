@@ -45,6 +45,9 @@ namespace Music.Model.DAO
         {
             try
             {
+
+                var code = Guid.NewGuid().ToString();
+
                 user.user_img = "336a83ff-73bf-451e-9671-3cc9968fc53cerik.jpg";
                 user.user_datecreate = DateTime.Now;
                 user.user_datelogin = DateTime.Now;
@@ -55,6 +58,8 @@ namespace Music.Model.DAO
                 user.user_point = 200;
                 user.user_option = true;
                 user.user_vip = false;
+                user.user_code = user.user_email + code.Substring(0, 6);
+
 
                 db.Users.Add(user);
                 db.SaveChanges();

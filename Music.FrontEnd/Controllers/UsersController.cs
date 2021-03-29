@@ -39,6 +39,8 @@ namespace Music.FrontEnd.Controllers
                     user_pass = register.Password,
                     user_name = register.DisplayName
                 };
+
+
                 usersDAO.Add(user);
 
                 return RedirectToAction("Login");
