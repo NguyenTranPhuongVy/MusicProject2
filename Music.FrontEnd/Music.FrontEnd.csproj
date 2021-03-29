@@ -2909,6 +2909,7 @@
     <Content Include="Views\Pays\Index.cshtml" />
     <Content Include="Views\Pays\Details.cshtml" />
     <Content Include="Views\Pays\History.cshtml" />
+    <Content Include="Views\Musics\RankMusic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -97,5 +97,34 @@ namespace Music.FrontEnd.Controllers
             }
             return View(music);
         }
+        public ActionResult RankMusic(string name)
+        {
+            if(name == "all")
+            {
+                ViewBag.Note = name;
+            }
+            else if(name == "100")
+            {
+                ViewBag.Note = name;
+            }
+            else if(name == "viet")
+            {
+                ViewBag.Note = name;
+
+            }
+            else if (name == "tre")
+            {
+                ViewBag.Note = name;
+            }
+            else if (name == "kpop")
+            {
+                ViewBag.Note = name;
+            }
+            else if (name == "aumy")
+            {
+                ViewBag.Note = name;
+            }
+            return View();
+        }
     }
 }
