@@ -50,24 +50,20 @@ namespace Music.FrontEnd.Controllers
             {
                 return Redirect("/User/Login");    
             }
-            if (ModelState.IsValid)
+            var user = function.CookieID();
+            music.music_img = imagesfunction.AddImages(img, "Music", Guid.NewGuid().ToString());
+            if (mp3 != null)
             {
-                var user = function.CookieID();
-                music.music_img = imagesfunction.AddImages(img, "Music", Guid.NewGuid().ToString());
-                if(mp3 != null)
-                {
-                    music.music_img = imagesfunction.AddMuscis(img, "MP3", Guid.NewGuid().ToString());
-                }
-                else if(mp4 != null)
-                {
-                    music.music_img = imagesfunction.AddMuscis(img, "MP4", Guid.NewGuid().ToString());
-                }
-                music.user_id = user.user_id;
-                musicsDAO.Add(music, category, singers);
-
-                return RedirectToAction("AllMusic");
+                music.music_img = imagesfunction.AddMuscis(img, "MP3", Guid.NewGuid().ToString());
             }
-            return View(music);
+            else if (mp4 != null)
+            {
+                music.music_img = imagesfunction.AddMuscis(img, "MP4", Guid.NewGuid().ToString());
+            }
+            music.user_id = user.user_id;
+            musicsDAO.Add(music, category, singers);
+
+            return RedirectToAction("AllMusic");
         }
         public ActionResult Edit()
         {
