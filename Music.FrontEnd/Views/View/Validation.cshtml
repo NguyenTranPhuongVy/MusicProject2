@@ -7,8 +7,8 @@
             inline: true,
             on: 'blur',
             fields: {
-                user_name: {
-                    identifier: 'user_name',
+                DisplayName: {
+                    identifier: 'DisplayName',
                     rules: [
                         {
                             type: 'empty',
@@ -24,8 +24,8 @@
                         }
                     ]
                 },
-                user_pass: {
-                    identifier: 'user_pass',
+                Password: {
+                    identifier: 'Password',
                     rules: [
                         {
                             type: 'empty',
@@ -33,8 +33,8 @@
                         }
                     ]
                 },
-                user_email: {
-                    identifier: 'user_email',
+                Email: {
+                    identifier: 'Email',
                     rules: [
                         {
                             type: 'empty',
@@ -46,21 +46,21 @@
                         }
                     ]
                 },
-                user_repeat: {
-                    identifier: 'user_repeat',
+                ConfirmPassword: {
+                    identifier: 'ConfirmPassword',
                     rules: [
                         {
                             type: 'empty',
                             prompt: 'Không Được Phép Để Trống.'
                         },
                         {
-                            type: 'match[user_pass]',
+                            type: 'match[Password]',
                             prompt: 'Mật Khẩu Sát Nhận Không Trùng Khớp.'
                         }
                     ]
                 },
-                user_pass: {
-                    identifier: 'user_pass',
+                Password: {
+                    identifier: 'Password',
                     rules: [
                         {
                             type: 'regExp[^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@a#\$%\^&\*])(?=.{8,})]',
