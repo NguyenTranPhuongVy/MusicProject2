@@ -23,7 +23,7 @@
                         Tài khoản vip
                     </p>
                 </center>
-                <form class="ui form segment" action="@Url.Action("Create", "Musics")" enctype="multipart/form-data">
+                <form class="ui form segment" action="@Url.Action("Create", "Musics")" method="post" enctype="multipart/form-data">
                     @Html.AntiForgeryToken()
                     <div class="two fields">
                         <div class="field">
