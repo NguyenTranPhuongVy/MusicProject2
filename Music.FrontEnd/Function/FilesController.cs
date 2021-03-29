@@ -27,7 +27,7 @@ namespace Music.FrontEnd.Function
             var filemp3 = Path.GetFileName(Music.FileName);
             var pa = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Link/" + Link), code + filemp3);
             Music.SaveAs(pa);
-            return filemp3;
+            return code + filemp3;
         }
     }
 }

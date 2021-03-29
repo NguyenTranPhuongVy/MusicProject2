@@ -54,16 +54,16 @@ namespace Music.FrontEnd.Controllers
             music.music_img = imagesfunction.AddImages(img, "Music", Guid.NewGuid().ToString());
             if (mp3 != null)
             {
-                music.music_img = imagesfunction.AddMuscis(img, "MP3", Guid.NewGuid().ToString());
+                music.music_linkdow = imagesfunction.AddMuscis(mp3, "MP3", Guid.NewGuid().ToString());
             }
             else if (mp4 != null)
             {
-                music.music_img = imagesfunction.AddMuscis(img, "MP4", Guid.NewGuid().ToString());
+                music.music_video = imagesfunction.AddMuscis(mp4, "MP4", Guid.NewGuid().ToString());
             }
             music.user_id = user.user_id;
             musicsDAO.Add(music, category, singers);
 
-            return RedirectToAction("AllMusic");
+            return RedirectToAction("MyMusisc");
         }
         public ActionResult Edit()
         {
@@ -84,16 +84,16 @@ namespace Music.FrontEnd.Controllers
                 music.music_img = imagesfunction.AddImages(img, "Music", Guid.NewGuid().ToString());
                 if (mp3 != null)
                 {
-                    music.music_img = imagesfunction.AddMuscis(img, "MP3", Guid.NewGuid().ToString());
+                    music.music_linkdow = imagesfunction.AddMuscis(mp3, "MP3", Guid.NewGuid().ToString());
                 }
                 else if (mp4 != null)
                 {
-                    music.music_img = imagesfunction.AddMuscis(img, "MP4", Guid.NewGuid().ToString());
+                    music.music_video = imagesfunction.AddMuscis(mp4, "MP4", Guid.NewGuid().ToString());
                 }
                 music.user_id = user.user_id;
                 musicsDAO.Edit(music, category, singers);
 
-                return RedirectToAction("AllMusic");
+                return RedirectToAction("MyMusisc");
             }
             return View(music);
         }

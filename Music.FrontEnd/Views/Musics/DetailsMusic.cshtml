@@ -304,7 +304,14 @@
                     <div class="col-lg-6 text-white">
                         <br />
                         <b style="font-size: 18px">@Model.music_name</b> <br />
-                        <p>None: Ca sỹ</p> &nbsp; <br /> <b><i class="fa fa-user"></i></b>
+                        @if (Model.singer_id != null)
+                        {
+                            <p>Ca sỹ: @Model.Singer.singer_name</p> <br /> <b><i class="fa fa-user"></i></b>
+                        }
+                        else
+                        {
+                            <p>Ca sỹ: @Model.User.user_name</p> <br /> <b><i class="fa fa-user"></i></b>
+                        }
 
                     </div>
                     <div class="col-lg-3 text-white">
@@ -315,7 +322,7 @@
             </div>
             <div class="col-lg-6">
                 <audio controls autoplay class="mt-3 w-100" style="background-color: none">
-                    <source src="~/Link/MP3/3b2afa10-fde6-4a26-8e56-090e62534c11Anh-Luon-La-Ly-Do-ERIK.mp3" type="audio/ogg">
+                    <source src="~/Link/MP3/@Model.music_linkdow" type="audio/ogg">
                     <source src="horse.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>

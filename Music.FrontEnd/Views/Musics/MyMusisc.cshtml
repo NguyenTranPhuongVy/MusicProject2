@@ -22,11 +22,13 @@
                 </center>
                 <center class="mt-2">
                     <div class="ui search">
-                        <div class="ui icon input fa-w-10">
-                            <input ng-model="txtSearch" class="prompt" type="text" style="border-radius: 0px 0px 0px 0px" placeholder="Tìm kiếm...">
-                            <i class="search icon"></i>
+                        <div class="ui fluid category search">
+                            <div class="ui icon input">
+                                <input ng-model="txtSearch" class="prompt" placeholder="Tìm kiếm..." type="text">
+                                <i class="search icon"></i>
+                            </div>
+                            <div class="results"></div>
                         </div>
-                        <div class="results"></div>
                     </div>
                     <b class="text-white">{{(list | filter: txtSearch).length}} kết quả</b>
                 </center>
@@ -39,12 +41,12 @@
                     <div class="col-lg-2" ng-repeat="list in list | filter: txtSearch" ng-show="(list | filter: txtSearch).length != 0">
                         <div id="cards w-100">
                             <div class="card-content">
-                                <img class="thumbnail" src="~/Images/Music/{{list.img}}" alt="coloring-book" />
-                                <h3 class="text-white">{{list.name}}</h3>
-                                <p class="para">
-                                    <i class="fa fa-eye"></i> |
-                                    <i class="fa fa-trash"></i> |
-                                    <i class="fa fa-edit"></i>
+                                <a href="/Musics/DetailsMusic/{{list.id}}"><img class="thumbnail" src="~/Images/Music/{{list.img}}" alt="{{list.name}}" /></a>
+                                <h3 class="text-white" style="font-family: 'Josefin Sans', sans-serif">{{list.name}}</h3>
+                                <p class="para text-white">
+                                    <a href="/Musics/DetailsMusic/{{list.id}}"><i class="fa fa-eye"></i></a> |
+                                    <a href="/Musics/DetailsMusic/{{list.id}}"><i class="fa fa-trash"></i></a> |
+                                    <a href="/Musics/DetailsMusic/{{list.id}}"><i class="fa fa-edit"></i></a>
                                 </p>
                             </div>
                         </div>

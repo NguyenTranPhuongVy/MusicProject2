@@ -102,6 +102,7 @@
           <Property Name="genres_id" Type="int" />
           <Property Name="author_id" Type="int" />
           <Property Name="music_mp3" Type="nvarchar(max)" />
+          <Property Name="singer_id" Type="int" />
         </EntityType>
         <EntityType Name="National">
           <Key>
@@ -350,6 +351,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Musics_Singers">
+          <End Role="Singers" Type="Self.Singers" Multiplicity="0..1" />
+          <End Role="Musics" Type="Self.Musics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Singers">
+              <PropertyRef Name="singer_id" />
+            </Principal>
+            <Dependent Role="Musics">
+              <PropertyRef Name="singer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MusicsList_Authors">
           <End Role="Authors" Type="Self.Authors" Multiplicity="0..1" />
           <End Role="Musics" Type="Self.Musics" Multiplicity="*" />
@@ -509,6 +522,10 @@
             <End Role="National" EntitySet="National" />
             <End Role="Musics" EntitySet="Musics" />
           </AssociationSet>
+          <AssociationSet Name="FK_Musics_Singers" Association="Self.FK_Musics_Singers">
+            <End Role="Singers" EntitySet="Singers" />
+            <End Role="Musics" EntitySet="Musics" />
+          </AssociationSet>
           <AssociationSet Name="FK_MusicsList_Authors" Association="Self.FK_MusicsList_Authors">
             <End Role="Authors" EntitySet="Authors" />
             <End Role="Musics" EntitySet="Musics" />
@@ -596,6 +613,8 @@
           <Property Name="music_mp3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Groups" Relationship="MusicProjectDataModel.FK_Group_Musics" FromRole="Music" ToRole="Group" />
           <NavigationProperty Name="PlayLists" Relationship="MusicProjectDataModel.FK_PlayList_Musics" FromRole="Music" ToRole="PlayList" />
+          <Property Name="singer_id" Type="Int32" />
+          <NavigationProperty Name="Singer" Relationship="MusicProjectDataModel.FK_Musics_Singers" FromRole="Music" ToRole="Singer" />
         </EntityType>
         <EntityType Name="National">
           <Key>
@@ -866,6 +885,10 @@
             <End Role="Reply" EntitySet="Replies" />
           </AssociationSet>
           <EntitySet Name="Sliders" EntityType="MusicProjectDataModel.Slider" />
+          <AssociationSet Name="FK_Musics_Singers" Association="MusicProjectDataModel.FK_Musics_Singers">
+            <End Role="Singer" EntitySet="Singers" />
+            <End Role="Music" EntitySet="Musics" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Album">
           <Key>
@@ -950,6 +973,7 @@
           <Property Name="singer_datecreate" Type="DateTime" Precision="3" />
           <Property Name="singer_dateupdate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Groups" Relationship="MusicProjectDataModel.FK_Group_Singers" FromRole="Singer" ToRole="Group" />
+          <NavigationProperty Name="Musics" Relationship="MusicProjectDataModel.FK_Musics_Singers" FromRole="Singer" ToRole="Music" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -1160,6 +1184,18 @@
           <Property Name="slider_datecreate" Type="DateTime" Precision="3" />
           <Property Name="slider_active" Type="Boolean" />
         </EntityType>
+        <Association Name="FK_Musics_Singers">
+          <End Type="MusicProjectDataModel.Singer" Role="Singer" Multiplicity="0..1" />
+          <End Type="MusicProjectDataModel.Music" Role="Music" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Singer">
+              <PropertyRef Name="singer_id" />
+            </Principal>
+            <Dependent Role="Music">
+              <PropertyRef Name="singer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1182,6 +1218,7 @@
           <EntitySetMapping Name="Musics">
             <EntityTypeMapping TypeName="MusicProjectDataModel.Music">
               <MappingFragment StoreEntitySet="Musics">
+                <ScalarProperty Name="singer_id" ColumnName="singer_id" />
                 <ScalarProperty Name="music_mp3" ColumnName="music_mp3" />
                 <ScalarProperty Name="author_id" ColumnName="author_id" />
                 <ScalarProperty Name="genres_id" ColumnName="genres_id" />

@@ -42,6 +42,7 @@
         <AssociationConnector Association="MusicProjectDataModel.FK_PlayList_Musics" />
         <AssociationConnector Association="MusicProjectDataModel.FK_Reply_Users" />
         <EntityTypeShape EntityType="MusicProjectDataModel.Slider" Width="1.5" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Musics_Singers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
