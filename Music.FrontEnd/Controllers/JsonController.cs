@@ -98,5 +98,25 @@ namespace Music.FrontEnd.Controllers
                         };
             return Json(music, JsonRequestBehavior.AllowGet);
         }
+        //Binh luan id code
+        public JsonResult CommentID(int? id)
+        {
+            var list = from item in db.Comments
+                       where item.music_id == id
+                       orderby item.comment_dateupdate descending
+                       select new
+                       {
+                           id = item.comment_id,
+                           idcode = item.music_id,
+                           idus = item.user_id,
+                           date = item.comment_datecreate,
+                           update = item.comment_dateupdate,
+                           content = item.comment_content,
+                           nameid = item.User.user_name,
+                           imgid = item.User.user_img
+
+                       };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
 }

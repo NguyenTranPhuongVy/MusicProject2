@@ -126,5 +126,40 @@ namespace Music.FrontEnd.Controllers
             }
             return View();
         }
+
+        //Bình luận
+        public JsonResult Comment(string content, int? id)
+        {
+            var coo = new FunctionController();
+            var idus = coo.CookieID();
+
+            Comment comment = new Comment
+            {
+                music_id = id,
+                comment_content = content,
+                comment_datecreate = DateTime.Now,
+                user_id = idus.user_id
+            };
+            db.Comments.Add(comment);
+            db.SaveChanges();
+
+
+            var list = from item in db.Comments
+                       where item.music_id == id
+                       orderby item.comment_dateupdate descending
+                       select new
+                       {
+                           id = item.comment_id,
+                           idcode = item.music_id,
+                           idus = item.user_id,
+                           date = item.comment_datecreate,
+                           update = item.comment_dateupdate,
+                           content = item.comment_content,
+                           nameid = item.User.user_name,
+                           imgid = item.User.user_img
+
+                       };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
 }

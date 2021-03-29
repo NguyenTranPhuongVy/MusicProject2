@@ -1,0 +1,94 @@
+﻿@using Music.Model.EF;
+@using Music.FrontEnd.Function;
+@model Album
+@{
+    MusicProjectDataEntities db = new MusicProjectDataEntities();
+    ViewBag.Title = "MyAlbumsIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<PlayList> playLists = db.PlayLists.ToList();
+    var i = 1;
+}
+
+<section class="services spad" ng-app="myApp">
+    <div class="container" ng-controller="myCtrl">
+        <div class="row" ng-repeat="list in list">
+            <div class="col-lg-12">
+                <h1 style="font-size: 50px" class="text-white font-weight-bold text-center mt-3">@Model.album_name</h1>
+                <form action="@Url.Action("AddAlbum","Albums")" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <input name="album_name" type="text" class="form-control" placeholder="Tên abums cá nhân riêng" />
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="file" class="form-control" name="img" />
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn btn-danger w-100" type="submit">Thêm albums</button>
+                        </div>
+                    </div>
+                </form>
+                <br />
+                <div class="row">
+                    @if (playLists.Where(n => n.albums_id == Model.album_id).Count() == 0)
+                    {
+                        <center>
+                            <h3 class="text-white">Không có nhạc nào nào! <a href="#">Thêm ngay</a></h3>
+                        </center>
+                    }
+                    else
+                    {
+                        <table class="table text-white table-hover">
+                            @foreach (var item in playLists.Where(n => n.albums_id == Model.album_id))
+                            {
+                                <tr class="mt-2" onclick="window.location.href = '/Musics/DetailsMusic/@item.music_id'">
+                                    <td width="10%">
+                                        <br />
+                                        <center>
+                                            @if (i == 1)
+                                            {
+                                                <b class="text-primary" style="font-size: 40px">@i -</b>
+                                            }
+                                            else if (i == 2)
+                                            {
+                                                <b class="text-success" style="font-size: 40px">@i -</b>
+                                            }
+                                            else if (i == 3)
+                                            {
+                                                <b class="text-danger" style="font-size: 40px">@i -</b>
+                                            }
+                                            else
+                                            {
+                                                <b style="font-size: 40px">@i -</b>
+                                            }
+                                        </center>
+                                    </td>
+                                    <td width="40%">
+                                        <img class="float-left" src="~/Images/Music/@item.Music.music_img" style="width: 60px; height: 60px" />
+                                        <div class="float-left">
+                                            &nbsp;<b style="font-size: 20px" class="text-white">@item.Music.music_name</b>
+                                            <p>
+                                                &nbsp;Nam phương
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <b class="text-center mt-5">03:22</b>
+                                    </td>
+                                    <td>
+                                        <div class="float-right">
+                                            <i class="fa fa-heart"></i>
+                                            <i class="fa fa-download"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                i++;
+                            }
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,8 +1,11 @@
 ﻿@using Music.Model.EF;
+@using Music.FrontEnd.Function;
 @model Music
 @{
+    MusicProjectDataEntities db = new MusicProjectDataEntities();
     ViewBag.Title = "DetailsMusic";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var coo = new FunctionController();
 }
 <style>
 
@@ -14,8 +17,8 @@
         color: red;
     }
 </style>
-<section class="portfolio spad">
-    <div class="container-fluid mt-3">
+<section class="portfolio spad" ng-app="myApp">
+    <div class="container-fluid mt-3" ng-controller="myComment">
         <div class="row">
             <div class="col-lg-8">
                 <form class="ui form">
@@ -54,17 +57,17 @@
                     </div>
                     <div class="content active">
                         <div class="ui threaded comments">
-                            <div class="comment">
+                            <div class="comment" ng-repeat="com in com">
                                 <a class="avatar">
-                                    <img src="~/Images/Category/notImg.png">
+                                    <img src="~/Images/User/{{com.imgid}}">
                                 </a>
                                 <div class="content">
-                                    <a class="author">Matt</a>
+                                    <a class="author">{{com.nameid}}</a>
                                     <div class="metadata">
                                         <span class="date">Today at 5:42PM</span>
                                     </div>
                                     <div class="text">
-                                        How artistic!
+                                        {{com.content}}
                                     </div>
                                     <div class="actions">
                                         <a class="reply">Reply</a>
@@ -73,67 +76,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="comment">
-                                <a class="avatar">
-                                    <img src="~/Images/Category/notImg.png">
-                                </a>
-                                <div class="content">
-                                    <a class="author">Elliot Fu</a>
-                                    <div class="metadata">
-                                        <span class="date">Yesterday at 12:30AM</span>
-                                    </div>
-                                    <div class="text">
-                                        <p>This has been very useful for my research. Thanks as well!</p>
-                                    </div>
-                                    <div class="actions">
-                                        <a class="reply">Reply</a>
-                                    </div>
-                                </div>
-                                <div class="comments">
-                                    <div class="comment">
-                                        <a class="avatar">
-                                            <img src="~/Images/Category/notImg.png">
-                                        </a>
-                                        <div class="content">
-                                            <a class="author">Jenny Hess</a>
-                                            <div class="metadata">
-                                                <span class="date">Just now</span>
-                                            </div>
-                                            <div class="text">
-                                                Elliot you are always so right :)
-                                            </div>
-                                            <div class="actions">
-                                                <a class="reply">Reply</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <a class="avatar">
-                                    <img src="~/Images/Category/notImg.png">
-                                </a>
-                                <div class="content">
-                                    <a class="author">Joe Henderson</a>
-                                    <div class="metadata">
-                                        <span class="date">5 days ago</span>
-                                    </div>
-                                    <div class="text">
-                                        Dude, this is awesome. Thanks so much
-                                    </div>
-                                    <div class="actions">
-                                        <a class="reply">Reply</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <form class="ui reply form">
+                            <div class="ui reply form">
                                 <div class="field">
-                                    <textarea></textarea>
+                                    <textarea name="content"></textarea>
                                 </div>
-                                <div class="ui blue labeled submit icon button">
-                                    <i class="icon edit"></i> Add Reply
+                                <div class="ui blue labeled submit icon button" ng-click="createcomment(@Model.music_id)">
+                                    <i class="icon edit"></i> Bình luận
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                     <div class="title">
@@ -332,10 +282,46 @@
                 <i style="font-size: 19px" class="fa fa-download"></i>  Tải nhạc &nbsp;
                 <i style="font-size: 19px" class="fa fa-audio-description"></i> Nhạc free <br />
                 <i style="font-size: 19px" class="fa fa-music"></i> @Model.music_view  Lượt nghe &nbsp;
+                <b data-toggle="modal" data-target="#exampleModal" style="cursor: pointer"><i style="font-size: 19px" class="fa fa-music"></i> Lưu nhạc vào adbums &nbsp;</b>
             </div>
         </div>
     </div>
 </div>
+@if (coo.Cookie() != null)
+{
+    var idus = coo.CookieID();
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">LƯU ABUM</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3>Chọn albums lưu nhạc @Model.music_name</h3>
+                    <a href="/Albums/MyAlbums" class="btn btn-danger">Thêm albums</a>
+                    <hr />
+                    <form action="@Url.Action("AddPlaylistA","PlayList")">
+                        @foreach (var item in db.Albums.Where(n => n.user_id == idus.user_id))
+                        {
+                            <input type="radio" checked value="@item.album_id" name="aid" /> @item.album_name
+                        }
+                        <input type="hidden" name="mid" value="@Model.music_id"/>
+                        <br />
+                        <br />
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-primary">Lưu nhạc vào</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 <script>
     $('.tabular.menu .item').tab();
 </script>
@@ -350,4 +336,32 @@
         ;
 </script>
 
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myComment', function ($scope, $http) {
+        $http({
+            method: "GET",
+            url: "/Json/CommentID?id=@Model.music_id"
+        }).then(function mySuccess(response) {
+            $scope.com = response.data;
+            $scope.createcomment = function (id) {
+                var content = document.getElementsByName("content")[0].value;
+                $http({
+                    method: "GET",
+                    url: "/Musics/Comment?content=" + content
+                        + "&id=" + id
+                }).then(function mySuccess(response) {
+                    $scope.com = response.data;
 
+                    document.getElementsByName("content")[0].value = "";
+
+
+                }, function myError(response) {
+                    $scope.com = response.statusText;
+                });
+            }
+        }, function myError(response) {
+            $scope.com = response.statusText;
+        });
+    });
+</script>

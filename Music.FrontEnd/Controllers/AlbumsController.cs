@@ -20,17 +20,22 @@ namespace Music.FrontEnd.Controllers
         {
             return View();
         }
-        
-        public PartialViewResult AddAlbum(Album album, HttpPostedFileBase img)
+        public ActionResult MyAlbumsIndex(int ? id)
+        {
+            return View(db.Albums.Find(id));
+        }
+        [HttpPost]
+        public ActionResult AddAlbum(Album album, HttpPostedFileBase img)
         {
             var cookie = function.CookieID();
             if (ModelState.IsValid)
             {
+                album.user_id = cookie.user_id;
                 album.album_img = filesfunction.AddImages(img, "Album", Guid.NewGuid().ToString());
                 albumsDAO.Add(album);
-                return PartialView();
+                return Redirect("/Albums/MyAlbums#");
             }
-            return PartialView();
+            return Redirect("/Albums/MyAlbums#");
         }
 
         public PartialViewResult EditAlbum(Album album, HttpPostedFileBase img)

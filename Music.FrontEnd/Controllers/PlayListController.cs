@@ -57,5 +57,18 @@ namespace Music.FrontEnd.Controllers
             }
             return View();
         }
+
+        public ActionResult AddPlaylistA(int ? aid, int ? mid)
+        {
+            PlayList playList = new PlayList
+            {
+                albums_id = aid,
+                music_id = mid,
+                playlist_datecreate = DateTime.Now
+            };
+            db.PlayLists.Add(playList);
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }

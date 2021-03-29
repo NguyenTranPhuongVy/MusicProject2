@@ -1,7 +1,63 @@
-﻿
+﻿@using Music.FrontEnd.Function;
+@using Music.Model.EF;
 @{
+    MusicProjectDataEntities db = new MusicProjectDataEntities();
+    var coo = new FunctionController();
+    var idus = coo.CookieID();
     ViewBag.Title = "MyAlbums";
+
+    List<Album> Album = db.Albums.ToList();
 }
 
-<h2>MyAlbums</h2>
 
+
+<section class="services spad" ng-app="myApp">
+    <div class="container" ng-controller="myCtrl">
+        <div class="row" ng-repeat="list in list">
+            <div class="col-lg-12">
+                <h1 style="font-size: 50px" class="text-white font-weight-bold text-center mt-3">Albums</h1>
+                <form action="@Url.Action("AddAlbum","Albums")" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <input name="album_name" type="text" class="form-control" placeholder="Tên abums cá nhân riêng" />
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="file" class="form-control" name="img"/>
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn btn-danger w-100" type="submit">Thêm albums</button>
+                        </div>
+                    </div>
+                </form>
+                <br />
+                <div class="row">
+                    @if (Album.Where(n => n.user_id == idus.user_id).Count() == 0)
+                    {
+                        <center>
+                            <h3 class="text-white">Không có adbum nào! <a href="#">Thêm ngay</a></h3>
+                        </center>
+                    }
+                    else
+                    {
+                        foreach (var item in Album.Where(n => n.user_id == idus.user_id))
+                        {
+                            <div class="col-lg-2">
+                                <div id="cards w-100">
+                                    <div class="card-content">
+                                        <a href="/Albums/MyAlbumsIndex?id=@item.album_id"><img class="thumbnail" src="~/Images/Album/abuml.jpg" /></a>
+                                        <h3 class="text-white" style="font-family: 'Josefin Sans', sans-serif">@item.album_name</h3>
+                                        <p class="para text-white">
+                                            <a href="/Musics/DetailsMusic/{{list.id}}"><i class="fa fa-eye"></i></a> |
+                                            <a href="/Musics/DetailsMusic/{{list.id}}"><i class="fa fa-trash"></i></a> |
+                                            <a href="/Musics/DetailsMusic/{{list.id}}"><i class="fa fa-edit"></i></a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
