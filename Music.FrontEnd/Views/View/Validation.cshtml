@@ -30,6 +30,10 @@
                         {
                             type: 'empty',
                             prompt: 'Không Được Phép Để Trống.'
+                        },
+                        {
+                            type: 'regExp[^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@a#\$%\^&\*])(?=.{8,})]',
+                            prompt: 'Mật Khẩu Trên 8 Ký Tự Bao Gồm(Chữ Thường, Chữ Hoa, Ký Tự Đặt Biệt, Số).'
                         }
                     ]
                 },
@@ -59,12 +63,63 @@
                         }
                     ]
                 },
-                Password: {
-                    identifier: 'Password',
+
+                music_name: {
+                    identifier: 'music_name',
                     rules: [
                         {
-                            type: 'regExp[^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@a#\$%\^&\*])(?=.{8,})]',
-                            prompt: 'Mật Khẩu Trên 8 Ký Tự Bao Gồm(Chữ Thường, Chữ Hoa, Ký Tự Đặt Biệt, Số).'
+                            type: 'empty',
+                            prompt: 'Không Được Phép Để Trống.'
+                        }
+                    ]
+                },
+
+                music_lyric: {
+                    identifier: 'music_lyric',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Không Được Phép Để Trống.'
+                        }
+                    ]
+                },
+
+                img: {
+                    identifier: 'img',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Không Được Phép Để Trống.'
+                        }
+                    ]
+                },
+
+                music_time: {
+                    identifier: 'music_time',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Không Được Phép Để Trống.'
+                        }
+                    ]
+                },
+
+                category_id: {
+                    identifier: 'category_id',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Không Được Phép Để Trống.'
+                        }
+                    ]
+                },
+
+                nation_id: {
+                    identifier: 'nation_id',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Không Được Phép Để Trống.'
                         }
                     ]
                 },
