@@ -58,7 +58,7 @@ namespace Music.Model.DAO
                 user.user_point = 200;
                 user.user_option = true;
                 user.user_vip = false;
-                user.user_code = user.user_email + code.Substring(0, 6);
+                user.user_code = "#" + user.user_email.Substring(0,5) + code.Substring(0, 6);
 
 
                 db.Users.Add(user);
