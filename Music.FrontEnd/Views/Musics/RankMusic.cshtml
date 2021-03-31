@@ -7,14 +7,18 @@
 
     var i = 1;
 }
-
+<style>
+    .Point {
+        cursor: pointer;
+    }
+</style>
 @if (ViewBag.Note == "all")
 {
     <section class="services spad" ng-app="myApp">
         <div class="container" ng-controller="myCtrl">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 style="font-size: 50px" class="text-white font-weight-bold text-center mt-3">BẢNG XẾP HẠNG ÂM NHẠC</h1>
+                    <h2 style="font-size: 35px" class="text-white font-weight-bold text-center mt-3">BẢNG XẾP HẠNG ÂM NHẠC</h2>
 
                     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/highcharts@6/highcharts.js"></script>
@@ -27,43 +31,52 @@
                     <table class="table text-white table-hover">
                         @foreach (var item in musics.Where(n => n.music_active == true).OrderByDescending(n => n.music_view).Take(10))
                         {
-                            <tr class="mt-2" onclick="window.location.href = '/Musics/DetailsMusic/@item.music_id'">
+                            <tr class="mt-2">
                                 <td width="10%">
                                     <br />
                                     <center>
                                         @if (i == 1)
                                         {
-                                            <b class="text-primary" style="font-size: 40px">@i -</b>
+                                            <b class="text-primary" style="font-size: 30px">@i -</b>
                                         }
                                         else if (i == 2)
                                         {
-                                            <b class="text-success" style="font-size: 40px">@i -</b>
+                                            <b class="text-success" style="font-size: 30px">@i -</b>
                                         }
                                         else if (i == 3)
                                         {
-                                            <b class="text-danger" style="font-size: 40px">@i -</b>
+                                            <b class="text-danger" style="font-size: 30px">@i -</b>
                                         }
                                         else
                                         {
-                                            <b style="font-size: 40px">@i -</b>
+                                            <b style="font-size: 30px">@i -</b>
                                         }
                                     </center>
                                 </td>
                                 <td width="40%">
-                                    <img class="float-left" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
-                                    <div class="float-left">
-                                        &nbsp;<b style="font-size: 20px" class="text-white">@item.music_name</b>
-                                        <p>
-                                            &nbsp;Nam phương
-                                        </p>
+                                    <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
+                                    <div class="float-left ml-3">
+                                        &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.music_name</a>
+                                        @if (item.singer_id != null)
+                                        {
+                                            <p>
+                                                @item.Singer.singer_name
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <p>
+                                                @item.User.user_name
+                                            </p>
+                                        }
                                     </div>
                                 </td>
                                 <td>
-                                    <b class="text-center mt-5">03:22</b>
+                                    <p style="padding-top: 30px; padding-bottom: 30px">@item.music_time</p>
                                 </td>
                                 <td>
-                                    <div class="float-right">
-                                        <i class="fa fa-heart"></i>
+                                    <div style="padding-top: 30px; padding-bottom: 30px" class="float-right">
+                                        <i class="fa fa-heart"></i> &nbsp;&nbsp;&nbsp;
                                         <i class="fa fa-download"></i>
                                     </div>
                                 </td>
@@ -73,7 +86,7 @@
                         }
                     </table>
                     <center>
-                        <button class="btn btn-danger" style="font-size: 25px">Top 100</button>
+                        <a href="/Musics/RankMusic?name=100" class="ui secondary button" style="font-size: 15px">Top 100</a>
                     </center>
                 </div>
             </div>
@@ -86,7 +99,7 @@ else if (ViewBag.Note == "100")
         <div class="container" ng-controller="myCtrl">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 style="font-size: 50px" class="text-white font-weight-bold text-center mt-3">BẢNG XẾP HẠNG ÂM NHẠC</h1>
+                    <h2 style="font-size: 35px" class="text-white font-weight-bold text-center mt-3">BẢNG XẾP HẠNG ÂM NHẠC</h2>
 
                     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/highcharts@6/highcharts.js"></script>
@@ -99,43 +112,52 @@ else if (ViewBag.Note == "100")
                     <table class="table text-white table-hover">
                         @foreach (var item in musics.Where(n => n.music_active == true).OrderByDescending(n => n.music_view).Take(100))
                         {
-                            <tr class="mt-2" onclick="window.location.href = '/Musics/DetailsMusic/@item.music_id'">
+                            <tr class="mt-2">
                                 <td width="10%">
                                     <br />
                                     <center>
                                         @if (i == 1)
                                         {
-                                            <b class="text-primary" style="font-size: 40px">@i -</b>
+                                            <b class="text-primary" style="font-size: 30px">@i -</b>
                                         }
                                         else if (i == 2)
                                         {
-                                            <b class="text-success" style="font-size: 40px">@i -</b>
+                                            <b class="text-success" style="font-size: 30px">@i -</b>
                                         }
                                         else if (i == 3)
                                         {
-                                            <b class="text-danger" style="font-size: 40px">@i -</b>
+                                            <b class="text-danger" style="font-size: 30px">@i -</b>
                                         }
                                         else
                                         {
-                                            <b style="font-size: 40px">@i -</b>
+                                            <b style="font-size: 30px">@i -</b>
                                         }
                                     </center>
                                 </td>
                                 <td width="40%">
-                                    <img class="float-left" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
-                                    <div class="float-left">
-                                        &nbsp;<b style="font-size: 20px" class="text-white">@item.music_name</b>
-                                        <p>
-                                            &nbsp;Nam phương
-                                        </p>
+                                    <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
+                                    <div class="float-left ml-3">
+                                        &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.music_name</a>
+                                        @if (item.singer_id != null)
+                                        {
+                                            <p>
+                                                @item.Singer.singer_name
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <p>
+                                                @item.User.user_name
+                                            </p>
+                                        }
                                     </div>
                                 </td>
                                 <td>
-                                    <b class="text-center mt-5">03:22</b>
+                                    <p style="padding-top: 30px; padding-bottom: 30px">@item.music_time</p>
                                 </td>
                                 <td>
-                                    <div class="float-right">
-                                        <i class="fa fa-heart"></i>
+                                    <div style="padding-top: 30px; padding-bottom: 30px" class="float-right">
+                                        <i class="fa fa-heart"></i> &nbsp;&nbsp;&nbsp;
                                         <i class="fa fa-download"></i>
                                     </div>
                                 </td>
@@ -145,7 +167,7 @@ else if (ViewBag.Note == "100")
                         }
                     </table>
                     <center>
-                        <button class="btn btn-danger" style="font-size: 25px">Top 100</button>
+                        <a href="/Musics/RankMusic?name=100" class="ui secondary button" style="font-size: 15px">Top 100</a>
                     </center>
                 </div>
             </div>
@@ -158,7 +180,7 @@ else if (ViewBag.Note == "viet")
         <div class="container" ng-controller="myCtrl">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 style="font-size: 50px" class="text-white font-weight-bold text-center mt-3">BẢNG XẾP HẠNG ÂM NHẠC</h1>
+                    <h2 style="font-size: 35px" class="text-white font-weight-bold text-center mt-3">BẢNG XẾP HẠNG ÂM NHẠC</h2>
 
                     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/highcharts@6/highcharts.js"></script>
@@ -171,43 +193,52 @@ else if (ViewBag.Note == "viet")
                     <table class="table text-white table-hover">
                         @foreach (var item in musics.Where(n => n.music_active == true && n.nation_id == 2).OrderByDescending(n => n.music_view).Take(100))
                         {
-                            <tr class="mt-2" onclick="window.location.href = '/Musics/DetailsMusic/@item.music_id'">
+                            <tr class="mt-2">
                                 <td width="10%">
                                     <br />
                                     <center>
                                         @if (i == 1)
                                         {
-                                            <b class="text-primary" style="font-size: 40px">@i -</b>
+                                            <b class="text-primary" style="font-size: 30px">@i -</b>
                                         }
                                         else if (i == 2)
                                         {
-                                            <b class="text-success" style="font-size: 40px">@i -</b>
+                                            <b class="text-success" style="font-size: 30px">@i -</b>
                                         }
                                         else if (i == 3)
                                         {
-                                            <b class="text-danger" style="font-size: 40px">@i -</b>
+                                            <b class="text-danger" style="font-size: 30px">@i -</b>
                                         }
                                         else
                                         {
-                                            <b style="font-size: 40px">@i -</b>
+                                            <b style="font-size: 30px">@i -</b>
                                         }
                                     </center>
                                 </td>
                                 <td width="40%">
-                                    <img class="float-left" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
-                                    <div class="float-left">
-                                        &nbsp;<b style="font-size: 20px" class="text-white">@item.music_name</b>
-                                        <p>
-                                            &nbsp;Nam phương
-                                        </p>
+                                    <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
+                                    <div class="float-left ml-3">
+                                        &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.music_name</a>
+                                        @if (item.singer_id != null)
+                                        {
+                                            <p>
+                                                @item.Singer.singer_name
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <p>
+                                                @item.User.user_name
+                                            </p>
+                                        }
                                     </div>
                                 </td>
                                 <td>
-                                    <b class="text-center mt-5">03:22</b>
+                                    <p style="padding-top: 30px; padding-bottom: 30px">@item.music_time</p>
                                 </td>
                                 <td>
-                                    <div class="float-right">
-                                        <i class="fa fa-heart"></i>
+                                    <div style="padding-top: 30px; padding-bottom: 30px" class="float-right">
+                                        <i class="fa fa-heart"></i> &nbsp;&nbsp;&nbsp;
                                         <i class="fa fa-download"></i>
                                     </div>
                                 </td>
@@ -217,7 +248,7 @@ else if (ViewBag.Note == "viet")
                         }
                     </table>
                     <center>
-                        <button class="btn btn-danger" style="font-size: 25px">Top 100</button>
+                        <a href="/Musics/RankMusic?name=100" class="ui secondary button" style="font-size: 15px">Top 100</a>
                     </center>
                 </div>
             </div>
@@ -230,7 +261,7 @@ else if (ViewBag.Note == "tre")
         <div class="container" ng-controller="myCtrl">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 style="font-size: 50px" class="text-white font-weight-bold text-center mt-3">BẢNG XẾP HẠNG ÂM NHẠC</h1>
+                    <h2 style="font-size: 35px" class="text-white font-weight-bold text-center mt-3">BẢNG XẾP HẠNG ÂM NHẠC</h2>
 
                     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/highcharts@6/highcharts.js"></script>
@@ -243,43 +274,52 @@ else if (ViewBag.Note == "tre")
                     <table class="table text-white table-hover">
                         @foreach (var item in musics.Where(n => n.music_active == true && n.nation_id == 4).OrderByDescending(n => n.music_view).Take(100))
                         {
-                            <tr class="mt-2" onclick="window.location.href = '/Musics/DetailsMusic/@item.music_id'">
+                            <tr class="mt-2">
                                 <td width="10%">
                                     <br />
                                     <center>
                                         @if (i == 1)
                                         {
-                                            <b class="text-primary" style="font-size: 40px">@i -</b>
+                                            <b class="text-primary" style="font-size: 30px">@i -</b>
                                         }
                                         else if (i == 2)
                                         {
-                                            <b class="text-success" style="font-size: 40px">@i -</b>
+                                            <b class="text-success" style="font-size: 30px">@i -</b>
                                         }
                                         else if (i == 3)
                                         {
-                                            <b class="text-danger" style="font-size: 40px">@i -</b>
+                                            <b class="text-danger" style="font-size: 30px">@i -</b>
                                         }
                                         else
                                         {
-                                            <b style="font-size: 40px">@i -</b>
+                                            <b style="font-size: 30px">@i -</b>
                                         }
                                     </center>
                                 </td>
                                 <td width="40%">
-                                    <img class="float-left" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
-                                    <div class="float-left">
-                                        &nbsp;<b style="font-size: 20px" class="text-white">@item.music_name</b>
-                                        <p>
-                                            &nbsp;Nam phương
-                                        </p>
+                                    <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
+                                    <div class="float-left ml-3">
+                                        &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.music_name</a>
+                                        @if (item.singer_id != null)
+                                        {
+                                            <p>
+                                                @item.Singer.singer_name
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <p>
+                                                @item.User.user_name
+                                            </p>
+                                        }
                                     </div>
                                 </td>
                                 <td>
-                                    <b class="text-center mt-5">03:22</b>
+                                    <p style="padding-top: 30px; padding-bottom: 30px">@item.music_time</p>
                                 </td>
                                 <td>
-                                    <div class="float-right">
-                                        <i class="fa fa-heart"></i>
+                                    <div style="padding-top: 30px; padding-bottom: 30px" class="float-right">
+                                        <i class="fa fa-heart"></i> &nbsp;&nbsp;&nbsp;
                                         <i class="fa fa-download"></i>
                                     </div>
                                 </td>
@@ -289,7 +329,7 @@ else if (ViewBag.Note == "tre")
                         }
                     </table>
                     <center>
-                        <button class="btn btn-danger" style="font-size: 25px">Top 100</button>
+                        <a href="/Musics/RankMusic?name=100" class="ui secondary button" style="font-size: 15px">Top 100</a>
                     </center>
                 </div>
             </div>
@@ -302,7 +342,7 @@ else if (ViewBag.Note == "aumy")
         <div class="container" ng-controller="myCtrl">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 style="font-size: 50px" class="text-white font-weight-bold text-center mt-3">BẢNG XẾP HẠNG ÂM NHẠC</h1>
+                    <h2 style="font-size: 35px" class="text-white font-weight-bold text-center mt-3">BẢNG XẾP HẠNG ÂM NHẠC</h2>
 
                     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/highcharts@6/highcharts.js"></script>
@@ -315,43 +355,52 @@ else if (ViewBag.Note == "aumy")
                     <table class="table text-white table-hover">
                         @foreach (var item in musics.Where(n => n.music_active == true && n.nation_id == 3).OrderByDescending(n => n.music_view).Take(100))
                         {
-                            <tr class="mt-2" onclick="window.location.href = '/Musics/DetailsMusic/@item.music_id'">
+                            <tr class="mt-2">
                                 <td width="10%">
                                     <br />
                                     <center>
                                         @if (i == 1)
                                         {
-                                            <b class="text-primary" style="font-size: 40px">@i -</b>
+                                            <b class="text-primary" style="font-size: 30px">@i -</b>
                                         }
                                         else if (i == 2)
                                         {
-                                            <b class="text-success" style="font-size: 40px">@i -</b>
+                                            <b class="text-success" style="font-size: 30px">@i -</b>
                                         }
                                         else if (i == 3)
                                         {
-                                            <b class="text-danger" style="font-size: 40px">@i -</b>
+                                            <b class="text-danger" style="font-size: 30px">@i -</b>
                                         }
                                         else
                                         {
-                                            <b style="font-size: 40px">@i -</b>
+                                            <b style="font-size: 30px">@i -</b>
                                         }
                                     </center>
                                 </td>
                                 <td width="40%">
-                                    <img class="float-left" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
-                                    <div class="float-left">
-                                        &nbsp;<b style="font-size: 20px" class="text-white">@item.music_name</b>
-                                        <p>
-                                            &nbsp;Nam phương
-                                        </p>
+                                    <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
+                                    <div class="float-left ml-3">
+                                        &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.music_name</a>
+                                        @if (item.singer_id != null)
+                                        {
+                                            <p>
+                                                @item.Singer.singer_name
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <p>
+                                                @item.User.user_name
+                                            </p>
+                                        }
                                     </div>
                                 </td>
                                 <td>
-                                    <b class="text-center mt-5">03:22</b>
+                                    <p style="padding-top: 30px; padding-bottom: 30px">@item.music_time</p>
                                 </td>
                                 <td>
-                                    <div class="float-right">
-                                        <i class="fa fa-heart"></i>
+                                    <div style="padding-top: 30px; padding-bottom: 30px" class="float-right">
+                                        <i class="fa fa-heart"></i> &nbsp;&nbsp;&nbsp;
                                         <i class="fa fa-download"></i>
                                     </div>
                                 </td>
@@ -361,7 +410,88 @@ else if (ViewBag.Note == "aumy")
                         }
                     </table>
                     <center>
-                        <button class="btn btn-danger" style="font-size: 25px">Top 100</button>
+                        <a href="/Musics/RankMusic?name=100" class="ui secondary button" style="font-size: 15px">Top 100</a>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+else if (ViewBag.Note == "kpop")
+{
+    <section class="services spad" ng-app="myApp">
+        <div class="container" ng-controller="myCtrl">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 style="font-size: 35px" class="text-white font-weight-bold text-center mt-3">BẢNG XẾP HẠNG ÂM NHẠC</h2>
+
+                    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/highcharts@6/highcharts.js"></script>
+                    <!-- vue-highcharts should be load after Highcharts -->
+                    <script src="https://cdn.jsdelivr.net/npm/vue-highcharts@0.1/dist/vue-highcharts.min.js"></script>
+
+                    <div id="app">
+                        <highcharts :options="options" ref="highcharts"></highcharts>
+                    </div>
+                    <table class="table text-white table-hover">
+                        @foreach (var item in musics.Where(n => n.music_active == true && n.nation_id == 3).OrderByDescending(n => n.music_view).Take(100))
+                        {
+                            <tr class="mt-2">
+                                <td width="10%">
+                                    <br />
+                                    <center>
+                                        @if (i == 1)
+                                        {
+                                            <b class="text-primary" style="font-size: 30px">@i -</b>
+                                        }
+                                        else if (i == 2)
+                                        {
+                                            <b class="text-success" style="font-size: 30px">@i -</b>
+                                        }
+                                        else if (i == 3)
+                                        {
+                                            <b class="text-danger" style="font-size: 30px">@i -</b>
+                                        }
+                                        else
+                                        {
+                                            <b style="font-size: 30px">@i -</b>
+                                        }
+                                    </center>
+                                </td>
+                                <td width="40%">
+                                    <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
+                                    <div class="float-left ml-3">
+                                        &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.music_name</a>
+                                        @if (item.singer_id != null)
+                                        {
+                                            <p>
+                                                @item.Singer.singer_name
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <p>
+                                                @item.User.user_name
+                                            </p>
+                                        }
+                                    </div>
+                                </td>
+                                <td>
+                                    <p style="padding-top: 30px; padding-bottom: 30px">@item.music_time</p>
+                                </td>
+                                <td>
+                                    <div style="padding-top: 30px; padding-bottom: 30px" class="float-right">
+                                        <i class="fa fa-heart"></i> &nbsp;&nbsp;&nbsp;
+                                        <i class="fa fa-download"></i>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            i++;
+                        }
+                    </table>
+                    <center>
+                        <a href="/Musics/RankMusic?name=100" class="ui secondary button" style="font-size: 15px">Top 100</a>
                     </center>
                 </div>
             </div>

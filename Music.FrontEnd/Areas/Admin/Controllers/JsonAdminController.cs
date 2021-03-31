@@ -347,5 +347,27 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                 return Json(list, JsonRequestBehavior.AllowGet);
             }    
         }
+
+        // get all quest
+        public JsonResult AllQuest()
+        {
+            var quest = from q in db.Quests
+                        select new
+                        {
+                            id = q.quest_id,
+                            limit = q.quest_limit,
+                            datecreate = q.quest_datecreate,
+                            dateend = q.quest_dateend,
+                            active = q.quest_active,
+                            category = q.quest_category,
+                            national = q.quest_national,
+                            singer = q.quest_singer,
+                            gift = q.quest_gift,
+                            top1 = q.quest_top1,
+                            top2 = q.quest_top2,
+                            top3 = q.quest_top3,
+                        };
+            return Json(quest, JsonRequestBehavior.AllowGet);
+        }
     }
 }

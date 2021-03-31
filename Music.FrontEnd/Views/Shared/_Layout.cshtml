@@ -53,7 +53,7 @@
     </div>
 
     <!-- Header Section Begin -->
-    <header class="header fixed-top" style="background-color: black;">
+    <header class="header fixed-top">
         <div class="container">
             <div class="row">
                 <div class="col-lg-2">
@@ -77,16 +77,13 @@
                                 </li>
                                 <li><a href="/Musics/RankMusic?name=all">BẢNG XẾP HẠNG</a></li>
                                 <li><a href="@Url.Action("VideoMV", "Videos")">MV</a></li>
-                                <li><a href="./contact.html">Contact</a></li>
+                                <li><a href="./contact.html">Radio Âm Nhạc</a></li>
                                 <li>
                                     @if (cookie == null)
                                     {
                                         <a href="@Url.Action("Registration", "Users")">TÀI KHOẢN</a>
                                         <ul class="dropdown">
                                             <li><a href="/Users/Login">Đăng Ký / Đăng Nhập</a></li>
-                                            <li><a href="./portfolio.html">Portfolio</a></li>
-                                            <li><a href="./blog.html">Blog</a></li>
-                                            <li><a href="./blog-details.html">Blog Details</a></li>
                                         </ul>
                                     }
                                     else
@@ -113,13 +110,6 @@
                                 </li>
                             </ul>
                         </nav>
-                        <div class="header__nav__social">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-dribbble"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
-                        </div>
                     </div>
                 </div>
             </div>

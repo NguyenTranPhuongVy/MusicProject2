@@ -178,6 +178,7 @@
     <Compile Include="Areas\Admin\Controllers\NationsAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\PackagesAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\PaysAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuestAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\SingersAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ViewAdminController.cs" />
@@ -2848,6 +2849,7 @@
     <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Areas\Admin\Views\MusicsListAdmin\Censorship.cshtml" />
+    <Content Include="Areas\Admin\Views\QuestAdmin\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

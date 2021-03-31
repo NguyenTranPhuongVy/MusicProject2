@@ -159,7 +159,6 @@
             <PropertyRef Name="quest_id" />
           </Key>
           <Property Name="quest_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="quest_name" Type="int" />
           <Property Name="quest_limit" Type="int" />
           <Property Name="quest_datecreate" Type="datetime" />
           <Property Name="quest_dateend" Type="datetime" />
@@ -171,6 +170,7 @@
           <Property Name="quest_top1" Type="nvarchar(max)" />
           <Property Name="quest_top2" Type="nvarchar(max)" />
           <Property Name="quest_top3" Type="nvarchar(max)" />
+          <Property Name="quest_name" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="QuestGroup">
           <Key>
@@ -1062,7 +1062,6 @@
             <PropertyRef Name="quest_id" />
           </Key>
           <Property Name="quest_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="quest_name" Type="Int32" />
           <Property Name="quest_limit" Type="Int32" />
           <Property Name="quest_datecreate" Type="DateTime" Precision="3" />
           <Property Name="quest_dateend" Type="DateTime" Precision="3" />
@@ -1430,7 +1429,6 @@
                 <ScalarProperty Name="quest_dateend" ColumnName="quest_dateend" />
                 <ScalarProperty Name="quest_datecreate" ColumnName="quest_datecreate" />
                 <ScalarProperty Name="quest_limit" ColumnName="quest_limit" />
-                <ScalarProperty Name="quest_name" ColumnName="quest_name" />
                 <ScalarProperty Name="quest_id" ColumnName="quest_id" />
               </MappingFragment>
             </EntityTypeMapping>
