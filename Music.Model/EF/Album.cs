@@ -18,6 +18,7 @@ namespace Music.Model.EF
         public Album()
         {
             this.PlayLists = new HashSet<PlayList>();
+            this.Musics = new HashSet<Music>();
         }
     
         public int album_id { get; set; }
@@ -35,5 +36,7 @@ namespace Music.Model.EF
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlayList> PlayLists { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Music> Musics { get; set; }
     }
 }

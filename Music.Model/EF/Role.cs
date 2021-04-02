@@ -12,25 +12,18 @@ namespace Music.Model.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class Comment
+    public partial class Role
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Comment()
+        public Role()
         {
-            this.Replies = new HashSet<Reply>();
+            this.Users = new HashSet<User>();
         }
     
-        public int comment_id { get; set; }
-        public string comment_content { get; set; }
-        public Nullable<System.DateTime> comment_datecreate { get; set; }
-        public Nullable<System.DateTime> comment_dateupdate { get; set; }
-        public Nullable<bool> comment_active { get; set; }
-        public Nullable<int> user_id { get; set; }
-        public Nullable<int> music_id { get; set; }
+        public int role_id { get; set; }
+        public string role_name { get; set; }
     
-        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reply> Replies { get; set; }
-        public virtual Music Music { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

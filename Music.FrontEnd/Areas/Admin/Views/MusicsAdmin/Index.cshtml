@@ -200,7 +200,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            @*<div class="two fields">
+                                            <div class="two fields">
                                                 <div class="field">
                                                     <label>Thể Loại</label>
                                                     <select name="category_id" multiple="" class="ui dropdown">
@@ -219,7 +219,7 @@
                                                         }
                                                     </select>
                                                 </div>
-                                            </div>*@
+                                            </div>
                                             <button type="submit" class="ui primary submit button right">Sửa</button>
                                             <div class="ui error message"></div>
                                         </form>
@@ -258,6 +258,46 @@
                                                 <div class="field">
                                                     <label>Lời Bài Hát</label>
                                                     <textarea name="music_lyric">@Html.Raw(item.music_lyric)</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="two fields">
+                                                <div class="field">
+                                                    <label>Ca Sỹ</label>
+                                                    <select name="singer_id" multiple="" class="ui dropdown">
+                                                        @foreach (var items in singers)
+                                                        {
+                                                            <option value="@items.singer_id" @(items.singer_id == item.singer_id ? "selected" : "")>@items.singer_name</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div class="field">
+                                                    <label>Nhạc Sỹ</label>
+                                                    <select name="author_id" multiple="" class="ui dropdown">
+                                                        @foreach (var items in authors)
+                                                        {
+                                                            <option value="@items.author_id" @(items.author_id == item.author_id ? "selected" : "")>@items.author_name</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="two fields">
+                                                <div class="field">
+                                                    <label>Thể Loại</label>
+                                                    <select name="category_id" multiple="" class="ui dropdown">
+                                                        @foreach (var items in categories)
+                                                        {
+                                                            <option value="@items.category_id" @(items.category_id == item.category_id ? "selected" : "")>@items.category_name</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div class="field">
+                                                    <label>Album</label>
+                                                    <select name="album_id" multiple="" class="ui dropdown">
+                                                        @foreach (var items in albums)
+                                                        {
+                                                            <option value="@items.album_id" @(items.album_id == item.album_id ? "selected" : "")>@items.album_name</option>
+                                                        }
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="two fields">
@@ -330,6 +370,46 @@
                                 <div class="field">
                                     <label>Lời Bài Hát</label>
                                     <textarea name="music_lyric"></textarea>
+                                </div>
+                            </div>
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Ca Sỹ</label>
+                                    <select name="singer_id" multiple="" class="ui dropdown">
+                                        @foreach (var items in singers)
+                                        {
+                                            <option value="@items.singer_id">@items.singer_name</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label>Nhạc Sỹ</label>
+                                    <select name="author_id" multiple="" class="ui dropdown">
+                                        @foreach (var items in authors)
+                                        {
+                                            <option value="@items.author_id">@items.author_name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Thể Loại</label>
+                                    <select name="category_id" multiple="" class="ui dropdown">
+                                        @foreach (var items in categories)
+                                        {
+                                            <option value="@items.category_id">@items.category_name</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label>Album</label>
+                                    <select name="album_id" multiple="" class="ui dropdown">
+                                        @foreach (var items in albums)
+                                        {
+                                            <option value="@items.album_id">@items.album_name</option>
+                                        }
+                                    </select>
                                 </div>
                             </div>
                             <div class="three fields">

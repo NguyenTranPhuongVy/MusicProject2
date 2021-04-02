@@ -40,20 +40,21 @@ namespace Music.Model.EF
         public string music_video { get; set; }
         public Nullable<int> genres_id { get; set; }
         public Nullable<int> author_id { get; set; }
-        public string music_mp3 { get; set; }
         public Nullable<int> singer_id { get; set; }
+        public Nullable<int> album_id { get; set; }
+        public Nullable<int> category_id { get; set; }
     
+        public virtual Album Album { get; set; }
+        public virtual Author Author { get; set; }
+        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual User User { get; set; }
-        public virtual National National { get; set; }
-        public virtual Author Author { get; set; }
-        public virtual Author Author1 { get; set; }
         public virtual Genre Genre { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Group> Groups { get; set; }
+        public virtual National National { get; set; }
+        public virtual Singer Singer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlayList> PlayLists { get; set; }
-        public virtual Singer Singer { get; set; }
     }
 }

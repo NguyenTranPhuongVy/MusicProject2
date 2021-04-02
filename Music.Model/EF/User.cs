@@ -18,7 +18,6 @@ namespace Music.Model.EF
         public User()
         {
             this.Comments = new HashSet<Comment>();
-            this.Musics = new HashSet<Music>();
             this.Pays = new HashSet<Pay>();
             this.Albums = new HashSet<Album>();
             this.QuestGroups = new HashSet<QuestGroup>();
@@ -45,11 +44,10 @@ namespace Music.Model.EF
         public string user_address { get; set; }
         public Nullable<bool> user_vip { get; set; }
         public Nullable<System.DateTime> user_datevip { get; set; }
+        public Nullable<int> role_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Music> Musics { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pay> Pays { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -58,5 +56,6 @@ namespace Music.Model.EF
         public virtual ICollection<QuestGroup> QuestGroups { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reply> Replies { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

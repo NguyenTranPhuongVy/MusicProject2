@@ -26,7 +26,6 @@ namespace Music.Model.EF
         }
     
         public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<Music> Musics { get; set; }
         public virtual DbSet<National> Nationals { get; set; }
         public virtual DbSet<Package> Packages { get; set; }
         public virtual DbSet<Pay> Pays { get; set; }
@@ -43,5 +42,7 @@ namespace Music.Model.EF
         public virtual DbSet<QuestGroup> QuestGroups { get; set; }
         public virtual DbSet<PlayList> PlayLists { get; set; }
         public virtual DbSet<Slider> Sliders { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Music> Musics { get; set; }
     }
 }
