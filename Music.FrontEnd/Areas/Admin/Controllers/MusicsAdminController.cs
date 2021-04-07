@@ -28,21 +28,21 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             return View(db.Musics.Where(n => n.music_bin == true).ToList());
         }
 
-        public ActionResult Active(int ? id)
+        public ActionResult Active(int? id)
         {
             Music.Model.EF.Music music = db.Musics.Find(id);
             musicsDAO.Active(id);
             return Redirect(Request.UrlReferrer.ToString());
         }
 
-        public ActionResult Option(int ? id)
+        public ActionResult Option(int? id)
         {
             Music.Model.EF.Music music = db.Musics.Find(id);
             musicsDAO.Option(id);
             return Redirect(Request.UrlReferrer.ToString());
         }
 
-        public ActionResult Bin(int ? id)
+        public ActionResult RemoveToBin(int? id)
         {
             Music.Model.EF.Music music = db.Musics.Find(id);
             musicsDAO.Del(id);

@@ -37,12 +37,12 @@ namespace Music.Model.EF
         public virtual DbSet<Genre> Genres { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<Singer> Singers { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Quest> Quests { get; set; }
         public virtual DbSet<QuestGroup> QuestGroups { get; set; }
         public virtual DbSet<PlayList> PlayLists { get; set; }
         public virtual DbSet<Slider> Sliders { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Music> Musics { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }
