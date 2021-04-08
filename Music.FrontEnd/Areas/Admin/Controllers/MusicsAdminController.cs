@@ -65,11 +65,11 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Music.Model.EF.Music music, int[] singers, int[] category, int[] authour, HttpPostedFileBase IMG, HttpPostedFileBase MP3, HttpPostedFileBase MP4)
         {
-            //if (function.CookieID() == null)
-            //{
-            //    return Redirect("/User/Login");
-            //}
-            //var user = function.CookieID();
+            if (function.CookieID() == null)
+            {
+                return Redirect("/User/Login");
+            }
+            var user = function.CookieID();
             music.music_img = imagesfunction.AddImages(IMG, "Music", Guid.NewGuid().ToString());
             if (MP3 != null)
             {
@@ -79,7 +79,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             {
                 music.music_video = imagesfunction.AddMuscis(MP4, "MP4", Guid.NewGuid().ToString());
             }
-            music.user_id = null;
+            music.user_id = user.user_id;
             musicsDAO.Add(music, category, singers);
 
             return RedirectToAction("Index");

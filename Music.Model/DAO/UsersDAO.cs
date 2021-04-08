@@ -52,7 +52,6 @@ namespace Music.Model.DAO
                 user.user_datecreate = DateTime.Now;
                 user.user_datelogin = DateTime.Now;
                 user.user_token = Guid.NewGuid().ToString();
-                user.user_code = "#Music_Admin";
                 user.user_bin = false;
                 user.user_active = true;
                 user.user_point = 200;

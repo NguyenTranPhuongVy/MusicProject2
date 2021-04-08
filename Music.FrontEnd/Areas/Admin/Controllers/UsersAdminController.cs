@@ -52,5 +52,14 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             usersDAO.Restore(id);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Music.Model.EF.User user)
+        {
+            usersDAO.Add(user);
+            return RedirectToAction("Index");
+        }
     }
 }
