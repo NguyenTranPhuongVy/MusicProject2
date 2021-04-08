@@ -63,7 +63,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Music.Model.EF.Music music, int[] singers, int[] category, HttpPostedFileBase IMG, HttpPostedFileBase MP3, HttpPostedFileBase MP4)
+        public ActionResult Create(Music.Model.EF.Music music, int[] singers, int[] category, int[] authour, HttpPostedFileBase IMG, HttpPostedFileBase MP3, HttpPostedFileBase MP4)
         {
             //if (function.CookieID() == null)
             //{

@@ -114,7 +114,7 @@
                                 <td>
                                     <center class="font_color">
                                         <a data-toggle="modal" data-target="#details-Admin @item.music_id"><i class="icon-copy dw dw-eye"></i></a> |
-                                        <a onclick="Bin(@item.music_id)"><i class="icon-copy dw dw-trash1"></i></a> |
+                                        <a data-toggle="modal" data-target="#noteDel" onclick="Restore(@item.music_id)"><i class="icon-copy dw dw-refresh1"></i></a> |
                                         <a data-toggle="modal" data-target="#edit"><i class="icon-copy dw dw-edit2"></i></a>
                                     </center>
                                 </td>
@@ -132,9 +132,9 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body text-center font-18">
-                <h3 class="mb-20">Chuyển Vào Thùng Rác Thành Công!</h3>
+                <h3 class="mb-20">Khôi Phục Thành Công!</h3>
                 <div class="mb-30 text-center"><img src="~/Content/LayoutAdmin/vendors/images/success.png"></div>
-                Dữ liệu đã được chuyển vào thùng rác.
+                Dữ liệu đã được chuyển vào danh sách.
             </div>
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>

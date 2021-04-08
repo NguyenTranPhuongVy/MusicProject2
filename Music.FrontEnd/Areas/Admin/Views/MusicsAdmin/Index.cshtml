@@ -119,7 +119,7 @@
                                 <td>
                                     <center class="font_color">
                                         <a data-toggle="modal" data-target="#@details_admin@item.music_id"><i class="icon-copy dw dw-eye"></i></a> |
-                                        <a onclick="RemoveToBin(@item.music_id)"><i class="icon-copy dw dw-trash1"></i></a> |
+                                        <a onclick="RemoveToBin(@item.music_id)" data-toggle="modal" data-target="#noteDel"><i class="icon-copy dw dw-trash1"></i></a> |
                                         <a data-toggle="modal" data-target="#@edit_admin@item.music_id"><i class="icon-copy dw dw-edit2"></i></a>
                                     </center>
                                 </td>
@@ -479,9 +479,5 @@
 
     function RemoveToBin(id) {
         window.location.href = '/Admin/MusicsAdmin/RemoveToBin/' + id;
-    }
-
-    function Restore(id) {
-        window.location.href = '/Admin/MusicsAdmin/Restore/' + id;
     }
 </script>
