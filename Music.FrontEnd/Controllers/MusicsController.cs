@@ -44,7 +44,7 @@ namespace Music.FrontEnd.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Music.Model.EF.Music music, int[] singers, int[] category, HttpPostedFileBase img, HttpPostedFileBase mp3, HttpPostedFileBase mp4)
+        public ActionResult Create(Music.Model.EF.Music music, int[] singers, int[] category, int[] album, HttpPostedFileBase img, HttpPostedFileBase mp3, HttpPostedFileBase mp4)
         {
             if(function.CookieID() == null) 
             {
@@ -61,7 +61,7 @@ namespace Music.FrontEnd.Controllers
                 music.music_video = imagesfunction.AddMuscis(mp4, "MP4", Guid.NewGuid().ToString());
             }
             music.user_id = user.user_id;
-            musicsDAO.Add(music, category, singers);
+            musicsDAO.Add(music, category, singers, album);
 
             return RedirectToAction("MyMusisc");
         }

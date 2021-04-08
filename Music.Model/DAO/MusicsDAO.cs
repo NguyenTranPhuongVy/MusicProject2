@@ -13,9 +13,10 @@ namespace Music.Model.DAO
     {
         private MusicProjectDataEntities db = new MusicProjectDataEntities();
         GroupDAO groupDAO = new GroupDAO();
+        PlayListDAO playListDAO = new PlayListDAO();
 
         //Hàm thêm
-        public bool Add(Music.Model.EF.Music musics, int[] category, int[] singer)
+        public bool Add(Music.Model.EF.Music musics, int[] category, int[] singer, int[] album)
         {
             try
             {
@@ -48,6 +49,16 @@ namespace Music.Model.DAO
                     groupDAO.Add(new Group()
                     {
                         category_id = item,
+                        music_id = music_id
+                    });
+                }
+
+                // add music to album
+                foreach (var item in album)
+                {
+                    playListDAO.Add(new PlayList()
+                    {
+                        albums_id = item,
                         music_id = music_id
                     });
                 }
