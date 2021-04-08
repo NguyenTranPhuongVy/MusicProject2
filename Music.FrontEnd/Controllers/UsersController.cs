@@ -40,7 +40,7 @@ namespace Music.FrontEnd.Controllers
                     user_name = register.DisplayName
                 };
 
-
+                user.role_id = 1;
                 usersDAO.Add(user);
 
                 return RedirectToAction("Login");

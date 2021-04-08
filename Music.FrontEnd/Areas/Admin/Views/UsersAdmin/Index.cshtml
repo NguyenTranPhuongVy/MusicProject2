@@ -4,6 +4,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
     MusicProjectDataEntities db = new MusicProjectDataEntities();
+    List<Role> roles = db.Roles.ToList();
 }
 @{ 
     string edit = "editAdmin";
@@ -266,7 +267,8 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div class="modal-body">
-                        <form action="@Url.Action("Add", "UsersAdmin")" method="post" enctype="multipart/form-data" class="ui form">
+                        <form action="@Url.Action("Create", "UsersAdmin")" method="post" enctype="multipart/form-data" class="ui form">
+                            @Html.AntiForgeryToken()
                             <p>Nhập đủ các thông tin sau: </p>
                             <div class="two fields">
                                 <div class="field">
@@ -277,6 +279,15 @@
                                     <label>Hình Ảnh</label>
                                     <input type="file" name="IMG">
                                 </div>
+                            </div>
+                            <div class="field">
+                                <label>Vai Trò</label>
+                                <select class="ui dropdown" name="role_id">
+                                    @foreach (var item in roles)
+                                    {
+                                        <option value="@item.role_id">@item.role_name</option>
+                                    }
+                                </select>
                             </div>
                             <div class="field">
                                 <label>Trạng Thái</label>
@@ -313,22 +324,22 @@
 <!--Modal-->
 <script>
     function Delete() {
-        window.location.href = '/Admin/UsersAdmin/Delete';
-    }
+                                        window.location.href = '/Admin/UsersAdmin/Delete';
+                                    }
 
-    function Active(id) {
-        window.location.href = '/Admin/UsersAdmin/Active/' + id;
-    }
+                                    function Active(id) {
+                                        window.location.href = '/Admin/UsersAdmin/Active/' + id;
+                                    }
 
-    function Option(id) {
-        window.location.href = '/Admin/UsersAdmin/Option/' + id;
-    }
+                                    function Option(id) {
+                                        window.location.href = '/Admin/UsersAdmin/Option/' + id;
+                                    }
 
-    function Bin(id) {
-        window.location.href = '/Admin/UsersAdmin/Bin?id=' + id;
-    }
+                                    function Bin(id) {
+                                        window.location.href = '/Admin/UsersAdmin/Bin?id=' + id;
+                                    }
 
-    function Restore(id) {
-        window.location.href = '/Admin/UsersAdmin/Restore/' + id;
-    }
+                                    function Restore(id) {
+                                        window.location.href = '/Admin/UsersAdmin/Restore/' + id;
+                                    }
 </script>
