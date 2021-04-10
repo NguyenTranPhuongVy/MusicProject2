@@ -2623,6 +2623,7 @@
     <Content Include="Images\Singer\Siro.jpg" />
     <Content Include="Images\User\133d7c67-d6fa-412b-bf0d-a11c9fcde9d9anhluanlaly do.jpg" />
     <Content Include="Images\User\336a83ff-73bf-451e-9671-3cc9968fc53cerik.jpg" />
+    <Content Include="Images\User\Userimg.png" />
     <Content Include="Link\MP3\3b2afa10-fde6-4a26-8e56-090e62534c11Anh-Luon-La-Ly-Do-ERIK.mp3" />
     <Content Include="Link\MP3\f5e75889-8056-4a89-b384-0c8b7ff1a44bAnh-Luon-La-Ly-Do-ERIK.mp3" />
     <Content Include="Scripts\angular-mocks.js" />
