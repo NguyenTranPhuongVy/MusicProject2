@@ -166,7 +166,21 @@
                                             <div class="two fields">
                                                 <div class="field">
                                                     <label>Ngày VIP</label>
-                                                    <input name="user_deadline" value="@item.user_datevip.Value.ToShortDateString()" type="text" />
+                                                    @if (item.user_datevip != null)
+                                                    {
+                                                        <div class="field">
+                                                            <label>Ngày Víp</label>
+                                                            <input value="@item.user_datelogin.Value.ToShortDateString()" type="text">
+                                                        </div>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="field">
+                                                            <label>Ngày Víp</label>
+                                                            <input type="datetime-local">
+                                                        </div>
+                                                    }
                                                 </div>
                                                 <div class="field">
                                                     <label>Điểm Cá Nhân</label>
@@ -238,10 +252,21 @@
                                                     <label>Ngày Đăng Nhập</label>
                                                     <input value="@item.user_datelogin.Value.ToShortDateString()" type="text">
                                                 </div>
-                                                <div class="field">
-                                                    <label>Ngày VIP</label>
-                                                    <input value="@item.user_datevip.Value.ToShortDateString()" type="text">
-                                                </div>
+                                                @if (item.user_datevip != null)
+                                                {
+                                                    <div class="field">
+                                                        <label>Ngày Víp</label>
+                                                        <input value="@item.user_datelogin.Value.ToShortDateString()" type="text">
+                                                    </div>
+
+                                                }
+                                                else
+                                                {
+                                                    <div class="field">
+                                                        <label>Ngày Víp</label>
+                                                        <input type="datetime-local">
+                                                    </div>
+                                                }
                                             </div>
                                         </form>
                                     </div>
@@ -278,6 +303,16 @@
                                 <div class="field">
                                     <label>Hình Ảnh</label>
                                     <input type="file" name="IMG">
+                                </div>
+                            </div>
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Email</label>
+                                    <input name="user_email" type="email" />
+                                </div>
+                                <div class="field">
+                                    <label>Mật Khẩu</label>
+                                    <input name="user_pass" type="password" />
                                 </div>
                             </div>
                             <div class="field">

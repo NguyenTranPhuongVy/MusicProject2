@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\JsonAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\MusicsAdminController.cs" />
@@ -2827,6 +2828,8 @@
     <Content Include="Areas\Admin\Views\MusicsAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\MusicsAdmin\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\UsersAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryAdmin\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

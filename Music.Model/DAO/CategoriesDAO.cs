@@ -17,9 +17,10 @@ namespace Music.Model.DAO
             try
             {
                 category.category_datecreate = DateTime.Now;
+                category.category_dateupdate = DateTime.Now;
                 category.category_active = true;
                 category.category_bin = false;
-                category.category_view = 0;
+                category.category_view = 1;
 
                 db.Categories.Add(category);
                 db.SaveChanges();

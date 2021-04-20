@@ -5,6 +5,10 @@
 
     List<Slider> sliders = db.Sliders.ToList();
     List<Music> musics = db.Musics.ToList();
+    List<Singer> singer = db.Singers.ToList();
+    List<Album> album = db.Albums.ToList();
+    List<User> user = db.Users.ToList();
+    List<Category> category = db.Categories.ToList();
 }
 <!-- Hero Section Begin -->
 <section class="hero">
@@ -53,17 +57,32 @@
                                 <!-- media container -->
                                 <div class="card-media-object-container">
                                     <div class="card-media-object w-100" style="background-image: url('../../Images/Music/@item.music_img');"></div>
-                                    <span class="card-media-object-tag subtle">Selling Fast</span>
+                                    <span class="card-media-object-tag subtle">Mới Nhất</span>
                                     <ul class="card-media-object-social-list">
-                                        <li>
-                                            <img src="https://s10.postimg.cc/3rjjbzcvd/profile_f.jpg" class="">
-                                        </li>
+                                        @if (item.singer_id != null)
+                                        {
+                                            <li>
+                                                @foreach (var items in singer.Where(n => n.singer_id == item.singer_id))
+                                                {
+                                                    <img src="~/Images/Singer/@items.singer_img" class="">
+                                                }
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                @foreach (var items in user.Where(n => n.user_id == item.user_id))
+                                                {
+                                                    <img src="~/Images/User/@items.user_img" class="">
+                                                }
+                                            </li>
+                                        }
                                     </ul>
                                 </div>
                                 <!-- body container -->
                                 <div class="card-media-body">
                                     <div class="card-media-body-top">
-                                        <span class="subtle">Mon, APR 09, 7:00 PM</span>
+                                        <span class="subtle">@item.music_datecreate.Value.Day/@item.music_datecreate.Value.Month/@item.music_datecreate.Value.Year</span>
                                         <div class="card-media-body-top-icons u-float-right">
                                             <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M0 0h24v24H0z" fill="none" />
@@ -77,10 +96,26 @@
                                     </div>
                                     <span class="card-media-body-heading" style="font-size: 16px !important; font-weight:bold;">@item.music_name</span>
                                     <div class="card-media-body-supporting-bottom">
-                                        <span class="card-media-body-supporting-bottom-text subtle u-float-right">Free &ndash; $30</span>
+                                        @if (item.singer_id != null)
+                                        {
+                                            foreach (var items in singer.Where(n => n.singer_id == item.singer_id))
+                                            {
+                                                <span class="card-media-body-supporting-bottom-text subtle u-float-right">@items.singer_name</span>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            foreach (var items in user.Where(n => n.user_id == item.user_id))
+                                            {
+                                                <span class="card-media-body-supporting-bottom-text subtle u-float-right">@items.user_name</span>
+                                            }
+                                        }
                                     </div>
                                     <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
-                                        <span class="card-media-body-supporting-bottom-text subtle">#Music #Party</span>
+                                        @foreach (var items in album.Where(n => n.album_id == item.album_id))
+                                        {
+                                            <span class="card-media-body-supporting-bottom-text subtle">#@items.album_name</span>
+                                        }
                                         <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
                                     </div>
                                 </div>
@@ -115,51 +150,13 @@
         </div>
         <div id="overflow-scroll">
             <div id="cards">
-                <div class="card-content">
-                    <img class="thumbnail" src="https://i.imgur.com/XuOF9OK.jpg" alt="coloring-book" />
-                    <h3 class="text-white">Coloring Book</h3>
-                    <p class="para">Pop King</p>
-                </div>
-                <div class="card-content">
-                    <img class="thumbnail" src="https://vignette.wikia.nocookie.net/troye/images/e/e4/BN.jpg/revision/latest/top-crop/width/360/height/450?cb=20161230003218" alt="blue-neighbourhood" />
-                    <h3 class="text-white">Blue Neighbourhood</h3>
-                    <p class="para">Troye Sivan</p>
-                </div>
-                <div class="card-content">
-                    <img class="thumbnail" src="https://sagadasmusicas.files.wordpress.com/2017/01/the-weeknd.jpg?w=350&h=200&crop=1" alt="starboy" />
-                    <h3 class="text-white">Starboy</h3>
-                    <p class="para">The Weekend</p>
-                </div>
-                <div class="card-content">
-                    <img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/Baahubali_the_Conclusion.jpg/220px-Baahubali_the_Conclusion.jpg" alt="baahubali" />
-                    <h3 class="text-white">Baahubali</h3>
-                    <p class="para">Keeravani</p>
-                </div>
-                <div class="card-content">
-                    <img class="thumbnail" src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/Baahubali_the_Conclusion.jpg/220px-Baahubali_the_Conclusion.jpg" alt="baahubali" />
-                    <h3 class="text-white">Baahubali</h3>
-                    <p class="para">Keeravani</p>
-                </div>
-                <div class="card-content">
-                    <img class="thumbnail" src="https://i.imgur.com/XuOF9OK.jpg" alt="coloring-book" />
-                    <h3 class="text-white">Coloring Book</h3>
-                    <p class="para">Pop King</p>
-                </div>
-                <div class="card-content">
-                    <img class="thumbnail" src="https://vignette.wikia.nocookie.net/troye/images/e/e4/BN.jpg/revision/latest/top-crop/width/360/height/450?cb=20161230003218" alt="blue-neighbourhood" />
-                    <h3 class="text-white">Blue Neighbourhood</h3>
-                    <p class="para">Troye Sivan</p>
-                </div>
-                <div class="card-content">
-                    <img class="thumbnail" src="https://i.imgur.com/XuOF9OK.jpg" alt="coloring-book" />
-                    <h3 class="text-white">Coloring Book</h3>
-                    <p class="para">Pop King</p>
-                </div>
-                <div class="card-content">
-                    <img class="thumbnail" src="https://vignette.wikia.nocookie.net/troye/images/e/e4/BN.jpg/revision/latest/top-crop/width/360/height/450?cb=20161230003218" alt="blue-neighbourhood" />
-                    <h3 class="text-white">Blue Neighbourhood</h3>
-                    <p class="para">Troye Sivan</p>
-                </div>
+                @foreach (var item in album.Where(n => n.album_active == true && n.album_bin == false).OrderByDescending(n => n.album_datecreate).Take(10).ToList())
+                {
+                    <div class="card-content">
+                        <img class="thumbnail" src="~/Images/Album/@item.album_img" alt="coloring-book" />
+                        <h3 class="text-white">@item.album_name</h3>
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -177,13 +174,13 @@
             </div>
         </div>
         <div class="row">
-            @for (int i = 0; i < 12; i++)
+            @foreach (var item in singer.Where(n => n.singer_active == true && n.singer_bin == false).OrderByDescending(n => n.singer_datecreate).Take(12).ToList())
             {
                 <div class="col-lg-3 col-md-6 col-sm-6 mb-3 p-0">
-                    <div class="team__item set-bg" data-setbg="../../Content/Layout/img/team/team-1.jpg" style="width: 80%; height: 200px; border-radius: 10%">
+                    <div class="team__item set-bg" data-setbg="../../Images/Singer/@item.singer_img" style="width: 80%; height: 200px; border-radius: 10%">
                         <div class="team__item__text">
-                            <h4>AMANDA STONE</h4>
-                            <p>Videographer</p>
+                            <a href="#"><h4>@item.singer_name</h4></a>
+                            <p></p>
                             <div class="team__item__social">
                                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                                 <a href="#"><i class="fab fa-twitter"></i></a>

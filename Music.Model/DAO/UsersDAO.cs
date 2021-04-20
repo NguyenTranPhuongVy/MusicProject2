@@ -43,32 +43,24 @@ namespace Music.Model.DAO
         //Hàm thêm
         public bool Add(User user)
         {
-            try
-            {
+            var code = Guid.NewGuid().ToString();
 
-                var code = Guid.NewGuid().ToString();
-
-                user.user_img = "Userimg.png";
-                user.user_datecreate = DateTime.Now;
-                user.user_datelogin = DateTime.Now;
-                user.user_token = Guid.NewGuid().ToString();
-                user.user_bin = false;
-                user.user_active = true;
-                user.user_point = 200;
-                user.user_option = true;
-                user.user_vip = false;
-                user.user_code = "#" + user.user_email.Substring(0,5) + code.Substring(0, 6);
+            user.user_img = "Userimg.png";
+            user.user_datecreate = DateTime.Now;
+            user.user_datelogin = DateTime.Now;
+            user.user_token = Guid.NewGuid().ToString();
+            user.user_bin = false;
+            user.user_active = true;
+            user.user_point = 200;
+            user.user_option = true;
+            user.user_vip = false;
+            user.user_code = "#" + user.user_email.Substring(0, 5) + code.Substring(0, 6);
 
 
-                db.Users.Add(user);
-                db.SaveChanges();
+            db.Users.Add(user);
+            db.SaveChanges();
 
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return true;
         }
         //Hàm sửa
         public bool Edit(User user)
