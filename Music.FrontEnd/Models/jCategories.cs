@@ -17,6 +17,5 @@ namespace Music.FrontEnd.Models
         public string category_dateupdate { get; set; }
         public Nullable<int> user_id { get; set; }
         public string category_img { get; set; }
-        public Nullable<bool> category_option { get; set; }
     }
 }

@@ -1,16 +1,10 @@
 ﻿@using Music.Model.EF
-@model List<User>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
     MusicProjectDataEntities db = new MusicProjectDataEntities();
     List<Role> roles = db.Roles.ToList();
 }
-@{ 
-    string edit = "editAdmin";
-    string detail = "detailAdmin";
-}
-
 <style>
     .font_color a {
         color: black;
@@ -31,14 +25,14 @@
     <div>
         <div class="card-box mb-30">
             <div class="pd-20">
-                <h4 class="text-black-50 h4">Có @Model.Where(n => n.user_bin == false).Count() Người Dùng</h4>
+                <h4 class="text-black-50 h4"> Có {{(list | filter:textSearch).length}} Người Dùng</h4>
             </div>
             <div class="pd-20 ui form">
                 <div class="three fields">
                     <div class="field">
                         <div class="ui search">
                             <div class="ui icon input">
-                                <input class="prompt" type="text" placeholder="Nhập Người Dùng...">
+                                <input class="prompt" type="text" placeholder="Nhập Người Dùng..." ng-model="textSearch.user_name">
                                 <i class="search icon"></i>
                             </div>
                             <div class="results"></div>
@@ -54,7 +48,7 @@
                         </select>
                     </div>
                     <div class="field">
-                        <button onclick="Delete()" class="ui secondary button">
+                        <button ng-click="linkDel()" class="ui secondary button">
                             <i class="icon-copy dw dw-trash1"></i> Thùng Rác
                         </button>
                         <button data-toggle="modal" data-target="#create-Admin" class="ui button">
@@ -77,207 +71,175 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr class="tableCenter text-center">
-                                <td>@item.user_name</td>
-                                <td>
-                                    <img class="ui medium rounded image" style="width: 50px; height: 50px" src="~/Images/User/@item.user_img">
-                                </td>
-                                <td>
-                                    @if (item.user_active == true)
-                                    {
-                                        <div>
-                                            <button onclick="Active(@item.user_id)" class="ui inverted primary button">Hoạt Động</button>
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <div>
-                                            <button onclick="Active(@item.user_id)" class="ui inverted red button">Không Hoạt Động</button>
-                                        </div>
-                                    }
-                                </td>
-                                <td>
-                                    @if (item.user_option == true)
-                                    {
-                                        <div>
-                                            <button onclick="Option(@item.user_id)" class="ui inverted primary button">Hiển Thị</button>
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <div>
-                                            <button onclick="Option(@item.user_id)" class="ui inverted red button">Không Hiển Thị</button>
-                                        </div>
-                                    }
-                                </td>
-                                <td>@item.user_datecreate.Value.ToShortDateString()</td>
-                                <td>@item.user_datelogin.Value.ToShortDateString()</td>
-                                <td>
-                                    <center class="font_color">
-                                        <a data-toggle="modal" data-target="#@detail@item.user_id"><i class="icon-copy dw dw-eye"></i></a> |
-                                        <a ng-click="bin(list.user_id)"><i class="icon-copy dw dw-trash1"></i></a> |
-                                        <a data-toggle="modal" data-target="#@edit@item.user_id"><i class="icon-copy dw dw-edit2"></i></a>
-                                    </center>
-                                </td>
-                            </tr>
-                        }
+                        <tr class="tableCenter text-center" ng-repeat="list in list | filter: textSearch">
+                            <td>{{list.user_name}}</td>
+                            <td>
+                                <img class="ui medium rounded image" style="width: 50px; height: 50px" src="~/Images/User/{{list.user_img}}">
+                            </td>
+                            <td>
+                                <div ng-show="list.user_active == true">
+                                    <button ng-click="active(list.user_id)" class="ui inverted primary button">Hoạt Động</button>
+                                </div>
+                                <div ng-show="list.user_active == false">
+                                    <button ng-click="active(list.user_id)" class="ui inverted red button">Không Hoạt Động</button>
+                                </div>
+                            </td>
+                            <td>
+                                <div ng-show="list.user_option == true">
+                                    <button ng-click="option(list.user_id)" class="ui inverted green button">Hiển Thị</button>
+                                </div>
+                                <div ng-show="list.user_option == false">
+                                    <button ng-click="option(list.user_id)" class="ui inverted red button">Không Hiển Thị</button>
+                                </div>
+                            </td>
+                            <td>{{list.user_datecreate}}</td>
+                            <td>{{list.user_datelogin}}</td>
+                            <td>
+                                <center class="font_color">
+                                    <a data-toggle="modal" data-target="#details-Admin{{list.user_id}}"><i class="icon-copy dw dw-eye"></i></a> |
+                                    <a ng-click="bin(list.user_id)"><i class="icon-copy dw dw-trash1"></i></a> |
+                                    <a data-toggle="modal" data-target="#edit-Admin{{list.user_id}}"><i class="icon-copy dw dw-edit2"></i></a>
+                                </center>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
-                @foreach (var item in Model)
-                {
-                    <!--Modal Edit-->
-                    <div class="col-md-4 col-sm-12 mb-30">
-                        <div class="modal fade bs-example-modal-lg" id="@edit@item.user_id" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title" id="myLargeModalLabel">Người Dùng @item.user_name</h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form class="ui form" action="@Url.Action("Edit", "UsersAdmin")" method="post" enctype="multipart/form-data">
-                                            @*@Html.AntiForgeryToken()*@
-                                            <input value="@item.user_id" type="hidden" name="user_id" />
-                                            <p>Chỉnh sửa các thông tin cần thiết: </p>
-                                            <div class="two fields">
-                                                <div class="field">
-                                                    <label>Hình Ảnh</label>
-                                                    <input type="file" name="IMG" value="user_img">
-                                                    <label></label>
-                                                    <img class="ui medium rounded image" style="height: 200px; width: 100% " src="~/Images/User/@item.user_img">
-                                                </div>
-                                            </div>
-                                            <div class="three fields">
-                                                <div class="field">
-                                                    <label>Tên Người Dùng</label>
-                                                    <input value="@item.user_name" name="user_name" type="text">
-                                                </div>
-                                                <div class="field">
-                                                    <label>Email Người Dùng</label>
-                                                    <input value="@item.user_email" name="user_email" type="text">
-                                                </div>
-                                                <div class="field">
-                                                    <label>Mật Khẩu Người Dùng</label>
-                                                    <input value="@item.user_pass" name="user_pass" type="password">
-                                                </div>
-                                            </div>
-                                            <div class="two fields">
-                                                <div class="field">
-                                                    <label>Ngày VIP</label>
-                                                    @if (item.user_datevip != null)
-                                                    {
-                                                        <div class="field">
-                                                            <label>Ngày Víp</label>
-                                                            <input value="@item.user_datelogin.Value.ToShortDateString()" type="text">
-                                                        </div>
-
-                                                    }
-                                                    else
-                                                    {
-                                                        <div class="field">
-                                                            <label>Ngày Víp</label>
-                                                            <input type="datetime-local">
-                                                        </div>
-                                                    }
-                                                </div>
-                                                <div class="field">
-                                                    <label>Điểm Cá Nhân</label>
-                                                    <input name="user_point" value="@item.user_point" type="text" />
-                                                </div>
-                                            </div>
-                                            <button type="submit" class="ui primary submit button right">Sửa</button>
-                                            <div class="ui error message"></div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End Modal-->
-                    <!--Modal details-->
-                    <div class="col-md-4 col-sm-12 mb-30">
-                        <div class="modal fade bs-example-modal-lg" id="@detail@item.user_id" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title" id="myLargeModalLabel">Người Dùng: @item.user_name</h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form class="ui form">
-                                            <div class="three fields">
-                                                <div class="field">
-                                                    <label>Tên Người Dùng</label>
-                                                    <input value="@item.user_name" type="text">
-                                                </div>
-                                                <div class="field">
-                                                    <label>Email Người Dùng</label>
-                                                    <input value="@item.user_email" type="text">
-                                                </div>
-                                                <div class="field">
-                                                    <label>Password</label>
-                                                    <input value="@item.user_pass" type="password">
-                                                </div>
-                                            </div>
-                                            <div class="two fields">
-                                                <div class="field">
-                                                    <label>Hình Ảnh</label>
-                                                    <img class="ui medium rounded image" style="height: 200px; width: 100% " src="~/Images/User/@item.user_img">
-                                                </div>
-                                            </div>
-                                            <div class="two fields">
-                                                <div class="field">
-                                                    <label>Trạng Thái</label>
-                                                    <select class="ui dropdown" name="user_active">
-                                                        <option value="true" @(item.user_active == true ? "selected" : "")>Hoạt Động</option>
-                                                        <option value="false" @(item.user_active == false ? "selected" : "")>Không Hoạt Động</option>
-                                                    </select>
-                                                </div>
-                                                <div class="field">
-                                                    <label>Tình Trạng</label>
-                                                    <select class="ui dropdown" name="user_option">
-                                                        <option value="true" @(item.user_option == true ? "selected" : "")>Hiển Thị</option>
-                                                        <option value="false" @(item.user_option == false ? "selected" : "")>Không Hiển Thị</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="three fields">
-                                                <div class="field">
-                                                    <label>Ngày Tạo</label>
-                                                    <input value="@item.user_datecreate.Value.ToShortDateString()" type="text">
-                                                </div>
-                                                <div class="field">
-                                                    <label>Ngày Đăng Nhập</label>
-                                                    <input value="@item.user_datelogin.Value.ToShortDateString()" type="text">
-                                                </div>
-                                                @if (item.user_datevip != null)
-                                                {
-                                                    <div class="field">
-                                                        <label>Ngày Víp</label>
-                                                        <input value="@item.user_datelogin.Value.ToShortDateString()" type="text">
-                                                    </div>
-
-                                                }
-                                                else
-                                                {
-                                                    <div class="field">
-                                                        <label>Ngày Víp</label>
-                                                        <input type="datetime-local">
-                                                    </div>
-                                                }
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End Modal-->
-                }
             </div>
         </div>
+        <!--Modal Edit-->
+        <div ng-repeat="list in list" class="col-md-4 col-sm-12 mb-30">
+            <div class="modal fade bs-example-modal-lg" id="edit-Admin{{list.user_id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myLargeModalLabel">Người Dùng {{list.user_name}}</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="ui form" action="@Url.Action("Edit", "UsersAdmin")" method="post" enctype="multipart/form-data">
+                                @Html.AntiForgeryToken()
+                                <input value="{{list.user_id}}" type="hidden" name="user_id" />
+                                <p>Chỉnh sửa các thông tin cần thiết: </p>
+                                <div class="two fields">
+                                    <div class="field">
+                                        <label>Hình Ảnh</label>
+                                        <input type="file" name="IMG" value="user_img">
+                                        <label></label>
+                                        <img class="ui medium rounded image" style="height: 200px; width: 100% " src="~/Images/User/{{list.user_img}}">
+                                    </div>
+                                </div>
+                                <div class="three fields">
+                                    <div class="field">
+                                        <label>Tên Người Dùng</label>
+                                        <input value="{{list.user_name}}" name="user_name" type="text">
+                                    </div>
+                                    <div class="field">
+                                        <label>Email Người Dùng</label>
+                                        <input value="{{list.user_email}}" name="user_email" type="text">
+                                    </div>
+                                    <div class="field">
+                                        <label>Mật Khẩu Người Dùng</label>
+                                        <input value="{{list.user_pass}}" name="user_pass" type="password">
+                                    </div>
+                                </div>
+                                <div class="two fields">
+                                    <div class="field">
+                                        <label>Ngày VIP</label>
+                                        <div class="field">
+                                            <label>Ngày Vip</label>
+                                            <input value="{{list.user_datevip | date:"dd/MM/yyyy"}}" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label>Điểm Cá Nhân</label>
+                                        <input name="user_point" value="{{list.user_point}}" type="text" />
+                                    </div>
+                                </div>
+                                <button type="submit" class="ui primary submit button right">Sửa</button>
+                                <div class="ui error message"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modal-->
+        <!--Modal details-->
+        <div ng-repeat="list in list" class="col-md-4 col-sm-12 mb-30">
+            <div class="modal fade bs-example-modal-lg" id="details-Admin{{list.user_id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myLargeModalLabel">Người Dùng: {{list.user_name}}</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="ui form">
+                                <div class="three fields">
+                                    <div class="field">
+                                        <label>Tên Người Dùng</label>
+                                        <input value="{{list.user_name}}" type="text">
+                                    </div>
+                                    <div class="field">
+                                        <label>Email Người Dùng</label>
+                                        <input value="{{list.user_email}}" type="text">
+                                    </div>
+                                    <div class="field">
+                                        <label>Password</label>
+                                        <input value="{{list.user_pass}}" type="password">
+                                    </div>
+                                </div>
+                                <div class="two fields">
+                                    <div class="field">
+                                        <label>Hình Ảnh</label>
+                                        <img class="ui medium rounded image" style="height: 200px; width: 100% " src="~/Images/User/{{list.user_img}}">
+                                    </div>
+                                </div>
+                                <div class="two fields">
+                                    <div class="field">
+                                        <label>Trạng Thái</label>
+                                        <div ng-show="list.user_active == true" class="ui checked checkbox">
+                                            <input type="checkbox" checked="" disabled>
+                                            <label>Hoạt Động</label>
+                                        </div>
+                                        <div ng-show="list.user_active == false" class="ui checked checkbox">
+                                            <input type="checkbox" disabled>
+                                            <label>Không Hoạt Động</label>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label>Tình Trạng</label>
+                                        <div ng-show="list.user_option == true" class="ui checked checkbox">
+                                            <input type="checkbox" checked="" disabled>
+                                            <label>Hiển Thị</label>
+                                        </div>
+                                        <div ng-show="list.user_option == false" class="ui checked checkbox">
+                                            <input type="checkbox" disabled>
+                                            <label>Không Hiển Thị</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="three fields">
+                                    <div class="field">
+                                        <label>Ngày Tạo</label>
+                                        <input value="{{list.user_datecreate}}" type="text">
+                                    </div>
+                                    <div class="field">
+                                        <label>Ngày Đăng Nhập</label>
+                                        <input value="{{list.user_datelogin}}" type="text">
+                                    </div>
+                                    <div class="field">
+                                        <label>Ngày VIP</label>
+                                        <input value="{{list.user_deadline}}" type="text">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modal-->
     </div>
 </div>
 <!-- Checkbox select Datatable End -->
@@ -292,7 +254,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div class="modal-body">
-                        <form action="@Url.Action("Create", "UsersAdmin")" method="post" enctype="multipart/form-data" class="ui form">
+                        <form action="@Url.Action("Add", "UsersAdmin")" method="post" enctype="multipart/form-data" class="ui form">
                             @Html.AntiForgeryToken()
                             <p>Nhập đủ các thông tin sau: </p>
                             <div class="two fields">
@@ -358,23 +320,46 @@
 </div>
 <!--Modal-->
 <script>
-    function Delete() {
-                                        window.location.href = '/Admin/UsersAdmin/Delete';
-                                    }
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope, $http) {
+        $http({
+            method: "GET",
+            url: "/JsonAdmin/Users?del="
+        }).then(function mySuccess(response) {
+            $scope.list = response.data;
 
-                                    function Active(id) {
-                                        window.location.href = '/Admin/UsersAdmin/Active/' + id;
-                                    }
+            $scope.active = function (id) {
+                $http.get("/UsersAdmin/Active?id=" + id)
+                    .then(function (response) {
+                        $scope.list = response.data;
+                    });
+            };
 
-                                    function Option(id) {
-                                        window.location.href = '/Admin/UsersAdmin/Option/' + id;
-                                    }
+            $scope.option = function (id) {
+                $http.get("/Admin/UsersAdmin/Option?id=" + id)
+                    .then(function (response) {
+                        $scope.list = response.data;
+                    });
+            };
 
-                                    function Bin(id) {
-                                        window.location.href = '/Admin/UsersAdmin/Bin?id=' + id;
-                                    }
+            $scope.bin = function (id) {
+                $http.get("/Admin/UsersAdmin/Del?id=" + id)
+                    .then(function (response) {
+                        $scope.list = response.data;
 
-                                    function Restore(id) {
-                                        window.location.href = '/Admin/UsersAdmin/Restore/' + id;
-                                    }
+                        $(document).ready(function () {
+                            $('#noteDel').modal('show');
+                        })
+                    });
+            };
+
+            $scope.linkDel = function () {
+                window.location.href = '/Admin/UsersAdmin/Delete';
+            };
+
+
+        }, function myError(response) {
+            $scope.list = response.statusText;
+        });
+    });
 </script>

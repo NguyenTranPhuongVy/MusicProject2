@@ -38,6 +38,7 @@ namespace Music.Model.DAO
             try
             {
                 category.category_dateupdate = DateTime.Now;
+                category.category_active = true;
 
                 db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();

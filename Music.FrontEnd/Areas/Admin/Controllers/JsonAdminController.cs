@@ -16,7 +16,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
         {
             if(del != "del")
             {
-                List<Category> categories = db.Categories.Where(n => n.category_bin == false).OrderBy(n => n.category_name).ToList();
+                List<Category> categories = db.Categories.Where(n => n.category_bin == false).OrderByDescending(n => n.category_datecreate).ToList();
                 List<jCategories> list = categories.Select(n => new jCategories
                 {
                     category_active = n.category_active,
@@ -33,7 +33,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             }
             else
             {
-                List<Category> categories = db.Categories.Where(n => n.category_bin == true).OrderBy(n => n.category_name).ToList();
+                List<Category> categories = db.Categories.Where(n => n.category_bin == true).OrderByDescending(n => n.category_datecreate).ToList();
                 List<jCategories> list = categories.Select(n => new jCategories
                 {
                     category_active = n.category_active,
@@ -141,7 +141,14 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     user_option = n.user_option,
                     user_pass = n.user_pass,
                     user_point = n.user_point,
-                    user_token = n.user_token
+                    user_token = n.user_token,
+                    user_address = n.user_address,
+                    user_birth = n.user_birth.Value.ToString("dd/MM/yyyy"),
+                    user_datevip = n.user_datevip.Value.ToString("dd/MM/yyyy"),
+                    user_note = n.user_note,
+                    user_phone = n.user_phone,
+                    user_vip = n.user_vip,
+                    role_id = n.role_id
                 }).ToList();
                 return Json (list, JsonRequestBehavior.AllowGet);
             }    
@@ -163,7 +170,14 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     user_option = n.user_option,
                     user_pass = n.user_pass,
                     user_point = n.user_point,
-                    user_token = n.user_token
+                    user_token = n.user_token,
+                    user_address = n.user_address,
+                    user_birth = n.user_birth.Value.ToString("dd/MM/yyyy"),
+                    user_datevip = n.user_datevip.Value.ToString("dd/MM/yyyy"),
+                    user_note = n.user_note,
+                    user_phone = n.user_phone,
+                    user_vip = n.user_vip,
+                    role_id = n.role_id
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }    

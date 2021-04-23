@@ -31,12 +31,10 @@
                         </div>
                     </div>
                     <div class="field">
-                        <select class="ui dropdown">
-                            <option>Tất Cả</option>
-                            <option>Hoạt Động</option>
-                            <option>Hiển Thị</option>
-                            <option>Ngừng Hoạt Động</option>
-                            <option>Ngừng Hiển Thị</option>
+                        <select class="ui dropdown" ng-model="searchSort">
+                            <option value="category_name">Tất Cả</option>
+                            <option value="textSearch">Mới Nhất</option>
+                            <option value="category_datecreate">Cũ Nhất</option>
                         </select>
                     </div>
                     <div class="field">
@@ -60,7 +58,7 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">
-                        <tr ng-repeat="list in list | filter: textSearch">
+                        <tr ng-repeat="list in list | filter: textSearch | orderBy: searchSort">
                             <td>{{list.category_name}}</td>
                             <td>
                                 <center><img class="ui medium rounded image" style="width: 50px; height: 50px" src="~/Images/Category/{{list.category_img}}"></center>
@@ -319,6 +317,10 @@
             $scope.linkDel = function () {
                 window.location.href = '/Admin/CategoryAdmin/Index';
             };
+
+            $scope.searchSort = "category_datecreate";
+            $scope.searchSort = "textSearch";
+            $scope.searchSort = "category_name";
 
 
         }, function myError(response) {

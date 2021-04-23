@@ -20,12 +20,12 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
         // GET: Admin/CategoryAdmin
         public ActionResult Index()
         {
-            return View(db.Categories.Where(n => n.category_bin == false).OrderBy(n => n.category_name).ToList());
+            return View(db.Categories.Where(n => n.category_bin == false).OrderByDescending(n => n.category_datecreate).ToList());
         }
 
         public ActionResult Delete()
         {
-            return View(db.Categories.Where(n => n.category_bin == true).OrderBy(n => n.category_name).ToList());
+            return View(db.Categories.Where(n => n.category_bin == true).OrderByDescending(n => n.category_datecreate).ToList());
         }
 
         [HttpGet]
@@ -34,7 +34,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             var dao = new CategoriesDAO();
             if (dao.Active(id))
             {
-                List<Category> categories = db.Categories.Where(n => n.category_bin == false).OrderBy(n => n.category_name).ToList();
+                List<Category> categories = db.Categories.Where(n => n.category_bin == false).OrderByDescending(n => n.category_datecreate).ToList();
                 List<jCategories> list = categories.Select(n => new jCategories
                 {
                     category_active = n.category_active,
@@ -61,7 +61,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             var dao = new CategoriesDAO();
             if (dao.ChangeBin(id))
             {
-                List<Category> categories = db.Categories.Where(n => n.category_bin == false).OrderBy(n => n.category_name).ToList();
+                List<Category> categories = db.Categories.Where(n => n.category_bin == false).OrderByDescending(n => n.category_datecreate).ToList();
                 List<jCategories> list = categories.Select(n => new jCategories
                 {
                     category_active = n.category_active,
@@ -89,7 +89,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             var dao = new CategoriesDAO();
             if (dao.ChangeBin(id))
             {
-                List<Category> categories = db.Categories.Where(n => n.category_bin == true).OrderBy(n => n.category_name).ToList();
+                List<Category> categories = db.Categories.Where(n => n.category_bin == true).OrderByDescending(n => n.category_datecreate).ToList();
                 List<jCategories> list = categories.Select(n => new jCategories
                 {
                     category_active = n.category_active,
@@ -117,7 +117,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             var j = new JsonAdminController();
             if (dao.Delete(id))
             {
-                List<Category> categories = db.Categories.Where(n => n.category_bin == true).OrderBy(n => n.category_name).ToList();
+                List<Category> categories = db.Categories.Where(n => n.category_bin == true).OrderByDescending(n => n.category_datecreate).ToList();
                 List<jCategories> list = categories.Select(n => new jCategories
                 {
                     category_active = n.category_active,
@@ -141,10 +141,75 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(Music.Model.EF.Category category)
+        public ActionResult Add(Music.Model.EF.Category category, HttpPostedFileBase IMG, string del)
         {
-            categoriesDAO.ADD(category);
-            return RedirectToAction("Index");
+            category.category_bin = false;
+
+            if(category.category_active != true && category.category_active != false)
+            {
+                category.category_active = false;
+            }    
+
+            //Chèn ảnh
+            if(IMG != null)
+            {
+                var code = Guid.NewGuid().ToString();
+                var img = new FilesController();
+                img.AddImages(IMG, Common.Link.IMG_CATEGORY, code);
+                category.category_img = code + IMG.FileName;
+            }    
+            else
+            {
+                category.category_img = "notImg.png";
+            }    
+
+            if(categoriesDAO.ADD(category))
+            {
+                return Redirect("/Admin/CategoryAdmin");
+            }    
+            else
+            {
+                return Redirect(Common.Link.NOT_404);
+            }    
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Music.Model.EF.Category category, HttpPostedFileBase IMG, string del)
+        {
+            Category cate = db.Categories.Find(category.category_id);
+            category.category_bin = false;
+            category.category_datecreate = cate.category_datecreate;
+            category.category_view = cate.category_view;
+            category.user_id = cate.user_id;
+
+            if (category.category_active != true && category.category_active != false)
+            {
+                category.category_active = false;
+            }
+
+            //Chèn ảnh
+            if (IMG != null)
+            {
+                var code = Guid.NewGuid().ToString();
+                var img = new FilesController();
+                img.AddImages(IMG, Common.Link.IMG_CATEGORY, code);
+                category.category_img = code + IMG.FileName;
+            }
+            else
+            {
+                category.category_img = cate.category_img;
+            }
+
+            if (categoriesDAO.Edit(category))
+            {
+                return Redirect("/Admin/CategoryAdmin");
+            }
+            else
+            {
+                return Redirect(Common.Link.NOT_404);
+            }
         }
     }
 }
