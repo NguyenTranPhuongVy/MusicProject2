@@ -21,11 +21,11 @@
         text-align: center;
     }
 </style>
-<div>
-    <div>
+<div ng-app="myApp">
+    <div ng-controller="myCtrl">
         <div class="card-box mb-30">
             <div class="pd-20">
-                <h4 class="text-black-50 h4"> Có {{(list | filter:textSearch).length}} Người Dùng</h4>
+                <h4 class="text-black-50 h4"> Có {{slist.length}} Người Dùng</h4>
             </div>
             <div class="pd-20 ui form">
                 <div class="three fields">
