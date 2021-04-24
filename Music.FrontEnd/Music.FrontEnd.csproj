@@ -2830,6 +2830,7 @@
     <Content Include="Areas\Admin\Views\UsersAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CategoryAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CategoryAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\UsersAdmin\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
