@@ -12,8 +12,6 @@ namespace Music.FrontEnd.Models
         public Nullable<bool> author_active { get; set; }
         public Nullable<bool> author_bin { get; set; }
         public string author_note { get; set; }
-        public Nullable<int> user_id { get; set; }
-        public Nullable<bool> author_option { get; set; }
         public string author_datecreate { get; set; }
         public string author_dateupdate { get; set; }
         public string author_img { get; set; }

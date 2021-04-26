@@ -49,6 +49,13 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Remove(int ? id)
+        {
+            Music.Model.EF.Music music = db.Musics.Find(id);
+            musicsDAO.Delete(id);
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
         public ActionResult Restore(int? id)
         {
             Music.Model.EF.Music music = db.Musics.Find(id);

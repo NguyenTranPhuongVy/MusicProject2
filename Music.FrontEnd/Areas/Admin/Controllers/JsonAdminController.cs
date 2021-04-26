@@ -99,7 +99,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_id = n.author_id,
                     author_img = n.author_img,
                     author_name = n.author_name,
-                    author_note = n.author_note,
+                    author_note = n.author_note
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             } 
@@ -115,7 +115,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_id = n.author_id,
                     author_img = n.author_img,
                     author_name = n.author_name,
-                    author_note = n.author_note,
+                    author_note = n.author_note
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }    
