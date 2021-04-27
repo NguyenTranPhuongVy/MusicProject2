@@ -20,6 +20,7 @@ namespace Music.Model.DAO
                 album.album_active = true;
                 album.album_bin = false;
                 album.album_view = 1;
+                album.album_favorite = 1;
 
                 db.Albums.Add(album);
                 db.SaveChanges();

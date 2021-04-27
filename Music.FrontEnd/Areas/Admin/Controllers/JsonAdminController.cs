@@ -193,13 +193,13 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                 List<jAlbums> list = albums.Select(n => new jAlbums
                 {
                     album_active = n.album_active,
-                    album_name = n.album_name,
                     album_bin = n.album_bin,
                     album_datecreate = n.album_datecreate.Value.ToString("dd/MM/yyyy"),
                     album_dateedit = n.album_dateedit.Value.ToString("dd/MM/yyyy"),
+                    album_favorite = n.album_favorite,
                     album_id = n.album_id,
                     album_img = n.album_img,
-                    album_favorite = n.album_favorite,
+                    album_name= n.album_name,
                     album_note = n.album_note,
                     album_view = n.album_view,
                     user_id = n.user_id
@@ -212,13 +212,13 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                 List<jAlbums> list = albums.Select(n => new jAlbums
                 {
                     album_active = n.album_active,
-                    album_name = n.album_name,
                     album_bin = n.album_bin,
                     album_datecreate = n.album_datecreate.Value.ToString("dd/MM/yyyy"),
                     album_dateedit = n.album_dateedit.Value.ToString("dd/MM/yyyy"),
+                    album_favorite = n.album_favorite,
                     album_id = n.album_id,
                     album_img = n.album_img,
-                    album_favorite = n.album_favorite,
+                    album_name = n.album_name,
                     album_note = n.album_note,
                     album_view = n.album_view,
                     user_id = n.user_id
