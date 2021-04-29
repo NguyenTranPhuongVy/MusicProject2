@@ -234,13 +234,13 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                 List<National> nationals = db.Nationals.Where(n => n.nation_bin == false).OrderBy(n => n.nation_name).ToList();
                 List<jNations> list = nationals.Select(n => new jNations
                 {
-                    nation_active = n.nation_active,
-                    nation_bin = n.nation_bin,
-                    nation_name = n.nation_name,
-                    nation_datecreate = n.nation_datecreate.Value.ToString("dd/MM/yyyy"),
-                    nation_dateupdate = n.nation_dateupdate.Value.ToString("dd/MM/yyyy"),
-                    nation_id = n.nation_id,
-                    nation_option = n.nation_option
+                   nation_active = n.nation_active,
+                   nation_bin = n.nation_bin,
+                   nation_datecreate = n.nation_datecreate.Value.ToString("dd/MM/yyyy"),
+                   nation_dateupdate = n.nation_dateupdate.Value.ToString("dd/MM/yyyy"),
+                   nation_id = n.nation_id,
+                   nation_name = n.nation_name,
+                   nation_option = n.nation_option
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }    
@@ -251,10 +251,10 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                 {
                     nation_active = n.nation_active,
                     nation_bin = n.nation_bin,
-                    nation_name = n.nation_name,
                     nation_datecreate = n.nation_datecreate.Value.ToString("dd/MM/yyyy"),
                     nation_dateupdate = n.nation_dateupdate.Value.ToString("dd/MM/yyyy"),
                     nation_id = n.nation_id,
+                    nation_name = n.nation_name,
                     nation_option = n.nation_option
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
