@@ -285,7 +285,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_id = n.author_id,
                     genres_id = n.genres_id,
                     nation_id=n.nation_id,
-                    singer_id = n.singer_id,
                     user_id = n.user_id,
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -312,7 +311,6 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_id = n.author_id,
                     genres_id = n.genres_id,
                     nation_id = n.nation_id,
-                    singer_id = n.singer_id,
                     user_id = n.user_id,
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -364,9 +362,11 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                         select new
                         {
                             id = q.quest_id,
-                            limit = q.quest_limit,
-                            datecreate = q.quest_datecreate,
-                            dateend = q.quest_dateend,
+                            title = q.quest_title,
+                            limited = q.quest_limit,
+                            datecreate = q.quest_datecreate.ToString(),
+                            dateend = q.quest_dateend.ToString(),
+                            statedate = (DateTime.Compare((DateTime)q.quest_dateend, DateTime.Now) >= 0 ? true : false),
                             active = q.quest_active,
                             category = q.quest_category,
                             national = q.quest_national,
@@ -375,6 +375,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                             top1 = q.quest_top1,
                             top2 = q.quest_top2,
                             top3 = q.quest_top3,
+                            quest = (q.Category.category_name != null ? q.Category.category_name + ", " : "") + (q.Singer.singer_name != null ? q.Singer.singer_name + ", " : "") + (q.National.nation_name != null ? q.National.nation_name : "")
                         };
             return Json(quest, JsonRequestBehavior.AllowGet);
         }

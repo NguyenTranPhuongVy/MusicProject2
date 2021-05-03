@@ -175,8 +175,8 @@
     <Compile Include="Areas\Admin\Controllers\JsonAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\MusicsAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\NationalsAdminController.cs" />
-    <Compile Include="Areas\Admin\Controllers\SingersAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuestsAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SingersAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ViewAdminController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -2844,7 +2844,6 @@
     <Content Include="Areas\Admin\Views\AlbumsAdmin\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\NationalsAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\NationalsAdmin\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\QuestsAdmin\Create.cshtml" />
     <Content Include="Areas\Admin\Views\QuestsAdmin\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\QuestsAdmin\Details.cshtml" />
     <Content Include="Areas\Admin\Views\QuestsAdmin\Edit.cshtml" />

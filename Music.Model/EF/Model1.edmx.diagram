@@ -4,47 +4,48 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a48f5bf51416473e92c3e2ea34a44ab1" Name="Diagram1">
-        <EntityTypeShape EntityType="MusicProjectDataModel.Comment" Width="1.5" PointX="6" PointY="19" IsExpanded="true" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.National" Width="1.5" PointX="3.75" PointY="27.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.Package" Width="1.5" PointX="0.75" PointY="25.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.Pay" Width="1.5" PointX="3" PointY="23.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.Reply" Width="1.5" PointX="8.25" PointY="19.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.User" Width="1.5" PointX="0.75" PointY="17.875" IsExpanded="true" />
+      <Diagram DiagramId="bf8e15457b524aa99f916b0b3a767bf5" Name="Diagram1">
+        <EntityTypeShape EntityType="MusicProjectDataModel.Album" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Author" Width="1.5" PointX="3.75" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Category" Width="1.5" PointX="3.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Comment" Width="1.5" PointX="8.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Genre" Width="1.5" PointX="3.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Group" Width="1.5" PointX="8.25" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Music" Width="1.5" PointX="6" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.National" Width="1.5" PointX="3.75" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Package" Width="1.5" PointX="3.75" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Pay" Width="1.5" PointX="6" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.PlayList" Width="1.5" PointX="11.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Quest" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.QuestGroup" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Reply" Width="1.5" PointX="10.5" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Role" Width="1.5" PointX="1.5" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Singer" Width="1.5" PointX="3.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Slider" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.sysdiagram" Width="1.5" PointX="8.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.User" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Albums_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Musics_Albums" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_PlayList_Albums" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_MusicsList_Authors" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Group_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Quest_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Comment_Musics" ManuallyRouted="false" />
         <AssociationConnector Association="MusicProjectDataModel.FK_Comment_Users" ManuallyRouted="false" />
         <AssociationConnector Association="MusicProjectDataModel.FK_Reply_Comment" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Musics_Genres" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Group_Musics" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Group_Singers" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Musics_National" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_PlayList_Musics" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Quest_National" ManuallyRouted="false" />
         <AssociationConnector Association="MusicProjectDataModel.FK_Pays_Packages" ManuallyRouted="false" />
         <AssociationConnector Association="MusicProjectDataModel.FK_Pays_Users" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.Album" Width="1.5" PointX="3.375" PointY="15.625" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.Author" Width="1.5" PointX="2.75" PointY="5" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.Category" Width="1.5" PointX="0.75" PointY="1" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.Genre" Width="1.5" PointX="4.125" PointY="20.25" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.Group" Width="1.5" PointX="3" PointY="1.5" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.Singer" Width="1.5" PointX="0.75" PointY="5.125" />
-        <AssociationConnector Association="MusicProjectDataModel.FK_Albums_Users" />
-        <AssociationConnector Association="MusicProjectDataModel.FK_Group_Categories" />
-        <AssociationConnector Association="MusicProjectDataModel.FK_Group_Singers" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.Quest" Width="1.5" PointX="6.75" PointY="10.875" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.QuestGroup" Width="1.5" PointX="9" PointY="16.375" />
-        <AssociationConnector Association="MusicProjectDataModel.FK_QuestGroup_Quest" />
-        <AssociationConnector Association="MusicProjectDataModel.FK_QuestGroup_Users" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.PlayList" Width="1.5" PointX="8.25" PointY="23.375" />
-        <AssociationConnector Association="MusicProjectDataModel.FK_PlayList_Albums" />
-        <AssociationConnector Association="MusicProjectDataModel.FK_Reply_Users" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.Slider" Width="1.5" PointX="5.375" PointY="0.75" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.Role" Width="1.5" PointX="0.75" PointY="15.25" />
-        <AssociationConnector Association="MusicProjectDataModel.FK_Users_Roles" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.Music" Width="1.5" PointX="9.375" PointY="8.125" />
-        <AssociationConnector Association="MusicProjectDataModel.FK_Musics_Albums" />
-        <AssociationConnector Association="MusicProjectDataModel.FK_MusicsList_Authors" />
-        <AssociationConnector Association="MusicProjectDataModel.FK_Musics_Categories" />
-        <AssociationConnector Association="MusicProjectDataModel.FK_Comment_Musics" />
-        <AssociationConnector Association="MusicProjectDataModel.FK_Musics_Genres" />
-        <AssociationConnector Association="MusicProjectDataModel.FK_Group_Musics" />
-        <AssociationConnector Association="MusicProjectDataModel.FK_Musics_National" />
-        <AssociationConnector Association="MusicProjectDataModel.FK_Musics_Singers" />
-        <AssociationConnector Association="MusicProjectDataModel.FK_PlayList_Musics" />
-        <EntityTypeShape EntityType="MusicProjectDataModel.sysdiagram" Width="1.5" PointX="5.375" PointY="3.75" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Quest_Singers" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_QuestGroup_Quest" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_QuestGroup_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Reply_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Users_Roles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

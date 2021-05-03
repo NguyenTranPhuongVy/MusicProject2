@@ -253,9 +253,16 @@
                     <div class="col-lg-6 text-white">
                         <br />
                         <b style="font-size: 18px">@Model.music_name</b> <br />
-                        @if (Model.singer_id != null)
+                        @if (Model.Groups.Where(t => t.singer_id != null).Count() > 0)
                         {
-                            <p>Ca sỹ: @Model.Singer.singer_name</p> <br /> <b><i class="fa fa-user"></i></b>
+                            <p>
+                                Ca sỹ:
+                                @foreach (var item in Model.Groups.Where(t => t.singer_id != null))
+                                {
+                                    <span>@item.Singer.singer_name |</span>
+                                }
+                            </p>
+                            <br /> <b><i class="fa fa-user"></i></b>
                         }
                         else
                         {
@@ -311,7 +318,7 @@
                         {
                             <input type="radio" checked value="@item.album_id" name="aid" /> @item.album_name
                         }
-                        <input type="hidden" name="mid" value="@Model.music_id"/>
+                        <input type="hidden" name="mid" value="@Model.music_id" />
                         <br />
                         <br />
                         <div class="modal-footer">
@@ -323,6 +330,21 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                $.ajax({
+                type: "post",
+                url: "/Musics/AcceptQuest?id=" + @Model.music_id,
+                contentType: "Json",
+                success: function (response) {
+
+                }
+            })
+            }, 3000)
+        })
+    </script>
 }
 <script>
     $('.tabular.menu .item').tab();

@@ -13,7 +13,7 @@
 <!-- Hero Section Begin -->
 <section class="hero">
     <div class="hero__slider owl-carousel">
-        @foreach (var item in sliders.Where(n=>n.slider_active == true).OrderByDescending(n=>n.slider_datecreate))
+        @foreach (var item in sliders.Where(n => n.slider_active == true).OrderByDescending(n => n.slider_datecreate))
         {
             <div class="hero__item set-bg" data-setbg="../../Images/Banner/@item.slider_img">
                 <div class="container">
@@ -59,12 +59,15 @@
                                     <div class="card-media-object w-100" style="background-image: url('../../Images/Music/@item.music_img');"></div>
                                     <span class="card-media-object-tag subtle">Mới Nhất</span>
                                     <ul class="card-media-object-social-list">
-                                        @if (item.singer_id != null)
+                                        @if (item.Groups.Where(x => x.singer_id != null).Count() > 0)
                                         {
                                             <li>
-                                                @foreach (var items in singer.Where(n => n.singer_id == item.singer_id))
+                                                @foreach (var items in singer)
                                                 {
-                                                    <img src="~/Images/Singer/@items.singer_img" class="">
+                                                    foreach (var jtem in item.Groups.Where(x => x.singer_id != items.singer_id))
+                                                    {
+                                                        <img src="~/Images/Singer/@items.singer_img" class="">
+                                                    }
                                                 }
                                             </li>
                                         }
@@ -96,11 +99,14 @@
                                     </div>
                                     <span class="card-media-body-heading" style="font-size: 16px !important; font-weight:bold;">@item.music_name</span>
                                     <div class="card-media-body-supporting-bottom">
-                                        @if (item.singer_id != null)
+                                        @if (item.Groups.Where(x => x.singer_id != null).Count() > 0)
                                         {
-                                            foreach (var items in singer.Where(n => n.singer_id == item.singer_id))
+                                            foreach (var items in singer)
                                             {
-                                                <span class="card-media-body-supporting-bottom-text subtle u-float-right">@items.singer_name</span>
+                                                foreach (var jtem in item.Groups.Where(x => x.singer_id != items.singer_id))
+                                                {
+                                                    <span class="card-media-body-supporting-bottom-text subtle u-float-right">@items.singer_name</span>
+                                                }
                                             }
                                         }
                                         else

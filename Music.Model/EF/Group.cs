@@ -21,7 +21,7 @@ namespace Music.Model.EF
         public Nullable<System.DateTime> group_datecreate { get; set; }
     
         public virtual Category Category { get; set; }
-        public virtual Singer Singer { get; set; }
         public virtual Music Music { get; set; }
+        public virtual Singer Singer { get; set; }
     }
 }

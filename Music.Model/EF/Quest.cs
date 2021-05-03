@@ -28,12 +28,15 @@ namespace Music.Model.EF
         public Nullable<int> quest_category { get; set; }
         public Nullable<int> quest_national { get; set; }
         public Nullable<int> quest_singer { get; set; }
-        public string quest_gift { get; set; }
-        public string quest_top1 { get; set; }
-        public string quest_top2 { get; set; }
-        public string quest_top3 { get; set; }
         public string quest_title { get; set; }
+        public Nullable<int> quest_top1 { get; set; }
+        public Nullable<int> quest_top2 { get; set; }
+        public Nullable<int> quest_top3 { get; set; }
+        public Nullable<int> quest_gift { get; set; }
     
+        public virtual Category Category { get; set; }
+        public virtual National National { get; set; }
+        public virtual Singer Singer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuestGroup> QuestGroups { get; set; }
     }

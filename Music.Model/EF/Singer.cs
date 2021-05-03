@@ -18,7 +18,7 @@ namespace Music.Model.EF
         public Singer()
         {
             this.Groups = new HashSet<Group>();
-            this.Musics = new HashSet<Music>();
+            this.Quests = new HashSet<Quest>();
         }
     
         public int singer_id { get; set; }
@@ -33,6 +33,6 @@ namespace Music.Model.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Group> Groups { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Music> Musics { get; set; }
+        public virtual ICollection<Quest> Quests { get; set; }
     }
 }
