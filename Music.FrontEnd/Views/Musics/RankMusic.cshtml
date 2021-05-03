@@ -4,7 +4,7 @@
     ViewBag.Title = "RankMusic";
     Layout = "~/Views/Shared/_Layout.cshtml";
     List<Music> musics = db.Musics.ToList();
-
+    List<User> users = db.Users.ToList();
     var i = 1;
 }
 <style>
@@ -65,9 +65,12 @@
                                         }
                                         else
                                         {
-                                            <p>
-                                                @item.User.user_name
-                                            </p>
+                                            foreach(var items in users.Where(n => n.user_id == item.user_id))
+                                            { 
+                                                <p>
+                                                    @items.user_name
+                                                </p>
+                                            }
                                         }
                                     </div>
                                 </td>
@@ -146,9 +149,12 @@ else if (ViewBag.Note == "100")
                                         }
                                         else
                                         {
-                                            <p>
-                                                @item.User.user_name
-                                            </p>
+                                            foreach (var items in users.Where(n => n.user_id == item.user_id))
+                                            {
+                                                <p>
+                                                    @items.user_name
+                                                </p>
+                                            }
                                         }
                                     </div>
                                 </td>
@@ -227,9 +233,12 @@ else if (ViewBag.Note == "viet")
                                         }
                                         else
                                         {
-                                            <p>
-                                                @item.User.user_name
-                                            </p>
+                                            foreach (var items in users.Where(n => n.user_id == item.user_id))
+                                            {
+                                                <p>
+                                                    @items.user_name
+                                                </p>
+                                            }
                                         }
                                     </div>
                                 </td>
@@ -308,9 +317,12 @@ else if (ViewBag.Note == "tre")
                                         }
                                         else
                                         {
-                                            <p>
-                                                @item.User.user_name
-                                            </p>
+                                            foreach (var items in users.Where(n => n.user_id == item.user_id))
+                                            {
+                                                <p>
+                                                    @items.user_name
+                                                </p>
+                                            }
                                         }
                                     </div>
                                 </td>
@@ -389,9 +401,12 @@ else if (ViewBag.Note == "aumy")
                                         }
                                         else
                                         {
-                                            <p>
-                                                @item.User.user_name
-                                            </p>
+                                            foreach (var items in users.Where(n => n.user_id == item.user_id))
+                                            {
+                                                <p>
+                                                    @items.user_name
+                                                </p>
+                                            }
                                         }
                                     </div>
                                 </td>
@@ -470,9 +485,12 @@ else if (ViewBag.Note == "kpop")
                                         }
                                         else
                                         {
-                                            <p>
-                                                @item.User.user_name
-                                            </p>
+                                            foreach (var items in users.Where(n => n.user_id == item.user_id))
+                                            {
+                                                <p>
+                                                    @items.user_name
+                                                </p>
+                                            }
                                         }
                                     </div>
                                 </td>

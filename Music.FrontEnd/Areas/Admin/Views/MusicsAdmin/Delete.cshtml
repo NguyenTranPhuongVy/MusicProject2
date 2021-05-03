@@ -113,9 +113,8 @@
                                 <td>@item.music_dateedit</td>
                                 <td>
                                     <center class="font_color">
-                                        <a data-toggle="modal" data-target="#details-Admin @item.music_id"><i class="icon-copy dw dw-eye"></i></a> |
-                                        <a data-toggle="modal" data-target="#noteDel" onclick="Restore(@item.music_id)"><i class="icon-copy dw dw-refresh1"></i></a> |
-                                        <a data-toggle="modal" data-target="#edit"><i class="icon-copy dw dw-edit2"></i></a>
+                                        <a onclick="Remove(@item.music_id)"><i class="icon-copy dw dw-trash1"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                                        <a data-toggle="modal" data-target="#noteDel" onclick="Restore(@item.music_id)"><i class="icon-copy dw dw-recycle-1"></i></a>
                                     </center>
                                 </td>
                             </tr>
@@ -166,6 +165,10 @@
 
     function Restore(id) {
         window.location.href = '/Admin/MusicsAdmin/Restore/' + id;
+    }
+
+    function Remove(id) {
+        window.location.href = '/Admin/MusicsAdmin/Remove/' + id;
     }
 </script>
 

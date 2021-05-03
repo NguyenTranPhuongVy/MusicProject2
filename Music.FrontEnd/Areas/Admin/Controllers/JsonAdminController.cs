@@ -99,7 +99,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_id = n.author_id,
                     author_img = n.author_img,
                     author_name = n.author_name,
-                    author_note = n.author_note,
+                    author_note = n.author_note
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             } 
@@ -115,7 +115,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     author_id = n.author_id,
                     author_img = n.author_img,
                     author_name = n.author_name,
-                    author_note = n.author_note,
+                    author_note = n.author_note
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }    
@@ -148,7 +148,8 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     user_note = n.user_note,
                     user_phone = n.user_phone,
                     user_vip = n.user_vip,
-                    role_id = n.role_id
+                    role_id = n.role_id,
+                    role_name = n.Role.role_name,
                 }).ToList();
                 return Json (list, JsonRequestBehavior.AllowGet);
             }    
@@ -160,9 +161,9 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     user_active = n.user_active,
                     user_bin = n.user_bin,
                     user_code = n.user_code,
-                    user_datecreate = n.user_datecreate.Value.ToString("dd/MM/yyyy"),
-                    user_datelogin = n.user_datelogin.Value.ToString("dd/MM/yyyy"),
-                    user_deadline = n.user_deadline.Value.ToString("dd/MM/yyyy"),
+                    user_datecreate = n.user_datecreate.ToString(),
+                    user_datelogin = n.user_datelogin.ToString(),
+                    user_deadline = n.user_deadline.ToString(),
                     user_email = n.user_email,
                     user_id = n.user_id,
                     user_img = n.user_img,
@@ -172,12 +173,13 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                     user_point = n.user_point,
                     user_token = n.user_token,
                     user_address = n.user_address,
-                    user_birth = n.user_birth.Value.ToString("dd/MM/yyyy"),
-                    user_datevip = n.user_datevip.Value.ToString("dd/MM/yyyy"),
+                    user_birth = n.user_birth.ToString(),
+                    user_datevip = n.user_datevip.ToString(),
                     user_note = n.user_note,
                     user_phone = n.user_phone,
                     user_vip = n.user_vip,
-                    role_id = n.role_id
+                    role_id = n.role_id,
+                    role_name = n.Role.role_name,
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }    
@@ -191,13 +193,13 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                 List<jAlbums> list = albums.Select(n => new jAlbums
                 {
                     album_active = n.album_active,
-                    album_name = n.album_name,
                     album_bin = n.album_bin,
                     album_datecreate = n.album_datecreate.Value.ToString("dd/MM/yyyy"),
                     album_dateedit = n.album_dateedit.Value.ToString("dd/MM/yyyy"),
+                    album_favorite = n.album_favorite,
                     album_id = n.album_id,
                     album_img = n.album_img,
-                    album_favorite = n.album_favorite,
+                    album_name= n.album_name,
                     album_note = n.album_note,
                     album_view = n.album_view,
                     user_id = n.user_id
@@ -210,13 +212,13 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                 List<jAlbums> list = albums.Select(n => new jAlbums
                 {
                     album_active = n.album_active,
-                    album_name = n.album_name,
                     album_bin = n.album_bin,
                     album_datecreate = n.album_datecreate.Value.ToString("dd/MM/yyyy"),
                     album_dateedit = n.album_dateedit.Value.ToString("dd/MM/yyyy"),
+                    album_favorite = n.album_favorite,
                     album_id = n.album_id,
                     album_img = n.album_img,
-                    album_favorite = n.album_favorite,
+                    album_name = n.album_name,
                     album_note = n.album_note,
                     album_view = n.album_view,
                     user_id = n.user_id
@@ -232,13 +234,13 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                 List<National> nationals = db.Nationals.Where(n => n.nation_bin == false).OrderBy(n => n.nation_name).ToList();
                 List<jNations> list = nationals.Select(n => new jNations
                 {
-                    nation_active = n.nation_active,
-                    nation_bin = n.nation_bin,
-                    nation_name = n.nation_name,
-                    nation_datecreate = n.nation_datecreate.Value.ToString("dd/MM/yyyy"),
-                    nation_dateupdate = n.nation_dateupdate.Value.ToString("dd/MM/yyyy"),
-                    nation_id = n.nation_id,
-                    nation_option = n.nation_option
+                   nation_active = n.nation_active,
+                   nation_bin = n.nation_bin,
+                   nation_datecreate = n.nation_datecreate.Value.ToString("dd/MM/yyyy"),
+                   nation_dateupdate = n.nation_dateupdate.Value.ToString("dd/MM/yyyy"),
+                   nation_id = n.nation_id,
+                   nation_name = n.nation_name,
+                   nation_option = n.nation_option
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }    
@@ -249,10 +251,10 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                 {
                     nation_active = n.nation_active,
                     nation_bin = n.nation_bin,
-                    nation_name = n.nation_name,
                     nation_datecreate = n.nation_datecreate.Value.ToString("dd/MM/yyyy"),
                     nation_dateupdate = n.nation_dateupdate.Value.ToString("dd/MM/yyyy"),
                     nation_id = n.nation_id,
+                    nation_name = n.nation_name,
                     nation_option = n.nation_option
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);

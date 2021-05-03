@@ -117,8 +117,8 @@ namespace Music.Model.DAO
             }
         }
 
-        //Khôi Phục
-        //public bool Restore(int ? id)
+        ////Khôi Phục
+        //public bool Restore(int? id)
         //{
         //    try
         //    {
@@ -129,7 +129,7 @@ namespace Music.Model.DAO
 
         //        return true;
         //    }
-        //    catch(Exception)
+        //    catch (Exception)
         //    {
         //        return false;
         //    }

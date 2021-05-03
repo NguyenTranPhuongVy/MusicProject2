@@ -24,6 +24,7 @@ namespace Music.FrontEnd.Models
         public string user_birth { get; set; }
         public string user_phone { get; set; }
         public string user_note { get; set; }
+        public string role_name { get; set; }
         public string user_address { get; set; }
         public Nullable<bool> user_vip { get; set; }
         public string user_datevip { get; set; }
