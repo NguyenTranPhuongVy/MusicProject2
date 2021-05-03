@@ -1,0 +1,107 @@
+﻿@model Music.Model.EF.Quest
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Quest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.quest_limit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quest_limit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quest_datecreate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quest_datecreate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quest_dateend)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quest_dateend)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quest_active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quest_active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quest_category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quest_category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quest_national)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quest_national)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quest_singer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quest_singer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quest_gift)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quest_gift)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quest_top1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quest_top1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quest_top2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quest_top2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quest_top3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quest_top3)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.quest_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

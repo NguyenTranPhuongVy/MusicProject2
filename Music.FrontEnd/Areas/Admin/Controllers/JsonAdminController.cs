@@ -356,7 +356,7 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
         }
 
         // get all quest
-        public JsonResult AllQuest()
+        public JsonResult AllQuest(string del)
         {
             var quest = from q in db.Quests
                         select new

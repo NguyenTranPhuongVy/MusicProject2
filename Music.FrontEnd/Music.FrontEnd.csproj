@@ -172,6 +172,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\JsonAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\MusicsAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuestsAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ViewAdminController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -2830,6 +2831,11 @@
     <Content Include="Areas\Admin\Views\UsersAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CategoryAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CategoryAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\QuestsAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\QuestsAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\QuestsAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\QuestsAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\QuestsAdmin\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

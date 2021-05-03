@@ -172,6 +172,7 @@
           <Property Name="quest_top2" Type="nvarchar(max)" />
           <Property Name="quest_top3" Type="nvarchar(max)" />
           <Property Name="quest_name" Type="nvarchar(max)" />
+          <Property Name="quest_title" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="QuestGroup">
           <Key>
@@ -1024,6 +1025,7 @@
           <Property Name="quest_top1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="quest_top2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="quest_top3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="quest_title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="QuestGroup">
           <Key>
@@ -1469,6 +1471,7 @@
           <EntitySetMapping Name="Quests">
             <EntityTypeMapping TypeName="MusicProjectDataModel.Quest">
               <MappingFragment StoreEntitySet="Quest">
+                <ScalarProperty Name="quest_title" ColumnName="quest_title" />
                 <ScalarProperty Name="quest_top3" ColumnName="quest_top3" />
                 <ScalarProperty Name="quest_top2" ColumnName="quest_top2" />
                 <ScalarProperty Name="quest_top1" ColumnName="quest_top1" />

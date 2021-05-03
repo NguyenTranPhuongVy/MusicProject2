@@ -32,6 +32,7 @@ namespace Music.Model.EF
         public string quest_top1 { get; set; }
         public string quest_top2 { get; set; }
         public string quest_top3 { get; set; }
+        public string quest_title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuestGroup> QuestGroups { get; set; }
