@@ -1,0 +1,97 @@
+﻿@{
+    HttpCookie cookie = Request.Cookies["Admin_id"];
+    Music.Model.EF.MusicProjectDataEntities db = new Music.Model.EF.MusicProjectDataEntities();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Basic Page Info -->
+    <meta charset="utf-8">
+    <title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+
+    <!-- Site favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="~/Content/LayoutAdmin/vendors/styles/core.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/LayoutAdmin/vendors/styles/icon-font.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/LayoutAdmin/vendors/styles/style.css">
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/Content/Semantic-UI-CSS-master/semantic.min.css" rel="stylesheet" />
+    <script src="~/Content/Semantic-UI-CSS-master/semantic.min.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-119386393-1');
+    </script>
+</head>
+<body class="login-page">
+    <div class="login-header box-shadow">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="brand-logo">
+                <a href="login.html">
+                    <img src="~/Content/LayoutAdmin/vendors/images/deskapp-logo.svg" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 col-lg-7">
+                    <img src="~/Content/LayoutAdmin/vendors/images/login-page-img.png" alt="">
+                </div>
+                <div class="col-md-6 col-lg-5">
+                    <div class="login-box bg-white box-shadow border-radius-10">
+                        <div class="login-title">
+                            <h2 class="text-center text-primary">Login To Admin</h2>
+                        </div>
+                        <form method="post" action="@Url.Action("LoginAdmin", "HomeAdmin")" class="ui form segment">
+                            <p>Nhập Tài Khoản Của Bạn</p>
+                            <div class="field">
+                                <label>Email</label>
+                                <input placeholder="Nhập vào email" name="Email" type="email">
+                            </div>
+                            <div class="field">
+                                <label>Mật Khẩu</label>
+                                <input type="password" name="Password" id="user_pass" placeholder="Nhập vào mật khẩu">
+                            </div>
+                            <div class="two fields">
+                                <div class="inline field text-right">
+                                    <a href="#" style="font-size: medium">Quên Mật Khẩu?</a>
+                                </div>
+                            </div>
+                            <button class="ui primary submit button">Đăng Nhập</button>
+                            <div class="ui error message"></div>
+                            <div class="field">
+                                <label style="color: red; font-size: medium">
+                                    @ViewBag.CheckLogin
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Action("Validation", "ViewAdmin")
+    <!-- js -->
+    <script src="~/Content/LayoutAdmin/vendors/scripts/core.js"></script>
+    <script src="~/Content/LayoutAdmin/vendors/scripts/script.min.js"></script>
+    <script src="~/Content/LayoutAdmin/vendors/scripts/process.js"></script>
+    <script src="~/Content/LayoutAdmin/vendors/scripts/layout-settings.js"></script>
+</body>
+</html>

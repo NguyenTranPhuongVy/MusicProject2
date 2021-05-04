@@ -2605,6 +2605,7 @@
     <Content Include="Images\Author\KhacHung.jpg" />
     <Content Include="Images\Author\Khoa.jpg" />
     <Content Include="Images\Author\Siro.jpg" />
+    <Content Include="Images\Banner\A0216_10704_anh1.jpg" />
     <Content Include="Images\Category\EDM.jpg" />
     <Content Include="Images\Category\Han.jpg" />
     <Content Include="Images\Category\HipHop.jpg" />
@@ -2851,6 +2852,7 @@
     <Content Include="Areas\Admin\Views\QuestsAdmin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\QuestsAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\PaysAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\LoginAdmin.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2919,7 +2921,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\Banner\" />
     <Folder Include="Link\MP4\" />
     <Folder Include="Views\Comment\" />
     <Folder Include="Views\PlayList\" />
