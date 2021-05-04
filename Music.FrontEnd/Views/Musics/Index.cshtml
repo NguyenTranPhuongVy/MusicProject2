@@ -1,0 +1,81 @@
+﻿@using Music.FrontEnd.Function
+@{
+    ViewBag.Title = "MyMusisc";
+    var coo = new FunctionController();
+    var id = coo.CookieID();
+
+    if (id.user_vip == false)
+    {
+        Response.Redirect("/");
+    }
+}
+
+<section class="services spad" ng-app="myApp">
+    <div class="container" ng-controller="myCtrl">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 style="font-size: 50px" class="text-white font-weight-bold text-center mt-3">Âm nhạc của tôi</h1>
+                <center>
+                    <p style="font-size: 20px">
+                        Dịch vụ nghe nhạc Online chất lượng cao, kết hợp cùng các tiện ích dành riêng cho thành viên VIP
+                    </p>
+                </center>
+                <center class="mt-2">
+                    <div class="ui search">
+                        <div class="ui fluid category search">
+                            <div class="ui icon input">
+                                <input ng-model="txtSearch" class="prompt" placeholder="Tìm kiếm..." type="text">
+                                <i class="search icon"></i>
+                            </div>
+                            <div class="results"></div>
+                        </div>
+                    </div>
+                    <b class="text-white">{{(list | filter: txtSearch).length}} kết quả</b>
+                </center>
+                <div class="row mt-2">
+                    <div class="col-lg-12" ng-show="(list | filter: txtSearch).length == 0">
+                        <center>
+                            <h3 class="text-white">Không có âm nhạc nào! <a href="#">Thêm ngay</a></h3>
+                        </center>
+                    </div>
+                    <div class="col-lg-2" ng-repeat="list in list | filter: txtSearch" ng-show="(list | filter: txtSearch).length != 0">
+                        <div id="cards w-100">
+                            <div class="card-content">
+                                <a href="/Musics/DetailsMusic/{{list.id}}"><img class="thumbnail" src="~/Images/Music/{{list.img}}" alt="{{list.name}}" /></a>
+                                <h3 class="text-white" style="font-family: 'Josefin Sans', sans-serif">{{list.name}}</h3>
+                                <p class="para text-white">
+                                    <a href="/Musics/DetailsMusic/{{list.id}}"><i class="fa fa-eye"></i></a> |
+                                    <a href="/Musics/DetailsMusic/{{list.id}}"><i class="fa fa-trash"></i></a> |
+                                    <a href="/Musics/DetailsMusic/{{list.id}}"><i class="fa fa-edit"></i></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <style>
+                        .hv:hover {
+                            border: 1px dashed white;
+                        }
+                    </style>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- angular -->
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope, $http) {
+        $http({
+            method: "GET",
+            url: "/Json/GetAllMusic"
+        }).then(function mySuccess(response) {
+            $scope.list = response.data;
+            $scope.count = $scope.list.length;
+
+        }, function myError(response) {
+            $scope.list = response.statusText;
+        })
+    });
+
+</script>

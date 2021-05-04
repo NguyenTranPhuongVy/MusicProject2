@@ -17,6 +17,11 @@ namespace Music.FrontEnd.Controllers
         MusicsDAO musicsDAO = new MusicsDAO();
 
         // GET: Musics
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         public ActionResult MyMusisc()
         {
             return View();
