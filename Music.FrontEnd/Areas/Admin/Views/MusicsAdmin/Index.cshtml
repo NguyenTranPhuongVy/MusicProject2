@@ -186,7 +186,14 @@
                                                     <select name="singer_id" multiple="" class="ui dropdown">
                                                         @foreach (var items in singers)
                                                         {
-                                                            <option value="@items.singer_id" @(items.singer_id == item.singer_id ? "selected" : "")>@items.singer_name</option>
+                                                            if (item.Groups.Where(t => t.singer_id == items.singer_id).Count() > 0)
+                                                            {
+                                                                <option value="@items.singer_id" selected>@items.singer_name</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@items.singer_id">@items.singer_name</option>
+                                                            }
                                                         }
                                                     </select>
                                                 </div>
@@ -206,7 +213,14 @@
                                                     <select name="category_id" multiple="" class="ui dropdown">
                                                         @foreach (var items in categories)
                                                         {
-                                                            <option value="@items.category_id" @(items.category_id == item.category_id ? "selected" : "")>@items.category_name</option>
+                                                            if (item.Groups.Where(t => t.category_id == items.category_id).Count() > 0)
+                                                            {
+                                                                <option value="@items.category_id" selected>@items.category_name</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@items.category_id">@items.category_name</option>
+                                                            }
                                                         }
                                                     </select>
                                                 </div>
@@ -266,7 +280,14 @@
                                                     <select name="singer_id" multiple="" class="ui dropdown">
                                                         @foreach (var items in singers)
                                                         {
-                                                            <option value="@items.singer_id" @(items.singer_id == item.singer_id ? "selected" : "")>@items.singer_name</option>
+                                                            if (item.Groups.Where(t => t.singer_id == items.singer_id).Count() > 0)
+                                                            {
+                                                                <option value="@items.singer_id" selected>@items.singer_name</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@items.singer_id">@items.singer_name</option>
+                                                            }
                                                         }
                                                     </select>
                                                 </div>
@@ -286,7 +307,14 @@
                                                     <select name="category_id" multiple="" class="ui dropdown">
                                                         @foreach (var items in categories)
                                                         {
-                                                            <option value="@items.category_id" @(items.category_id == item.category_id ? "selected" : "")>@items.category_name</option>
+                                                            if (item.Groups.Where(t => t.category_id == items.category_id).Count() > 0)
+                                                            {
+                                                                <option value="@items.category_id" selected>@items.category_name</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@items.category_id">@items.category_name</option>
+                                                            }
                                                         }
                                                     </select>
                                                 </div>
