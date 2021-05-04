@@ -1,0 +1,97 @@
+﻿@using Music.Model.EF
+@model List<Pay>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@{
+    MusicProjectDataEntities db = new MusicProjectDataEntities();
+    List<Package> packages = db.Packages.Where(n => n.package_active == true).ToList();
+    List<User> users = db.Users.ToList();
+}
+<style>
+    .font_color a {
+        color: black;
+        font-size: 20px;
+    }
+
+        .font_color a:hover {
+            color: royalblue;
+        }
+
+    .tableCenter {
+        align-items: center;
+        align-content: center;
+        text-align: center;
+    }
+</style>
+<div>
+    <div>
+        <div class="card-box mb-30">
+            <div class="pd-20">
+                <h4 class="text-black-50 h4">Có @Model.Count() Hoá Đơn</h4>
+            </div>
+            <div class="pd-20 ui form">
+                <div class="three fields">
+                    <div class="field">
+                        <div class="ui search">
+                            <div class="ui icon input">
+                                <input class="prompt" type="text">
+                                <i class="search icon"></i>
+                            </div>
+                            <div class="results"></div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <select class="ui dropdown">
+                            <option>Tất Cả</option>
+                            <option>Hoạt Động</option>
+                            <option>Hiển Thị</option>
+                            <option>Ngừng Hoạt Động</option>
+                            <option>Ngừng Hiển Thị</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <button ng-click="linkDel()" class="ui secondary button">
+                            <i class="icon-copy dw dw-trash1"></i> Thùng Rác
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="pb-20">
+                <table class="checkbox-datatable table nowrap">
+                    <thead class="text-center">
+                        <tr>
+                            <th><i class="icon-copy dw dw-user1"></i> Người Mua</th>
+                            <th><i class="icon-copy dw dw-money"></i>  Giá</th>
+                            <th><i class="icon-copy dw dw-calendar-3"></i> Thời Gian Gói Cước</th>
+                            <th><i class="icon-copy dw dw-list"></i> Nội Dung Gói Cước</th>
+                            <th><i class="icon-copy dw dw-calendar-11"></i>  Ngày Mua</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="tableCenter">
+                                
+                                @foreach (var items in users.Where(n => n.user_id == item.user_id))
+                                {
+                                    <td>@item.User.user_name</td>
+                                }
+                                <td>@item.pay_summoney</td>
+                                @foreach (var items in packages.Where(n => n.package_id == item.pakage_id))
+                                {
+                                    <td>@item.Package.package_name</td>
+                                    <td>@item.Package.package_content</td>
+                                }
+                                <td>@item.pay_datecreate</td>
+                            </tr>
+                        }
+                    </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Checkbox select Datatable End -->
+
