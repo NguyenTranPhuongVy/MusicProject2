@@ -40,14 +40,14 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                 {
                     case 1:
                         var user = db.Users.FirstOrDefault(t => t.user_email == login.Email);
-                        HttpCookie cookie = new HttpCookie("Admin_id", user.user_id.ToString());
+                        HttpCookie cookie = new HttpCookie("Admin", user.user_id.ToString());
                         cookie.Expires.AddDays(10);
                         Response.Cookies.Set(cookie);
-                        return Redirect("/");
-                        if (user.Role.role_id != 2)
+                        return Redirect("/Admin/HomeAdmin/Index");
+                        if(user.role_id != 2)
                         {
                             return Redirect("/Home/Index");
-                        }
+                        }    
                     case -1:
                         TempData["noti_login"] = "Sai tài khoản hoặc mật khẩu!";
                         break;
@@ -63,6 +63,15 @@ namespace Music.FrontEnd.Areas.Admin.Controllers
                 }
             }
             return View(login);
+        }
+
+        public ActionResult LogoffAdmin()
+        {
+            HttpCookie cookie = Request.Cookies["Admin"];
+            cookie.Expires = DateTime.Now.AddDays(-10d);
+            //Request.Cookies.Set(cookie);
+            Response.SetCookie(cookie);
+            return RedirectToAction("LoginAdmin");
         }
 
     }
