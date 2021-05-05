@@ -45,6 +45,8 @@
         <AssociationConnector Association="MusicProjectDataModel.FK_QuestGroup_Users" ManuallyRouted="false" />
         <AssociationConnector Association="MusicProjectDataModel.FK_Reply_Users" ManuallyRouted="false" />
         <AssociationConnector Association="MusicProjectDataModel.FK_Users_Roles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.sysdiagram" Width="1.5" PointX="10.375" PointY="5.75" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Musics_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

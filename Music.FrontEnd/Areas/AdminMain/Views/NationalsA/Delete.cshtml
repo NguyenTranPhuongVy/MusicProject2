@@ -1,0 +1,81 @@
+﻿@model Music.Model.EF.National
+
+@{
+    ViewBag.Title = "Xóa quốc gia " + Model.nation_name;
+    Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@ViewBag.Title</h4>
+                <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
+
+                <h3 class="mt-3">Bạn có chắc muốn xóa?</h3>
+                <div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.nation_name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.nation_name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.nation_active)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.nation_active)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.nation_bin)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.nation_bin)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.nation_datecreate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.nation_datecreate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.nation_dateupdate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.nation_dateupdate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.nation_option)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.nation_option)
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Delete" class="btn btn-danger" />
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

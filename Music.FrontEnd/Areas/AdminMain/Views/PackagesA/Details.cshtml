@@ -1,0 +1,103 @@
+﻿@model Music.Model.EF.Package
+
+@{
+    ViewBag.Title = "Xem gói " + Model.package_name;
+    Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@ViewBag.Title</h4>
+                <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
+                <a href="/AdminMain/PackagesA/Edit/@Model.package_id" class="btn btn-primary text-white"><i class="fa fa-edit">&nbsp;</i>Sửa gói</a>
+
+                <div class="mt-3">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.package_name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.package_name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.package_money)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.package_money)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.package_content)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.package_content)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.package_datecreate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.package_datecreate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.package_active)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.package_active)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.package_bin)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.package_bin)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pakage_price)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.pakage_price)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pakege_deadline)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.pakege_deadline)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.package_option)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.package_option)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.package_month)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.package_month)
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

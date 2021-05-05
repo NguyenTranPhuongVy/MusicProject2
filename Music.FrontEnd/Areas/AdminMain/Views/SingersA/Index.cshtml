@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Music.Model.EF.Singer>
+
+@{
+    ViewBag.Title = "Quản lý ca sỹ";
+    Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@ViewBag.Title</h4>
+                <a href="/AdminMain/SingersA/Create" class="btn btn-danger"><i class="fa fa-plus">&nbsp;</i>Thêm ca sỹ</a>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered zero-configuration">
+                        <thead>
+                            <tr>
+                                <th>Mã ca sỹ</th>
+                                <th>Ảnh ca sỹ</th>
+                                <th>Tên ca sỹ</th>
+                                <th>Ngày tạo</th>
+                                <th>Ngày sửa</th>
+                                <th>Hoạt động</th>
+                                <th>Tùy chọn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.singer_id</td>
+                                    <td>
+                                        <img src="~/Images/Singer/@item.singer_img" style="width: 50px; height: 50px" />
+                                    </td>
+                                    <td>@item.singer_name</td>
+                                    <td>@item.singer_datecreate</td>
+                                    <td>@item.singer_dateupdate</td>
+                                    <td>@item.singer_active</td>
+                                    <td>
+                                        @Html.ActionLink("Sửa", "Edit", new { id = item.singer_id }) |
+                                        @Html.ActionLink("Xem", "Details", new { id = item.singer_id }) |
+                                        @Html.ActionLink("Xóa", "Delete", new { id = item.singer_id })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Mã ca sỹ</th>
+                                <th>Ảnh ca sỹ</th>
+                                <th>Tên ca sỹ</th>
+                                <th>Ngày tạo</th>
+                                <th>Ngày sửa</th>
+                                <th>Hoạt động</th>
+                                <th>Tùy chọn</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

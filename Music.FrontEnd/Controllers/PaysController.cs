@@ -105,7 +105,8 @@ namespace Music.FrontEnd.Controllers
                     pay_datecreate = DateTime.Now,
                     pay_status = true,
                     user_id = id.user_id,
-                    pakage_id = pakage.package_id
+                    pakage_id = pakage.package_id,
+                    pay_summoney = amount
                 };
                 db.Pays.Add(bills);
                 db.SaveChanges();
@@ -119,7 +120,8 @@ namespace Music.FrontEnd.Controllers
                     pay_datecreate = DateTime.Now,
                     pay_status = false,
                     user_id = id.user_id,
-                    pakage_id = pakage.package_id
+                    pakage_id = pakage.package_id,
+                    pay_summoney = amount
                 };
                 db.Pays.Add(bills);
                 db.SaveChanges();

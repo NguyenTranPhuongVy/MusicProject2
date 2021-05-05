@@ -1,0 +1,127 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using Music.Model.EF;
+
+namespace Music.FrontEnd.Areas.AdminMain.Controllers
+{
+    public class NationalsAController : Controller
+    {
+        private MusicProjectDataEntities db = new MusicProjectDataEntities();
+
+        // GET: AdminMain/NationalsA
+        public ActionResult Index()
+        {
+            return View(db.Nationals.OrderByDescending(n=>n.nation_datecreate).ToList());
+        }
+
+        // GET: AdminMain/NationalsA/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            National national = db.Nationals.Find(id);
+            if (national == null)
+            {
+                return HttpNotFound();
+            }
+            return View(national);
+        }
+
+        // GET: AdminMain/NationalsA/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: AdminMain/NationalsA/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "nation_id,nation_name,nation_active,nation_bin,nation_datecreate,nation_dateupdate,nation_option")] National national)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Nationals.Add(national);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(national);
+        }
+
+        // GET: AdminMain/NationalsA/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            National national = db.Nationals.Find(id);
+            if (national == null)
+            {
+                return HttpNotFound();
+            }
+            return View(national);
+        }
+
+        // POST: AdminMain/NationalsA/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "nation_id,nation_name,nation_active,nation_bin,nation_datecreate,nation_dateupdate,nation_option")] National national)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(national).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(national);
+        }
+
+        // GET: AdminMain/NationalsA/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            National national = db.Nationals.Find(id);
+            if (national == null)
+            {
+                return HttpNotFound();
+            }
+            return View(national);
+        }
+
+        // POST: AdminMain/NationalsA/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            National national = db.Nationals.Find(id);
+            db.Nationals.Remove(national);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}

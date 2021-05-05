@@ -1,0 +1,104 @@
+﻿@model Music.Model.EF.Album
+
+@{
+    ViewBag.Title = "Xem thông tin albums " + Model.album_name;
+    Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@ViewBag.Title</h4>
+                <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
+                <a href="/AdminMain/AlbumsA/Edit/@Model.album_id" class="btn btn-primary text-white"><i class="fa fa-edit">&nbsp;</i>Thêm albums</a>
+
+                <div class="mt-3">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.album_name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.album_name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.album_datecreate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.album_datecreate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.album_dateedit)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.album_dateedit)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.album_view)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.album_view)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.album_favorite)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.album_favorite)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.album_active)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.album_active)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.album_bin)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.album_bin)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.album_note)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.album_note)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.album_img)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.album_img)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.User.user_name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.User.user_name)
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

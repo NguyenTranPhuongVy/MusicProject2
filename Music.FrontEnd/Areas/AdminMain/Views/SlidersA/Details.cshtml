@@ -1,0 +1,63 @@
+﻿@model Music.Model.EF.Slider
+
+@{
+    ViewBag.Title = "Xem thông tin slider " + Model.slider_name;
+    Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@ViewBag.Title</h4>
+                <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
+                <a href="/AdminMain/SlidersA/Edit/@Model.slider_id" class="btn btn-primary text-white"><i class="fa fa-edit">&nbsp;</i>Sửa slider</a>
+
+                <div class="mt-3">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.slider_img)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.slider_img)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.slider_name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.slider_name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.slider_link)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.slider_link)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.slider_datecreate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.slider_datecreate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.slider_active)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.slider_active)
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

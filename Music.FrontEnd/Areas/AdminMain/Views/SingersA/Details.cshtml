@@ -1,0 +1,80 @@
+﻿@model Music.Model.EF.Singer
+
+@{
+    ViewBag.Title = "Xem thông tin ca sỹ " + Model.singer_name;
+    Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@ViewBag.Title</h4>
+                <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
+                <a href="/AdminMain/SingersA/Edit/@Model.singer_id" class="btn btn-primary text-white"><i class="fa fa-edit">&nbsp;</i>Sửa ca sỹ</a>
+
+                <div class="mt-3">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.singer_name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.singer_name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.singer_active)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.singer_active)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.singer_bin)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.singer_bin)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.singer_note)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.singer_note)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.singer_img)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.singer_img)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.singer_datecreate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.singer_datecreate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.singer_dateupdate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.singer_dateupdate)
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

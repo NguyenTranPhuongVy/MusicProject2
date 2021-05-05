@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Music.Model.EF.Genre>
+
+@{
+    ViewBag.Title = "Quản lý thể loại";
+    Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@ViewBag.Title</h4>
+                <a href="/AdminMain/GenresA/Create" class="btn btn-danger"><i class="fa fa-plus">&nbsp;</i>Thêm gói thể loại</a>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered zero-configuration">
+                        <thead>
+                            <tr>
+                                <th>Mã thể loại</th>
+                                <th>Tên thể loại</th>
+                                <th>Ngày tạo</th>
+                                <th>Tùy chọn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.genres_id</td>
+                                    <td>@item.genres_name</td>
+                                    <td>@item.genres_datecreate</td>
+                                    <td>
+                                        @Html.ActionLink("Sửa", "Edit", new { id = item.genres_id }) |
+                                        @Html.ActionLink("Xem", "Details", new { id = item.genres_id }) |
+                                        @Html.ActionLink("Xóa", "Delete", new { id = item.genres_id })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Mã thể loại</th>
+                                <th>Tên thể loại</th>
+                                <th>Ngày tạo</th>
+                                <th>Tùy chọn</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,80 @@
+﻿@model Music.Model.EF.Author
+
+@{
+    ViewBag.Title = "Xem thông tin nhạc sỹ " + Model.author_name;
+    Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@ViewBag.Title</h4>
+                <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
+                <a href="/AdminMain/AuthorsA/Edit/@Model.author_id" class="btn btn-primary text-white"><i class="fa fa-edit">&nbsp;</i>Sửa nhạc sỹ</a>
+
+                <div class="mt-3">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.author_name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.author_name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.author_active)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.author_active)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.author_bin)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.author_bin)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.author_note)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.author_note)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.author_datecreate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.author_datecreate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.author_dateupdate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.author_dateupdate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.author_img)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.author_img)
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

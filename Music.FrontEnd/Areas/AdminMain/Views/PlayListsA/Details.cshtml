@@ -1,0 +1,43 @@
+﻿@model Music.Model.EF.PlayList
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PlayList</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.playlist_datecreate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.playlist_datecreate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Album.album_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Album.album_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Music.music_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Music.music_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.playlist_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

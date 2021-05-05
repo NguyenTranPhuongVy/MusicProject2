@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Music.Model.EF.PlayList>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.playlist_datecreate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Album.album_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Music.music_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.playlist_datecreate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Album.album_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Music.music_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.playlist_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.playlist_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.playlist_id })
+        </td>
+    </tr>
+}
+
+</table>

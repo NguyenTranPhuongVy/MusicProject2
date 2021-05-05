@@ -1,0 +1,192 @@
+﻿@model Music.Model.EF.User
+
+@{
+    ViewBag.Title = "Xóa tài khoản " + Model.user_email;
+    Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@ViewBag.Title</h4>
+                <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
+
+                <h3 class="mt-3">Bạn có chắc muốn xóa?</h3>
+                <div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_img)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_img)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_email)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_email)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_pass)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_pass)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_token)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_token)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_datecreate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_datecreate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_datelogin)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_datelogin)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_active)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_active)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_option)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_option)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_bin)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_bin)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_code)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_code)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_point)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_point)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_deadline)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_deadline)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_birth)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_birth)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_phone)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_phone)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_note)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_note)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_address)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_address)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_vip)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_vip)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.user_datevip)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.user_datevip)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Role.role_name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Role.role_name)
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Delete" class="btn btn-danger" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

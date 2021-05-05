@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MusicProjectDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MusicProjectDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Albums">
           <Key>
             <PropertyRef Name="album_id" />
@@ -226,6 +226,16 @@
           <Property Name="slider_datecreate" Type="datetime" />
           <Property Name="slider_active" Type="bit" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="user_id" />
@@ -357,6 +367,18 @@
             </Principal>
             <Dependent Role="Musics">
               <PropertyRef Name="nation_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Musics_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Musics" Type="Self.Musics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Musics">
+              <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -534,6 +556,7 @@
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Singers" EntityType="Self.Singers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sliders" EntityType="Self.Sliders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Albums_Users" Association="Self.FK_Albums_Users">
             <End Role="Users" EntitySet="Users" />
@@ -569,6 +592,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Musics_National" Association="Self.FK_Musics_National">
             <End Role="National" EntitySet="National" />
+            <End Role="Musics" EntitySet="Musics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Musics_Users" Association="Self.FK_Musics_Users">
+            <End Role="Users" EntitySet="Users" />
             <End Role="Musics" EntitySet="Musics" />
           </AssociationSet>
           <AssociationSet Name="FK_MusicsList_Authors" Association="Self.FK_MusicsList_Authors">
@@ -624,8 +651,7 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MusicProjectDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -746,6 +772,7 @@
           <NavigationProperty Name="Groups" Relationship="Self.FK_Group_Musics" FromRole="Musics" ToRole="Group" />
           <NavigationProperty Name="National" Relationship="Self.FK_Musics_National" FromRole="Musics" ToRole="National" />
           <NavigationProperty Name="PlayLists" Relationship="Self.FK_PlayList_Musics" FromRole="Musics" ToRole="PlayList" />
+          <NavigationProperty Name="User" Relationship="MusicProjectDataModel.FK_Musics_Users" FromRole="Music" ToRole="User" />
         </EntityType>
         <EntityType Name="National">
           <Key>
@@ -919,6 +946,7 @@
           <NavigationProperty Name="QuestGroups" Relationship="Self.FK_QuestGroup_Users" FromRole="Users" ToRole="QuestGroup" />
           <NavigationProperty Name="Replies" Relationship="Self.FK_Reply_Users" FromRole="Users" ToRole="Reply" />
           <NavigationProperty Name="Role" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
+          <NavigationProperty Name="Musics" Relationship="MusicProjectDataModel.FK_Musics_Users" FromRole="User" ToRole="Music" />
         </EntityType>
         <Association Name="FK_Albums_Users">
           <End Role="Users" Type="Self.User" Multiplicity="0..1" />
@@ -1291,7 +1319,34 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="MusicProjectDataModel.sysdiagram" />
+          <AssociationSet Name="FK_Musics_Users" Association="MusicProjectDataModel.FK_Musics_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Music" EntitySet="Musics" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Musics_Users">
+          <End Type="MusicProjectDataModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="MusicProjectDataModel.Music" Role="Music" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Music">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1560,6 +1615,17 @@
                 <ScalarProperty Name="user_vip" ColumnName="user_vip" />
                 <ScalarProperty Name="user_datevip" ColumnName="user_datevip" />
                 <ScalarProperty Name="role_id" ColumnName="role_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MusicProjectDataModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
