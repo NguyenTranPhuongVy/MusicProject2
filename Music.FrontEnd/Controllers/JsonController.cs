@@ -40,6 +40,29 @@ namespace Music.FrontEnd.Controllers
                         };
             return Json(music, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult PaysUser()
+        {
+            var user_id = function.CookieID();
+            var list = from p in db.Pays
+                       where p.user_id == user_id.user_id
+                       select new jPays()
+                       {
+                           pakage_id = p.pakage_id,
+                           pay_active = p.pay_active.ToString(),
+                           pay_datecreate = p.pay_datecreate.ToString(),
+                           pay_dateexpiration = p.pay_dateexpiration.ToString(),
+                           pay_id = p.pay_id,
+                           pay_status = p.pay_status,
+                           pay_summoney = p.pay_summoney,
+                           user_id = p.user_id,
+                           package_name = p.Package.package_name,
+                           pakage_price = p.Package.pakage_price.ToString()
+                       };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        
         public JsonResult JProfile()
         {
             //if (function.CookieID() == null)
