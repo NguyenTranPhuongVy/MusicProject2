@@ -12,67 +12,45 @@
                 <h4 class="card-title">@ViewBag.Title</h4>
                 <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
                 <a href="/AdminMain/PaysA/Edit/@Model.pay_id" class="btn btn-primary text-white"><i class="fa fa-edit">&nbsp;</i>Sửa hóa đơn</a>
-
-                <div class="mt-3">
-                    <dl class="dl-horizontal">
-                        <dt>
-                            @Html.DisplayNameFor(model => model.pay_datecreate)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.pay_datecreate)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.pay_dateexpiration)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.pay_dateexpiration)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.pay_summoney)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.pay_summoney)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.pay_active)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.pay_active)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.pay_status)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.pay_status)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Package.package_name)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.Package.package_name)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.User.user_name)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.User.user_name)
-                        </dd>
-
-                    </dl>
-                </div>
+                <form class="ui form segment">
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Tên Người Mua</label>
+                            <input value="@Model.User.user_name" type="text" />
+                        </div>
+                        <div class="field">
+                            <label>Gói Đã Mua</label>
+                            <input value="@Model.Package.package_name" type="text" />
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Ngày Mua</label>
+                            <input value="@Model.pay_datecreate" type="text" />
+                        </div>
+                        <div class="field">
+                            <label>Ngày Hết Hạn Gói</label>
+                            <input value="@Model.pay_dateexpiration" type="text" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Giá Gói</label>
+                        <input value="@Model.pay_summoney VNĐ" type="text" />
+                    </div>
+                    <div class="field">
+                        <label>Trạng Thái Hiển Thị</label>
+                        <select class="ui dropdown" name="gender">
+                            @if (Model.pay_status == true)
+                            {
+                                <option value="true">Hoạt Động</option>
+                            }
+                            else
+                            {
+                                <option value="false">Không Hoạt Động</option>
+                            }
+                        </select>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -16,11 +16,11 @@
                 {
                     @Html.AntiForgeryToken()
 
-                    <div class="form-horizontal mt-3">
+                    <div class="form-horizontal mt-3 ui form segment">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.package_id)
                         <div class="form-group">
-                            @Html.LabelFor(model => model.package_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label>Tên Gói</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.package_name, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.package_name, "", new { @class = "text-danger" })
@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.package_money, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label>Giá Gói</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.package_money, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.package_money, "", new { @class = "text-danger" })
@@ -36,7 +36,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.package_content, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label>Nội Dung Gói</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.package_content, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.package_content, "", new { @class = "text-danger" })
@@ -44,15 +44,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.package_datecreate, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.package_datecreate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.package_datecreate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.package_active, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label>Trạng Thái Hoạt Động</label>
                             <div class="col-md-12">
                                 <div class="checkbox">
                                     @Html.EditorFor(model => model.package_active)
@@ -62,17 +54,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.package_bin, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-12">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.package_bin)
-                                    @Html.ValidationMessageFor(model => model.package_bin, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.pakage_price, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label>Mệnh Giá</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.pakage_price, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.pakage_price, "", new { @class = "text-danger" })
@@ -80,7 +62,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.pakege_deadline, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label>Thời Gian</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.pakege_deadline, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.pakege_deadline, "", new { @class = "text-danger" })
@@ -88,7 +70,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.package_option, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label>Trạng Thái Hiển Thị</label>
                             <div class="col-md-12">
                                 <div class="checkbox">
                                     @Html.EditorFor(model => model.package_option)
@@ -98,7 +80,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.package_month, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label>Thời Hạn</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.package_month, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.package_month, "", new { @class = "text-danger" })
@@ -107,7 +89,7 @@
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-12">
-                                <input type="submit" value="Create" class="btn btn-default" />
+                                <input type="submit" value="Sửa" class="btn btn-default" />
                             </div>
                         </div>
                     </div>

@@ -16,12 +16,12 @@
                 {
                     @Html.AntiForgeryToken()
 
-                    <div class="form-horizontal mt-3">
+                    <div class="form-horizontal mt-3 ui form segment">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.pay_id)
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.user_id, "user_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label>Tên Người Dùng</label>
                             <div class="col-md-12">
                                 @Html.DropDownList("user_id", null, htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.pakage_id, "pakage_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label>Tên Gói Mua</label>
                             <div class="col-md-12">
                                 @Html.DropDownList("pakage_id", null, htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.pakage_id, "", new { @class = "text-danger" })
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.pay_datecreate, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label>Ngày Mua</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.pay_datecreate, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.pay_datecreate, "", new { @class = "text-danger" })
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.pay_dateexpiration, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label>Ngày Gia Hạn</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.pay_dateexpiration, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.pay_dateexpiration, "", new { @class = "text-danger" })
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.pay_summoney, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label>Giá Mua</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.pay_summoney, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.pay_summoney, "", new { @class = "text-danger" })
@@ -61,7 +61,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.pay_active, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label>Trạng Thái Hoạt Động</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.pay_active, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.pay_active, "", new { @class = "text-danger" })
@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.pay_status, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label>Nội Dung Giao Dịch</label>
                             <div class="col-md-12">
                                 <div class="checkbox">
                                     @Html.EditorFor(model => model.pay_status)
@@ -80,7 +80,7 @@
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-12">
-                                <input type="submit" value="Save" class="btn btn-default" />
+                                <input type="submit" value="Sửa" class="btn btn-default" />
                             </div>
                         </div>
                     </div>
