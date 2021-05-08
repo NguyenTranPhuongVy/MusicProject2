@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Quản lý Slider";
     Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+    var active = "active";
 }
 
 <div class="row">
@@ -33,7 +34,28 @@
                                     </td>
                                     <td>@item.slider_name</td>
                                     <td>@item.slider_datecreate</td>
-                                    <td>@item.slider_active</td>
+                                    <td>
+                                        <div class="ui toggle checkbox" id="@active@item.slider_id">
+                                            <input type="checkbox" @(item.slider_active == true ? "checked" : "")>
+                                            <label></label>
+                                        </div>
+                                        <script>
+                                            $(document).ready(function () {
+                                                $("#@active@item.slider_id").click(function () {
+                                                    setTimeout(function () {
+                                                        $.ajax({
+                                                        type: "post",
+                                                            url: "/AdminMain/SlidersA/ChangeActive?id=" + @item.slider_id,
+                                                        contentType: "Json",
+                                                        success: function (response) {
+                                                            alert("success!");
+                                                        }
+                                                    })
+                                                    }, 300)
+                                                })
+                                            })
+                                        </script>
+                                    </td>
                                     <td>
                                         @Html.ActionLink("Sửa", "Edit", new { id = item.slider_id }) |
                                         @Html.ActionLink("Xem", "Details", new { id = item.slider_id }) |

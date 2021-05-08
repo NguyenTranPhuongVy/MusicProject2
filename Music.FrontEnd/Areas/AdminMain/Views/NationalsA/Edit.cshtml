@@ -11,13 +11,16 @@
                 <h4 class="card-title">@ViewBag.Title</h4>
                 <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
 
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("Edit", "NationalsA", FormMethod.Post, new { @enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.nation_id)
+                    @Html.HiddenFor(x => x.nation_bin)
+                    @Html.HiddenFor(x => x.nation_datecreate)
 
                     <div class="form-horizontal mt-3 ui form segment">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                         @Html.HiddenFor(model => model.nation_id)
+                        @Html.HiddenFor(model => model.nation_id)
                         <div class="form-group">
                             <label>Tên Quốc Gia</label>
                             <div class="col-md-12">

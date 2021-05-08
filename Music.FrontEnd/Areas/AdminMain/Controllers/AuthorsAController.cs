@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Music.FrontEnd.Function;
 using Music.Model.EF;
 
 namespace Music.FrontEnd.Areas.AdminMain.Controllers
@@ -13,11 +14,12 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
     public class AuthorsAController : Controller
     {
         private MusicProjectDataEntities db = new MusicProjectDataEntities();
+        private FilesController filesController = new FilesController();
 
         // GET: AdminMain/AuthorsA
         public ActionResult Index()
         {
-            return View(db.Authors.OrderByDescending(n=>n.author_name).ToList());
+            return View(db.Authors.Where(x => x.author_bin == false).OrderByDescending(n=>n.author_name).ToList());
         }
 
         // GET: AdminMain/AuthorsA/Details/5
@@ -46,10 +48,13 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "author_id,author_name,author_active,author_bin,author_note,author_datecreate,author_dateupdate,author_img")] Author author)
+        public ActionResult Create([Bind(Include = "author_id,author_name,author_active,author_bin,author_note,author_datecreate,author_dateupdate,author_img")] Author author, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)
             {
+                author.author_bin = false;
+                author.author_datecreate = DateTime.Now;
+                author.author_img = filesController.AddImages(img, "Author", Guid.NewGuid().ToString());
                 db.Authors.Add(author);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,10 +83,14 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "author_id,author_name,author_active,author_bin,author_note,author_datecreate,author_dateupdate,author_img")] Author author)
+        public ActionResult Edit([Bind(Include = "author_id,author_name,author_active,author_bin,author_note,author_datecreate,author_dateupdate,author_img")] Author author, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)
             {
+                if(img != null)
+                {
+                    author.author_img = filesController.AddImages(img, "Author", Guid.NewGuid().ToString());
+                }
                 db.Entry(author).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -101,7 +110,25 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
             {
                 return HttpNotFound();
             }
-            return View(author);
+            db.Authors.Find(id).author_bin = true;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult ChangeActive(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Author author = db.Authors.Find(id);
+            if (author == null)
+            {
+                return HttpNotFound();
+            }
+            db.Authors.Find(id).author_active = !db.Authors.Find(id).author_active;
+            db.SaveChanges();
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
 
         // POST: AdminMain/AuthorsA/Delete/5

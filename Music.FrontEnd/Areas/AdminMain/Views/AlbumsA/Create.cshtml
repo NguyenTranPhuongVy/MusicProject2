@@ -12,7 +12,7 @@
                 <h4 class="card-title">@ViewBag.Title</h4>
                 <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
 
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("Create", "AlbumsA", FormMethod.Post ,new { @enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
 
@@ -23,22 +23,6 @@
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.album_name, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.album_name, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="field">
-                           <label>Ngày Tạo</label>
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.album_datecreate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.album_datecreate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Ngày Sửa</label>
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.album_dateedit, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.album_dateedit, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
@@ -70,17 +54,6 @@
                         </div>
 
                         <div class="field">
-                            <label>Thùng Rác</label>
-                            <div class="col-md-12">
-                                <select class="ui dropdown" name="album_bin">
-                                    <option value="">---Vui lòng chọn trạng thái---</option>
-                                    <option value="True">Xoá</option>
-                                    <option value="False">Không Xoá</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="field">
                             <label>Ghi Chú</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.album_note, new { htmlAttributes = new { @class = "form-control" } })
@@ -91,8 +64,7 @@
                         <div class="field">
                             <label>Hình Ảnh</label>
                             <div class="col-md-12">
-                                @Html.EditorFor(model => model.album_img, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.album_img, "", new { @class = "text-danger" })
+                                <input type="file" name="img" class="btn btn-danger" required />
                             </div>
                         </div>
 

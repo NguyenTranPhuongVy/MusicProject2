@@ -12,7 +12,7 @@
                 <h4 class="card-title">@ViewBag.Title</h4>
                 <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
 
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("Create", "AuthorsA", FormMethod.Post, new { @enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
 
@@ -37,16 +37,6 @@
                         </div>
 
                         <div class="field">
-                            <label>Trạng Thái Xoá</label>
-                            <div class="col-md-12">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.author_bin)
-                                    @Html.ValidationMessageFor(model => model.author_bin, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="field">
                             <label>Ghi Chú</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.author_note, new { htmlAttributes = new { @class = "form-control" } })
@@ -55,26 +45,9 @@
                         </div>
 
                         <div class="field">
-                            <label>Ngày Tạo</label>
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.author_datecreate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.author_datecreate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Ngày Sửa</label>
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.author_dateupdate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.author_dateupdate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="field">
                             <label>Hình Ảnh</label>
                             <div class="col-md-12">
-                                @Html.EditorFor(model => model.author_img, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.author_img, "", new { @class = "text-danger" })
+                                <input type="file" class="btn btn-danger" name="img" required/>
                             </div>
                         </div>
 
