@@ -1,17 +1,30 @@
-﻿
+﻿@using Music.Model.EF;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+
+    MusicProjectDataEntities db = new MusicProjectDataEntities();
+
+    List<Music> musics = db.Musics.ToList();
+    List<Album> albums = db.Albums.ToList();
+    List<Pay> pays = db.Pays.ToList();
+    List<User> users = db.Users.ToList();
 }
 
 <div class="row">
     <div class="col-lg-3 col-sm-6">
         <div class="card gradient-1">
             <div class="card-body">
-                <h3 class="card-title text-white">Album</h3>
+                <h3 class="card-title text-white">Tổng doanh thu</h3>
                 <div class="d-inline-block">
-                    <h2 class="text-white">4565</h2>
-                    <p class="text-white mb-0">Jan - March 2019</p>
+                    <h2 class="text-white">@pays.Where(n=>n.pay_status == true).Sum(n=>n.pay_summoney).Value.ToString("#,###") vnđ</h2>
+                    <p class="text-white mb-0">
+                        Gần đây
+                        @foreach (var item in pays.Where(n => n.pay_status == true).OrderByDescending(n => n.pay_datecreate).Take(1))
+                        {
+                            @item.pay_datecreate
+                        }
+                    </p>
                 </div>
                 <span class="float-right display-5 opacity-5"><i class="fas fa-record-vinyl"></i></span>
             </div>
@@ -20,90 +33,75 @@
     <div class="col-lg-3 col-sm-6">
         <div class="card gradient-2">
             <div class="card-body">
-                <h3 class="card-title text-white">Bài Hát</h3>
+                <h3 class="card-title text-white">Bài Hát Admin</h3>
                 <div class="d-inline-block">
-                    <h2 class="text-white">$ 8541</h2>
-                    <p class="text-white mb-0">Jan - March 2019</p>
+                    <h2 class="text-white">@musics.Where(n=>n.User.role_id == 2).Count() bài hát</h2>
+                    <p class="text-white mb-0">
+                        Gần đây
+                        @foreach (var item in musics.Where(n => n.User.role_id == 2).OrderByDescending(n => n.music_datecreate).Take(1))
+                        {
+                            @item.music_datecreate
+                        }
+                    </p>
                 </div>
                 <span class="float-right display-5 opacity-5"><i class="fas fa-music"></i></span>
             </div>
         </div>
     </div>
     <div class="col-lg-3 col-sm-6">
-        <div class="card gradient-3">
-            <div class="card-body">
-                <h3 class="card-title text-white">Người Dùng Hoạt Động</h3>
-                <div class="d-inline-block">
-                    <h2 class="text-white">4565</h2>
-                    <p class="text-white mb-0">Jan - March 2019</p>
-                </div>
-                <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-sm-6">
         <div class="card gradient-4">
             <div class="card-body">
-                <h3 class="card-title text-white">Ca Sỹ</h3>
+                <h3 class="card-title text-white">Bài hát người dùng</h3>
                 <div class="d-inline-block">
-                    <h2 class="text-white">99%</h2>
-                    <p class="text-white mb-0">Jan - March 2019</p>
+                    <h2 class="text-white">@musics.Where(n => n.User.role_id == 1).Count() bài hát</h2>
+                    <p class="text-white mb-0">
+                        Gần đây
+                        @foreach (var item in musics.Where(n => n.User.role_id == 1).OrderByDescending(n => n.music_datecreate).Take(1))
+                        {
+                            @item.music_datecreate
+                        }
+                    </p>
                 </div>
                 <span class="float-right display-5 opacity-5"><i class="fas fa-podcast"></i></span>
             </div>
         </div>
     </div>
-</div>
-<div class="row">
     <div class="col-lg-3 col-sm-6">
-        <div class="card">
+        <div class="card gradient-3">
             <div class="card-body">
-                <div class="text-center">
-                    <img src="~/Content/AdminMain/images/users/8.jpg" class="rounded-circle" alt="">
-                    <h5 class="mt-3 mb-1">Ana Liem</h5>
-                    <p class="m-0">Senior Manager</p>
-                    <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
+                <h3 class="card-title text-white">Người Dùng</h3>
+                <div class="d-inline-block">
+                    <h2 class="text-white">@users.Where(n=>n.role_id == 1).Count() tài khoản</h2>
+                    <p class="text-white mb-0">
+                        Gần đây
+                        @foreach (var item in users.Where(n => n.role_id == 1).OrderByDescending(n => n.user_datecreate).Take(1))
+                        {
+                            @item.user_datecreate
+                        }
+                    </p>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-sm-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="text-center">
-                    <img src="~/Content/AdminMain/images/users/5.jpg" class="rounded-circle" alt="">
-                    <h5 class="mt-3 mb-1">John Abraham</h5>
-                    <p class="m-0">Store Manager</p>
-                    <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-sm-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="text-center">
-                    <img src="~/Content/AdminMain/images/users/7.jpg" class="rounded-circle" alt="">
-                    <h5 class="mt-3 mb-1">John Doe</h5>
-                    <p class="m-0">Sales Man</p>
-                    <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-sm-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="text-center">
-                    <img src="~/Content/AdminMain/images/users/1.jpg" class="rounded-circle" alt="">
-                    <h5 class="mt-3 mb-1">Mehedi Titas</h5>
-                    <p class="m-0">Online Marketer</p>
-                    <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
-                </div>
+                <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
             </div>
         </div>
     </div>
 
+</div>
+<div class="row">
+    @foreach (var item in users.Where(n => n.role_id == 1).OrderByDescending(n => n.user_datecreate).Take(4))
+    {
+        <div class="col-lg-3 col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center">
+                        <img src="~/Images/User/@item.user_img" class="rounded-circle" alt="" style="width: 70px; height: 70px">
+                        <h5 class="mt-3 mb-1">@item.user_name</h5>
+                        <p class="m-0">@item.user_email</p>
+                        <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
 
 <div class="row">
