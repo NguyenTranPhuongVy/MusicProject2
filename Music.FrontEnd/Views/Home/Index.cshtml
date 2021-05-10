@@ -196,7 +196,14 @@
                                     @if (function.CookieID() != null)
                                     {
                                         var qg = db.QuestGroups.FirstOrDefault(t => t.quest_id == item.quest_id && t.user_id == user1.user_id);
-                                        <span class="card-media-body-heading" style="font-size: 16px !important; font-weight:bold;">Tiến độ: @qg.qg_progress/@item.quest_limit</span>
+                                        if (qg != null)
+                                        {
+                                            <span class="card-media-body-heading" style="font-size: 16px !important; font-weight:bold;">Tiến độ: @(qg.qg_progress)/@item.quest_limit</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="card-media-body-heading" style="font-size: 16px !important; font-weight:bold;">Tiến độ: 0/@item.quest_limit</span>
+                                        }
                                     }
                                     else
                                     {
@@ -220,7 +227,7 @@
                                         {
                                             var qg = db.QuestGroups.FirstOrDefault(t => t.quest_id == item.quest_id && t.user_id == user1.user_id);
 
-                                            if (qg.qg_status == true)
+                                            if (qg != null && qg.qg_status == true)
                                             {
                                                 <span style="color: green" class="card-media-body-supporting-bottom-text subtle u-float-right">Đã hoàn thành&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                             }
