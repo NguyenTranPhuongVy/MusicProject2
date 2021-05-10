@@ -30,7 +30,7 @@
                         <div class="field">
                             <label>Hình Ảnh</label>
                             <div class="col-md-12">
-                                <input type="file" class="btn btn-danger" name="file_img" required />
+                                <input type="file" class="btn btn-danger" name="img" required />
                             </div>
                         </div>
 
@@ -68,8 +68,13 @@
                         <div class="field">
                             <label>Tên Người Tạo</label>
                             <div class="col-md-12">
-                                @Html.EditorFor(model => model.user_id, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
+                                <select name="user_id" class="ui fluid dropdown search">
+                                    <option value="">-- Chọn danh mục -- </option>
+                                    @foreach (var item in db.Users.Where(x => x.user_bin == false && x.user_active == true && (x.user_vip == true || x.role_id == 2)))
+                                    {
+                                        <option value="@item.user_id">@item.user_name</option>
+                                    }
+                                </select>
                             </div>
                         </div>
 

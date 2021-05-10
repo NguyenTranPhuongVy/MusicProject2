@@ -8152,6 +8152,7 @@
     <Content Include="Views\Musics\RankMusic.cshtml" />
     <Content Include="Views\Albums\MyAlbumsIndex.cshtml" />
     <Content Include="Views\Musics\Index.cshtml" />
+    <Content Include="Views\Quest\RedeemPoint.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

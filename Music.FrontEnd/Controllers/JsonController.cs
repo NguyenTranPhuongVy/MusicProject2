@@ -141,5 +141,22 @@ namespace Music.FrontEnd.Controllers
                        };
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+        // danh sach doi qua
+        public JsonResult GetAllGift()
+        {
+            var list = from item in db.Packages
+                       where item.package_bin == false && item.package_active == true && item.package_option == true && (item.package_type == 2 || item.package_type == 3)
+                       orderby item.package_datecreate descending
+                       select new
+                       {
+                           id = item.package_id,
+                           name = item.package_name,
+                           point = item.pakage_price,
+                           date = item.pakege_deadline,
+                           content = item.package_content
+
+                       };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
 }

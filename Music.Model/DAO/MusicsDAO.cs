@@ -48,7 +48,7 @@ namespace Music.Model.DAO
                 {
                     groupDAO.Add(new Group()
                     {
-                        category_id = item,
+                        singer_id = item,
                         music_id = music_id
                     });
                 }
@@ -117,7 +117,7 @@ namespace Music.Model.DAO
                 {
                     playListDAO.Add(new PlayList()
                     {
-                        albums_id = item,
+                        albums_id    = item,
                         music_id = musics.music_id
                     });
                 }

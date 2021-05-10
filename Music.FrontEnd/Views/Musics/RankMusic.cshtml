@@ -57,16 +57,19 @@
                                     <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
                                     <div class="float-left ml-3">
                                         &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.music_name</a>
-                                        @if (item.singer_id != null)
+                                        @if (item.Groups.FirstOrDefault(x => x.singer_id != null) != null)
                                         {
-                                            <p>
-                                                @item.Singer.singer_name
-                                            </p>
+                                            foreach (var item1 in item.Groups.Where(x => x.singer_id != null))
+                                            {
+                                                <p>
+                                                    @item1.Singer.singer_name
+                                                </p>
+                                            }
                                         }
                                         else
                                         {
-                                            foreach(var items in users.Where(n => n.user_id == item.user_id))
-                                            { 
+                                            foreach (var items in users.Where(n => n.user_id == item.user_id))
+                                            {
                                                 <p>
                                                     @items.user_name
                                                 </p>
@@ -141,11 +144,14 @@ else if (ViewBag.Note == "100")
                                     <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
                                     <div class="float-left ml-3">
                                         &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.music_name</a>
-                                        @if (item.singer_id != null)
+                                        @if (item.Groups.FirstOrDefault(x => x.singer_id != null) != null)
                                         {
-                                            <p>
-                                                @item.Singer.singer_name
-                                            </p>
+                                            foreach (var item1 in item.Groups.Where(x => x.singer_id != null))
+                                            {
+                                                <p>
+                                                    @item1.Singer.singer_name
+                                                </p>
+                                            }
                                         }
                                         else
                                         {
@@ -225,11 +231,14 @@ else if (ViewBag.Note == "viet")
                                     <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
                                     <div class="float-left ml-3">
                                         &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.music_name</a>
-                                        @if (item.singer_id != null)
+                                        @if (item.Groups.FirstOrDefault(x => x.singer_id != null) != null)
                                         {
-                                            <p>
-                                                @item.Singer.singer_name
-                                            </p>
+                                            foreach (var item1 in item.Groups.Where(x => x.singer_id != null))
+                                            {
+                                                <p>
+                                                    @item1.Singer.singer_name
+                                                </p>
+                                            }
                                         }
                                         else
                                         {
@@ -309,11 +318,14 @@ else if (ViewBag.Note == "tre")
                                     <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
                                     <div class="float-left ml-3">
                                         &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.music_name</a>
-                                        @if (item.singer_id != null)
+                                        @if (item.Groups.FirstOrDefault(x => x.singer_id != null) != null)
                                         {
-                                            <p>
-                                                @item.Singer.singer_name
-                                            </p>
+                                            foreach (var item1 in item.Groups.Where(x => x.singer_id != null))
+                                            {
+                                                <p>
+                                                    @item1.Singer.singer_name
+                                                </p>
+                                            }
                                         }
                                         else
                                         {
@@ -393,11 +405,14 @@ else if (ViewBag.Note == "aumy")
                                     <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
                                     <div class="float-left ml-3">
                                         &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.music_name</a>
-                                        @if (item.singer_id != null)
+                                        @if (item.Groups.FirstOrDefault(x => x.singer_id != null) != null)
                                         {
-                                            <p>
-                                                @item.Singer.singer_name
-                                            </p>
+                                            foreach (var item1 in item.Groups.Where(x => x.singer_id != null))
+                                            {
+                                                <p>
+                                                    @item1.Singer.singer_name
+                                                </p>
+                                            }
                                         }
                                         else
                                         {
@@ -477,11 +492,14 @@ else if (ViewBag.Note == "kpop")
                                     <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
                                     <div class="float-left ml-3">
                                         &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.music_name</a>
-                                        @if (item.singer_id != null)
+                                        @if (item.Groups.FirstOrDefault(x => x.singer_id != null) != null)
                                         {
-                                            <p>
-                                                @item.Singer.singer_name
-                                            </p>
+                                            foreach (var item1 in item.Groups.Where(x => x.singer_id != null))
+                                            {
+                                                <p>
+                                                    @item1.Singer.singer_name
+                                                </p>
+                                            }
                                         }
                                         else
                                         {

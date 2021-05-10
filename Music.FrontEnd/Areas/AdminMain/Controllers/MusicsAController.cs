@@ -65,7 +65,6 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
         {
             music.music_bin = false;
             music.music_datecreate = DateTime.Now;
-            music.user_id = function.CookieID().user_id;
             if (ModelState.IsValid)
             {
                 music.music_img = filesController.AddImages(img, "Music", Guid.NewGuid().ToString());

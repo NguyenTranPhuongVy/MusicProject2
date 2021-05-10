@@ -196,40 +196,47 @@
                                     @if (function.CookieID() != null)
                                     {
                                         var qg = db.QuestGroups.FirstOrDefault(t => t.quest_id == item.quest_id && t.user_id == user1.user_id);
-                                        <span class="card-media-body-heading" style="font-size: 16px !important; font-weight:bold;">Tiến độ: @qg.qg_progress/@item.quest_limit</span>
+                                        if (qg != null)
+                                        {
+                                            <span class="card-media-body-heading" style="font-size: 16px !important; font-weight:bold;">Tiến độ: @(qg.qg_progress)/@item.quest_limit</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="card-media-body-heading" style="font-size: 16px !important; font-weight:bold;">Tiến độ: 0/@item.quest_limit</span>
+                                        }
                                     }
                                     else
                                     {
                                         <span class="card-media-body-heading" style="font-size: 16px !important; font-weight:bold;">Tiến độ: 0/@item.quest_limit</span>
                                     }
-                                <div class="card-media-body-supporting-bottom">
-                                    @if (item.quest_category != null)
-                                    {
-                                        <span class="card-media-body-supporting-bottom-text subtle u-float-right">@item.Category.category_name&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    }
-                                    @if (item.quest_singer != null)
-                                    {
-                                        <span class="card-media-body-supporting-bottom-text subtle u-float-right">@item.Singer.singer_name&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    }
-                                    @if (item.quest_national != null)
-                                    {
-                                        <span class="card-media-body-supporting-bottom-text subtle u-float-right">@item.National.nation_name&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    }
-
-                                    @if (user1 != null)
-                                    {
-                                        var qg = db.QuestGroups.FirstOrDefault(t => t.quest_id == item.quest_id && t.user_id == user1.user_id);
-
-                                        if (qg.qg_status == true)
+                                    <div class="card-media-body-supporting-bottom">
+                                        @if (item.quest_category != null)
                                         {
-                                            <span style="color: green" class="card-media-body-supporting-bottom-text subtle u-float-right">Đã hoàn thành&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            <span class="card-media-body-supporting-bottom-text subtle u-float-right">@item.Category.category_name&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                         }
-                                        else
+                                        @if (item.quest_singer != null)
                                         {
-                                            <span style="color: red" class="card-media-body-supporting-bottom-text subtle u-float-right">Chưa hoàn thành&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            <span class="card-media-body-supporting-bottom-text subtle u-float-right">@item.Singer.singer_name&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                         }
-                                    }
-                                </div>
+                                        @if (item.quest_national != null)
+                                        {
+                                            <span class="card-media-body-supporting-bottom-text subtle u-float-right">@item.National.nation_name&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        }
+
+                                        @if (user1 != null)
+                                        {
+                                            var qg = db.QuestGroups.FirstOrDefault(t => t.quest_id == item.quest_id && t.user_id == user1.user_id);
+
+                                            if(qg != null && qg.qg_status == true)
+                                            {
+                                                <span style="color: green" class="card-media-body-supporting-bottom-text subtle u-float-right">Đã hoàn thành&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            }
+                                            else
+                                            {
+                                                <span style="color: red" class="card-media-body-supporting-bottom-text subtle u-float-right">Chưa hoàn thành&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            }
+                                        }
+                                    </div>
                                     <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
                                     </div>
                                 </div>

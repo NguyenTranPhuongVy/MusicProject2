@@ -2,12 +2,7 @@
 @{
     ViewBag.Title = "MyMusisc";
     var coo = new FunctionController();
-    var id = coo.CookieID();
 
-    if (id.user_vip == false)
-    {
-        Response.Redirect("/");
-    }
 }
 
 <section class="services spad" ng-app="myApp">
@@ -43,11 +38,11 @@
                             <div class="card-content">
                                 <a href="/Musics/DetailsMusic/{{list.id}}"><img class="thumbnail" src="~/Images/Music/{{list.img}}" alt="{{list.name}}" /></a>
                                 <h3 class="text-white" style="font-family: 'Josefin Sans', sans-serif">{{list.name}}</h3>
-                                <p class="para text-white">
+                                @*<p class="para text-white">
                                     <a href="/Musics/DetailsMusic/{{list.id}}"><i class="fa fa-eye"></i></a> |
                                     <a href="/Musics/DetailsMusic/{{list.id}}"><i class="fa fa-trash"></i></a> |
                                     <a href="/Musics/DetailsMusic/{{list.id}}"><i class="fa fa-edit"></i></a>
-                                </p>
+                                </p>*@
                             </div>
                         </div>
                     </div>

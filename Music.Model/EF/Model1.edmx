@@ -130,6 +130,7 @@
           <Property Name="pakege_deadline" Type="datetime" />
           <Property Name="package_option" Type="bit" />
           <Property Name="package_month" Type="int" />
+          <Property Name="package_type" Type="int" />
         </EntityType>
         <EntityType Name="Pays">
           <Key>
@@ -905,6 +906,7 @@
           <Property Name="package_option" Type="Boolean" />
           <Property Name="package_month" Type="Int32" />
           <NavigationProperty Name="Pays" Relationship="MusicProjectDataModel.FK_Pays_Packages" FromRole="Package" ToRole="Pay" />
+          <Property Name="package_type" Type="Int32" />
         </EntityType>
         <EntityType Name="Pay">
           <Key>
@@ -1452,6 +1454,7 @@
           <EntitySetMapping Name="Packages">
             <EntityTypeMapping TypeName="MusicProjectDataModel.Package">
               <MappingFragment StoreEntitySet="Packages">
+                <ScalarProperty Name="package_type" ColumnName="package_type" />
                 <ScalarProperty Name="package_month" ColumnName="package_month" />
                 <ScalarProperty Name="package_option" ColumnName="package_option" />
                 <ScalarProperty Name="pakege_deadline" ColumnName="pakege_deadline" />

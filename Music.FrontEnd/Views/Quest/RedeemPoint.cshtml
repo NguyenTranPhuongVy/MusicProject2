@@ -1,8 +1,11 @@
 ﻿@using Music.Model.EF;
+@using Music.FrontEnd.Function;
 @model List<Package>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    FunctionController function = new FunctionController();
+    var user = function.CookieID();
 }
 
 <section class="services spad" ng-app="myApp">
@@ -14,6 +17,7 @@
                     <p style="font-size: 20px">
                         Dịch vụ nghe nhạc Online chất lượng cao, kết hợp cùng các tiện ích dành riêng cho thành viên VIP
                     </p>
+                    <h3 style="color: white">Điểm của bạn: @user.user_point</h3>
                 </center>
                 <div class="">
                     <div id="generic_price_table">
@@ -46,9 +50,9 @@
                                                     <!--PRICE START-->
                                                     <div class="generic_price_tag clearfix">
                                                         <span class="price">
-                                                            <span class="sign"><i class="fas fa-box-open"></i></span>
+                                                            <span class="sign">$</span>
                                                             <span class="currency">@item.pakage_price</span>
-                                                            <span class="month">/VNĐ</span>
+                                                            <span class="month">/điểm</span>
                                                         </span>
                                                     </div>
                                                     <!--//PRICE END-->
@@ -66,7 +70,14 @@
                                                 <!--//FEATURE LIST END-->
                                                 <!--BUTTON START-->
                                                 <div class="generic_price_btn clearfix">
-                                                    <a class="" href="@Url.Action("Details","Pays", new { id = item.package_id })">MUA VIP</a>
+                                                    @if (item.pakage_price <= user.user_point)
+                                                    {
+                                                        <a class="" href="@Url.Action("RedeemPointPost","Quest", new { id = item.package_id })">Đôi điểm</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="" style="background: red" href="@Url.Action("Index","Musics")">Cày nhiệm vụ kiếm điểm đi con gà</a>
+                                                    }
                                                 </div>
                                                 <!--//BUTTON END-->
 
@@ -114,73 +125,73 @@
 
 <style>
 
-        /*PRICE COLOR CODE START*/
-        #generic_price_table .generic_content {
-            background-color: #fff;
+    /*PRICE COLOR CODE START*/
+    #generic_price_table .generic_content {
+        background-color: #fff;
+    }
+
+        #generic_price_table .generic_content .generic_head_price {
+            background-color: #f6f6f6;
         }
 
-            #generic_price_table .generic_content .generic_head_price {
-                background-color: #f6f6f6;
+            #generic_price_table .generic_content .generic_head_price .generic_head_content .head_bg {
+                border-color: #e4e4e4 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #e4e4e4;
             }
 
-                #generic_price_table .generic_content .generic_head_price .generic_head_content .head_bg {
-                    border-color: #e4e4e4 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #e4e4e4;
-                }
-
-                #generic_price_table .generic_content .generic_head_price .generic_head_content .head span {
-                    color: #525252;
-                }
-
-                #generic_price_table .generic_content .generic_head_price .generic_price_tag .price .sign {
-                    color: #414141;
-                }
-
-                #generic_price_table .generic_content .generic_head_price .generic_price_tag .price .currency {
-                    color: #414141;
-                }
-
-                #generic_price_table .generic_content .generic_head_price .generic_price_tag .price .cent {
-                    color: #414141;
-                }
-
-                #generic_price_table .generic_content .generic_head_price .generic_price_tag .month {
-                    color: #414141;
-                }
-
-            #generic_price_table .generic_content .generic_feature_list ul li {
-                color: #a7a7a7;
+            #generic_price_table .generic_content .generic_head_price .generic_head_content .head span {
+                color: #525252;
             }
 
-                #generic_price_table .generic_content .generic_feature_list ul li span {
-                    color: #414141;
-                }
-
-                #generic_price_table .generic_content .generic_feature_list ul li:hover {
-                    background-color: #E4E4E4;
-                    border-left: 5px solid #2ECC71;
-                }
-
-            #generic_price_table .generic_content .generic_price_btn a {
-                border: 1px solid #2ECC71;
-                color: #2ECC71;
+            #generic_price_table .generic_content .generic_head_price .generic_price_tag .price .sign {
+                color: #414141;
             }
 
-            #generic_price_table .generic_content.active .generic_head_price .generic_head_content .head_bg,
-            #generic_price_table .generic_content:hover .generic_head_price .generic_head_content .head_bg {
-                border-color: #2ECC71 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #2ECC71;
-                color: #fff;
+            #generic_price_table .generic_content .generic_head_price .generic_price_tag .price .currency {
+                color: #414141;
             }
 
-            #generic_price_table .generic_content:hover .generic_head_price .generic_head_content .head span,
-            #generic_price_table .generic_content.active .generic_head_price .generic_head_content .head span {
-                color: #fff;
+            #generic_price_table .generic_content .generic_head_price .generic_price_tag .price .cent {
+                color: #414141;
             }
 
-            #generic_price_table .generic_content:hover .generic_price_btn a,
-            #generic_price_table .generic_content.active .generic_price_btn a {
-                background-color: #2ECC71;
-                color: #fff;
+            #generic_price_table .generic_content .generic_head_price .generic_price_tag .month {
+                color: #414141;
             }
+
+        #generic_price_table .generic_content .generic_feature_list ul li {
+            color: #a7a7a7;
+        }
+
+            #generic_price_table .generic_content .generic_feature_list ul li span {
+                color: #414141;
+            }
+
+            #generic_price_table .generic_content .generic_feature_list ul li:hover {
+                background-color: #E4E4E4;
+                border-left: 5px solid #2ECC71;
+            }
+
+        #generic_price_table .generic_content .generic_price_btn a {
+            border: 1px solid #2ECC71;
+            color: #2ECC71;
+        }
+
+        #generic_price_table .generic_content.active .generic_head_price .generic_head_content .head_bg,
+        #generic_price_table .generic_content:hover .generic_head_price .generic_head_content .head_bg {
+            border-color: #2ECC71 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #2ECC71;
+            color: #fff;
+        }
+
+        #generic_price_table .generic_content:hover .generic_head_price .generic_head_content .head span,
+        #generic_price_table .generic_content.active .generic_head_price .generic_head_content .head span {
+            color: #fff;
+        }
+
+        #generic_price_table .generic_content:hover .generic_price_btn a,
+        #generic_price_table .generic_content.active .generic_price_btn a {
+            background-color: #2ECC71;
+            color: #fff;
+        }
 
     #generic_price_table {
         margin: 50px 0 50px 0;
