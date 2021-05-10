@@ -61,7 +61,7 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "music_id,music_name,music_img,music_lyric,music_time,music_view,music_dowload,user_id,music_linkdow,music_datecreate,music_dateedit,music_active,music_bin,music_option,nation_id,music_video,genres_id,author_id,album_id,national_id")] Music.Model.EF.Music music, HttpPostedFileBase img, HttpPostedFileBase link_mp3, HttpPostedFileBase link_video, int[] category, int[] singers, int[] album)
+        public ActionResult Create([Bind(Include = "music_id,music_name,music_img,music_lyric,music_time,music_view,music_dowload,user_id,music_linkdow,music_datecreate,music_dateedit,music_active,music_bin,music_option,nation_id,music_video,genres_id,author_id,album_id,nation_id")] Music.Model.EF.Music music, HttpPostedFileBase img, HttpPostedFileBase link_mp3, HttpPostedFileBase link_video, int[] category, int[] singers, int[] album)
         {
             music.music_bin = false;
             music.music_datecreate = DateTime.Now;

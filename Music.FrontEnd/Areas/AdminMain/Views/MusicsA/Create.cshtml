@@ -154,7 +154,7 @@
                         <div class="field">
                             <label>Quốc Gia</label>
                             <div class="col-md-12">
-                                <select name="national_id" class="ui fluid dropdown search">
+                                <select name="nation_id" class="ui fluid dropdown search">
                                     <option value="">-- Chọn quốc gia -- </option>
                                     @foreach (var item in db.Nationals.Where(x => x.nation_bin == false && x.nation_active == true))
                                     {
