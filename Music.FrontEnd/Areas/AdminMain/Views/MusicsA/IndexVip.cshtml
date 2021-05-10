@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Quản lý nhạc người dùng";
     Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+    var active = "active";
+    var option = "option";
 }
 
 <div class="row">
@@ -34,28 +36,70 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>@item.music_id</td>
-                                    <td>
-                                        <img src="~/Images/Music/@item.music_img" style="width: 50px; height: 50px" />
-                                    </td>
-                                    <td>@item.music_name</td>
-                                    <td>@item.music_time</td>
-                                    <td>@item.music_view</td>
-                                    <td>@item.music_dowload</td>
-                                    <td>@item.User.user_name</td>
-                                    <td>@item.National.nation_name</td>
-                                    <td>@item.Author.author_name</td>
-                                    <td>@item.Genre.genres_name</td>
-                                    <td>@item.Album.album_name</td>
-                                    <td>@item.music_option</td>
-                                    <td>@item.music_active</td>
-                                    <td>
-                                        @Html.ActionLink("Sửa", "Edit", new { id = item.music_id }) |
-                                        @Html.ActionLink("Xem", "Details", new { id = item.music_id }) |
-                                        @Html.ActionLink("Xóa", "Delete", new { id = item.music_id })
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>@item.music_id</td>
+                                <td>
+                                    <img src="~/Images/Music/@item.music_img" style="width: 50px; height: 50px" />
+                                </td>
+                                <td>@item.music_name</td>
+                                <td>@item.music_time</td>
+                                <td>@item.music_view</td>
+                                <td>@item.music_dowload</td>
+                                <td>@item.User.user_name</td>
+                                <td>@item.National.nation_name</td>
+                                <td>@item.Author.author_name</td>
+                                <td>@item.Genre.genres_name</td>
+                                <td>@item.Album.album_name</td>
+                                <td>
+                                    <div class="ui toggle checkbox" id="@option@item.music_id">
+                                        <input type="checkbox" @(item.music_option == true ? "checked" : "")>
+                                        <label id=""></label>
+                                    </div>
+                                    <script>
+                                            $(document).ready(function () {
+                                                $("#@option@item.music_id").click(function () {
+                                                    setTimeout(function () {
+                                                        $.ajax({
+                                                        type: "post",
+                                                        url: "/AdminMain/MusicsA/ChangeOption?id=" + @item.music_id,
+                                                        contentType: "Json",
+                                                        success: function (response) {
+                                                            alert("success!");
+                                                        }
+                                                    })
+                                                    }, 300)
+                                                })
+                                            })
+                                    </script>
+                                </td>
+                                <td>
+                                    <div class="ui toggle checkbox" id="@active@item.music_id">
+                                        <input type="checkbox" @(item.music_active == true ? "checked" : "")>
+                                        <label></label>
+                                    </div>
+                                    <script>
+                                            $(document).ready(function () {
+                                                $("#@active@item.music_id").click(function () {
+                                                    setTimeout(function () {
+                                                        $.ajax({
+                                                        type: "post",
+                                                        url: "/AdminMain/MusicsA/ChangeActive?id=" + @item.music_id,
+                                                        contentType: "Json",
+                                                        success: function (response) {
+                                                            alert("success!");
+                                                        }
+                                                    })
+                                                    }, 300)
+                                                })
+                                            })
+                                    </script>
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Sửa", "Edit", new { id = item.music_id }) |
+                                    @Html.ActionLink("Xem", "Details", new { id = item.music_id }) |
+                                    @Html.ActionLink("Xóa", "DeleteVip", new { id = item.music_id })
+                                </td>
+                            </tr>
                             }
                         </tbody>
                         <tfoot>

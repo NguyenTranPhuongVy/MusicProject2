@@ -101,7 +101,41 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
             {
                 return HttpNotFound();
             }
-            return View(package);
+            db.Packages.Find(id).package_bin = true;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult ChangeActive(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Package package = db.Packages.Find(id);
+            if (package == null)
+            {
+                return HttpNotFound();
+            }
+            db.Packages.Find(id).package_active = !db.Packages.Find(id).package_active;
+            db.SaveChanges();
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ChangeOption(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Package package = db.Packages.Find(id);
+            if (package == null)
+            {
+                return HttpNotFound();
+            }
+            db.Packages.Find(id).package_option = !db.Packages.Find(id).package_option;
+            db.SaveChanges();
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
 
         // POST: AdminMain/PackagesA/Delete/5

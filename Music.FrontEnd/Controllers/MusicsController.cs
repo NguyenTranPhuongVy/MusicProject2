@@ -214,7 +214,7 @@ namespace Music.FrontEnd.Controllers
                     music.music_video = imagesfunction.AddMuscis(mp4, "MP4", Guid.NewGuid().ToString());
                 }
                 music.user_id = user.user_id;
-                musicsDAO.Edit(music, category, singers);
+                musicsDAO.Edit(music, category, singers, null);
 
                 return RedirectToAction("MyMusisc");
             }

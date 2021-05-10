@@ -13,58 +13,52 @@
                 <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
                 <a href="/AdminMain/NationalsA/Edit/@Model.nation_id" class="btn btn-primary text-white"><i class="fa fa-edit">&nbsp;</i>Sửa quốc gia</a>
 
-                <div class="mt-3">
-                    <dl class="dl-horizontal">
-                        <dt>
-                            @Html.DisplayNameFor(model => model.nation_name)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.nation_name)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.nation_active)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.nation_active)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.nation_bin)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.nation_bin)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.nation_datecreate)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.nation_datecreate)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.nation_dateupdate)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.nation_dateupdate)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.nation_option)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.nation_option)
-                        </dd>
-
-                    </dl>
-                </div>
+                <form class="ui form segment">
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Tên Quốc Gia</label>
+                            <input value="@Model.nation_name" name="nation_name" type="text" />
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Ngày Tạo</label>
+                            <input value="@Model.nation_datecreate" name="nation_datecreate" type="text" />
+                        </div>
+                        <div class="field">
+                            <label>Ngày Sửa</label>
+                            <input value="@Model.nation_dateupdate" name="nation_dateupdate" type="text" />
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Trạng Thái Hoạt Động</label>
+                            <select class="ui dropdown" name="gender">
+                                @if (Model.nation_active == true)
+                                {
+                                    <option value="true">Hoạt Động</option>
+                                }
+                                else
+                                {
+                                    <option value="false">Không Hoạt Động</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Trạng Thái Hiển Thị</label>
+                            <select class="ui dropdown" name="gender">
+                                @if (Model.nation_option == true)
+                                {
+                                    <option value="true">Hoạt Động</option>
+                                }
+                                else
+                                {
+                                    <option value="false">Không Hoạt Động</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

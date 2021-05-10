@@ -12,91 +12,61 @@
                 <h4 class="card-title">@ViewBag.Title</h4>
                 <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
                 <a href="/AdminMain/AlbumsA/Edit/@Model.album_id" class="btn btn-primary text-white"><i class="fa fa-edit">&nbsp;</i>Thêm albums</a>
-
-                <div class="mt-3">
-                    <dl class="dl-horizontal">
-                        <dt>
-                            @Html.DisplayNameFor(model => model.album_name)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.album_name)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.album_datecreate)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.album_datecreate)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.album_dateedit)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.album_dateedit)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.album_view)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.album_view)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.album_favorite)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.album_favorite)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.album_active)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.album_active)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.album_bin)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.album_bin)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.album_note)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.album_note)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.album_img)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.album_img)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.User.user_name)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.User.user_name)
-                        </dd>
-
-                    </dl>
-                </div>
+                <form class="ui form segment">
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Tên Album</label>
+                            <input value="@Model.album_name" name="album_name" type="text" />
+                        </div>
+                        <div class="field">
+                            <label>Hình Ảnh</label>
+                            <img class="ui medium rounded image" src="~/Images/Album/@Model.album_img">
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Ngày Tạo</label>
+                            <input value="@Model.album_datecreate" name="album_datecreate" type="text" />
+                        </div>
+                        <div class="field">
+                            <label>Ngày Sửa</label>
+                            <input value="@Model.album_dateedit" name="album_dateedit" type="text" />
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Lượt Xem</label>
+                            <input value="@Model.album_view" name="album_view" type="text" />
+                        </div>
+                        <div class="field">
+                            <label>Lượt Thích</label>
+                            <input value="@Model.album_favorite" name="album_favorite" type="text" />
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Trạng Thái Hoạt Động</label>
+                            <select class="ui dropdown" name="gender">
+                                @if (Model.album_active == true)
+                                {
+                                    <option value="true">Hoạt Động</option>
+                                }
+                                else
+                                {
+                                    <option value="false">Không Hoạt Động</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Người Tạo</label>
+                            <input value="@Model.User.user_name" name="user_name" type="text" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Ghi Chú</label>
+                        <textarea>@Model.album_note</textarea>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

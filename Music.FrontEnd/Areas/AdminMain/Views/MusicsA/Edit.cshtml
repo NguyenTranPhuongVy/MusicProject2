@@ -1,6 +1,6 @@
 ﻿@model Music.Model.EF.Music
-
 @{
+    Music.Model.EF.MusicProjectDataEntities db = new Music.Model.EF.MusicProjectDataEntities();
     ViewBag.Title = "Sửa nhạc " + Model.music_name;
     Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
 }
@@ -11,166 +11,334 @@
             <div class="card-body">
                 <h4 class="card-title">@ViewBag.Title</h4>
                 <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
-                @using (Html.BeginForm())
+
+                @using (Html.BeginForm("Edit", "MusicsA", FormMethod.Post, new { @enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
-
-                    <div class="form-horizontal mt-3">
+                    @Html.HiddenFor(x => x.music_id)
+                    @Html.HiddenFor(x => x.music_bin)
+                    @Html.HiddenFor(x => x.music_datecreate)
+                    @Html.HiddenFor(x => x.music_img)
+                    @Html.HiddenFor(x => x.music_linkdow)
+                    @Html.HiddenFor(x => x.music_video)
+                    <div class="form-horizontal mt-3 ui form segment">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.music_id)
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.music_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Tên Bài Hát</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.music_name, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.music_name, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.music_img, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Hình Ảnh</label>
                             <div class="col-md-12">
-                                @Html.EditorFor(model => model.music_img, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.music_img, "", new { @class = "text-danger" })
+                                <input type="file" class="btn btn-danger" name="file_img" required />
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.music_lyric, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Lời Bài Hát</label>
                             <div class="col-md-12">
-                                @Html.EditorFor(model => model.music_lyric, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.music_lyric, "", new { @class = "text-danger" })
+                                <textarea name="music_lyric"></textarea>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.music_time, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Thời Lượng</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.music_time, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.music_time, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.music_view, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Lượt Nghe</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.music_view, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.music_view, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.music_dowload, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Lượt Tải</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.music_dowload, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.music_dowload, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.user_id, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Tên Người Tạo</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.user_id, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.music_linkdow, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Link Nhạc</label>
                             <div class="col-md-12">
-                                @Html.EditorFor(model => model.music_linkdow, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.music_linkdow, "", new { @class = "text-danger" })
+                                <input type="file" class="btn btn-danger" name="link_mp3" required />
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.music_datecreate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Link MV (Nếu có)</label>
                             <div class="col-md-12">
-                                @Html.EditorFor(model => model.music_datecreate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.music_datecreate, "", new { @class = "text-danger" })
+                                <input type="file" class="btn btn-danger" name="link_video" required />
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.music_dateedit, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Trạng Thái Hoạt Động</label>
                             <div class="col-md-12">
-                                @Html.EditorFor(model => model.music_dateedit, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.music_dateedit, "", new { @class = "text-danger" })
+                                <select class="ui dropdown" name="music_active">
+                                    <option value="true">Hoạt Động</option>
+                                    <option value="false">Không Hoạt Động</option>
+                                </select>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.music_active, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Trạng Thái Hiển Thị</label>
                             <div class="col-md-12">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.music_active)
-                                    @Html.ValidationMessageFor(model => model.music_active, "", new { @class = "text-danger" })
-                                </div>
+                                <select class="ui dropdown" name="music_option">
+                                    <option value="true">Hoạt Động</option>
+                                    <option value="false">Không Hoạt Động</option>
+                                </select>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.music_bin, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Danh mục</label>
                             <div class="col-md-12">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.music_bin)
-                                    @Html.ValidationMessageFor(model => model.music_bin, "", new { @class = "text-danger" })
-                                </div>
+                                <select name="category" multiple="" class="ui fluid dropdown search">
+                                    <option value="">-- Chọn danh mục -- </option>
+                                    @foreach (var item in db.Categories.Where(x => x.category_bin == false && x.category_active == true))
+                                    {
+                                        <option value="@item.category_id">@item.category_name</option>
+                                    }
+                                </select>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.music_option, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Ca sĩ</label>
                             <div class="col-md-12">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.music_option)
-                                    @Html.ValidationMessageFor(model => model.music_option, "", new { @class = "text-danger" })
-                                </div>
+                                <select name="singers" multiple="" class="ui fluid dropdown search">
+                                    <option value="">-- Chọn ca sĩ -- </option>
+                                    @foreach (var item in db.Singers.Where(x => x.singer_bin == false && x.singer_active == true))
+                                    {
+                                        <option value="@item.singer_id">@item.singer_name</option>
+                                    }
+                                </select>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.nation_id, "nation_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Album</label>
                             <div class="col-md-12">
-                                @Html.DropDownList("nation_id", null, htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.nation_id, "", new { @class = "text-danger" })
+                                <select name="album" multiple="" class="ui fluid dropdown search">
+                                    <option value="">-- Chọn ca sĩ -- </option>
+                                    @foreach (var item in db.Albums.Where(x => x.album_bin == false && x.album_active == true))
+                                    {
+                                        <option value="@item.album_id">@item.album_name</option>
+                                    }
+                                </select>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.music_video, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Quốc Gia</label>
                             <div class="col-md-12">
-                                @Html.EditorFor(model => model.music_video, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.music_video, "", new { @class = "text-danger" })
+                                <select name="national_id" class="ui fluid dropdown search">
+                                    <option value="">-- Chọn quốc gia -- </option>
+                                    @foreach (var item in db.Nationals.Where(x => x.nation_bin == false && x.nation_active == true))
+                                    {
+                                        <option value="@item.nation_id">@item.nation_name</option>
+                                    }
+                                </select>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.genres_id, "genres_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Phân Loại Âm Nhạc</label>
                             <div class="col-md-12">
-                                @Html.DropDownList("genres_id", null, htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.genres_id, "", new { @class = "text-danger" })
+                                <select name="genres_id" class="ui fluid dropdown search">
+                                    <option value="">-- Chọn thể loại -- </option>
+                                    @foreach (var item in db.Genres)
+                                    {
+                                        <option value="@item.genres_id">@item.genres_name</option>
+                                    }
+                                </select>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.author_id, "author_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Chọn Nhạc Sĩ</label>
                             <div class="col-md-12">
                                 @Html.DropDownList("author_id", null, htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.author_id, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.album_id, "album_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <div class="col-md-offset-2 col-md-12">
+                                <input type="submit" value="Thêm" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div><div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@ViewBag.Title</h4>
+                <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
+
+                @using (Html.BeginForm("Edit", "MusicsA", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.music_id)
+                    @Html.HiddenFor(x => x.music_datecreate)
+                    @Html.HiddenFor(x => x.music_img)
+                    @Html.HiddenFor(x => x.music_linkdow)
+                    @Html.HiddenFor(x => x.music_video)
+                    @Html.HiddenFor(x => x.music_bin)
+                    <div class="form-horizontal mt-3 ui form segment">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="field">
+                            <label>Tên Bài Hát</label>
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.music_name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.music_name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Hình Ảnh</label>
+                            <div class="col-md-12">
+                                <input type="file" class="btn btn-danger" name="file_img" />
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Lời Bài Hát</label>
+                            <div class="col-md-12">
+                                <textarea name="music_lyric">@Model.music_lyric</textarea>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Thời Lượng</label>
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.music_time, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.music_time, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Lượt Nghe</label>
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.music_view, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.music_view, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Lượt Tải</label>
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.music_dowload, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.music_dowload, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Tên Người Tạo</label>
+                            <div class="col-md-12">
+                                <select>
+                                    @foreach (var item in db.Users.Where(t => t.user_vip == true || t.role_id == 2))
+                                    {
+                                        <option value="@item.user_id" @(item.user_id == Model.user_id ? "selected" : "")>@item.user_name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Link Nhạc</label>
+                            <div class="col-md-12">
+                                <input type="file" class="btn btn-danger" name="link_mp3" />
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Link MV (Nếu có)</label>
+                            <div class="col-md-12">
+                                <input type="file" class="btn btn-danger" name="link_video" />
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Trạng Thái Hoạt Động</label>
+                            <div class="col-md-12">
+                                <select class="ui dropdown" name="music_active">
+                                    <option value="true">Hoạt Động</option>
+                                    <option value="false">Không Hoạt Động</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Trạng Thái Hiển Thị</label>
+                            <div class="col-md-12">
+                                <select class="ui dropdown" name="music_option">
+                                    <option value="true">Hoạt Động</option>
+                                    <option value="false">Không Hoạt Động</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Quốc Gia</label>
+                            <div class="col-md-12">
+                                @Html.DropDownList("nation_id", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.nation_id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Phân Loại Âm Nhạc</label>
+                            <div class="col-md-12">
+                                @Html.DropDownList("genres_id", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.genres_id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Chọn Nhạc Sĩ</label>
+                            <div class="col-md-12">
+                                @Html.DropDownList("author_id", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.author_id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Chọn Album</label>
                             <div class="col-md-12">
                                 @Html.DropDownList("album_id", null, htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.album_id, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="field">
                             <div class="col-md-offset-2 col-md-12">
-                                <input type="submit" value="Create" class="btn btn-default" />
+                                <input type="submit" value="Thêm" class="btn btn-default" />
                             </div>
                         </div>
                     </div>
@@ -179,4 +347,3 @@
         </div>
     </div>
 </div>
-

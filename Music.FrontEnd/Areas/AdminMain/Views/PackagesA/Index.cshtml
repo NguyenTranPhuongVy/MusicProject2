@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "Quản lý gói";
     Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+    var active = "active";
+    var option = "option";
+}
 }
 
 <div class="row">
@@ -28,20 +31,62 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>@item.package_id</td>
-                                    <td>@item.package_name</td>
-                                    <td>@item.pakage_price</td>
-                                    <td>@item.package_datecreate</td>
-                                    <td>@item.package_month tháng</td>
-                                    <td>@item.package_option</td>
-                                    <td>@item.package_active</td>
-                                    <td>
-                                        @Html.ActionLink("Sửa", "Edit", new { id = item.package_id }) |
-                                        @Html.ActionLink("Xem", "Details", new { id = item.package_id }) |
-                                        @Html.ActionLink("Xóa", "Delete", new { id = item.package_id })
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>@item.package_id</td>
+                                <td>@item.package_name</td>
+                                <td>@item.pakage_price</td>
+                                <td>@item.package_datecreate</td>
+                                <td>@item.package_month tháng</td>
+                                <td>
+                                    <div class="ui toggle checkbox" id="@option@item.package_id">
+                                        <input type="checkbox" @(item.package_option == true ? "checked" : "")>
+                                        <label id=""></label>
+                                    </div>
+                                    <script>
+                                            $(document).ready(function () {
+                                                $("#@option@item.package_id").click(function () {
+                                                    setTimeout(function () {
+                                                        $.ajax({
+                                                        type: "post",
+                                                            url: "/AdminMain/PackagesA/ChangeOption?id=" + @item.package_id,
+                                                        contentType: "Json",
+                                                        success: function (response) {
+                                                            alert("success!");
+                                                        }
+                                                    })
+                                                    }, 300)
+                                                })
+                                            })
+                                    </script>
+                                </td>
+                                <td>
+                                    <div class="ui toggle checkbox" id="@active@item.package_id">
+                                        <input type="checkbox" @(item.package_active == true ? "checked" : "")>
+                                        <label></label>
+                                    </div>
+                                    <script>
+                                            $(document).ready(function () {
+                                                $("#@active@item.package_id").click(function () {
+                                                    setTimeout(function () {
+                                                        $.ajax({
+                                                        type: "post",
+                                                            url: "/AdminMain/PackagesA/ChangeActive?id=" + @item.package_id,
+                                                        contentType: "Json",
+                                                        success: function (response) {
+                                                            alert("success!");
+                                                        }
+                                                    })
+                                                    }, 300)
+                                                })
+                                            })
+                                    </script>
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Sửa", "Edit", new { id = item.package_id }) |
+                                    @Html.ActionLink("Xem", "Details", new { id = item.package_id }) |
+                                    @Html.ActionLink("Xóa", "Delete", new { id = item.package_id })
+                                </td>
+                            </tr>
                             }
                         </tbody>
                         <tfoot>

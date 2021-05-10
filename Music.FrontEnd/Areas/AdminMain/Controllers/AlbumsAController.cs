@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Music.FrontEnd.Function;
 using Music.Model.EF;
 
 namespace Music.FrontEnd.Areas.AdminMain.Controllers
@@ -13,11 +14,12 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
     public class AlbumsAController : Controller
     {
         private MusicProjectDataEntities db = new MusicProjectDataEntities();
+        private FilesController filesController = new FilesController();
 
         // GET: AdminMain/AlbumsA
         public ActionResult Index()
         {
-            var albums = db.Albums.OrderByDescending(n=>n.album_datecreate).Include(a => a.User);
+            var albums = db.Albums.Where(t => t.album_bin == false).OrderByDescending(n=>n.album_datecreate).Include(a => a.User);
             return View(albums.ToList());
         }
 
@@ -48,10 +50,13 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "album_id,album_name,album_datecreate,album_dateedit,album_view,album_favorite,album_active,album_bin,album_note,album_img,user_id")] Album album)
+        public ActionResult Create([Bind(Include = "album_id,album_name,album_datecreate,album_dateedit,album_view,album_favorite,album_active,album_bin,album_note,album_img,user_id")] Album album, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)
             {
+                album.album_bin = false;
+                album.album_datecreate = DateTime.Now;
+                album.album_img = filesController.AddImages(img, "Album", Guid.NewGuid().ToString());
                 db.Albums.Add(album);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,10 +87,15 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "album_id,album_name,album_datecreate,album_dateedit,album_view,album_favorite,album_active,album_bin,album_note,album_img,user_id")] Album album)
+        public ActionResult Edit([Bind(Include = "album_id,album_name,album_datecreate,album_dateedit,album_view,album_favorite,album_active,album_bin,album_note,album_img,user_id")] Album album, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)
             {
+                album.album_dateedit = DateTime.Now;
+                if(img != null)
+                {
+                    album.album_img = filesController.AddImages(img, "Album", Guid.NewGuid().ToString());
+                }
                 db.Entry(album).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -106,7 +116,25 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
             {
                 return HttpNotFound();
             }
-            return View(album);
+            db.Albums.Find(id).album_bin = true;
+            db.SaveChanges();
+            return Redirect("Index");
+        }
+
+        public ActionResult ChangeActive(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Music.Model.EF.Album slider = db.Albums.Find(id);
+            if (slider == null)
+            {
+                return HttpNotFound();
+            }
+            db.Albums.Find(id).album_active = !db.Albums.Find(id).album_active;
+            db.SaveChanges();
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
 
         // POST: AdminMain/AlbumsA/Delete/5

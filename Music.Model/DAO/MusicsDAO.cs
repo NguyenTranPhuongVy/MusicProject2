@@ -70,13 +70,18 @@ namespace Music.Model.DAO
             }
         }
         //Hàm sửa
-        public bool Edit(Music.Model.EF.Music musics, int[] category, int[] singer)
+        public bool Edit(Music.Model.EF.Music musics, int[] category, int[] singer, int[] album)
         {
             try
             {
                 db.Entry(musics).State = EntityState.Modified;
                 db.SaveChanges();
 
+                //remove old category 
+                foreach(var item in musics.Groups.Where(x => x.category_id != null))
+                {
+                    db.Groups.Remove(item);
+                }
                 // add category
                 foreach (var item in category)
                 {
@@ -87,12 +92,32 @@ namespace Music.Model.DAO
                     });
                 }
 
+                //remove old singer 
+                foreach (var item in musics.Groups.Where(x => x.singer_id != null))
+                {
+                    db.Groups.Remove(item);
+                }
                 // add singer
                 foreach (var item in singer)
                 {
                     groupDAO.Add(new Group()
                     {
                         category_id = item,
+                        music_id = musics.music_id
+                    });
+                }
+
+                // remove old album
+                foreach (var item in musics.PlayLists)
+                {
+                    db.PlayLists.Remove(item);
+                }
+                // add singer
+                foreach (var item in album)
+                {
+                    playListDAO.Add(new PlayList()
+                    {
+                        albums_id = item,
                         music_id = musics.music_id
                     });
                 }

@@ -11,15 +11,18 @@
                 <h4 class="card-title">@ViewBag.Title</h4>
                 <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
 
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("Edit", "NationalsA", FormMethod.Post, new { @enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.nation_id)
+                    @Html.HiddenFor(x => x.nation_bin)
+                    @Html.HiddenFor(x => x.nation_datecreate)
 
-                    <div class="form-horizontal mt-3">
+                    <div class="form-horizontal mt-3 ui form segment">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                         @Html.HiddenFor(model => model.nation_id)
+                        @Html.HiddenFor(model => model.nation_id)
                         <div class="form-group">
-                            @Html.LabelFor(model => model.nation_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label>Tên Quốc Gia</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.nation_name, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.nation_name, "", new { @class = "text-danger" })
@@ -27,7 +30,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.nation_active, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label>Trạng Thái Hoạt Động</label>
                             <div class="col-md-12">
                                 <div class="checkbox">
                                     @Html.EditorFor(model => model.nation_active)
@@ -36,34 +39,9 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.nation_bin, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-12">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.nation_bin)
-                                    @Html.ValidationMessageFor(model => model.nation_bin, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.nation_datecreate, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.nation_datecreate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.nation_datecreate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.nation_dateupdate, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.nation_dateupdate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.nation_dateupdate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.nation_option, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label>Trạng Thái Hiển Thị</label>
                             <div class="col-md-12">
                                 <div class="checkbox">
                                     @Html.EditorFor(model => model.nation_option)
@@ -74,7 +52,7 @@
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-12">
-                                <input type="submit" value="Create" class="btn btn-default" />
+                                <input type="submit" value="Sửa" class="btn btn-default" />
                             </div>
                         </div>
                     </div>

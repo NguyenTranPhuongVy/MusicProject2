@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Quản lý Albums";
     Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+    var active = "active";
 }
 
 <div class="row">
@@ -39,7 +40,28 @@
                                     <td>@item.User.user_email</td>
                                     <td>@item.album_datecreate</td>
                                     <td>@item.album_dateedit</td>
-                                    <td>@item.album_active</td>
+                                    <td>
+                                        <div class="ui toggle checkbox" id="@active@item.album_id">
+                                            <input type="checkbox" @(item.album_active == true ? "checked" : "")>
+                                            <label></label>
+                                        </div>
+                                        <script>
+                                            $(document).ready(function () {
+                                                $("#@active@item.album_id").click(function () {
+                                                    setTimeout(function () {
+                                                        $.ajax({
+                                                        type: "post",
+                                                            url: "/AdminMain/NationalsA/ChangeActive?id=" + @item.album_id,
+                                                        contentType: "Json",
+                                                        success: function (response) {
+                                                            alert("success!");
+                                                        }
+                                                    })
+                                                    }, 300)
+                                                })
+                                            })
+                                        </script>
+                                    </td>
                                     <td>
                                         @Html.ActionLink("Sửa", "Edit", new { id = item.album_id }) |
                                         @Html.ActionLink("Xem", "Details", new { id = item.album_id }) |

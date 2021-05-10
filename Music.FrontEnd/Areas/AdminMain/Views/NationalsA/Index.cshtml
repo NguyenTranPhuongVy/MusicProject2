@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Quản lý quốc gia";
     Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+    var active = "active";
+    var option = "option";
 }
 <div class="row">
     <div class="col-12">
@@ -18,8 +20,8 @@
                                 <th>Tên quốc gia</th>
                                 <th>Ngày tạo</th>
                                 <th>Ngày sửa</th>
-                                <th>Hoạt động</th>
                                 <th>Tình trạng</th>
+                                <th>Hoạt động</th>
                                 <th>Tùy chọn</th>
                             </tr>
                         </thead>
@@ -31,8 +33,50 @@
                                     <td>@item.nation_id</td>
                                     <td>@item.nation_datecreate</td>
                                     <td>@item.nation_dateupdate</td>
-                                    <td>@item.nation_active</td>
-                                    <td>@item.nation_option</td>
+                                    <td>
+                                        <div class="ui toggle checkbox" id="@option@item.nation_id">
+                                            <input type="checkbox" @(item.nation_option == true ? "checked" : "")>
+                                            <label id=""></label>
+                                        </div>
+                                        <script>
+                                            $(document).ready(function () {
+                                                $("#@option@item.nation_id").click(function () {
+                                                    setTimeout(function () {
+                                                        $.ajax({
+                                                        type: "post",
+                                                            url: "/AdminMain/NationalsA/ChangeOption?id=" + @item.nation_id,
+                                                        contentType: "Json",
+                                                        success: function (response) {
+                                                            alert("success!");
+                                                        }
+                                                    })
+                                                    }, 300)
+                                                })
+                                            })
+                                        </script>
+                                    </td>
+                                    <td>
+                                        <div class="ui toggle checkbox" id="@active@item.nation_id">
+                                            <input type="checkbox" @(item.nation_active == true ? "checked" : "")>
+                                            <label></label>
+                                        </div>
+                                        <script>
+                                            $(document).ready(function () {
+                                                $("#@active@item.nation_id").click(function () {
+                                                    setTimeout(function () {
+                                                        $.ajax({
+                                                        type: "post",
+                                                            url: "/AdminMain/NationalsA/ChangeActive?id=" + @item.nation_id,
+                                                        contentType: "Json",
+                                                        success: function (response) {
+                                                            alert("success!");
+                                                        }
+                                                    })
+                                                    }, 300)
+                                                })
+                                            })
+                                        </script>
+                                    </td>
                                     <td>
                                         @Html.ActionLink("Sửa", "Edit", new { id = item.nation_id }) |
                                         @Html.ActionLink("Xem", "Details", new { id = item.nation_id }) |

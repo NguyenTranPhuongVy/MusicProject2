@@ -12,99 +12,73 @@
                 <h4 class="card-title">@ViewBag.Title</h4>
                 <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
 
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("Create", "AlbumsA", FormMethod.Post ,new { @enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
 
-                    <div class="form-horizontal mt-3">
+                    <div class="form-horizontal mt-3 ui form segment">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.album_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Tên Album</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.album_name, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.album_name, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.album_datecreate, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.album_datecreate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.album_datecreate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.album_dateedit, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.album_dateedit, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.album_dateedit, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.album_view, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Lượt Xem</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.album_view, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.album_view, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.album_favorite, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Lượt Thích</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.album_favorite, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.album_favorite, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.album_active, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Trạng Thái Hoạt Động</label>
                             <div class="col-md-12">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.album_active)
-                                    @Html.ValidationMessageFor(model => model.album_active, "", new { @class = "text-danger" })
-                                </div>
+                                <select class="ui dropdown" name="album_active">
+                                    <option value="">---Vui lòng chọn trạng thái---</option>
+                                    <option value="True">Hoạt Động</option>
+                                    <option value="False">Không Hoạt Động</option>
+                                </select>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.album_bin, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-12">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.album_bin)
-                                    @Html.ValidationMessageFor(model => model.album_bin, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.album_note, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Ghi Chú</label>
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.album_note, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.album_note, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.album_img, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Hình Ảnh</label>
                             <div class="col-md-12">
-                                @Html.EditorFor(model => model.album_img, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.album_img, "", new { @class = "text-danger" })
+                                <input type="file" name="img" class="btn btn-danger" required />
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.user_id, "user_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="field">
+                            <label>Người Tạo</label>
                             <div class="col-md-12">
                                 @Html.DropDownList("user_id", null, htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="field">
                             <div class="col-md-offset-2 col-md-12">
-                                <input type="submit" value="Create" class="btn btn-default" />
+                                <input type="submit" value="Tạo" class="btn btn-default" />
                             </div>
                         </div>
                     </div>

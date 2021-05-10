@@ -21,6 +21,10 @@
 
     <link href="~/Content/AdminMain/plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="~/Content/fontawesome-free-5.15.2-web/css/all.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/Content/Semantic-UI-CSS-master/semantic.min.css" rel="stylesheet" />
+    <script src="~/Content/Semantic-UI-CSS-master/semantic.min.js"></script>
 </head>
 
 <body>
@@ -48,10 +52,10 @@
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.html">
-                    <b class="logo-abbr">Phương Vy MuSic </b>
-                    <span class="logo-compact">Phương Vy MuSic</span>
+                    <b class="logo-abbr">Music</b>
+                    <span class="logo-compact">Music</span>
                     <span class="brand-title text-white font-weight-bold">
-                        Phương Vy MuSic
+                        <center>Music Admin</center>
                     </span>
                 </a>
             </div>
@@ -74,12 +78,6 @@
                     <div class="input-group icons">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
-                        </div>
-                        <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
-                        <div class="drop-down animated flipInX d-md-none">
-                            <form action="#">
-                                <input type="text" class="form-control" placeholder="Search">
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -306,6 +304,11 @@
                 <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
             </div>
         </div>
+        <script>
+            $('.ui.dropdown')
+                .dropdown()
+                ;
+        </script>
         <!--**********************************
             Footer end
         ***********************************-->
@@ -352,6 +355,7 @@
     <script src="~/Content/AdminMain/plugins/tables/js/jquery.dataTables.min.js"></script>
     <script src="~/Content/AdminMain/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
     <script src="~/Content/AdminMain/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js" integrity="sha512-DedNBWPF0hLGUPNbCYfj8qjlEnNE92Fqn7xd3Sscfu7ipy7Zu33unHdugqRD3c4Vj7/yLv+slqZhMls/4Oc7Zg==" crossorigin="anonymous"></script>
 
 </body>
 

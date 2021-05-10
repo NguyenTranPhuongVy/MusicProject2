@@ -17,7 +17,7 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
         // GET: AdminMain/NationalsA
         public ActionResult Index()
         {
-            return View(db.Nationals.OrderByDescending(n=>n.nation_datecreate).ToList());
+            return View(db.Nationals.Where(n => n.nation_bin == false).OrderByDescending(n=>n.nation_datecreate).ToList());
         }
 
         // GET: AdminMain/NationalsA/Details/5
@@ -50,6 +50,8 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
         {
             if (ModelState.IsValid)
             {
+                national.nation_bin = false;
+                national.nation_datecreate = DateTime.Now;
                 db.Nationals.Add(national);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,6 +84,7 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
         {
             if (ModelState.IsValid)
             {
+                national.nation_dateupdate = DateTime.Now;
                 db.Entry(national).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -101,7 +104,41 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
             {
                 return HttpNotFound();
             }
-            return View(national);
+            db.Nationals.Find(id).nation_bin = true;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult ChangeActive(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Music.Model.EF.National national = db.Nationals.Find(id);
+            if (national == null)
+            {
+                return HttpNotFound();
+            }
+            db.Nationals.Find(id).nation_active = !db.Nationals.Find(id).nation_active;
+            db.SaveChanges();
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ChangeOption(int? id)
+        {
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Music.Model.EF.National national = db.Nationals.Find(id);
+            if (national == null)
+            {
+                return HttpNotFound();
+            }
+            db.Nationals.Find(id).nation_option = !db.Nationals.Find(id).nation_option;
+            db.SaveChanges();
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
 
         // POST: AdminMain/NationalsA/Delete/5

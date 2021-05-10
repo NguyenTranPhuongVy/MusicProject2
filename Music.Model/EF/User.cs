@@ -19,10 +19,10 @@ namespace Music.Model.EF
         {
             this.Albums = new HashSet<Album>();
             this.Comments = new HashSet<Comment>();
+            this.Musics = new HashSet<Music>();
             this.Pays = new HashSet<Pay>();
             this.QuestGroups = new HashSet<QuestGroup>();
             this.Replies = new HashSet<Reply>();
-            this.Musics = new HashSet<Music>();
         }
     
         public int user_id { get; set; }
@@ -52,13 +52,13 @@ namespace Music.Model.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Music> Musics { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pay> Pays { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuestGroup> QuestGroups { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reply> Replies { get; set; }
         public virtual Role Role { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Music> Musics { get; set; }
     }
 }
