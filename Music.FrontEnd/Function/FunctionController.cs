@@ -32,5 +32,24 @@ namespace Music.FrontEnd.Function
             return cookie;
 
         }
+
+        public User CookieIDAdmin()
+        {
+            HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies["admin_id"];
+            if (cookie == null)
+            {
+                return null;
+            }
+            User users = db.Users.Find(Int32.Parse(cookie.Value.ToString()));
+            return users;
+
+        }
+        //Hàm lấy cookie ko
+        public HttpCookie CookieAdmin()
+        {
+            HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies["admin_id"];
+            return cookie;
+
+        }
     }
 }

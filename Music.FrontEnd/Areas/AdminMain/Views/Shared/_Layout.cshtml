@@ -1,5 +1,9 @@
 ﻿@{ 
-
+    HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies["admin_id"];
+    if(cookie == null)
+    {
+        Response.Redirect("/");
+    }
 }
 <!DOCTYPE html>
 <html lang="en">

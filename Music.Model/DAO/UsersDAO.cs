@@ -18,12 +18,39 @@ namespace Music.Model.DAO
             var login = db.Users.SingleOrDefault(t => t.user_email == email && t.user_pass == password);
             if(login != null)
             {
-                if(login.user_active == true && login.user_option == true && login.user_bin == false)
+                if(login.user_active == true && login.user_option == true && login.user_bin == false && login.role_id == 1)
                 {
                     // dang nhap thanh cong
                     return 1;
                 }
                 else if(login.user_bin == true)
+                {
+                    // tai khoan bi xoa
+                    return -2;
+                }
+                else
+                {
+                    // tai khoan bi khoa
+                    return -3;
+                }
+            }
+            else
+            {
+                // sai tai khoan hoac mat khau
+                return -1;
+            }
+        }
+        public int LoginAdmin(string email, string password)
+        {
+            var login = db.Users.SingleOrDefault(t => t.user_email == email && t.user_pass == password);
+            if (login != null)
+            {
+                if (login.user_active == true && login.user_option == true && login.user_bin == false && login.role_id == 2)
+                {
+                    // dang nhap thanh cong
+                    return 1;
+                }
+                else if (login.user_bin == true)
                 {
                     // tai khoan bi xoa
                     return -2;

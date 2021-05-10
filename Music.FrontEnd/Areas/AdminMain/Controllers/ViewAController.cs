@@ -7,6 +7,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Music.Model.EF;
+using Music.FrontEnd.Controllers;
+using Music.Model.DAO;
+using Music.FrontEnd.ViewModels;
 
 namespace Music.FrontEnd.Areas.AdminMain.Controllers
 {
@@ -58,6 +61,39 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
 
         public ActionResult StaticPrice()
         {
+            return View();
+        }
+
+        public PartialViewResult Login()
+        {
+            return PartialView();
+        }
+        [HttpPost]
+        public ActionResult Login(string Email, string Password)
+        {
+            var dao = new UsersDAO();
+            int status = dao.LoginAdmin(Email, Password);
+            switch (status)
+            {
+                case 1:
+                    var user = db.Users.FirstOrDefault(t => t.user_email == Email);
+                    HttpCookie cookie = new HttpCookie("admin_id", user.user_id.ToString());
+                    cookie.Expires.AddDays(10);
+                    Response.Cookies.Set(cookie);
+                    return Redirect("/AdminMain/HomeA/Index");
+                case -1:
+                    TempData["noti_login"] = "Sai tài khoản hoặc mật khẩu!";
+                    break;
+                case -2:
+                    TempData["noti_login"] = "Tài khoản của bạn đã bị xóa!";
+                    break;
+                case -3:
+                    TempData["noti_login"] = "Tài khoản của bạn đã bị khóa!";
+                    break;
+                default:
+                    TempData["noti_login"] = "Tài khoản của bạn không tồn tại!";
+                    break;
+            }
             return View();
         }
     }
