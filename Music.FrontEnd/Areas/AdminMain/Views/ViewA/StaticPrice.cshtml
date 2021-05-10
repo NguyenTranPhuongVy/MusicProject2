@@ -1,0 +1,321 @@
+﻿@using Music.Model.EF;
+@{
+    MusicProjectDataEntities db = new MusicProjectDataEntities();
+    ViewBag.Title = "Thống kê doanh thu";
+    Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+
+    List<Pay> pays = db.Pays.ToList();
+}
+<div class="row">
+    <div class="col-lg-3 col-sm-6">
+        <div class="card gradient-1">
+            <div class="card-body">
+                <h3 class="card-title text-white">Doanh thu trong ngày</h3>
+                <div class="d-inline-block">
+                    <h2 class="text-white">@(pays.Where(n => n.pay_datecreate.Value.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && n.pay_status == true).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate.Value.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && n.pay_status == true).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ</h2>
+        
+                </div>
+                <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card gradient-2">
+            <div class="card-body">
+                <h3 class="card-title text-white">Doanh thu trong tuần</h3>
+                <div class="d-inline-block">
+                    <h2 class="text-white">@(pays.Where(n => n.pay_datecreate< n.pay_datecreate.Value.AddDays(7) && n.pay_status == true).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ</h2>
+                    
+                    <p class="text-white mb-0">
+                        
+                    </p>
+                </div>
+                <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card gradient-3">
+            <div class="card-body">
+                <h3 class="card-title text-white">Doanh thu trong tháng</h3>
+                <div class="d-inline-block">
+                    <h2 class="text-white">@(pays.Where(n => n.pay_datecreate< n.pay_datecreate.Value.AddMonths(1) && n.pay_status == true).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(1) && n.pay_status == true).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ</h2>
+                </div>
+                <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card gradient-4">
+            <div class="card-body">
+                <h3 class="card-title text-white">Doanh thu trong năm</h3>
+                <div class="d-inline-block">
+                    <h2 class="text-white">@(pays.Where(n => n.pay_datecreate< n.pay_datecreate.Value.AddMonths(12) && n.pay_status == true).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(12) && n.pay_status == true).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ</h2>
+                    
+                </div>
+                <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="card card-widget">
+            <div class="card-body">
+                <h5 class="text-muted">Thống kê chi tiết trong ngày </h5>
+                <h2 class="mt-4">@(pays.Where(n => n.pay_datecreate.Value.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && n.pay_status == true).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate.Value.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && n.pay_status == true).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ</h2>
+                <span>Có tổng cộng <b class="text-danger">@pays.Where(n => n.pay_datecreate.Value.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy")).Count()</b> hóa đơn</span>
+                <div class="mt-4">
+                    <h6>Tổng gói vip 1 tháng <span class="pull-right"></span></h6>
+                    Đã mua <b>@pays.Where(n => n.pay_datecreate.Value.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && n.pay_status == true && n.pakage_id == 1).Count()</b> hóa đơn với doanh thu @(pays.Where(n => n.pay_datecreate.Value.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && n.pay_status == true && n.pakage_id == 1).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate.Value.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && n.pay_status == true && n.pakage_id == 1).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ
+                    <br />
+                    <hr />
+                </div>
+                <div class="mt-4">
+                    <h6>Tổng gói vip 1 năm <span class="pull-right"></span></h6>
+                    Đã mua <b>@pays.Where(n => n.pay_datecreate.Value.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && n.pay_status == true && n.pakage_id == 4).Count()</b> hóa đơn với doanh thu @(pays.Where(n => n.pay_datecreate.Value.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && n.pay_status == true && n.pakage_id == 4).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate.Value.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && n.pay_status == true && n.pakage_id == 4).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ
+                    <br />
+                    <hr />
+                </div>
+                <div class="mt-4">
+                    <h6>Tổng gói vip 2 năm <span class="pull-right"></span></h6>
+                    Đã mua <b>@pays.Where(n => n.pay_datecreate.Value.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && n.pay_status == true && n.pakage_id == 5).Count()</b> hóa đơn với doanh thu @(pays.Where(n => n.pay_datecreate.Value.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && n.pay_status == true && n.pakage_id == 5).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate.Value.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && n.pay_status == true && n.pakage_id == 5).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ
+                    <br />
+                </div>
+                <div class="mt-4">
+                    <br />
+                    <h3>Người dùng mua gần đây</h3>
+                    <style>
+                        .crl {
+                            overflow-y: auto;
+                            height: 300px;
+                        }
+                    </style>
+                    <ul>
+                        @if (pays.Where(n => n.pay_datecreate.Value.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && n.pay_status == true).Count() == 0)
+                        {
+                            <li class="text-danger">Không có hóa đơn nào</li>
+                        }
+                        else
+                        {
+                            foreach (var item in pays.Where(n => n.pay_datecreate.Value.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && n.pay_status == true))
+                            {
+                                <li><b>@item.User.user_email</b> thanh toán gói "@item.Package.package_name"</li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card card-widget">
+            <div class="card-body">
+                <h5 class="text-muted">Thống kê chi tiết trong tuần </h5>
+                <h2 class="mt-4">@(pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ</h2>
+                <span>Có tổng cộng <b class="text-danger">@pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7)).Count()</b> hóa đơn</span>
+                <div class="mt-4">
+                    <h6>Tổng gói vip 1 tháng <span class="pull-right"></span></h6>
+                    Đã mua <b>@pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true && n.pakage_id == 1).Count()</b> hóa đơn với doanh thu @(pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true && n.pakage_id == 1).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true && n.pakage_id == 1).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ
+                    <br />
+                    <hr />
+                </div>
+                <div class="mt-4">
+                    <h6>Tổng gói vip 1 năm <span class="pull-right"></span></h6>
+                    Đã mua <b>@pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true && n.pakage_id == 4).Count()</b> hóa đơn với doanh thu @(pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true && n.pakage_id == 4).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true && n.pakage_id == 4).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ
+                    <br />
+                    <hr />
+                </div>
+                <div class="mt-4">
+                    <h6>Tổng gói vip 2 năm <span class="pull-right"></span></h6>
+                    Đã mua <b>@pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true && n.pakage_id == 5).Count()</b> hóa đơn với doanh thu @(pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true && n.pakage_id == 5).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true && n.pakage_id == 5).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ
+                    <br />
+                </div>
+                <div class="mt-4">
+                    <br />
+                    <h3>Người dùng mua gần đây</h3>
+                    <style>
+                        .crl {
+                            overflow-y: auto;
+                            height: 300px;
+                        }
+                    </style>
+                    <ul>
+                        @if (pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true).Count() == 0)
+                        {
+                            <li class="text-danger">Không có hóa đơn nào</li>
+                        }
+                        else
+                        {
+                            foreach (var item in pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true))
+                            {
+                                <li><b>@item.User.user_email</b> thanh toán gói "@item.Package.package_name"</li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card card-widget">
+            <div class="card-body">
+                <h5 class="text-muted">Thống kê chi tiết trong tháng </h5>
+                <h2 class="mt-4">@(pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(1) && n.pay_status == true).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(1) && n.pay_status == true).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ</h2>
+                <span>Có tổng cộng <b class="text-danger">@pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(1)).Count()</b> hóa đơn</span>
+                <div class="mt-4">
+                    <h6>Tổng gói vip 1 tháng <span class="pull-right"></span></h6>
+                    Đã mua <b>@pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(1) && n.pay_status == true && n.pakage_id == 1).Count()</b> hóa đơn với doanh thu @(pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(1) && n.pay_status == true && n.pakage_id == 1).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true && n.pakage_id == 1).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ
+                    <br />
+                    <hr />
+                </div>
+                <div class="mt-4">
+                    <h6>Tổng gói vip 1 năm <span class="pull-right"></span></h6>
+                    Đã mua <b>@pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(1) && n.pay_status == true && n.pakage_id == 4).Count()</b> hóa đơn với doanh thu @(pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(1) && n.pay_status == true && n.pakage_id == 4).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true && n.pakage_id == 4).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ
+                    <br />
+                    <hr />
+                </div>
+                <div class="mt-4">
+                    <h6>Tổng gói vip 2 năm <span class="pull-right"></span></h6>
+                    Đã mua <b>@pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(1) && n.pay_status == true && n.pakage_id == 5).Count()</b> hóa đơn với doanh thu @(pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(1) && n.pay_status == true && n.pakage_id == 5).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true && n.pakage_id == 5).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ
+                    <br />
+                </div>
+                <div class="mt-4">
+                    <br />
+                    <h3>Người dùng mua gần đây</h3>
+                    <style>
+                        .crl {
+                            overflow-y: auto;
+                            height: 300px;
+                        }
+                    </style>
+                    <ul>
+                        @if (pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(1) && n.pay_status == true).Count() == 0)
+                        {
+                            <li class="text-danger">Không có hóa đơn nào</li>
+                        }
+                        else
+                        {
+                            foreach (var item in pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(1) && n.pay_status == true))
+                            {
+                                <li><b>@item.User.user_email</b> thanh toán gói "@item.Package.package_name"</li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card card-widget">
+            <div class="card-body">
+                <h5 class="text-muted">Thống kê chi tiết trong năm </h5>
+                <h2 class="mt-4">@(pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(12) && n.pay_status == true).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(12) && n.pay_status == true).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ</h2>
+                <span>Có tổng cộng <b class="text-danger">@pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(1)).Count()</b> hóa đơn</span>
+                <div class="mt-4">
+                    <h6>Tổng gói vip 1 tháng <span class="pull-right"></span></h6>
+                    Đã mua <b>@pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(12) && n.pay_status == true && n.pakage_id == 1).Count()</b> hóa đơn với doanh thu @(pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(12) && n.pay_status == true && n.pakage_id == 1).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true && n.pakage_id == 1).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ
+                    <br />
+                    <hr />
+                </div>
+                <div class="mt-4">
+                    <h6>Tổng gói vip 1 năm <span class="pull-right"></span></h6>
+                    Đã mua <b>@pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(12) && n.pay_status == true && n.pakage_id == 4).Count()</b> hóa đơn với doanh thu @(pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(12) && n.pay_status == true && n.pakage_id == 4).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true && n.pakage_id == 4).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ
+                    <br />
+                    <hr />
+                </div>
+                <div class="mt-4">
+                    <h6>Tổng gói vip 2 năm <span class="pull-right"></span></h6>
+                    Đã mua <b>@pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(12) && n.pay_status == true && n.pakage_id == 5).Count()</b> hóa đơn với doanh thu @(pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(12) && n.pay_status == true && n.pakage_id == 5).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddDays(7) && n.pay_status == true && n.pakage_id == 5).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ
+                    <br />
+                </div>
+                <div class="mt-4">
+                    <br />
+                    <h3>Người dùng mua gần đây</h3>
+                    <style>
+                        .crl {
+                            overflow-y: auto;
+                            height: 300px;
+                        }
+                    </style>
+                    <ul>
+                        @if (pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(12) && n.pay_status == true).Count() == 0)
+                        {
+                            <li class="text-danger">Không có hóa đơn nào</li>
+                        }
+                        else
+                        {
+                            foreach (var item in pays.Where(n => n.pay_datecreate < n.pay_datecreate.Value.AddMonths(12) && n.pay_status == true))
+                            {
+                                <li><b>@item.User.user_email</b> thanh toán gói "@item.Package.package_name"</li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3 col-sm-6">
+        <div class="card gradient-1">
+            <div class="card-body">
+                <h3 class="card-title text-white">Tổng doanh thu</h3>
+                <div class="d-inline-block">
+                    <h2 class="text-white">@(pays.Where(n => n.pay_status == true).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pay_status == true).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ</h2>
+
+                </div>
+                <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card gradient-2">
+            <div class="card-body">
+                <h3 class="card-title text-white">Tông doanh thu gói 1 tháng</h3>
+                <div class="d-inline-block">
+                    <h2 class="text-white">@(pays.Where(n => n.pakage_id == 1 && n.pay_status == true).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pakage_id == 1 && n.pay_status == true).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ</h2>
+
+                    <p class="text-white mb-0">
+
+                    </p>
+                </div>
+                <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card gradient-3">
+            <div class="card-body">
+                <h3 class="card-title text-white">Tổng doanh thu gói 1 năm</h3>
+                <div class="d-inline-block">
+                    <h2 class="text-white">@(pays.Where(n => n.pakage_id == 4 && n.pay_status == true).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pakage_id == 4 && n.pay_status == true).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ</h2>
+
+                    <p class="text-white mb-0">
+
+                    </p>
+                </div>
+                <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card gradient-3">
+            <div class="card-body">
+                <h3 class="card-title text-white">Tổng doanh thu gói 2 năm</h3>
+                <div class="d-inline-block">
+                    <h2 class="text-white">@(pays.Where(n => n.pakage_id == 5 && n.pay_status == true).Sum(n => n.pay_summoney) == 0 ? "0" : pays.Where(n => n.pakage_id == 5 && n.pay_status == true).Sum(n => n.pay_summoney).Value.ToString("#,###")) VNĐ</h2>
+
+                    <p class="text-white mb-0">
+
+                    </p>
+                </div>
+                <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
+            </div>
+        </div>
+    </div>
+</div>
