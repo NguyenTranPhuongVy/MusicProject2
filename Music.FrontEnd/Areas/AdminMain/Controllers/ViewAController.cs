@@ -40,7 +40,8 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
                     var list = db.Historys.OrderByDescending(n => n.his_datecreate).Select(n => new {
                         content = n.his_content,
                         img = n.User.user_img,
-                        date = n.his_datecreate.Value.ToString()
+                        date = n.his_datecreate.Value.ToString(),
+                        email = n.User.user_email
 
                     }).ToList();
 
@@ -53,6 +54,11 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
         private void dependency_OnChange(object sender, SqlNotificationEventArgs e)
         {
             Hubs.HistoryHub.Show();
+        }
+
+        public ActionResult StaticPrice()
+        {
+            return View();
         }
     }
 }
