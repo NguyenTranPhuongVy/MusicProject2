@@ -16,12 +16,14 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
         // GET: AdminMain/ViewA
         public JsonResult GetHistory(int? id)
         {
-            HttpCookie cookie = Request.Cookies["admin_id"];
-
-            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DataShareCode"].ConnectionString))
+            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["MusicProject"].ConnectionString))
             {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand(@"SELECT [chat_id],[user_id],[chat_content],[chat_datecreate]FROM [dbo].[Chats]", connection))
+                using (SqlCommand command = new SqlCommand(@"SELECT [his_id]
+      ,[user_id]
+      ,[his_datecreate]
+      ,[his_content]
+  FROM [dbo].[Historys]", connection))
                 {
                     // Make sure the command object does not already have
                     // a notification object associated with it.
