@@ -141,8 +141,8 @@
                         <div class="field">
                             <label>Album</label>
                             <div class="col-md-12">
-                                <select name="album_id" multiple="" class="ui fluid dropdown search">
-                                    <option value="">-- Chọn ca sĩ -- </option>
+                                <select name="album" multiple="" class="ui fluid dropdown search">
+                                    <option value="">-- Chọn album -- </option>
                                     @foreach (var item in db.Albums.Where(x => x.album_bin == false && x.album_active == true))
                                     {
                                         <option value="@item.album_id">@item.album_name</option>

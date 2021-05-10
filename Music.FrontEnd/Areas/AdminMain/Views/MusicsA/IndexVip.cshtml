@@ -49,7 +49,12 @@
                                 <td>@item.National.nation_name</td>
                                 <td>@item.Author.author_name</td>
                                 <td>@item.Genre.genres_name</td>
-                                <td>@item.Album.album_name</td>
+                                <td>
+                                    @foreach (var item1 in item.PlayLists)
+                                    {
+                                        <span>@item1.Album.album_name | </span>
+                                    }
+                                </td>
                                 <td>
                                     <div class="ui toggle checkbox" id="@option@item.music_id">
                                         <input type="checkbox" @(item.music_option == true ? "checked" : "")>
