@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
@@ -19,6 +21,12 @@ namespace Music.FrontEnd
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
+
+            SqlDependency.Start(ConfigurationManager.ConnectionStrings["MusicProject"].ConnectionString);
+        }
+        protected void Application_End()
+        {
+            SqlDependency.Stop(ConfigurationManager.ConnectionStrings["MusicProject"].ConnectionString);
         }
     }
 }

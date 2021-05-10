@@ -150,7 +150,6 @@
                     <p>
                         Hoàn thành nhiệm vụ để hưởng thụ cảm giác siêu cấp vip pro<br />
                         Còn ngần ngại gì nữa nạp ngay lần đầu để được khuyến mãi tận 100%.<br />
-                        Âm nhạc Cương Vy hân hạnh tài trợ trang web này!
                     </p>
                     @if (function.CookieID() != null)
                     {
@@ -227,7 +226,7 @@
                                         {
                                             var qg = db.QuestGroups.FirstOrDefault(t => t.quest_id == item.quest_id && t.user_id == user1.user_id);
 
-                                            if(qg != null && qg.qg_status == true)
+                                            if (qg != null && qg.qg_status == true)
                                             {
                                                 <span style="color: green" class="card-media-body-supporting-bottom-text subtle u-float-right">Đã hoàn thành&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                             }

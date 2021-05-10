@@ -6,8 +6,6 @@
     var active = "active";
     var option = "option";
 }
-}
-
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -18,20 +16,20 @@
                     <table class="table table-striped table-bordered zero-configuration">
                         <thead>
                             <tr>
-                                <th>Mã nhạc</th>
-                                <th>Ảnh</th>
-                                <th>Tên nhạc</th>
-                                <th>Thời gian</th>
-                                <th>Lượt xem</th>
-                                <th>Lượt tải</th>
-                                <th>Người đăng</th>
-                                <th>Quốc gia</th>
-                                <th>Nhạc sỹ</th>
-                                <th>Thể loại</th>
-                                <th>Album</th>
-                                <th>Tình trạng</th>
-                                <th>Hoạt động</th>
-                                <th>Tùy chọn</th>
+                                <th><i class="fas fa-icons"></i> Mã nhạc</th>
+                                <th><i class="fas fa-compact-disc"></i> Ảnh</th>
+                                <th><i class="fas fa-music"></i> Tên nhạc</th>
+                                <th><i class="fas fa-hourglass-half"></i> Thời gian</th>
+                                <th><i class="fas fa-eye"></i> Lượt xem</th>
+                                <th><i class="fas fa-download"></i> Lượt tải</th>
+                                <th><i class="fas fa-user"></i> Người đăng</th>
+                                <th><i class="fas fa-globe-europe"></i> Quốc gia</th>
+                                <th><i class="fab fa-napster"></i> Nhạc sỹ</th>
+                                <th><i class="fas fa-podcast"></i> Thể loại</th>
+                                <th><i class="fas fa-compact-disc"></i> Album</th>
+                                <th><i class="fas fa-check-circle"></i> Tình trạng</th>
+                                <th><i class="far fa-check-circle"></i> Hoạt động</th>
+                                <th><i class="fas fa-cogs"></i> Tùy chọn</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,7 +48,12 @@
                                     <td>@item.National.nation_name</td>
                                     <td>@item.Author.author_name</td>
                                     <td>@item.Genre.genres_name</td>
-                                    <td>@item.Album.album_name</td>
+                                    <td>
+                                        @foreach (var item1 in item.PlayLists)
+                                        {
+                                            <span>@item1.Album.album_name</span>
+                                        }
+                                    </td>
                                     <td>
                                         <div class="ui toggle checkbox" id="@option@item.music_id">
                                             <input type="checkbox" @(item.music_option == true ? "checked" : "")>
@@ -105,20 +108,20 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Mã nhạc</th>
-                                <th>Ảnh</th>
-                                <th>Tên nhạc</th>
-                                <th>Thời gian</th>
-                                <th>Lượt xem</th>
-                                <th>Lượt tải</th>
-                                <th>Người đăng</th>
-                                <th>Quốc gia</th>
-                                <th>Nhạc sỹ</th>
-                                <th>Thể loại</th>
-                                <th>Album</th>
-                                <th>Tình trạng</th>
-                                <th>Hoạt động</th>
-                                <th>Tùy chọn</th>
+                                <th><i class="fas fa-icons"></i> Mã nhạc</th>
+                                <th><i class="fas fa-compact-disc"></i> Ảnh</th>
+                                <th><i class="fas fa-music"></i> Tên nhạc</th>
+                                <th><i class="fas fa-hourglass-half"></i> Thời gian</th>
+                                <th><i class="fas fa-eye"></i> Lượt xem</th>
+                                <th><i class="fas fa-download"></i> Lượt tải</th>
+                                <th><i class="fas fa-user"></i> Người đăng</th>
+                                <th><i class="fas fa-globe-europe"></i> Quốc gia</th>
+                                <th><i class="fab fa-napster"></i> Nhạc sỹ</th>
+                                <th><i class="fas fa-podcast"></i> Thể loại</th>
+                                <th><i class="fas fa-compact-disc"></i> Album</th>
+                                <th><i class="fas fa-check-circle"></i> Tình trạng</th>
+                                <th><i class="far fa-check-circle"></i> Hoạt động</th>
+                                <th><i class="fas fa-cogs"></i> Tùy chọn</th>
                             </tr>
                         </tfoot>
                     </table>

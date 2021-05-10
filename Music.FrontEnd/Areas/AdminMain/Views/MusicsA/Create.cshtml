@@ -70,9 +70,9 @@
                             <div class="col-md-12">
                                 <select name="user_id" class="ui fluid dropdown search">
                                     <option value="">-- Chọn danh mục -- </option>
-                                    @foreach (var item in db.Users.Where(x => x.user_bin == false && x.user_active == true && (x.user_vip == true || x.role_id == 2)))
+                                    @foreach (var item in db.Users)
                                     {
-                                        <option value="@item.user_id">@item.user_name</option>
+                                        <option value="@item.user_id">@item.user_email</option>
                                     }
                                 </select>
                             </div>
@@ -88,7 +88,7 @@
                         <div class="field">
                             <label>Link MV (Nếu có)</label>
                             <div class="col-md-12">
-                                <input type="file" class="btn btn-danger" name="link_video" required />
+                                <input type="file" class="btn btn-danger" name="link_video"/>
                             </div>
                         </div>
 
@@ -142,7 +142,7 @@
                             <label>Album</label>
                             <div class="col-md-12">
                                 <select name="album" multiple="" class="ui fluid dropdown search">
-                                    <option value="">-- Chọn ca sĩ -- </option>
+                                    <option value="">-- Chọn album -- </option>
                                     @foreach (var item in db.Albums.Where(x => x.album_bin == false && x.album_active == true))
                                     {
                                         <option value="@item.album_id">@item.album_name</option>
@@ -154,7 +154,7 @@
                         <div class="field">
                             <label>Quốc Gia</label>
                             <div class="col-md-12">
-                                <select name="national_id" class="ui fluid dropdown search">
+                                <select name="nation_id" class="ui fluid dropdown search">
                                     <option value="">-- Chọn quốc gia -- </option>
                                     @foreach (var item in db.Nationals.Where(x => x.nation_bin == false && x.nation_active == true))
                                     {

@@ -1,8 +1,9 @@
 ﻿@model Music.Model.EF.Music
+
 @{
-    Music.Model.EF.MusicProjectDataEntities db = new Music.Model.EF.MusicProjectDataEntities();
-    ViewBag.Title = "Sửa nhạc " + Model.music_name;
+    ViewBag.Title = "Sửa nhạc";
     Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+    Music.Model.EF.MusicProjectDataEntities db = new Music.Model.EF.MusicProjectDataEntities();
 }
 
 <div class="row">
@@ -16,11 +17,12 @@
                 {
                     @Html.AntiForgeryToken()
                     @Html.HiddenFor(x => x.music_id)
-                    @Html.HiddenFor(x => x.music_bin)
-                    @Html.HiddenFor(x => x.music_datecreate)
                     @Html.HiddenFor(x => x.music_img)
                     @Html.HiddenFor(x => x.music_linkdow)
                     @Html.HiddenFor(x => x.music_video)
+                    @Html.HiddenFor(x => x.music_bin)
+                    @Html.HiddenFor(x => x.music_datecreate)
+
                     <div class="form-horizontal mt-3 ui form segment">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="field">
@@ -34,14 +36,14 @@
                         <div class="field">
                             <label>Hình Ảnh</label>
                             <div class="col-md-12">
-                                <input type="file" class="btn btn-danger" name="file_img" required />
+                                <input type="file" class="btn btn-danger" name="img" />
                             </div>
                         </div>
 
                         <div class="field">
                             <label>Lời Bài Hát</label>
                             <div class="col-md-12">
-                                <textarea name="music_lyric"></textarea>
+                                <textarea name="music_lyric">@Html.Raw(@Model.music_lyric)</textarea>
                             </div>
                         </div>
 
@@ -72,199 +74,18 @@
                         <div class="field">
                             <label>Tên Người Tạo</label>
                             <div class="col-md-12">
-                                @Html.EditorFor(model => model.user_id, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Link Nhạc</label>
-                            <div class="col-md-12">
-                                <input type="file" class="btn btn-danger" name="link_mp3" required />
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Link MV (Nếu có)</label>
-                            <div class="col-md-12">
-                                <input type="file" class="btn btn-danger" name="link_video" required />
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Trạng Thái Hoạt Động</label>
-                            <div class="col-md-12">
-                                <select class="ui dropdown" name="music_active">
-                                    <option value="true">Hoạt Động</option>
-                                    <option value="false">Không Hoạt Động</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Trạng Thái Hiển Thị</label>
-                            <div class="col-md-12">
-                                <select class="ui dropdown" name="music_option">
-                                    <option value="true">Hoạt Động</option>
-                                    <option value="false">Không Hoạt Động</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Danh mục</label>
-                            <div class="col-md-12">
-                                <select name="category" multiple="" class="ui fluid dropdown search">
+                                <select name="user_id" class="ui fluid dropdown search">
                                     <option value="">-- Chọn danh mục -- </option>
-                                    @foreach (var item in db.Categories.Where(x => x.category_bin == false && x.category_active == true))
+                                    @foreach (var item in db.Users)
                                     {
-                                        <option value="@item.category_id">@item.category_name</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Ca sĩ</label>
-                            <div class="col-md-12">
-                                <select name="singers" multiple="" class="ui fluid dropdown search">
-                                    <option value="">-- Chọn ca sĩ -- </option>
-                                    @foreach (var item in db.Singers.Where(x => x.singer_bin == false && x.singer_active == true))
-                                    {
-                                        <option value="@item.singer_id">@item.singer_name</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Album</label>
-                            <div class="col-md-12">
-                                <select name="album" multiple="" class="ui fluid dropdown search">
-                                    <option value="">-- Chọn ca sĩ -- </option>
-                                    @foreach (var item in db.Albums.Where(x => x.album_bin == false && x.album_active == true))
-                                    {
-                                        <option value="@item.album_id">@item.album_name</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Quốc Gia</label>
-                            <div class="col-md-12">
-                                <select name="national_id" class="ui fluid dropdown search">
-                                    <option value="">-- Chọn quốc gia -- </option>
-                                    @foreach (var item in db.Nationals.Where(x => x.nation_bin == false && x.nation_active == true))
-                                    {
-                                        <option value="@item.nation_id">@item.nation_name</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Phân Loại Âm Nhạc</label>
-                            <div class="col-md-12">
-                                <select name="genres_id" class="ui fluid dropdown search">
-                                    <option value="">-- Chọn thể loại -- </option>
-                                    @foreach (var item in db.Genres)
-                                    {
-                                        <option value="@item.genres_id">@item.genres_name</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Chọn Nhạc Sĩ</label>
-                            <div class="col-md-12">
-                                @Html.DropDownList("author_id", null, htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.author_id, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <div class="col-md-offset-2 col-md-12">
-                                <input type="submit" value="Thêm" class="btn btn-default" />
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
-</div><div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">@ViewBag.Title</h4>
-                <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
-
-                @using (Html.BeginForm("Edit", "MusicsA", FormMethod.Post, new { @enctype = "multipart/form-data" }))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.HiddenFor(x => x.music_id)
-                    @Html.HiddenFor(x => x.music_datecreate)
-                    @Html.HiddenFor(x => x.music_img)
-                    @Html.HiddenFor(x => x.music_linkdow)
-                    @Html.HiddenFor(x => x.music_video)
-                    @Html.HiddenFor(x => x.music_bin)
-                    <div class="form-horizontal mt-3 ui form segment">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="field">
-                            <label>Tên Bài Hát</label>
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.music_name, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.music_name, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Hình Ảnh</label>
-                            <div class="col-md-12">
-                                <input type="file" class="btn btn-danger" name="file_img" />
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Lời Bài Hát</label>
-                            <div class="col-md-12">
-                                <textarea name="music_lyric">@Model.music_lyric</textarea>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Thời Lượng</label>
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.music_time, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.music_time, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Lượt Nghe</label>
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.music_view, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.music_view, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Lượt Tải</label>
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.music_dowload, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.music_dowload, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Tên Người Tạo</label>
-                            <div class="col-md-12">
-                                <select>
-                                    @foreach (var item in db.Users.Where(t => t.user_vip == true || t.role_id == 2))
-                                    {
-                                        <option value="@item.user_id" @(item.user_id == Model.user_id ? "selected" : "")>@item.user_name</option>
+                                        if (Model.user_id == item.user_id)
+                                        {
+                                            <option value="@item.user_id" selected>@item.user_email</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.user_id">@item.user_email</option>
+                                        }
                                     }
                                 </select>
                             </div>
@@ -305,18 +126,97 @@
                         </div>
 
                         <div class="field">
+                            <label>Danh mục</label>
+                            <div class="col-md-12">
+                                <select name="category" multiple="" class="ui fluid dropdown search">
+                                    @foreach (var item in db.Categories.Where(x => x.category_bin == false && x.category_active == true))
+                                    {
+                                        if (Model.Groups.FirstOrDefault(t => t.music_id == Model.music_id && t.category_id == item.category_id) != null)
+                                        {
+                                            <option value="@item.category_id" selected>@item.category_name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.category_id">@item.category_name</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Ca sĩ</label>
+                            <div class="col-md-12">
+                                <select name="singers" multiple="" class="ui fluid dropdown search">
+                                    @foreach (var item in db.Singers.Where(x => x.singer_bin == false && x.singer_active == true))
+                                    {
+                                        if (Model.Groups.FirstOrDefault(t => t.music_id == Model.music_id && t.singer_id == item.singer_id) != null)
+                                        {
+                                            <option value="@item.singer_id" selected>@item.singer_name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.singer_id">@item.singer_name</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Album</label>
+                            <div class="col-md-12">
+                                <select name="album" multiple="" class="ui fluid dropdown search">
+                                    @foreach (var item in db.Albums.Where(x => x.album_bin == false && x.album_active == true))
+                                    {
+                                        if (Model.PlayLists.FirstOrDefault(t => t.music_id == Model.music_id && t.albums_id == item.album_id) != null)
+                                        {
+                                            <option value="@item.album_id" selected>@item.album_name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.album_id">@item.album_name</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field">
                             <label>Quốc Gia</label>
                             <div class="col-md-12">
-                                @Html.DropDownList("nation_id", null, htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.nation_id, "", new { @class = "text-danger" })
+                                <select name="nation_id" class="ui fluid dropdown search">
+                                    @foreach (var item in db.Nationals.Where(x => x.nation_bin == false && x.nation_active == true))
+                                    {
+                                        if (Model.nation_id == item.nation_id)
+                                        {
+                                            <option value="@item.nation_id" selected>@item.nation_name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.nation_id">@item.nation_name</option>
+                                        }
+                                    }
+                                </select>
                             </div>
                         </div>
 
                         <div class="field">
                             <label>Phân Loại Âm Nhạc</label>
                             <div class="col-md-12">
-                                @Html.DropDownList("genres_id", null, htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.genres_id, "", new { @class = "text-danger" })
+                                <select name="genres_id" class="ui fluid dropdown search">
+                                    @foreach (var item in db.Genres)
+                                    {
+                                        if (Model.genres_id == item.genres_id)
+                                        {
+                                            <option value="@item.genres_id" selected>@item.genres_name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.genres_id">@item.genres_name</option>
+                                        }
+                                    }
+                                </select>
                             </div>
                         </div>
 
@@ -325,14 +225,6 @@
                             <div class="col-md-12">
                                 @Html.DropDownList("author_id", null, htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.author_id, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label>Chọn Album</label>
-                            <div class="col-md-12">
-                                @Html.DropDownList("album_id", null, htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.album_id, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
@@ -347,3 +239,4 @@
         </div>
     </div>
 </div>
+

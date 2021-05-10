@@ -1,5 +1,9 @@
 ﻿@{ 
-
+    HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies["admin_id"];
+    if(cookie == null)
+    {
+        Response.Redirect("/");
+    }
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +12,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <title>@ViewBag.Title</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Pignose Calender -->
@@ -25,6 +29,8 @@
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <link href="~/Content/Semantic-UI-CSS-master/semantic.min.css" rel="stylesheet" />
     <script src="~/Content/Semantic-UI-CSS-master/semantic.min.js"></script>
+
+
 </head>
 
 <body>
@@ -235,14 +241,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="widgets.html">
+                        <a href="/AdminMain/ViewA/StaticPrice">
                             <i class="fa fa-money-bill menu-icon"></i><span class="" style="font-size: 16px">Thống kê doanh thu</span>
                         </a>
                     </li>
                     <li><hr /></li>
                     <li>
-                        <a href="/AdminMain/GenresA/Index">
-                            <i class="fa fa-icons menu-icon"></i><span class="" style="font-size: 16px">Quản lý thể loại</span>
+                        <a href="/AdminMain/CategoriesA/Index">
+                            <i class="fa fa-icons menu-icon"></i><span class="" style="font-size: 16px">Quản lý danh mục</span>
                         </a>
                     </li>
                     <li>
@@ -357,6 +363,9 @@
     <script src="~/Content/AdminMain/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js" integrity="sha512-DedNBWPF0hLGUPNbCYfj8qjlEnNE92Fqn7xd3Sscfu7ipy7Zu33unHdugqRD3c4Vj7/yLv+slqZhMls/4Oc7Zg==" crossorigin="anonymous"></script>
 
+
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/signalr/hubs" type="text/javascript"></script>
 </body>
 
 </html>
