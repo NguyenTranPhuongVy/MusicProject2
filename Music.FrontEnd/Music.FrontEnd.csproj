@@ -170,6 +170,7 @@
     <Compile Include="Areas\AdminMain\AdminMainAreaRegistration.cs" />
     <Compile Include="Areas\AdminMain\Controllers\AlbumsAController.cs" />
     <Compile Include="Areas\AdminMain\Controllers\AuthorsAController.cs" />
+    <Compile Include="Areas\AdminMain\Controllers\CategoriesAController.cs" />
     <Compile Include="Areas\AdminMain\Controllers\GenresAController.cs" />
     <Compile Include="Areas\AdminMain\Controllers\HomeAController.cs" />
     <Compile Include="Areas\AdminMain\Controllers\MusicsAController.cs" />
@@ -8087,6 +8088,11 @@
     <Content Include="Areas\AdminMain\Views\UsersA\Index.cshtml" />
     <Content Include="Areas\AdminMain\Views\UsersA\IndexAdmin.cshtml" />
     <Content Include="Areas\AdminMain\Views\UsersA\IndexVip.cshtml" />
+    <Content Include="Areas\AdminMain\Views\CategoriesA\Create.cshtml" />
+    <Content Include="Areas\AdminMain\Views\CategoriesA\Delete.cshtml" />
+    <Content Include="Areas\AdminMain\Views\CategoriesA\Details.cshtml" />
+    <Content Include="Areas\AdminMain\Views\CategoriesA\Edit.cshtml" />
+    <Content Include="Areas\AdminMain\Views\CategoriesA\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -47,7 +47,7 @@
                                                     setTimeout(function () {
                                                         $.ajax({
                                                         type: "post",
-                                                        url: "/AdminMain/UsersA/ChangeActive?id=" + @item.user_id,
+                                                        url: "/AdminMain/UsersA/ChangeActive?id=" + @item.author_id,
                                                         contentType: "Json",
                                                         success: function (response) {
                                                             alert("success!");
