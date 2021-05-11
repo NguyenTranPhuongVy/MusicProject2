@@ -29,6 +29,34 @@ namespace Music.FrontEnd.Controllers
         public ActionResult DetailsMusic(int? id)
         {
             var music = db.Musics.Find(id);
+
+            var fu = new FunctionController();
+            if(fu.CookieID() != null)
+            {
+                var idus = fu.CookieID();
+
+                Group checkmusic = db.Groups.FirstOrDefault(n => n.music_id == id && n.user_id == idus.user_id);
+                if(checkmusic != null)
+                {
+                    checkmusic.group_datecreate = DateTime.Now;
+                    db.SaveChanges();
+                }
+                else
+                {
+
+                    Group group = new Group()
+                    {
+                        music_id = id,
+                        user_id = idus.user_id,
+                        group_datecreate = DateTime.Now,
+                        //4 la nhac vua nghe
+                        group_item = 4
+                    };
+                    db.Groups.Add(group);
+                    db.SaveChanges();
+                }
+            }
+
             return View(music);
         }
 

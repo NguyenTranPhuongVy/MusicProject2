@@ -24,6 +24,7 @@ namespace Music.Model.EF
             this.QuestGroups = new HashSet<QuestGroup>();
             this.Replies = new HashSet<Reply>();
             this.Historys = new HashSet<History>();
+            this.Groups = new HashSet<Group>();
         }
     
         public int user_id { get; set; }
@@ -63,5 +64,7 @@ namespace Music.Model.EF
         public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<History> Historys { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Group> Groups { get; set; }
     }
 }

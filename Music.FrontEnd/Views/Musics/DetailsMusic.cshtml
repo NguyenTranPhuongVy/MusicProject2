@@ -21,7 +21,28 @@
 <section class="portfolio spad" ng-app="myApp">
     <div class="container-fluid mt-3" ng-controller="myComment">
         <div class="row">
-            <div class="col-lg-8">
+            @if (coo.Cookie() != null)
+            {
+                var idus = coo.CookieID();
+                <div class="col-lg-2">
+                    <button class="ui red button"><i class="fa fa-plus">&bdquo;</i>Thêm album của bạn</button>
+                    <div class="list-group mt-2">
+                        <button type="button" class="list-group-item list-group-item-action font-weight-bold">Album của bạn</button>
+                        @foreach (var item in db.Albums.Where(n => n.user_id == idus.user_id).OrderByDescending(n => n.album_datecreate))
+                        {
+                            <button type="button" class="list-group-item list-group-item-action font-weight-bold">@item.album_name</button>
+                        }
+                    </div>
+                    <div class="list-group mt-2">
+                        <button type="button" class="list-group-item list-group-item-action font-weight-bold">Các nhiệm vụ của bạn</button>
+                        @foreach (var item in db.Albums.Where(n => n.user_id == idus.user_id).OrderByDescending(n => n.album_datecreate))
+                        {
+                            <button type="button" class="list-group-item list-group-item-action font-weight-bold">Album @item.album_name</button>
+                        }
+                    </div>
+                </div>
+            }
+            <div class="col-lg-@(coo.Cookie() != null ? "7" : "9")">
                 <form class="ui form">
                     <div class="row">
                         <div class="col-lg-4">
@@ -32,6 +53,26 @@
                         <div class="col-lg-8">
                             <div class="card" style="padding: 15px">
                                 <div style="padding: 10px">
+                                    <h3 class="text-danger">@Model.music_name</h3>
+                                    <b>Ca sỹ thể hiện: </b>
+                                    @if (Model.Groups.Where(t => t.singer_id != null).Count() > 0)
+                                    {
+                                        <span>
+                                            @foreach (var item in Model.Groups.Where(t => t.singer_id != null))
+                                            {
+                                                <span>@item.Singer.singer_name |</span>
+                                            }
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        foreach (var item in user.Where(n => n.user_id == Model.user_id))
+                                        {
+                                            <span>@item.user_name</span> <br /> <b><i class="fa fa-user"></i></b>
+                                        }
+                                    }
+                                    <br />
+                                    <br />
                                     <style>
                                         #scrolls {
                                             overflow-y: auto;
@@ -151,68 +192,184 @@
                     color: white;
                 }
             </style>
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <div class="ui tabular secondary menu pointing" style="font-size: 15px; font-family: 'Play', sans-serif !important">
                     <div class="active item text-white" data-tab="tab-name">Danh Sách Phát</div>
                     <div class="item text-white" data-tab="tab-name2">Gợi Ý Cho Bạn</div>
                 </div>
                 <div class="ui tab active" data-tab="tab-name" id="scrolls2">
-                    @for (int i = 0; i < 8; i++)
+                    @if (coo.Cookie() != null)
                     {
-                        <div class="card-media">
-                            <!-- media container -->
-                            <div class="card-media-object-container">
-                                <div class="card-media-object" style="background-image: url(https://s9.postimg.cc/y0sfm95gv/prince_f.jpg);"></div>
-                                <ul class="card-media-object-social-list">
-                                    <li>
-                                        <img src="https://s10.postimg.cc/3rjjbzcvd/profile_f.jpg" class="">
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- body container -->
-                            <div class="card-media-body">
-                                <div class="card-media-body-top">
-                                    <span class="subtle">Mon, APR 09, 7:00 PM</span>
-                                    <div class="card-media-body-top-icons u-float-right">
-                                        <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
-                                        </svg>
-                                        <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z" />
-                                            <path d="M0 0h24v24H0z" fill="none" />
-                                        </svg>
+                        if (db.Groups.Where(n => n.Music.music_active == true && n.group_item == 4).Count() != 0)
+                        {
+                            foreach (var item in db.Groups.Where(n => n.Music.music_active == true && n.group_item == 4).OrderByDescending(n => n.group_datecreate))
+                            {
+                                <div class="card-media">
+                                    <!-- media container -->
+                                    <div class="card-media-object-container">
+                                        <div class="card-media-object" style="background-image: url(../../Images/Music/@item.Music.music_img);"></div>
+                                        <ul class="card-media-object-social-list">
+                                            <li>
+                                                <img src="~/Images/Music/@item.Music.music_img" class="">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- body container -->
+                                    <div class="card-media-body" style="color: black">
+                                        <div class="card-media-body-top">
+                                            <span class="subtle">Ca sỹ: None</span>
+                                            <div class="card-media-body-top-icons u-float-right">
+                                                <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
+                                                </svg>
+                                                <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z" />
+                                                    <path d="M0 0h24v24H0z" fill="none" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <span class="card-media-body-heading" style="font-size: 11px !important">@item.Music.music_name</span>
+                                        <div class="card-media-body-supporting-bottom">
+                                            <span class="card-media-body-supporting-bottom-text subtle u-float-right">
+                                                @if (item.Music.music_vip == true)
+                                                {
+                                                    <b class="text-danger">Vip</b>
+                                                }
+                                                else
+                                                {
+                                                    <b class="text-danger">Miễn phí</b>
+                                                }
+                                            </span>
+                                        </div>
+                                        <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
+                                            <span class="card-media-body-supporting-bottom-text subtle">#Music #Party</span>
+                                            <a href="#/" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                        </div>
                                     </div>
                                 </div>
-                                <span class="card-media-body-heading" style="font-size: 11px !important">This Thing Called Life: A Celebration of Prince and His Legacy at MEZZANINE SF</span>
-                                <div class="card-media-body-supporting-bottom">
-                                    <span class="card-media-body-supporting-bottom-text subtle u-float-right">Free &ndash; $30</span>
+                            }
+                        }
+                        else
+                        {
+                            foreach (var item in db.Musics.Where(n => n.music_active == true).OrderByDescending(n => n.music_view).Take(30))
+                            {
+                                <div class="card-media">
+                                    <!-- media container -->
+                                    <div class="card-media-object-container">
+                                        <div class="card-media-object" style="background-image: url(../../Images/Music/@item.music_img);"></div>
+                                        <ul class="card-media-object-social-list">
+                                            <li>
+                                                <img src="~/Images/Music/@item.music_img" class="">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- body container -->
+                                    <div class="card-media-body" style="color: black">
+                                        <div class="card-media-body-top">
+                                            <span class="subtle">Ca sỹ: None</span>
+                                            <div class="card-media-body-top-icons u-float-right">
+                                                <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
+                                                </svg>
+                                                <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z" />
+                                                    <path d="M0 0h24v24H0z" fill="none" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <span class="card-media-body-heading" style="font-size: 11px !important">@item.music_name</span>
+                                        <div class="card-media-body-supporting-bottom">
+                                            <span class="card-media-body-supporting-bottom-text subtle u-float-right">
+                                                @if (item.music_vip == true)
+                                                {
+                                                    <b class="text-danger">Vip</b>
+                                                }
+                                                else
+                                                {
+                                                    <b class="text-danger">Miễn phí</b>
+                                                }
+                                            </span>
+                                        </div>
+                                        <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
+                                            <span class="card-media-body-supporting-bottom-text subtle">#Music #Party</span>
+                                            <a href="#/" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
-                                    <span class="card-media-body-supporting-bottom-text subtle">#Music #Party</span>
-                                    <a href="#/" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        foreach (var item in db.Musics.Where(n => n.music_active == true).OrderByDescending(n => n.music_view).Take(30))
+                        {
+                            <div class="card-media">
+                                <!-- media container -->
+                                <div class="card-media-object-container">
+                                    <div class="card-media-object" style="background-image: url(../../Images/Music/@item.music_img);"></div>
+                                    <ul class="card-media-object-social-list">
+                                        <li>
+                                            <img src="~/Images/Music/@item.music_img" class="">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- body container -->
+                                <div class="card-media-body" style="color: black">
+                                    <div class="card-media-body-top">
+                                        <span class="subtle">Ca sỹ: None</span>
+                                        <div class="card-media-body-top-icons u-float-right">
+                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
+                                            </svg>
+                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z" />
+                                                <path d="M0 0h24v24H0z" fill="none" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="card-media-body-heading" style="font-size: 11px !important">@item.music_name</span>
+                                    <div class="card-media-body-supporting-bottom">
+                                        <span class="card-media-body-supporting-bottom-text subtle u-float-right">
+                                            @if (item.music_vip == true)
+                                            {
+                                                <b class="text-danger">Vip</b>
+                                            }
+                                            else
+                                            {
+                                                <b class="text-danger">Miễn phí</b>
+                                            }
+                                        </span>
+                                    </div>
+                                    <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
+                                        <span class="card-media-body-supporting-bottom-text subtle">#Music #Party</span>
+                                        <a href="#/" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        }
                     }
                 </div>
                 <div class="ui tab" data-tab="tab-name2">
-                    @for (int i = 0; i < 8; i++)
+                    @foreach (var item in db.Musics.Where(n => n.music_active == true).OrderByDescending(n => n.music_view).Take(30))
                     {
                         <div class="card-media">
                             <!-- media container -->
                             <div class="card-media-object-container">
-                                <div class="card-media-object" style="background-image: url(https://s9.postimg.cc/y0sfm95gv/prince_f.jpg)"></div>
+                                <div class="card-media-object" style="background-image: url(../../Images/Music/@item.music_img);"></div>
                                 <ul class="card-media-object-social-list">
                                     <li>
-                                        <img src="https://s10.postimg.cc/3rjjbzcvd/profile_f.jpg" class="">
+                                        <img src="~/Images/Music/@item.music_img" class="">
                                     </li>
                                 </ul>
                             </div>
                             <!-- body container -->
-                            <div class="card-media-body">
+                            <div class="card-media-body" style="color: black">
                                 <div class="card-media-body-top">
-                                    <span class="subtle">Mon, APR 09, 7:00 PM</span>
+                                    <span class="subtle">Ca sỹ: None</span>
                                     <div class="card-media-body-top-icons u-float-right">
                                         <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M0 0h24v24H0z" fill="none" />
@@ -224,9 +381,18 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <span class="card-media-body-heading" style="font-size: 11px !important">This Thing Called Life: A Celebration of Prince and His Legacy at MEZZANINE SF</span>
+                                <span class="card-media-body-heading" style="font-size: 11px !important">@item.music_name</span>
                                 <div class="card-media-body-supporting-bottom">
-                                    <span class="card-media-body-supporting-bottom-text subtle u-float-right">Free &ndash; $30</span>
+                                    <span class="card-media-body-supporting-bottom-text subtle u-float-right">
+                                        @if (item.music_vip == true)
+                                        {
+                                            <b class="text-danger">Vip</b>
+                                        }
+                                        else
+                                        {
+                                            <b class="text-danger">Miễn phí</b>
+                                        }
+                                    </span>
                                 </div>
                                 <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
                                     <span class="card-media-body-supporting-bottom-text subtle">#Music #Party</span>
@@ -289,7 +455,7 @@
             <div class="col-lg-3 text-white">
                 <br />
                 <i style="font-size: 19px" class="fa fa-download"></i>  Tải nhạc &nbsp;
-                <i style="font-size: 19px" class="fa fa-audio-description"></i> Nhạc free <br />
+                <i style="font-size: 19px" class="fa fa-audio-description"></i> @(Model.music_vip == true ? "Nhạc vip" : "Nhạc miễn phí") <br />
                 <i style="font-size: 19px" class="fa fa-music"></i> @Model.music_view  Lượt nghe &nbsp;
                 <b data-toggle="modal" data-target="#exampleModal" style="cursor: pointer"><i style="font-size: 19px" class="fa fa-music"></i> Lưu nhạc vào adbums &nbsp;</b>
             </div>

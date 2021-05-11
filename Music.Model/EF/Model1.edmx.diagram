@@ -49,6 +49,7 @@
         <EntityTypeShape EntityType="MusicProjectDataModel.History" Width="1.5" PointX="3.75" PointY="23.125" />
         <EntityTypeShape EntityType="MusicProjectDataModel.sysdiagram" Width="1.5" PointX="5.375" PointY="0.75" />
         <AssociationConnector Association="MusicProjectDataModel.FK_Historys_Users" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Group_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

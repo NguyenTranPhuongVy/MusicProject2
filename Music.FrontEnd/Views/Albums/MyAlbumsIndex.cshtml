@@ -18,10 +18,10 @@
                 <form action="@Url.Action("AddAlbum","Albums")" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-lg-4">
-                            <input name="album_name" type="text" class="form-control" placeholder="Tên abums cá nhân riêng" />
+                            <input required name="album_name" type="text" class="form-control" placeholder="Tên abums cá nhân riêng" />
                         </div>
                         <div class="col-lg-6">
-                            <input type="file" class="form-control" name="img" />
+                            <input required type="file" class="form-control" name="img" />
                         </div>
                         <div class="col-lg-2">
                             <button class="btn btn-danger w-100" type="submit">Thêm albums</button>

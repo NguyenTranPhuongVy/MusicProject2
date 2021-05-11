@@ -78,6 +78,8 @@
           <Property Name="singer_id" Type="int" />
           <Property Name="category_id" Type="int" />
           <Property Name="group_datecreate" Type="datetime" />
+          <Property Name="group_item" Type="int" />
+          <Property Name="user_id" Type="int" />
         </EntityType>
         <EntityType Name="Historys">
           <Key>
@@ -111,6 +113,7 @@
           <Property Name="genres_id" Type="int" />
           <Property Name="author_id" Type="int" />
           <Property Name="album_id" Type="int" />
+          <Property Name="music_vip" Type="bit" />
         </EntityType>
         <EntityType Name="National">
           <Key>
@@ -332,6 +335,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Group_Musics1">
+          <End Role="Musics" Type="Self.Musics" Multiplicity="0..1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musics">
+              <PropertyRef Name="music_id" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="music_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Group_Singers">
           <End Role="Singers" Type="Self.Singers" Multiplicity="0..1" />
           <End Role="Group" Type="Self.Group" Multiplicity="*" />
@@ -341,6 +356,18 @@
             </Principal>
             <Dependent Role="Group">
               <PropertyRef Name="singer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -601,8 +628,16 @@
             <End Role="Musics" EntitySet="Musics" />
             <End Role="Group" EntitySet="Group" />
           </AssociationSet>
+          <AssociationSet Name="FK_Group_Musics1" Association="Self.FK_Group_Musics1">
+            <End Role="Musics" EntitySet="Musics" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
           <AssociationSet Name="FK_Group_Singers" Association="Self.FK_Group_Singers">
             <End Role="Singers" EntitySet="Singers" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_Users" Association="Self.FK_Group_Users">
+            <End Role="Users" EntitySet="Users" />
             <End Role="Group" EntitySet="Group" />
           </AssociationSet>
           <AssociationSet Name="FK_Historys_Users" Association="Self.FK_Historys_Users">
@@ -799,6 +834,10 @@
             <End Role="User" EntitySet="Users" />
             <End Role="History" EntitySet="Historys" />
           </AssociationSet>
+          <AssociationSet Name="FK_Group_Users" Association="MusicProjectDataModel.FK_Group_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Group" EntitySet="Groups" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Album">
           <Key>
@@ -886,6 +925,9 @@
           <NavigationProperty Name="Category" Relationship="MusicProjectDataModel.FK_Group_Categories" FromRole="Group" ToRole="Category" />
           <NavigationProperty Name="Music" Relationship="MusicProjectDataModel.FK_Group_Musics" FromRole="Group" ToRole="Music" />
           <NavigationProperty Name="Singer" Relationship="MusicProjectDataModel.FK_Group_Singers" FromRole="Group" ToRole="Singer" />
+          <Property Name="group_item" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="MusicProjectDataModel.FK_Group_Users" FromRole="Group" ToRole="User" />
         </EntityType>
         <EntityType Name="Music">
           <Key>
@@ -918,6 +960,7 @@
           <NavigationProperty Name="National" Relationship="MusicProjectDataModel.FK_Musics_National" FromRole="Music" ToRole="National" />
           <NavigationProperty Name="User" Relationship="MusicProjectDataModel.FK_Musics_Users" FromRole="Music" ToRole="User" />
           <NavigationProperty Name="PlayLists" Relationship="MusicProjectDataModel.FK_PlayList_Musics" FromRole="Music" ToRole="PlayList" />
+          <Property Name="music_vip" Type="Boolean" />
         </EntityType>
         <EntityType Name="National">
           <Key>
@@ -1094,6 +1137,7 @@
           <NavigationProperty Name="Replies" Relationship="MusicProjectDataModel.FK_Reply_Users" FromRole="User" ToRole="Reply" />
           <NavigationProperty Name="Role" Relationship="MusicProjectDataModel.FK_Users_Roles" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="Historys" Relationship="MusicProjectDataModel.FK_Historys_Users" FromRole="User" ToRole="History" />
+          <NavigationProperty Name="Groups" Relationship="MusicProjectDataModel.FK_Group_Users" FromRole="User" ToRole="Group" />
         </EntityType>
         <Association Name="FK_Albums_Users">
           <End Type="MusicProjectDataModel.User" Role="User" Multiplicity="0..1" />
@@ -1403,6 +1447,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Group_Users">
+          <End Type="MusicProjectDataModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="MusicProjectDataModel.Group" Role="Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1481,6 +1537,8 @@
           <EntitySetMapping Name="Groups">
             <EntityTypeMapping TypeName="MusicProjectDataModel.Group">
               <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="group_item" ColumnName="group_item" />
                 <ScalarProperty Name="group_datecreate" ColumnName="group_datecreate" />
                 <ScalarProperty Name="category_id" ColumnName="category_id" />
                 <ScalarProperty Name="singer_id" ColumnName="singer_id" />
@@ -1492,6 +1550,7 @@
           <EntitySetMapping Name="Musics">
             <EntityTypeMapping TypeName="MusicProjectDataModel.Music">
               <MappingFragment StoreEntitySet="Musics">
+                <ScalarProperty Name="music_vip" ColumnName="music_vip" />
                 <ScalarProperty Name="album_id" ColumnName="album_id" />
                 <ScalarProperty Name="author_id" ColumnName="author_id" />
                 <ScalarProperty Name="genres_id" ColumnName="genres_id" />
