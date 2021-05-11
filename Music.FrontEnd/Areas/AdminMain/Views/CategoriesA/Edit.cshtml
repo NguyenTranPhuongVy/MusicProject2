@@ -1,7 +1,7 @@
 ﻿@model Music.Model.EF.Category
 
 @{
-    ViewBag.Title = "Sửa thông tin danh mục";
+    ViewBag.Title = "Thêm danh mục";
     Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
 }
 
@@ -12,13 +12,16 @@
                 <h4 class="card-title">@ViewBag.Title</h4>
                 <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
 
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("Edit", "CategoryA", FormMethod.Post, new { @enctype = "multipart/form-data"}))
                 {
                     @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.category_id)
+                    @Html.HiddenFor(x => x.category_img)
+                    @Html.HiddenFor(x => x.category_bin)
+                    @Html.HiddenFor(x => x.category_datecreate)
 
                     <div class="form-horizontal mt-2">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.category_id)
                         <div class="form-group">
                             @Html.LabelFor(model => model.category_name, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-12">
@@ -33,16 +36,6 @@
                                 <div class="checkbox">
                                     @Html.EditorFor(model => model.category_active)
                                     @Html.ValidationMessageFor(model => model.category_active, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.category_bin, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-12">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.category_bin)
-                                    @Html.ValidationMessageFor(model => model.category_bin, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>
@@ -64,34 +57,9 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.user_id, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.user_id, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.category_datecreate, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.category_datecreate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.category_datecreate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.category_dateupdate, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.category_dateupdate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.category_dateupdate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
                             @Html.LabelFor(model => model.category_img, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-12">
-                                @Html.EditorFor(model => model.category_img, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.category_img, "", new { @class = "text-danger" })
+                                <input type="file" name="img" required class="btn btn-danger" />
                             </div>
                         </div>
 
@@ -107,4 +75,3 @@
         </div>
     </div>
 </div>
-

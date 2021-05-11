@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Music.FrontEnd.Function;
 using Music.Model.EF;
 
 namespace Music.FrontEnd.Areas.AdminMain.Controllers
@@ -13,11 +14,12 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
     public class CategoriesAController : Controller
     {
         private MusicProjectDataEntities db = new MusicProjectDataEntities();
+        private FilesController filesController = new FilesController();
 
         // GET: AdminMain/CategoriesA
         public ActionResult Index()
         {
-            return View(db.Categories.ToList());
+            return View(db.Categories.Where(x => x.category_bin == false).ToList());
         }
 
         // GET: AdminMain/CategoriesA/Details/5
@@ -46,10 +48,13 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "category_id,category_name,category_active,category_bin,category_note,category_view,user_id,category_datecreate,category_dateupdate,category_img")] Category category)
+        public ActionResult Create([Bind(Include = "category_id,category_name,category_active,category_bin,category_note,category_view,user_id,category_datecreate,category_dateupdate,category_img")] Category category, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)
             {
+                category.category_bin = false;
+                category.category_datecreate = DateTime.Now;
+                category.category_img = filesController.AddImages(img, "Singer", Guid.NewGuid().ToString());
                 db.Categories.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,10 +83,14 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "category_id,category_name,category_active,category_bin,category_note,category_view,user_id,category_datecreate,category_dateupdate,category_img")] Category category)
+        public ActionResult Edit([Bind(Include = "category_id,category_name,category_active,category_bin,category_note,category_view,user_id,category_datecreate,category_dateupdate,category_img")] Category category, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)
             {
+                if (img != null)
+                {
+                    filesController.AddImages(img, "Singer", Guid.NewGuid().ToString());
+                }
                 db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -101,7 +110,8 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
             {
                 return HttpNotFound();
             }
-            return View(category);
+            db.Categories.Find(id).category_bin = true;
+            return View("Index");
         }
 
         // POST: AdminMain/CategoriesA/Delete/5

@@ -43,7 +43,7 @@
                                     <hr />
                                     <div id="scrolls">
                                         <p>
-                                            @Model.music_lyric
+                                            <textarea>@Model.music_lyric</textarea>
                                         </p>
                                     </div>
                                 </div>
@@ -340,7 +340,7 @@
                 url: "/Musics/AcceptQuest?id=" + @Model.music_id,
                 contentType: "Json",
                     success: function (response) {
-                        alert("aaaa");
+                        
                 }
             })
             }, 10000)
