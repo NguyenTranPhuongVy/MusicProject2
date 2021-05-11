@@ -78,10 +78,23 @@ namespace Music.Model.DAO
                 db.SaveChanges();
 
                 //remove old category 
-                foreach(var item in musics.Groups.Where(x => x.category_id != null))
+                foreach(var item in db.Groups.Where(x => x.category_id != null && x.music_id == musics.music_id))
                 {
                     db.Groups.Remove(item);
                 }
+
+                //remove old singer 
+                foreach (var item in db.Groups.Where(x => x.singer_id != null && x.music_id == musics.music_id))
+                {
+                    db.Groups.Remove(item);
+                }
+
+                // remove old album
+                foreach (var item in db.PlayLists.Where(x => x.music_id == musics.music_id))
+                {
+                    db.PlayLists.Remove(item);
+                }
+                db.SaveChanges();
                 // add category
                 foreach (var item in category)
                 {
@@ -90,12 +103,6 @@ namespace Music.Model.DAO
                         category_id = item,
                         music_id = musics.music_id
                     });
-                }
-
-                //remove old singer 
-                foreach (var item in musics.Groups.Where(x => x.singer_id != null))
-                {
-                    db.Groups.Remove(item);
                 }
                 // add singer
                 foreach (var item in singer)
@@ -106,18 +113,12 @@ namespace Music.Model.DAO
                         music_id = musics.music_id
                     });
                 }
-
-                // remove old album
-                foreach (var item in musics.PlayLists)
-                {
-                    db.PlayLists.Remove(item);
-                }
                 // add singer
                 foreach (var item in album)
                 {
                     playListDAO.Add(new PlayList()
                     {
-                        albums_id    = item,
+                        albums_id = item,
                         music_id = musics.music_id
                     });
                 }

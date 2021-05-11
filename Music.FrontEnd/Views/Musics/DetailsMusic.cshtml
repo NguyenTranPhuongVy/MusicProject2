@@ -334,15 +334,16 @@
     <script>
         $(document).ready(function () {
             setTimeout(function () {
+                debugger
                 $.ajax({
                 type: "post",
                 url: "/Musics/AcceptQuest?id=" + @Model.music_id,
                 contentType: "Json",
-                success: function (response) {
-
+                    success: function (response) {
+                        alert("aaaa");
                 }
             })
-            }, 3000)
+            }, 10000)
         })
     </script>
 }

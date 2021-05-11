@@ -89,7 +89,7 @@ namespace Music.FrontEnd.Areas.AdminMain.Controllers
             {
                 if(img != null)
                 {
-                    filesController.AddImages(img, "Singer", Guid.NewGuid().ToString());
+                    singer.singer_img = filesController.AddImages(img, "Singer", Guid.NewGuid().ToString());
                 }
                 singer.singer_dateupdate = DateTime.Now;
                 db.Entry(singer).State = EntityState.Modified;
