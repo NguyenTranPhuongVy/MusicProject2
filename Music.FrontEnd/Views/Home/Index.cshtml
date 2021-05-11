@@ -636,107 +636,43 @@
             <div class="col-lg-12">
                 <div class="section-title center-title">
                     <span>Ca Sỹ</span>
-                    <h2>Có Thể Bạn Cần?</h2>
+                    <h2>Có Thể Bạn Chưa Biết?</h2>
                 </div>
             </div>
         </div>
         <div class="row">
+            <style>
+                .cutP{
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    line-height: 25px;
+                    -webkit-line-clamp: 3;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                }
+            </style>
             <div class="testimonial__slider owl-carousel">
-                <div class="col-lg-4">
-                    <div class="testimonial__item">
-                        <div class="testimonial__text">
-                            <p>
-                                Delivers such a great service that it can benefit all kinds of people from any number
-                                of industries.
-                            </p>
-                        </div>
-                        <div class="testimonial__author">
-                            <div class="testimonial__author__pic">
-                                <img src="~/Content/Layout/img/testimonial/ta-1.jpg" alt="">
+                @foreach (var item in singer.Where(n => n.singer_active == true && n.singer_bin == false).OrderByDescending(n => n.singer_datecreate))
+                {
+                    <div class="col-lg-4">
+                        <div class="testimonial__item">
+                            <div class="testimonial__text">
+                                <p class="cutP">
+                                    @item.singer_note
+                                </p>
                             </div>
-                            <div class="testimonial__author__text">
-                                <h5>Krista Attorn</h5>
-                                <span>Web Designer</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="testimonial__item">
-                        <div class="testimonial__text">
-                            <p>
-                                Videographer delivers such a great service that it can benefit all kinds of people
-                                from any number.
-                            </p>
-                        </div>
-                        <div class="testimonial__author">
-                            <div class="testimonial__author__pic">
-                                <img src="~/Content/Layout/img/testimonial/ta-2.jpg" alt="">
-                            </div>
-                            <div class="testimonial__author__text">
-                                <h5>Krista Attorn</h5>
-                                <span>Web Designer</span>
+                            <div class="testimonial__author">
+                                <div class="testimonial__author__pic">
+                                    <img src="~/Images/Singer/@item.singer_img" style="width: 50px; height: 50px !important" alt="@item.singer_name">
+                                </div>
+                                <div class="testimonial__author__text">
+                                    <h5>@item.singer_name</h5>
+                                    <span>Ca Sỹ</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="testimonial__item">
-                        <div class="testimonial__text">
-                            <p>
-                                Videographer delivers such a great service that it can benefit all kinds of people
-                                from any number.
-                            </p>
-                        </div>
-                        <div class="testimonial__author">
-                            <div class="testimonial__author__pic">
-                                <img src="~/Content/Layout/img/testimonial/ta-3.jpg" alt="">
-                            </div>
-                            <div class="testimonial__author__text">
-                                <h5>Krista Attorn</h5>
-                                <span>Web Designer</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="testimonial__item">
-                        <div class="testimonial__text">
-                            <p>
-                                Delivers such a great service that it can benefit all kinds of people from any number
-                                of industries.
-                            </p>
-                        </div>
-                        <div class="testimonial__author">
-                            <div class="testimonial__author__pic">
-                                <img src="~/Content/Layout/img/testimonial/ta-1.jpg" alt="">
-                            </div>
-                            <div class="testimonial__author__text">
-                                <h5>Krista Attorn</h5>
-                                <span>Web Designer</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="testimonial__item">
-                        <div class="testimonial__text">
-                            <p>
-                                Videographer delivers such a great service that it can benefit all kinds of people
-                                from any number.
-                            </p>
-                        </div>
-                        <div class="testimonial__author">
-                            <div class="testimonial__author__pic">
-                                <img src="~/Content/Layout/img/testimonial/ta-2.jpg" alt="">
-                            </div>
-                            <div class="testimonial__author__text">
-                                <h5>Krista Attorn</h5>
-                                <span>Web Designer</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
