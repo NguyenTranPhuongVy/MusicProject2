@@ -19,9 +19,12 @@ namespace Music.Model.EF
         public Nullable<int> singer_id { get; set; }
         public Nullable<int> category_id { get; set; }
         public Nullable<System.DateTime> group_datecreate { get; set; }
+        public Nullable<int> group_item { get; set; }
+        public Nullable<int> user_id { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual Music Music { get; set; }
         public virtual Singer Singer { get; set; }
+        public virtual User User { get; set; }
     }
 }
