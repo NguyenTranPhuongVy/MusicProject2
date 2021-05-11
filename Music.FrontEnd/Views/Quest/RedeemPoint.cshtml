@@ -50,7 +50,6 @@
                                                     <!--PRICE START-->
                                                     <div class="generic_price_tag clearfix">
                                                         <span class="price">
-                                                            <span class="sign">$</span>
                                                             <span class="currency">@item.pakage_price</span>
                                                             <span class="month">/điểm</span>
                                                         </span>
@@ -72,11 +71,11 @@
                                                 <div class="generic_price_btn clearfix">
                                                     @if (item.pakage_price <= user.user_point)
                                                     {
-                                                        <a class="" href="@Url.Action("RedeemPointPost","Quest", new { id = item.package_id })">Đôi điểm</a>
+                                                        <a class="" href="@Url.Action("RedeemPointPost","Quest", new { id = item.package_id })">Đổi điểm</a>
                                                     }
                                                     else
                                                     {
-                                                        <a class="" style="background: red" href="@Url.Action("Index","Musics")">Cày nhiệm vụ kiếm điểm đi con gà</a>
+                                                        <a class="" style="background: red" href="@Url.Action("Index","Musics")">Chưa điểm làm nhiệm vụ ngay</a>
                                                     }
                                                 </div>
                                                 <!--//BUTTON END-->

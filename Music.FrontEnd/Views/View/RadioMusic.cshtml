@@ -1,0 +1,109 @@
+﻿@using Music.Model.EF;
+@{
+    MusicProjectDataEntities db = new MusicProjectDataEntities();
+    ViewBag.Title = "Radio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<Slider> sliders = db.Sliders.ToList();
+    List<Music> musics = db.Musics.ToList();
+    List<Singer> singer = db.Singers.ToList();
+    List<Album> album = db.Albums.ToList();
+    List<User> user = db.Users.ToList();
+    List<Category> category = db.Categories.ToList();
+    List<Quest> quests = db.Quests.ToList();
+}
+
+<section class="services spad" ng-app="myApp">
+    <div class="container" ng-controller="myCtrl">
+        <div class="row" ng-repeat="list in list">
+            <div class="col-lg-12">
+                <h1 style="font-size: 50px" class="text-white font-weight-bold text-center mt-3">Radio âm nhạc</h1>
+                <style>
+                    .hv:hover {
+                        border: 1px dashed white;
+                    }
+                </style>
+                <div class="row">
+                    @foreach (var item in musics.Where(n => n.music_active == true && n.music_option == true && n.music_bin == false && n.User.role_id == 1).OrderByDescending(n => n.music_datecreate).Take(8))
+                    {
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card-media">
+                                <!-- media container -->
+                                <div class="card-media-object-container">
+                                    <div class="card-media-object w-100" style="background-image: url('../../Images/Music/@item.music_img');"></div>
+                                    <span class="card-media-object-tag subtle">Mới Nhất</span>
+                                    <ul class="card-media-object-social-list">
+                                        @if (item.Groups.Where(x => x.singer_id != null).Count() > 0)
+                                        {
+                                            <li>
+                                                @foreach (var items in singer)
+                                                {
+                                                    foreach (var jtem in item.Groups.Where(x => x.singer_id != items.singer_id))
+                                                    {
+                                                        <img src="~/Images/Singer/@items.singer_img" class="">
+                                                    }
+                                                }
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                @foreach (var items in user.Where(n => n.user_id == item.user_id))
+                                                {
+                                                    <img src="~/Images/User/@items.user_img" class="">
+                                                }
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                                <!-- body container -->
+                                <div class="card-media-body">
+                                    <div class="card-media-body-top">
+                                        <span class="subtle">@item.music_datecreate.Value.Day/@item.music_datecreate.Value.Month/@item.music_datecreate.Value.Year</span>
+                                        <div class="card-media-body-top-icons u-float-right">
+                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
+                                            </svg>
+                                            <svg fill="#888888" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z" />
+                                                <path d="M0 0h24v24H0z" fill="none" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="card-media-body-heading" style="font-size: 16px !important; font-weight:bold;">@item.music_name</span>
+                                    <div class="card-media-body-supporting-bottom">
+                                        @if (item.Groups.Where(x => x.singer_id != null).Count() > 0)
+                                        {
+                                            foreach (var items in singer)
+                                            {
+                                                foreach (var jtem in item.Groups.Where(x => x.singer_id == items.singer_id))
+                                                {
+                                                    <span class="card-media-body-supporting-bottom-text subtle u-float-right">@items.singer_name</span>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            foreach (var items in user.Where(n => n.user_id == item.user_id))
+                                            {
+                                                <span class="card-media-body-supporting-bottom-text subtle u-float-right">@items.user_name</span>
+                                            }
+                                        }
+                                    </div>
+                                    <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
+                                        @foreach (var items in album.Where(n => n.album_id == item.album_id))
+                                        {
+                                            <span class="card-media-body-supporting-bottom-text subtle">#@items.album_name</span>
+                                        }
+                                        <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
