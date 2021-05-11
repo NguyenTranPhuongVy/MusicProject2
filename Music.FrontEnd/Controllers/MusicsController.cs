@@ -233,7 +233,6 @@ namespace Music.FrontEnd.Controllers
             else if(name == "viet")
             {
                 ViewBag.Note = name;
-
             }
             else if (name == "tre")
             {
@@ -244,6 +243,14 @@ namespace Music.FrontEnd.Controllers
                 ViewBag.Note = name;
             }
             else if (name == "aumy")
+            {
+                ViewBag.Note = name;
+            }
+            else if(name == "100aumy")
+            {
+                ViewBag.Note = name;
+            }
+            else if(name == "100hanquoc")
             {
                 ViewBag.Note = name;
             }
