@@ -12,7 +12,7 @@
                 <h4 class="card-title">@ViewBag.Title</h4>
                 <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
 
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("Create", "CategoryA", FormMethod.Post, new { @enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
 
@@ -37,16 +37,6 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.category_bin, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-12">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.category_bin)
-                                    @Html.ValidationMessageFor(model => model.category_bin, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
                             @Html.LabelFor(model => model.category_note, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-12">
                                 @Html.EditorFor(model => model.category_note, new { htmlAttributes = new { @class = "form-control" } })
@@ -63,34 +53,9 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.user_id, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.user_id, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.category_datecreate, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.category_datecreate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.category_datecreate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.category_dateupdate, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.category_dateupdate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.category_dateupdate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
                             @Html.LabelFor(model => model.category_img, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-12">
-                                @Html.EditorFor(model => model.category_img, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.category_img, "", new { @class = "text-danger" })
+                                <input type="file" name="img" required class="btn btn-danger"/>
                             </div>
                         </div>
 

@@ -31,7 +31,7 @@ namespace Music.Model.DAO
                 db.SaveChanges();
 
                 // get music id
-                var music_id = db.Musics.FirstOrDefault(t => t.user_id == musics.user_id && t.music_bin == false && t.music_active == false).music_id;
+                var music_id = db.Musics.FirstOrDefault(t => t.music_name == musics.music_name && t.user_id == musics.user_id && t.music_bin == false && t.music_active == false).music_id;
 
                 // add category
                 foreach(var item in category)
@@ -45,7 +45,7 @@ namespace Music.Model.DAO
 
                 // add singer
                 foreach (var item in singer)
-                {
+                {   
                     groupDAO.Add(new Group()
                     {
                         singer_id = item,

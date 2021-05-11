@@ -104,36 +104,36 @@ namespace Music.FrontEnd.Controllers
 
             foreach(var item in quest)
             {
-                if((music.nation_id == item.id && music.National.nation_name == item.name) || (music.Groups.Where(x => x.singer_id == item.id).Count() > 0 && music.Groups.Where(x => x.Singer.singer_name == item.name).Count() > 0) || (music.Groups.Where(x => x.category_id == item.id).Count() > 0 && music.Groups.Where(x => x.Category.category_name == item.name).Count() > 0))
+                if((music.nation_id == item.id && music.National.nation_name == item.name) || (music.Groups.Where(x => x.singer_id == item.id && x.Singer.singer_name == item.name).Count() > 0) || (music.Groups.Where(x => x.category_id == item.id && x.Category.category_name == item.name).Count() > 0))
                 {
                     var qg = db.QuestGroups.FirstOrDefault(t => t.user_id == user.user_id && t.quest_id == item.quest_id);
                     if(qg != null)
                     {
-                        if(qg.qg_progress < db.Quests.Find(item.id).quest_limit)
+                        if(qg.qg_progress < db.Quests.Find(item.quest_id).quest_limit)
                         {
-                            if(qg.qg_progress == db.Quests.Find(item.id).quest_limit - 1)
+                            if(qg.qg_progress == db.Quests.Find(item.quest_id).quest_limit - 1)
                             {
                                 qg.qg_status = true;
                                 var countqg = db.QuestGroups.Where(t => t.quest_id == item.quest_id && t.qg_progress == 20).Count();
                                 if (countqg == 0)
                                 {
                                     qg.qg_top = 1;
-                                    db.Users.Find(user.user_id).user_point += db.Quests.Find(item.id).quest_top1;
+                                    db.Users.Find(user.user_id).user_point += db.Quests.Find(item.quest_id).quest_top1;
                                 }
                                 else if (countqg == 1)
                                 {
                                     qg.qg_top = 2;
-                                    db.Users.Find(user.user_id).user_point += db.Quests.Find(item.id).quest_top2;
+                                    db.Users.Find(user.user_id).user_point += db.Quests.Find(item.quest_id).quest_top2;
                                 }
                                 else if(countqg == 2)
                                 {
                                     qg.qg_top = 3;
-                                    db.Users.Find(user.user_id).user_point += db.Quests.Find(item.id).quest_top3;
+                                    db.Users.Find(user.user_id).user_point += db.Quests.Find(item.quest_id).quest_top3;
                                 }
                                 else
                                 {
                                     qg.qg_top = 4;
-                                    db.Users.Find(user.user_id).user_point += db.Quests.Find(item.id).quest_gift;
+                                    db.Users.Find(user.user_id).user_point += db.Quests.Find(item.quest_id).quest_gift;
                                 }
                             }
                             qg.qg_progress++;
@@ -233,7 +233,6 @@ namespace Music.FrontEnd.Controllers
             else if(name == "viet")
             {
                 ViewBag.Note = name;
-
             }
             else if (name == "tre")
             {
@@ -244,6 +243,14 @@ namespace Music.FrontEnd.Controllers
                 ViewBag.Note = name;
             }
             else if (name == "aumy")
+            {
+                ViewBag.Note = name;
+            }
+            else if(name == "100aumy")
+            {
+                ViewBag.Note = name;
+            }
+            else if(name == "100hanquoc")
             {
                 ViewBag.Note = name;
             }

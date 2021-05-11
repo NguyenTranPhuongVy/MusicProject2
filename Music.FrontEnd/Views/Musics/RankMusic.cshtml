@@ -1,4 +1,6 @@
 ﻿@using Music.Model.EF
+@using Microsoft.Ajax.Utilities;
+
 @{
     MusicProjectDataEntities db = new MusicProjectDataEntities();
     ViewBag.Title = "RankMusic";
@@ -18,79 +20,122 @@
         <div class="container" ng-controller="myCtrl">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 style="font-size: 35px" class="text-white font-weight-bold text-center mt-3">BẢNG XẾP HẠNG ÂM NHẠC</h2>
+                    <h2 style="font-size: 35px" class="text-white font-weight-bold text-center mt-3">BẢNG XẾP HẠNG ÂM NHẠC TRẺ</h2>
 
                     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/highcharts@6/highcharts.js"></script>
                     <!-- vue-highcharts should be load after Highcharts -->
                     <script src="https://cdn.jsdelivr.net/npm/vue-highcharts@0.1/dist/vue-highcharts.min.js"></script>
+                    <ul class="nav nav-tabs text-white" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Bảng xếp hạng tổng</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Bảng xếp hạng cá nhân</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <table class="table text-white table-hover">
 
-                    <div id="app">
-                        <highcharts :options="options" ref="highcharts"></highcharts>
+                                @foreach (var item in db.Groups.Where(n => n.Music.music_active == true && n.Music.User.role_id == 2 && n.category_id == 4).DistinctBy(n => n.Music.music_name.ToLower()).OrderByDescending(n => n.Music.music_view).Take(10))
+                                {
+                                    <tr class="mt-2">
+                                        <td width="10%">
+                                            <br />
+                                            <center>
+                                                @if (i == 1)
+                                                {
+                                                    <b class="text-primary" style="font-size: 30px">@i -</b>
+                                                }
+                                                else if (i == 2)
+                                                {
+                                                    <b class="text-success" style="font-size: 30px">@i -</b>
+                                                }
+                                                else if (i == 3)
+                                                {
+                                                    <b class="text-danger" style="font-size: 30px">@i -</b>
+                                                }
+                                                else
+                                                {
+                                                    <b style="font-size: 30px">@i -</b>
+                                                }
+                                            </center>
+                                        </td>
+                                        <td width="40%">
+                                            <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.Music.music_img" style="width: 60px; height: 60px" />
+                                            <div class="float-left ml-3">
+                                                &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.Music.music_name</a>
+                                                <br />
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p style="padding-top: 30px; padding-bottom: 30px">@item.Music.music_time</p>
+                                        </td>
+                                        <td>
+                                            <div style="padding-top: 30px; padding-bottom: 30px" class="float-right">
+                                                <i class="fa fa-heart"></i> &nbsp;&nbsp;&nbsp;
+                                                <i class="fa fa-download"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    i++;
+                                }
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <table class="table text-white table-hover">
+
+                                @foreach (var item in db.Groups.Where(n => n.Music.music_active == true && n.Music.User.role_id == 1 && n.category_id == 4).DistinctBy(n => n.Music.music_name.ToLower()).OrderByDescending(n => n.Music.music_view).Take(10))
+                                {
+                                    <tr class="mt-2">
+                                        <td width="10%">
+                                            <br />
+                                            <center>
+                                                @if (i == 1)
+                                                {
+                                                    <b class="text-primary" style="font-size: 30px">@i -</b>
+                                                }
+                                                else if (i == 2)
+                                                {
+                                                    <b class="text-success" style="font-size: 30px">@i -</b>
+                                                }
+                                                else if (i == 3)
+                                                {
+                                                    <b class="text-danger" style="font-size: 30px">@i -</b>
+                                                }
+                                                else
+                                                {
+                                                    <b style="font-size: 30px">@i -</b>
+                                                }
+                                            </center>
+                                        </td>
+                                        <td width="40%">
+                                            <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.Music.music_img" style="width: 60px; height: 60px" />
+                                            <div class="float-left ml-3">
+                                                &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.Music.music_name</a>
+                                                <br />
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p style="padding-top: 30px; padding-bottom: 30px">@item.Music.music_time</p>
+                                        </td>
+                                        <td>
+                                            <div style="padding-top: 30px; padding-bottom: 30px" class="float-right">
+                                                <i class="fa fa-heart"></i> &nbsp;&nbsp;&nbsp;
+                                                <i class="fa fa-download"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    i++;
+                                }
+                            </table>
+                        </div>
                     </div>
-                    <table class="table text-white table-hover">
-                        @foreach (var item in musics.Where(n => n.music_active == true).OrderByDescending(n => n.music_view).Take(10))
-                        {
-                            <tr class="mt-2">
-                                <td width="10%">
-                                    <br />
-                                    <center>
-                                        @if (i == 1)
-                                        {
-                                            <b class="text-primary" style="font-size: 30px">@i -</b>
-                                        }
-                                        else if (i == 2)
-                                        {
-                                            <b class="text-success" style="font-size: 30px">@i -</b>
-                                        }
-                                        else if (i == 3)
-                                        {
-                                            <b class="text-danger" style="font-size: 30px">@i -</b>
-                                        }
-                                        else
-                                        {
-                                            <b style="font-size: 30px">@i -</b>
-                                        }
-                                    </center>
-                                </td>
-                                <td width="40%">
-                                    <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
-                                    <div class="float-left ml-3">
-                                        &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.music_name</a>
-                                        @if (item.Groups.FirstOrDefault(x => x.singer_id != null) != null)
-                                        {
-                                            foreach (var item1 in item.Groups.Where(x => x.singer_id != null))
-                                            {
-                                                <p>
-                                                    @item1.Singer.singer_name
-                                                </p>
-                                            }
-                                        }
-                                        else
-                                        {
-                                            foreach (var items in users.Where(n => n.user_id == item.user_id))
-                                            {
-                                                <p>
-                                                    @items.user_name
-                                                </p>
-                                            }
-                                        }
-                                    </div>
-                                </td>
-                                <td>
-                                    <p style="padding-top: 30px; padding-bottom: 30px">@item.music_time</p>
-                                </td>
-                                <td>
-                                    <div style="padding-top: 30px; padding-bottom: 30px" class="float-right">
-                                        <i class="fa fa-heart"></i> &nbsp;&nbsp;&nbsp;
-                                        <i class="fa fa-download"></i>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            i++;
-                        }
-                    </table>
                     <center>
                         <a href="/Musics/RankMusic?name=100" class="ui secondary button" style="font-size: 15px">Top 100</a>
                     </center>
@@ -105,82 +150,60 @@ else if (ViewBag.Note == "100")
         <div class="container" ng-controller="myCtrl">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 style="font-size: 35px" class="text-white font-weight-bold text-center mt-3">BẢNG XẾP HẠNG ÂM NHẠC</h2>
+                    <h2 style="font-size: 35px" class="text-white font-weight-bold text-center mt-3">TOP 100 NHẠC TRẺ</h2>
 
                     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/highcharts@6/highcharts.js"></script>
                     <!-- vue-highcharts should be load after Highcharts -->
                     <script src="https://cdn.jsdelivr.net/npm/vue-highcharts@0.1/dist/vue-highcharts.min.js"></script>
 
-                    <div id="app">
-                        <highcharts :options="options" ref="highcharts"></highcharts>
-                    </div>
                     <table class="table text-white table-hover">
-                        @foreach (var item in musics.Where(n => n.music_active == true).OrderByDescending(n => n.music_view).Take(100))
+                        @foreach (var item in db.Groups.Where(n => n.Music.music_active == true && n.Music.User.role_id == 2 && n.category_id == 4).DistinctBy(n => n.Music.music_name.ToLower()).OrderByDescending(n => n.Music.music_view).Take(100))
                         {
-                            <tr class="mt-2">
-                                <td width="10%">
+                        <tr class="mt-2">
+                            <td width="10%">
+                                <br />
+                                <center>
+                                    @if (i == 1)
+                                    {
+                                        <b class="text-primary" style="font-size: 30px">@i -</b>
+                                    }
+                                    else if (i == 2)
+                                    {
+                                        <b class="text-success" style="font-size: 30px">@i -</b>
+                                    }
+                                    else if (i == 3)
+                                    {
+                                        <b class="text-danger" style="font-size: 30px">@i -</b>
+                                    }
+                                    else
+                                    {
+                                        <b style="font-size: 30px">@i -</b>
+                                    }
+                                </center>
+                            </td>
+                            <td width="40%">
+                                <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.Music.music_img" style="width: 60px; height: 60px" />
+                                <div class="float-left ml-3">
+                                    &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.Music.music_name</a>
                                     <br />
-                                    <center>
-                                        @if (i == 1)
-                                        {
-                                            <b class="text-primary" style="font-size: 30px">@i -</b>
-                                        }
-                                        else if (i == 2)
-                                        {
-                                            <b class="text-success" style="font-size: 30px">@i -</b>
-                                        }
-                                        else if (i == 3)
-                                        {
-                                            <b class="text-danger" style="font-size: 30px">@i -</b>
-                                        }
-                                        else
-                                        {
-                                            <b style="font-size: 30px">@i -</b>
-                                        }
-                                    </center>
-                                </td>
-                                <td width="40%">
-                                    <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
-                                    <div class="float-left ml-3">
-                                        &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.music_name</a>
-                                        @if (item.Groups.FirstOrDefault(x => x.singer_id != null) != null)
-                                        {
-                                            foreach (var item1 in item.Groups.Where(x => x.singer_id != null))
-                                            {
-                                                <p>
-                                                    @item1.Singer.singer_name
-                                                </p>
-                                            }
-                                        }
-                                        else
-                                        {
-                                            foreach (var items in users.Where(n => n.user_id == item.user_id))
-                                            {
-                                                <p>
-                                                    @items.user_name
-                                                </p>
-                                            }
-                                        }
-                                    </div>
-                                </td>
-                                <td>
-                                    <p style="padding-top: 30px; padding-bottom: 30px">@item.music_time</p>
-                                </td>
-                                <td>
-                                    <div style="padding-top: 30px; padding-bottom: 30px" class="float-right">
-                                        <i class="fa fa-heart"></i> &nbsp;&nbsp;&nbsp;
-                                        <i class="fa fa-download"></i>
-                                    </div>
-                                </td>
-                            </tr>
 
-                            i++;
+                                </div>
+                            </td>
+                            <td>
+                                <p style="padding-top: 30px; padding-bottom: 30px">@item.Music.music_time</p>
+                            </td>
+                            <td>
+                                <div style="padding-top: 30px; padding-bottom: 30px" class="float-right">
+                                    <i class="fa fa-heart"></i> &nbsp;&nbsp;&nbsp;
+                                    <i class="fa fa-download"></i>
+                                </div>
+                            </td>
+                        </tr>
+
+                        i++;
                         }
                     </table>
-                    <center>
-                        <a href="/Musics/RankMusic?name=100" class="ui secondary button" style="font-size: 15px">Top 100</a>
-                    </center>
                 </div>
             </div>
         </div>
@@ -192,18 +215,15 @@ else if (ViewBag.Note == "viet")
         <div class="container" ng-controller="myCtrl">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 style="font-size: 35px" class="text-white font-weight-bold text-center mt-3">BẢNG XẾP HẠNG ÂM NHẠC</h2>
+                    <h2 style="font-size: 35px" class="text-white font-weight-bold text-center mt-3">BẢNG XẾP HẠNG ÂM NHẠC VIỆT NAM</h2>
 
                     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/highcharts@6/highcharts.js"></script>
                     <!-- vue-highcharts should be load after Highcharts -->
                     <script src="https://cdn.jsdelivr.net/npm/vue-highcharts@0.1/dist/vue-highcharts.min.js"></script>
 
-                    <div id="app">
-                        <highcharts :options="options" ref="highcharts"></highcharts>
-                    </div>
                     <table class="table text-white table-hover">
-                        @foreach (var item in musics.Where(n => n.music_active == true && n.nation_id == 2).OrderByDescending(n => n.music_view).Take(100))
+                        @foreach (var item in musics.Where(n => n.music_active == true && n.nation_id == 2 && n.User.role_id  == 2).OrderByDescending(n => n.music_view).Take(100))
                         {
                             <tr class="mt-2">
                                 <td width="10%">
@@ -373,9 +393,6 @@ else if (ViewBag.Note == "aumy")
                     <!-- vue-highcharts should be load after Highcharts -->
                     <script src="https://cdn.jsdelivr.net/npm/vue-highcharts@0.1/dist/vue-highcharts.min.js"></script>
 
-                    <div id="app">
-                        <highcharts :options="options" ref="highcharts"></highcharts>
-                    </div>
                     <table class="table text-white table-hover">
                         @foreach (var item in musics.Where(n => n.music_active == true && n.nation_id == 3).OrderByDescending(n => n.music_view).Take(100))
                         {
@@ -405,22 +422,23 @@ else if (ViewBag.Note == "aumy")
                                     <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
                                     <div class="float-left ml-3">
                                         &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.music_name</a>
+                                        <br />
                                         @if (item.Groups.FirstOrDefault(x => x.singer_id != null) != null)
                                         {
                                             foreach (var item1 in item.Groups.Where(x => x.singer_id != null))
                                             {
-                                                <p>
-                                                    @item1.Singer.singer_name
-                                                </p>
+                                                <span>
+                                                    @item1.Singer.singer_name |
+                                                </span>
                                             }
                                         }
                                         else
                                         {
                                             foreach (var items in users.Where(n => n.user_id == item.user_id))
                                             {
-                                                <p>
-                                                    @items.user_name
-                                                </p>
+                                                <span>
+                                                    @items.user_name |
+                                                </span>
                                             }
                                         }
                                     </div>
@@ -439,9 +457,6 @@ else if (ViewBag.Note == "aumy")
                             i++;
                         }
                     </table>
-                    <center>
-                        <a href="/Musics/RankMusic?name=100" class="ui secondary button" style="font-size: 15px">Top 100</a>
-                    </center>
                 </div>
             </div>
         </div>
@@ -453,18 +468,15 @@ else if (ViewBag.Note == "kpop")
         <div class="container" ng-controller="myCtrl">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 style="font-size: 35px" class="text-white font-weight-bold text-center mt-3">BẢNG XẾP HẠNG ÂM NHẠC</h2>
+                    <h2 style="font-size: 35px" class="text-white font-weight-bold text-center mt-3">BẢNG XẾP HẠNG ÂM NHẠC KPOP</h2>
 
                     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/highcharts@6/highcharts.js"></script>
                     <!-- vue-highcharts should be load after Highcharts -->
                     <script src="https://cdn.jsdelivr.net/npm/vue-highcharts@0.1/dist/vue-highcharts.min.js"></script>
 
-                    <div id="app">
-                        <highcharts :options="options" ref="highcharts"></highcharts>
-                    </div>
                     <table class="table text-white table-hover">
-                        @foreach (var item in musics.Where(n => n.music_active == true && n.nation_id == 3).OrderByDescending(n => n.music_view).Take(100))
+                        @foreach (var item in musics.Where(n => n.music_active == true && n.nation_id == 4).OrderByDescending(n => n.music_view).Take(100))
                         {
                             <tr class="mt-2">
                                 <td width="10%">
@@ -492,22 +504,23 @@ else if (ViewBag.Note == "kpop")
                                     <img class="float-left ui medium rounded image medium rounded image" src="~/Images/Music/@item.music_img" style="width: 60px; height: 60px" />
                                     <div class="float-left ml-3">
                                         &nbsp;<a href="/Musics/DetailsMusic/@item.music_id'" style="font-size: 15px" class="text-white">@item.music_name</a>
+                                        <br />
                                         @if (item.Groups.FirstOrDefault(x => x.singer_id != null) != null)
                                         {
                                             foreach (var item1 in item.Groups.Where(x => x.singer_id != null))
                                             {
-                                                <p>
-                                                    @item1.Singer.singer_name
-                                                </p>
+                                                <span>
+                                                    @item1.Singer.singer_name |
+                                                </span>
                                             }
                                         }
                                         else
                                         {
                                             foreach (var items in users.Where(n => n.user_id == item.user_id))
                                             {
-                                                <p>
-                                                    @items.user_name
-                                                </p>
+                                                <span>
+                                                    @items.user_name |
+                                                </span>
                                             }
                                         }
                                     </div>
@@ -526,9 +539,6 @@ else if (ViewBag.Note == "kpop")
                             i++;
                         }
                     </table>
-                    <center>
-                        <a href="/Musics/RankMusic?name=100" class="ui secondary button" style="font-size: 15px">Top 100</a>
-                    </center>
                 </div>
             </div>
         </div>
