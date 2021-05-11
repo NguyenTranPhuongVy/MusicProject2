@@ -184,6 +184,7 @@
     <Compile Include="Areas\AdminMain\Controllers\PackagesAController.cs" />
     <Compile Include="Areas\AdminMain\Controllers\PaysAController.cs" />
     <Compile Include="Areas\AdminMain\Controllers\PlayListsAController.cs" />
+    <Compile Include="Areas\AdminMain\Controllers\QuestsAController.cs" />
     <Compile Include="Areas\AdminMain\Controllers\SingersAController.cs" />
     <Compile Include="Areas\AdminMain\Controllers\SlidersAController.cs" />
     <Compile Include="Areas\AdminMain\Controllers\UsersAController.cs" />
@@ -7520,6 +7521,7 @@
     <Content Include="Images\Author\Khoa.jpg" />
     <Content Include="Images\Author\Siro.jpg" />
     <Content Include="Images\Banner\A0216_10704_anh1.jpg" />
+    <Content Include="Images\Banner\bgmusic.jpg" />
     <Content Include="Images\Category\EDM.jpg" />
     <Content Include="Images\Category\Han.jpg" />
     <Content Include="Images\Category\HipHop.jpg" />
@@ -8103,6 +8105,11 @@
     <Content Include="Areas\AdminMain\Views\CategoriesA\Index.cshtml" />
     <Content Include="Areas\AdminMain\Views\ViewA\StaticPrice.cshtml" />
     <Content Include="Areas\AdminMain\Views\ViewA\Login.cshtml" />
+    <Content Include="Areas\AdminMain\Views\QuestsA\Create.cshtml" />
+    <Content Include="Areas\AdminMain\Views\QuestsA\Delete.cshtml" />
+    <Content Include="Areas\AdminMain\Views\QuestsA\Details.cshtml" />
+    <Content Include="Areas\AdminMain\Views\QuestsA\Edit.cshtml" />
+    <Content Include="Areas\AdminMain\Views\QuestsA\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

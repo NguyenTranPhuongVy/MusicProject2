@@ -1,0 +1,108 @@
+﻿@model Music.Model.EF.Quest
+@{
+    ViewBag.Title = "Chỉnh sửa nhiệm vụ";
+    Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+    Music.Model.EF.MusicProjectDataEntities db = new Music.Model.EF.MusicProjectDataEntities();
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@ViewBag.Title</h4>
+                <a onclick="history.back()" class="btn btn-danger text-white"><i class="fa fa-plus">&nbsp;</i>Trở về</a>
+                <form action="@Url.Action("Edit", "QuestsA")" method="post" enctype="multipart/form-data" class="ui form">
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(t => t.quest_id)
+                    <p>Nhập đủ các thông tin sau: </p>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Tên nhiệm vụ</label>
+                            <input value="@Model.quest_title" placeholder="Nhập tên nhiệm vụ" name="quest_title" type="text" required>
+                        </div>
+                        <div class="field">
+                            <label>Giới hạn nhiệm vụ</label>
+                            <input value="@Model.quest_limit" placeholder="Nhập giới hạn cho nhiệm vụ" name="quest_limit" type="number" required>
+                        </div>
+                    </div>
+                    <div class="three fields">
+                        <div class="field">
+                            <label>Ca sĩ</label>
+                            <select class="ui dropdown" name="quest_singer">
+                                <option value="">-- Chọn ca sĩ --</option>
+                                @foreach (var item in db.Singers.Where(x => x.singer_bin == false && x.singer_active == true).OrderBy(x => x.singer_name))
+                                {
+                                    <option value="@item.singer_id" @(Model.quest_singer == item.singer_id ? "selected" : "")>@item.singer_name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Danh mục</label>
+                            <select class="ui dropdown" name="quest_category">
+                                <option value="">-- Chọn danh mục --</option>
+                                @foreach (var item in db.Categories.Where(x => x.category_bin == false && x.category_active == true).OrderBy(x => x.category_name))
+                                {
+                                    <option value="@item.category_id" @(Model.quest_category == item.category_id ? "selected" : "")>@item.category_name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Quốc gia, khu vực</label>
+                            <select class="ui dropdown" name="quest_national">
+                                <option value="">-- Chọn quốc gia, khu vục --</option>
+                                @foreach (var item in db.Nationals.Where(x => x.nation_bin == false && x.nation_bin == true).OrderBy(x => x.nation_name))
+                                {
+                                    <option value="@item.nation_id" @(Model.quest_national == item.nation_id ? "selected" : "")>@item.nation_name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Điểm thưởng Top 1</label>
+                            <input type="number" value="@Model.quest_top1" min="0" name="quest_top1" />
+                        </div>
+                        <div class="field">
+                            <label>Điểm thưởng Top 2</label>
+                            <input type="number" value="@Model.quest_top2" min="0" name="quest_top2" />
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Điểm thưởng Top 3</label>
+                            <input type="number" value="@Model.quest_top3" min="0" name="quest_top3" />
+                        </div>
+                        <div class="field">
+                            <label>Điểm thưởng quà chung</label>
+                            <input type="number" value="@Model.quest_gift" min="0" name="quest_gift" />
+                        </div>
+                    </div>
+                    <div class="three fields">
+                        <div class="field">
+                            <label>Ngày bắt đầu sự kiện</label>
+                            <input value="@Model.quest_datecreate.Value.ToString("yyyy-MM-dd HH:mm:ss").Replace(' ','T')" type="datetime-local" name="quest_datecreate" placeholder="Nhập ngày bắt đầu" required />
+                        </div>
+                        <div class="field">
+                            <label>Ngày kết thúc sự kiện</label>
+                            <input value="@Model.quest_dateend.Value.ToString("yyyy-MM-dd HH:mm:ss").Replace(' ','T')" type="datetime-local" name="quest_dateend" placeholder="Nhập ngày kết thúc" required />
+                        </div>
+                        <div class="field">
+                            <label>Tình trạng</label>
+                            <select class="ui dropdown" name="quest_active">
+                                <option value="">-- Chọn tình trạng --</option>
+                                <option value="True" @(Model.quest_active == true ? "selected" : "")>Hoạt động</option>
+                                <option value="False" @(Model.quest_active == false ? "selected": "")>Không hoạt động</option>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                    <div class="ui error message"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

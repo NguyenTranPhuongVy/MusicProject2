@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Music.Model.EF.Quest>
+
+@{
+    ViewBag.Title = "Quản lý nhiệm vụ";
+    Layout = "~/Areas/AdminMain/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@ViewBag.Title</h4>
+                <a href="/AdminMain/QuestsA/Create" class="btn btn-danger"><i class="fa fa-plus">&nbsp;</i>Thêm nhiệm vụ</a>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered zero-configuration">
+                        <thead>
+                            <tr>
+                                <th><i class="icon-copy dw dw-list2"></i>  Tên Nhiệm Vụ</th>
+                                <th><i class="icon-copy dw dw-list2"></i>  Nhiệm Vụ</th>
+                                <th><i class="icon-copy dw dw-image1"></i>  Giới hạn</th>
+                                <th><i class="icon-copy dw dw-image1"></i>  Ngày bắt đầu</th>
+                                <th><i class="icon-copy dw dw-image1"></i>  Ngày kết thúc</th>
+                                <th><i class="icon-copy dw dw-battery1"></i>  Trạng Thái</th>
+                                <th><i class="icon-copy dw dw-monitor"></i>  Tình Trạng</th>
+                                <th><i class="icon-copy dw dw-magic-wand"></i>  Tuỳ Chọn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.quest_id</td>
+                                    <td>@item.quest_title</td>
+                                    <td>@item.quest_limit</td>
+                                    <td>@item.quest_datecreate</td>
+                                    <td>@item.quest_dateend</td>
+                                    <td>@(DateTime.Compare(item.quest_dateend.Value, DateTime.Now) > 0 ? "Còn hạn" : "Hêt hạn")</td>
+                                    <td>
+                                        @if (item.quest_active == true)
+                                        {
+                                            <div>
+                                                <button class="ui inverted green button">Hoạt động</button>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div>
+                                                <button class="ui inverted red button">Không hoạt động</button>
+                                            </div>
+                                        }
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Sửa", "Edit", new { id = item.quest_id }) |
+                                        @Html.ActionLink("Xem", "Details", new { id = item.quest_id }) |
+                                        @Html.ActionLink("Xóa", "Delete", new { id = item.quest_id })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th><i class="icon-copy dw dw-list2"></i>  Tên Nhiệm Vụ</th>
+                                <th><i class="icon-copy dw dw-list2"></i>  Nhiệm Vụ</th>
+                                <th><i class="icon-copy dw dw-image1"></i>  Giới hạn</th>
+                                <th><i class="icon-copy dw dw-image1"></i>  Ngày bắt đầu</th>
+                                <th><i class="icon-copy dw dw-image1"></i>  Ngày kết thúc</th>
+                                <th><i class="icon-copy dw dw-battery1"></i>  Trạng Thái</th>
+                                <th><i class="icon-copy dw dw-monitor"></i>  Tình Trạng</th>
+                                <th><i class="icon-copy dw dw-magic-wand"></i>  Tuỳ Chọn</th>
+                            </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
