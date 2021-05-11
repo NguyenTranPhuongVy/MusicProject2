@@ -45,8 +45,10 @@
                         <h2>Hôm Nay Nghe Gì?</h2>
                     </div>
                     <p>
-                        If you hire a videographer of our team you will get a video professional to make a custom
-                        video for your business and, once the project is over.
+                        Tuổi trẻ này thì ngắn, thế giới thì rộng lớn bao la. Nên thay vì ngồi im và chờ cơ hội, bạn cần phải chạy thật nhanh để ngắm nhìn mọi thứ.
+                    </p>
+                    <p>
+                        Mời các bạn cùng tận hưởng một mùa hè thật thú vị cũng như ôn lại những khoảnh khắc tươi đẹp của mùa hè, của thời học sinh, của những cơn mưa bất chợt.
                     </p>
                     <a href="#" class="primary-btn">Xem Tất Cả Bài Hát</a>
                 </div>
@@ -106,7 +108,7 @@
                                         {
                                             foreach (var items in singer)
                                             {
-                                                foreach (var jtem in item.Groups.Where(x => x.singer_id != items.singer_id))
+                                                foreach (var jtem in item.Groups.Where(x => x.singer_id == items.singer_id))
                                                 {
                                                     <span class="card-media-body-supporting-bottom-text subtle u-float-right">@items.singer_name</span>
                                                 }
