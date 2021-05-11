@@ -23,5 +23,10 @@ namespace Music.Frontend.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult RadioMusic()
+        {
+            return View();
+        }
     }
 }
