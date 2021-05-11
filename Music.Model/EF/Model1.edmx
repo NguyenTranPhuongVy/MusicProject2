@@ -114,6 +114,8 @@
           <Property Name="author_id" Type="int" />
           <Property Name="album_id" Type="int" />
           <Property Name="music_vip" Type="bit" />
+          <Property Name="music_avgrate" Type="float" />
+          <Property Name="music_vote" Type="int" />
         </EntityType>
         <EntityType Name="National">
           <Key>
@@ -324,18 +326,6 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Group_Musics">
-          <End Role="Musics" Type="Self.Musics" Multiplicity="0..1" />
-          <End Role="Group" Type="Self.Group" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Musics">
-              <PropertyRef Name="music_id" />
-            </Principal>
-            <Dependent Role="Group">
-              <PropertyRef Name="music_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Group_Musics1">
           <End Role="Musics" Type="Self.Musics" Multiplicity="0..1" />
           <End Role="Group" Type="Self.Group" Multiplicity="*" />
           <ReferentialConstraint>
@@ -625,10 +615,6 @@
             <End Role="Group" EntitySet="Group" />
           </AssociationSet>
           <AssociationSet Name="FK_Group_Musics" Association="Self.FK_Group_Musics">
-            <End Role="Musics" EntitySet="Musics" />
-            <End Role="Group" EntitySet="Group" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Group_Musics1" Association="Self.FK_Group_Musics1">
             <End Role="Musics" EntitySet="Musics" />
             <End Role="Group" EntitySet="Group" />
           </AssociationSet>
@@ -961,6 +947,8 @@
           <NavigationProperty Name="User" Relationship="MusicProjectDataModel.FK_Musics_Users" FromRole="Music" ToRole="User" />
           <NavigationProperty Name="PlayLists" Relationship="MusicProjectDataModel.FK_PlayList_Musics" FromRole="Music" ToRole="PlayList" />
           <Property Name="music_vip" Type="Boolean" />
+          <Property Name="music_avgrate" Type="Double" />
+          <Property Name="music_vote" Type="Int32" />
         </EntityType>
         <EntityType Name="National">
           <Key>
@@ -1550,6 +1538,8 @@
           <EntitySetMapping Name="Musics">
             <EntityTypeMapping TypeName="MusicProjectDataModel.Music">
               <MappingFragment StoreEntitySet="Musics">
+                <ScalarProperty Name="music_vote" ColumnName="music_vote" />
+                <ScalarProperty Name="music_avgrate" ColumnName="music_avgrate" />
                 <ScalarProperty Name="music_vip" ColumnName="music_vip" />
                 <ScalarProperty Name="album_id" ColumnName="album_id" />
                 <ScalarProperty Name="author_id" ColumnName="author_id" />

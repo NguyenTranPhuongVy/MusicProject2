@@ -35,9 +35,11 @@
                     </div>
                     <div class="list-group mt-2">
                         <button type="button" class="list-group-item list-group-item-action font-weight-bold">Các nhiệm vụ của bạn</button>
-                        @foreach (var item in db.Albums.Where(n => n.user_id == idus.user_id).OrderByDescending(n => n.album_datecreate))
+                        @foreach (var item in db.Quests.Where(n => n.quest_active == true && DateTime.Compare(n.quest_dateend.Value, DateTime.Now) >= 0).OrderBy(n => n.quest_dateend))
                         {
-                            <button type="button" class="list-group-item list-group-item-action font-weight-bold">Album @item.album_name</button>
+                            <button type="button" class="list-group-item list-group-item-action font-weight-bold">
+                                @item.quest_title - @(db.QuestGroups.FirstOrDefault(x => x.quest_id == item.quest_id && x.user_id == idus.user_id) != null ? db.QuestGroups.FirstOrDefault(x => x.quest_id == item.quest_id && x.user_id == idus.user_id).qg_progress : 0) / @item.quest_limit
+                            </button>
                         }
                     </div>
                 </div>
@@ -130,11 +132,15 @@
                     </div>
                     <div class="title">
                         <i class="dropdown icon"></i>
-                        Đánh Giá
+                        Đánh Giá - <span id="rate">@(Model.music_avgrate == 0 ? "Chưa có đánh giá" : Model.music_avgrate.Value.ToString("0.0"))</span>
                     </div>
                     <div class="content">
                         <p>Bạn đánh giá bài hát này đạt mấy sao?</p>
-                        <div class="ui star rating" data-rating="5" data-max-rating="5"></div>
+                        <div class="ui star rating" data-rating="1" data-max-rating="5" ng-click="rating(@Model.music_id, 1)"></div> - <span>Đạo nhạc</span><br />
+                        <div class="ui star rating" data-rating="2" data-max-rating="5" ng-click="rating(@Model.music_id, 2)"></div> - <span>Quá dở</span><br />
+                        <div class="ui star rating" data-rating="3" data-max-rating="5" ng-click="rating(@Model.music_id, 3)"></div> - <span>Quá yếu</span><br />
+                        <div class="ui star rating" data-rating="4" data-max-rating="5" ng-click="rating(@Model.music_id, 4)"></div> - <span>Cũng được</span><br />
+                        <div class="ui star rating" data-rating="5" data-max-rating="5" ng-click="rating(@Model.music_id, 5)"></div> - <span>Hay đó</span>
                     </div>
                     <div class="title">
                         <i class="dropdown icon"></i>
@@ -545,6 +551,22 @@
                     $scope.com = response.data;
 
                     document.getElementsByName("content")[0].value = "";
+
+
+                }, function myError(response) {
+                    $scope.com = response.statusText;
+                });
+            }
+
+            // rating
+            $scope.rating = function (id, rate) {
+                $http({
+                    method: "GET",
+                    url: "/Musics/Rate?rate=" + rate
+                        + "&id=" + id
+                }).then(function mySuccess(response) {
+
+                    document.getElementById("rate").innerHTML = response.data;
 
 
                 }, function myError(response) {

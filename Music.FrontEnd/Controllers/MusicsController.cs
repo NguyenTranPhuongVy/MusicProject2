@@ -319,5 +319,16 @@ namespace Music.FrontEnd.Controllers
                        };
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult Rate(int? rate, int? id)
+        {
+            Music.Model.EF.Music music = db.Musics.Find(id);
+            double avg = music.music_avgrate == null ? 0 : (double)music.music_avgrate;
+            int vote = music.music_vote == null ? 0 : (int)music.music_vote;
+            music.music_avgrate = ((avg * vote) + rate) / (vote + 1);
+            music.music_vote++;
+            db.Entry(music).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return Json(music.music_avgrate.Value.ToString("0.0"), JsonRequestBehavior.AllowGet);
+        }
     }
 }

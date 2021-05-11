@@ -42,6 +42,8 @@ namespace Music.Model.EF
         public Nullable<int> author_id { get; set; }
         public Nullable<int> album_id { get; set; }
         public Nullable<bool> music_vip { get; set; }
+        public Nullable<double> music_avgrate { get; set; }
+        public Nullable<int> music_vote { get; set; }
     
         public virtual Album Album { get; set; }
         public virtual Author Author { get; set; }
