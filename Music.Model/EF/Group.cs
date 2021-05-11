@@ -24,6 +24,7 @@ namespace Music.Model.EF
     
         public virtual Category Category { get; set; }
         public virtual Music Music { get; set; }
+        public virtual Music Music1 { get; set; }
         public virtual Singer Singer { get; set; }
         public virtual User User { get; set; }
     }

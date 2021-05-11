@@ -19,6 +19,7 @@ namespace Music.Model.EF
         {
             this.Comments = new HashSet<Comment>();
             this.Groups = new HashSet<Group>();
+            this.Groups1 = new HashSet<Group>();
             this.PlayLists = new HashSet<PlayList>();
         }
     
@@ -52,6 +53,8 @@ namespace Music.Model.EF
         public virtual Genre Genre { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Group> Groups { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Group> Groups1 { get; set; }
         public virtual National National { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
