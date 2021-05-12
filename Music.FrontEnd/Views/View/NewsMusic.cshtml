@@ -1,0 +1,147 @@
+﻿@using Music.Model.EF;
+@using Music.FrontEnd.Function;
+@{
+    MusicProjectDataEntities db = new MusicProjectDataEntities();
+    ViewBag.Title = "NewsMusic";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    FunctionController function = new FunctionController();
+    List<Music> musics = db.Musics.ToList();
+    List<Singer> singer = db.Singers.ToList();
+    List<Album> album = db.Albums.ToList();
+}
+<!-- Blog Details Hero Begin -->
+<section class="blog-hero spad set-bg" data-setbg="../../Images/Banner/blog-hero.jpg">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+                <div class="blog__hero__text">
+                    <h2>Blog âm nhạc mở rộng có tin tức âm nhạc, phỏng vấn, đánh giá album và bình luận.</h2>
+                    <h2>Ấn phẩm độc lập được biết đến với phần bình luận tích cực được các nghệ sĩ nổi tiếng thường xuyên ghé thăm.</h2>
+                    <ul>
+                        <li>@DateTime.Now.ToString("dd/MM/yyyy")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog Details Hero End -->
+<!-- Blog Details Section Begin -->
+<div class="blog-details spad">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+                <div class="blog__details__content">
+                    <div class="blog__details__text">
+                        <p>
+                            Videos with a wow factor are always more shareable than those without it. The wow factor
+                            is hard to define, but it generally refers to any content that makes viewers think,
+                            “Wow!” For example, consider those viral videos of athletes making insanely difficult
+                            basketball trick shots, such as shooting a basket while doing a backwards flip on a
+                            trampoline.
+                        </p>
+                        <p>
+                            That’s the kind of catchy content that makes people want to share it with their friends.
+                            With a little clever marketing, you can put that wow factor to work for your business’
+                            videos.
+                        </p>
+                    </div>
+                    <div class="blog__details__quote">
+                        <p>
+                            Create horizontal, square and vertical videos that are ready to be exported to your
+                            Instagram video stories and posts. Perfect for any social network!
+                        </p>
+                        <h6>Max Desmarais</h6>
+                        <i class="fa fa-quote-right"></i>
+                    </div>
+                    <div class="blog__details__desc">
+                        <p>
+                            An average Internet user watches about 1.5 hours of online video every day. This means
+                            that video can be a powerful marketing tool for getting your message before the eyes of
+                            millions of people. However, not all videos are created equal.
+                        </p>
+                        <p>
+                            Some of them are inherently more shareable on social media than others. Here’s a quick
+                            look at how to make users want to share your videos on social media.
+                        </p>
+                    </div>
+                    <div class="blog__details__tags">
+                        <span><i class="fa fa-tag"></i> Tag:</span>
+                        <a href="#">Wedding</a>
+                        <a href="#">Event</a>
+                        <a href="#">Couple</a>
+                    </div>
+                    <div class="blog__details__option">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <a href="#" class="blog__details__option__item">
+                                    <h5><i class="fa fa-angle-left"></i> Previous posts</h5>
+                                    <div class="blog__details__option__item__img">
+                                        <img src="img/blog/prev.jpg" alt="">
+                                    </div>
+                                    <div class="blog__details__option__item__text">
+                                        <h6>Looking for Music & Sounds for my new Android...</h6>
+                                        <span>Nov 27, 2019</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <a href="#" class="blog__details__option__item blog__details__option__item--right">
+                                    <h5>Previous posts <i class="fa fa-angle-right"></i></h5>
+                                    <div class="blog__details__option__item__img">
+                                        <img src="img/blog/next.jpg" alt="">
+                                    </div>
+                                    <div class="blog__details__option__item__text">
+                                        <h6>Looking for Music & Sounds for my new Android...</h6>
+                                        <span>Nov 27, 2019</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog__details__content">
+                        <div class="blog__details__recent">
+                            <h4>Ca Sỹ Nổi Bật</h4>
+                            <div class="row">
+                                <style>
+                                    .cutP {
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        line-height: 25px;
+                                        -webkit-line-clamp: 2;
+                                        display: -webkit-box;
+                                        -webkit-box-orient: vertical;
+                                    }
+                                </style>
+                                @foreach (var item in singer.Where(n => n.singer_active == true && n.singer_bin == false).Take(3))
+                                {
+                                    <div class="col-lg-4 col-md-6 col-sm-6">
+                                        <div class="blog__details__recent__item">
+                                            <img src="~/Images/Singer/@item.singer_img" style="width: 230px; height: 152px" alt="">
+                                            <h5 class="cutP">@item.singer_note</h5>
+                                            <span>@item.singer_datecreate.Value.Day/@item.singer_datecreate.Value.Month/@item.singer_datecreate.Value.Year</span>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="blog__details__comment">
+                            <h4>Leave a comment</h4>
+                            <form action="#">
+                                <div class="input__list">
+                                    <input type="text" placeholder="Name">
+                                    <input type="text" placeholder="Email">
+                                    <input type="text" placeholder="Website">
+                                </div>
+                                <textarea placeholder="Comment"></textarea>
+                                <button type="submit" class="site-btn">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog Details Section End -->

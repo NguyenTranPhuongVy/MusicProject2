@@ -7522,6 +7522,7 @@
     <Content Include="Images\Author\Siro.jpg" />
     <Content Include="Images\Banner\A0216_10704_anh1.jpg" />
     <Content Include="Images\Banner\bgmusic.jpg" />
+    <Content Include="Images\Banner\blog-hero.jpg" />
     <Content Include="Images\Category\EDM.jpg" />
     <Content Include="Images\Category\Han.jpg" />
     <Content Include="Images\Category\HipHop.jpg" />
@@ -8179,6 +8180,7 @@
     <Content Include="Views\Musics\Index.cshtml" />
     <Content Include="Views\Quest\RedeemPoint.cshtml" />
     <Content Include="Views\View\RadioMusic.cshtml" />
+    <Content Include="Views\View\NewsMusic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
