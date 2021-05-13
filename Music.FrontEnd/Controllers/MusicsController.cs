@@ -35,29 +35,73 @@ namespace Music.FrontEnd.Controllers
             {
                 var idus = fu.CookieID();
 
-                Group checkmusic = db.Groups.FirstOrDefault(n => n.music_id == id && n.user_id == idus.user_id);
-                if(checkmusic != null)
+                if(music.music_vip == true)
                 {
-                    checkmusic.group_datecreate = DateTime.Now;
-                    db.SaveChanges();
+                    if(idus.user_vip == true)
+                    {
+                        Group checkmusic = db.Groups.FirstOrDefault(n => n.music_id == id && n.user_id == idus.user_id);
+                        if (checkmusic != null)
+                        {
+                            checkmusic.group_datecreate = DateTime.Now;
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+
+                            Group group = new Group()
+                            {
+                                music_id = id,
+                                user_id = idus.user_id,
+                                group_datecreate = DateTime.Now,
+                                //4 la nhac vua nghe
+                                group_item = 4
+                            };
+                            db.Groups.Add(group);
+                            db.SaveChanges();
+                        }
+                        return View(music);
+                    }
+                    else
+                    {
+                        Group checkmusic = db.Groups.FirstOrDefault(n => n.music_id == id && n.user_id == idus.user_id);
+                        if (checkmusic != null)
+                        {
+                            checkmusic.group_datecreate = DateTime.Now;
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+
+                            Group group = new Group()
+                            {
+                                music_id = id,
+                                user_id = idus.user_id,
+                                group_datecreate = DateTime.Now,
+                                //4 la nhac vua nghe
+                                group_item = 4
+                            };
+                            db.Groups.Add(group);
+                            db.SaveChanges();
+                        }
+                        return Redirect("/Pays/Index");
+                    }
                 }
                 else
                 {
-
-                    Group group = new Group()
-                    {
-                        music_id = id,
-                        user_id = idus.user_id,
-                        group_datecreate = DateTime.Now,
-                        //4 la nhac vua nghe
-                        group_item = 4
-                    };
-                    db.Groups.Add(group);
-                    db.SaveChanges();
+                    return View(music);
                 }
             }
-
-            return View(music);
+            else
+            {
+                if (music.music_vip == true)
+                {
+                    return Redirect("/Users/Login");
+                }
+                else
+                {
+                    return View(music);
+                }
+            }
         }
 
         public ActionResult AllMusic()

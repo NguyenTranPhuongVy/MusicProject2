@@ -116,6 +116,17 @@ namespace Music.FrontEnd.Controllers
                     };
                     db.Pays.Add(bills);
                     db.SaveChanges();
+
+                    History history = new History()
+                    {
+                        user_id = id.user_id,
+                        his_content = id.user_email + " đã mua gói " + pakage.package_name + " thành công với giá " + amount,
+                        his_datecreate = DateTime.Now
+                    };
+                    db.Historys.Add(history);
+                    db.SaveChanges();
+
+
                     Session["idpake"] = null;
                     return RedirectToAction("History");
                 }
