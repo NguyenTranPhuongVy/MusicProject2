@@ -52,5 +52,10 @@ namespace Music.FrontEnd.Controllers
             }
             return PartialView();
         }
+
+        public ActionResult ViewAlbums(int ? id)
+        {
+            return View(db.Albums.Find(id));
+        }
     }
 }
