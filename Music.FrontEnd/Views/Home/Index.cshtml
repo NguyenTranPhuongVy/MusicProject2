@@ -531,7 +531,7 @@
             <div id="cards">
                 @foreach (var item in album.Where(n => n.album_active == true && n.album_bin == false && n.User.role_id == 2).OrderByDescending(n => n.album_view).Take(10).ToList())
                 {
-                    <div class="card-content">
+                    <div class="card-content" onclick="window.location.href = '/Albums/ViewAlbums/@item.album_id'">
                         <img class="thumbnail" src="~/Images/Album/@item.album_img" alt="coloring-book" />
                         <h3 class="text-white">@item.album_name</h3>
                     </div>
