@@ -10,8 +10,8 @@
     FunctionController function = new FunctionController();
 }
 <link href="~/Content/Music.css" rel="stylesheet" />
-<section class="services spad" ng-app="myApp">
-    <div class="container" ng-controller="">
+<section class="services" ng-app="myApp">
+    <div class="container mt-5" ng-controller="">
         <div class="row">
             <div class="col-lg-12">
                 <div class="row mt-2">
@@ -56,7 +56,7 @@
                     <div class="col-lg-4">
                         <h4 class="font-weight-bold text-white">@Model.album_name</h4>
                         <div class="card-content w-100" style="height: 200px" onclick="window.location.href = '/Albums/ViewAlbums/@Model.album_id'">
-                            <img style="height: 200px" src="~/Images/Album/@Model.album_img" alt="coloring-book" />
+                            <img class="ui medium rounded image" style="height: 200px" src="~/Images/Album/@Model.album_img" alt="coloring-book" />
                             <hr />
                             <div style="color: white">
                                 Có tổng cộng <b>@db.PlayLists.Where(n => n.albums_id == Model.album_id).OrderByDescending(n => n.playlist_datecreate).Count() bài hát trong album "@Model.album_name"</b>

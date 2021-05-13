@@ -44,6 +44,20 @@ namespace Music.FrontEnd.Controllers
             return Json(music, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult GetAllAlbums()
+        {
+            var user_id = function.CookieID();
+            var album = from m in db.Albums
+                        where m.album_bin == false && m.album_active == true
+                        select new
+                        {
+                            id = m.album_id,
+                            name = m.album_name,
+                            img = m.album_img,
+                        };
+            return Json(album, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult PaysUser()
         {
             var user_id = function.CookieID();
