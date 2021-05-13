@@ -36,6 +36,7 @@ namespace Music.FrontEnd.Controllers
                             view = m.music_view,
                             download = m.music_dowload,
                             author = m.Author.author_name,
+                            vip = m.music_vip 
 
                         };
             return Json(music, JsonRequestBehavior.AllowGet);

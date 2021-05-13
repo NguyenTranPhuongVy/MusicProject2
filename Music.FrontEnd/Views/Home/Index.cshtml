@@ -62,7 +62,14 @@
                                 <!-- media container -->
                                 <div class="card-media-object-container">
                                     <div class="card-media-object w-100" style="background-image: url('../../Images/Music/@item.music_img');"></div>
-                                    <span class="card-media-object-tag subtle">Mới Nhất</span>
+                                    @if (item.music_vip == true)
+                                    {
+                                        <span class="card-media-object-tag subtle text-danger">VIP</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="card-media-object-tag subtle">Miễn Phí</span>
+                                    }
                                     <ul class="card-media-object-social-list">
                                         @if (item.Groups.Where(x => x.singer_id != null).Count() > 0)
                                         {
@@ -382,7 +389,14 @@
                                 <!-- media container -->
                                 <div class="card-media-object-container">
                                     <div class="card-media-object w-100" style="background-image: url('../../Images/Music/@item.music_img');"></div>
-                                    <span class="card-media-object-tag subtle">Mới Nhất</span>
+                                    @if (item.music_vip == true)
+                                    {
+                                        <span class="card-media-object-tag subtle text-danger">VIP</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="card-media-object-tag subtle">Miễn Phí</span>
+                                    }
                                     <ul class="card-media-object-social-list">
                                         @if (item.Groups.Where(x => x.singer_id != null).Count() > 0)
                                         {
@@ -461,6 +475,17 @@
                                                     <a href="" data-toggle="modal" data-target="#nonevip" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
 
                                                 }
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                            }
+                                        }
+                                        else if (function.Cookie() == null)
+                                        {
+                                            if (item.music_vip == true)
+                                            {
+                                                <a href="" data-toggle="modal" data-target="#nonevip" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
                                             }
                                             else
                                             {
@@ -558,7 +583,14 @@
                                 <!-- media container -->
                                 <div class="card-media-object-container">
                                     <div class="card-media-object w-100" style="background-image: url('../../Images/Music/@item.music_img');"></div>
-                                    <span class="card-media-object-tag subtle">Mới Nhất</span>
+                                    @if (item.music_vip == true)
+                                    {
+                                        <span class="card-media-object-tag subtle text-danger">VIP</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="card-media-object-tag subtle">Miễn Phí</span>
+                                    }
                                     <ul class="card-media-object-social-list">
                                         @if (item.Groups.Where(x => x.singer_id != null).Count() > 0)
                                         {
@@ -619,11 +651,41 @@
                                         }
                                     </div>
                                     <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
-                                        @foreach (var items in album.Where(n => n.album_id == item.album_id))
+                                        @if (function.Cookie() != null)
                                         {
-                                            <span class="card-media-body-supporting-bottom-text subtle">#@items.album_name</span>
+                                            var idus = function.CookieID();
+                                            if (item.music_vip == true)
+                                            {
+                                                if (idus.user_vip == true)
+                                                {
+                                                    <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="" data-toggle="modal" data-target="#nonevip" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                            }
                                         }
-                                        <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                        else if (function.Cookie() == null)
+                                        {
+                                            if (item.music_vip == true)
+                                            {
+                                                <a href="" data-toggle="modal" data-target="#nonevip" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                        }
                                     </div>
                                 </div>
                             </div>

@@ -285,6 +285,17 @@
                                                     <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
                                                 }
                                             }
+                                            else if (function.Cookie() == null)
+                                            {
+                                                if (item.Music.music_vip == true)
+                                                {
+                                                    <a href="" data-toggle="modal" data-target="#nonevip" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                                }
+                                            }
                                             else
                                             {
                                                 <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
@@ -352,6 +363,17 @@
                                                         <a href="" data-toggle="modal" data-target="#nonevip" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
 
                                                     }
+                                                }
+                                                else
+                                                {
+                                                    <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                                }
+                                            }
+                                            else if (function.Cookie() == null)
+                                            {
+                                                if (item.music_vip == true)
+                                                {
+                                                    <a href="" data-toggle="modal" data-target="#nonevip" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
                                                 }
                                                 else
                                                 {
@@ -433,6 +455,17 @@
                                                 <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
                                             }
                                         }
+                                        else if (function.Cookie() == null)
+                                        {
+                                            if (item.music_vip == true)
+                                            {
+                                                <a href="" data-toggle="modal" data-target="#nonevip" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                            }
+                                        }
                                         else
                                         {
                                             <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
@@ -500,6 +533,17 @@
                                                 <a href="" data-toggle="modal" data-target="#nonevip" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
 
                                             }
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                        }
+                                    }
+                                    else if (function.Cookie() == null)
+                                    {
+                                        if (item.music_vip == true)
+                                        {
+                                            <a href="" data-toggle="modal" data-target="#nonevip" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
                                         }
                                         else
                                         {
