@@ -22,6 +22,9 @@
                     @Html.HiddenFor(x => x.music_video)
                     @Html.HiddenFor(x => x.music_bin)
                     @Html.HiddenFor(x => x.music_datecreate)
+                    @Html.HiddenFor(x => x.music_avgrate)
+                    @Html.HiddenFor(x => x.music_vip)
+                    @Html.HiddenFor(x => x.music_vote)
 
                     <div class="form-horizontal mt-3 ui form segment">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })

@@ -1,15 +1,20 @@
-﻿@using Music.FrontEnd.Function
+﻿@using Music.Model.EF;
+@using Music.FrontEnd.Function;
 @{
-    ViewBag.Title = "MyMusisc";
-    var coo = new FunctionController();
-
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    MusicProjectDataEntities db = new MusicProjectDataEntities();
+    FunctionController function = new FunctionController();
+    List<Music> musics = db.Musics.ToList();
+    List<Singer> singer = db.Singers.ToList();
+    List<Album> album = db.Albums.ToList();
 }
+
 
 <section class="services spad" ng-app="myApp">
     <div class="container" ng-controller="myCtrl">
         <div class="row">
             <div class="col-lg-12">
-                <h1 style="font-size: 50px" class="text-white font-weight-bold text-center mt-3">Âm nhạc của tôi</h1>
                 <center>
                     <p style="font-size: 20px">
                         Dịch vụ nghe nhạc Online chất lượng cao, kết hợp cùng các tiện ích dành riêng cho thành viên VIP
@@ -17,15 +22,15 @@
                 </center>
                 <center class="mt-2">
                     <div class="ui search mb-2">
-                        <div class="ui fluid category search">
-                            <div class="ui icon input">
+                        <div class="ui category search">
+                            <div class="ui icon input" style="width: 70%">
                                 <input ng-model="txtSearch" class="prompt" placeholder="Tìm kiếm..." type="text">
                                 <i class="search icon"></i>
                             </div>
                             <div class="results"></div>
                         </div>
                     </div>
-                    <b class="text-white">{{(list | filter: txtSearch).length}} kết quả</b>
+                    <b class="text-white">{{(list | filter: txtSearch).length}} Kết Quả</b>
                 </center>
                 <div class="row mt-2">
                     <div class="col-lg-12" ng-show="(list | filter: txtSearch).length == 0">
@@ -69,3 +74,6 @@
     });
 
 </script>
+
+
+

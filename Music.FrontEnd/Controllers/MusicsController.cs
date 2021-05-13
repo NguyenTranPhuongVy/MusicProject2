@@ -211,6 +211,9 @@ namespace Music.FrontEnd.Controllers
             {
                 music.music_video = imagesfunction.AddMuscis(mp4, "MP4", Guid.NewGuid().ToString());
             }
+            music.music_avgrate = 0;
+            music.music_vote = 0;
+            music.music_vip = true;
             music.user_id = user.user_id;
             musicsDAO.Add(music, category, singers, album);
 

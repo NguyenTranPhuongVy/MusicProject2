@@ -5,6 +5,7 @@
     MusicProjectDataEntities db = new MusicProjectDataEntities();
     ViewBag.Title = "DetailsMusic";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    FunctionController function = new FunctionController();
     List<User> user = db.Users.ToList();
     var coo = new FunctionController();
 }
@@ -25,7 +26,7 @@
             {
                 var idus = coo.CookieID();
                 <div class="col-lg-2">
-                    <button class="ui red button"><i class="fa fa-plus">&bdquo;</i>Thêm album của bạn</button>
+                    <button class="ui red button"><i class="fas fa-plus-circle"></i> Thêm playlist của bạn</button>
                     <div class="list-group mt-2">
                         <button type="button" class="list-group-item list-group-item-action font-weight-bold">Album của bạn</button>
                         @foreach (var item in db.Albums.Where(n => n.user_id == idus.user_id).OrderByDescending(n => n.album_datecreate))
@@ -47,30 +48,39 @@
             <div class="col-lg-@(coo.Cookie() != null ? "7" : "9")">
                 <form class="ui form">
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-5">
                             <div>
-                                <img class="ui medium rounded image" style="height: 350px; width: 100%; border: 1px solid black" src="~/Images/Music/@Model.music_img">
+                                <img class="ui medium rounded image" style="height: 426.29px; width: 100%; border: 1px solid black" src="~/Images/Music/@Model.music_img">
                             </div>
                         </div>
-                        <div class="col-lg-8">
+                        <div class="col-lg-7">
                             <div class="card" style="padding: 15px">
                                 <div style="padding: 10px">
                                     <h3 class="text-danger">@Model.music_name</h3>
-                                    <b>Ca sỹ thể hiện: </b>
                                     @if (Model.Groups.Where(t => t.singer_id != null).Count() > 0)
                                     {
+                                        <b>Ca sỹ thể hiện: </b>
+                                        var count = 1;
                                         <span>
                                             @foreach (var item in Model.Groups.Where(t => t.singer_id != null))
                                             {
-                                                <span>@item.Singer.singer_name |</span>
+                                                if (count == Model.Groups.Where(t => t.singer_id != null).Count())
+                                                {
+                                                    <span>@item.Singer.singer_name</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>@item.Singer.singer_name |</span>
+                                                }
+                                                count++;
                                             }
                                         </span>
                                     }
                                     else
                                     {
-                                        foreach (var item in user.Where(n => n.user_id == Model.user_id))
+                                        foreach (var item in user.Where(n => n.user_id == Model.user_id && n.role_id == 1))
                                         {
-                                            <span>@item.user_name</span> <br /> <b><i class="fa fa-user"></i></b>
+                                            <b><i class="fa fa-user"></i> Người đăng: </b><span>@item.user_name</span> <br />
                                         }
                                     }
                                     <br />
@@ -255,7 +265,30 @@
                                         </div>
                                         <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
                                             <span class="card-media-body-supporting-bottom-text subtle">#Music #Party</span>
-                                            <a href="#/" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                            @if (function.Cookie() != null)
+                                            {
+                                                var idus = function.CookieID();
+                                                if (item.Music.music_vip == true)
+                                                {
+                                                    if (idus.user_vip == true)
+                                                    {
+                                                        <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="" data-toggle="modal" data-target="#nonevip" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -305,7 +338,30 @@
                                         </div>
                                         <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
                                             <span class="card-media-body-supporting-bottom-text subtle">#Music #Party</span>
-                                            <a href="#/" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                            @if (function.Cookie() != null)
+                                            {
+                                                var idus = function.CookieID();
+                                                if (item.music_vip == true)
+                                                {
+                                                    if (idus.user_vip == true)
+                                                    {
+                                                        <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="" data-toggle="modal" data-target="#nonevip" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -357,7 +413,30 @@
                                     </div>
                                     <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
                                         <span class="card-media-body-supporting-bottom-text subtle">#Music #Party</span>
-                                        <a href="#/" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                        @if (function.Cookie() != null)
+                                        {
+                                            var idus = function.CookieID();
+                                            if (item.music_vip == true)
+                                            {
+                                                if (idus.user_vip == true)
+                                                {
+                                                    <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="" data-toggle="modal" data-target="#nonevip" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -407,7 +486,30 @@
                                 </div>
                                 <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
                                     <span class="card-media-body-supporting-bottom-text subtle">#Music #Party</span>
-                                    <a href="#/" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                    @if (function.Cookie() != null)
+                                    {
+                                        var idus = function.CookieID();
+                                        if (item.music_vip == true)
+                                        {
+                                            if (idus.user_vip == true)
+                                            {
+                                                <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="" data-toggle="modal" data-target="#nonevip" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("DetailsMusic", "Musics", new { id = item.music_id })" class="card-media-body-supporting-bottom-text card-media-link u-float-right">Nghe Nhạc</a>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -473,6 +575,25 @@
         </div>
     </div>
 </div>
+<!-- Call To Action Section End -->
+<div class="modal fade" id="nonevip" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông báo nhạc dành cho vip</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Nếu bạn muốn nghe bài này! Hãy <a href="/Pays/Index" style="color: #4183c4">nâng cấp tài khoản ngay</a>?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
 @if (coo.Cookie() != null)
 {
     var idus = coo.CookieID();
@@ -517,7 +638,7 @@
                 url: "/Musics/AcceptQuest?id=" + @Model.music_id,
                 contentType: "Json",
                     success: function (response) {
-                        
+
                 }
             })
             }, 10000)

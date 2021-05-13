@@ -8181,6 +8181,7 @@
     <Content Include="Views\Quest\RedeemPoint.cshtml" />
     <Content Include="Views\View\RadioMusic.cshtml" />
     <Content Include="Views\View\NewsMusic.cshtml" />
+    <Content Include="Views\View\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

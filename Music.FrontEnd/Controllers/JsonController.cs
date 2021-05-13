@@ -25,7 +25,7 @@ namespace Music.FrontEnd.Controllers
         {
             var user_id = function.CookieID();
             var music = from m in db.Musics
-                        where m.music_bin == false
+                        where m.music_bin == false && m.music_active == true && m.music_option == true
                         select new
                         {
                             id = m.music_id,
