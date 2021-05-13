@@ -43,7 +43,6 @@ namespace Music.Model.EF
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Singer> Singers { get; set; }
         public virtual DbSet<Slider> Sliders { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }
 }

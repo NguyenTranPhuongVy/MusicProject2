@@ -28,5 +28,10 @@ namespace Music.Frontend.Controllers
         {
             return View();
         }
+
+        public ActionResult NewsMusic()
+        {
+            return View();
+        }
     }
 }
