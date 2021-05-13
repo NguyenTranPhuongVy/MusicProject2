@@ -205,6 +205,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlbumsController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\FunctionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JsonController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -8200,6 +8201,7 @@
     <Content Include="Views\View\Search.cshtml" />
     <Content Include="Views\Albums\ViewAlbums.cshtml" />
     <Content Include="Views\Albums\AllAlbums.cshtml" />
+    <Content Include="Views\Musics\MyFavouriteMusic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

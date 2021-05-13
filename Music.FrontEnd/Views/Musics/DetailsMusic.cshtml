@@ -563,62 +563,63 @@
         </div>
 
     </div>
-</section>
-<div class="card fixed-bottom" style="border-radius: 0px 0px 0px 0px; height: 80px; background-color: #100028; border-top: 1px solid white">
-    <div>
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="row">
-                    <div class="col-lg-3">
-
-                        <img class="ui medium image mt-2 float-right" style="height: 70px; width: 70px; border-radius: 50%" src="~/Images/Music/@Model.music_img">
-                    </div>
-                    <div class="col-lg-6 text-white">
-                        <br />
-                        <b style="font-size: 18px">@Model.music_name</b> <br />
-                        @if (Model.Groups.Where(t => t.singer_id != null).Count() > 0)
-                        {
-                            <p>
-                                Ca sỹ:
-                                @foreach (var item in Model.Groups.Where(t => t.singer_id != null))
-                                {
-                                    <span>@item.Singer.singer_name |</span>
-                                }
-                            </p>
-                            <br /> <b><i class="fa fa-user"></i></b>
-                        }
-                        else
-                        {
-                            foreach (var item in user.Where(n => n.user_id == Model.user_id))
+    <div class="card fixed-bottom" style="border-radius: 0px 0px 0px 0px; height: 80px; background-color: #100028; border-top: 1px solid white">
+        <div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <img class="ui medium image mt-2 float-right" style="height: 70px; width: 70px; border-radius: 50%" src="~/Images/Music/@Model.music_img">
+                        </div>
+                        <div class="col-lg-6 text-white">
+                            <br />
+                            <b style="font-size: 18px">@Model.music_name</b> <br />
+                            @if (Model.Groups.Where(t => t.singer_id != null).Count() > 0)
                             {
-                                <p>Ca sỹ: @item.user_name</p> <br /> <b><i class="fa fa-user"></i></b>
+                                <p>
+                                    Ca sỹ:
+                                    @foreach (var item in Model.Groups.Where(t => t.singer_id != null))
+                                    {
+                                        <span>@item.Singer.singer_name |</span>
+                                    }
+                                </p>
+                                <br /> <b><i class="fa fa-user"></i></b>
                             }
-                        }
+                            else
+                            {
+                                foreach (var item in user.Where(n => n.user_id == Model.user_id))
+                                {
+                                    <p>Ca sỹ: @item.user_name</p> <br /> <b><i class="fa fa-user"></i></b>
+                                }
+                            }
 
-                    </div>
-                    <div class="col-lg-3 mt-3 text-white">
-                        <br />
-                        <i style="font-size: 19px" class="fa fa-heart"></i>
+                        </div>
+                        <div class="col-lg-3 mt-3 text-white" ng-controller="myFa">
+                            <br />
+                            <a style="cursor: pointer" ng-show="countfa == 0" ng-click="createfa(@Model.music_id)"><i style="font-size: 19px" class="fa fa-heart">&nbsp;</i>Lưu</a>
+                            <a ng-repeat="fa in fa" style="cursor: pointer" ng-show="countfa != 0" ng-click="fac(fa.id)"><i style="font-size: 19px" class="fa fa-heart">&nbsp;</i>Hủy lưu</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-6">
-                <audio controls autoplay class="mt-3 w-100" style="background-color: none">
-                    <source src="~/Link/MP3/@Model.music_linkdow" type="audio/ogg">
-                    <source src="horse.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>
-            <div class="col-lg-3 text-white">
-                <br />
-                <i style="font-size: 19px" class="fa fa-download"></i>  Tải nhạc &nbsp;
-                <i style="font-size: 19px" class="fa fa-audio-description"></i> @(Model.music_vip == true ? "Nhạc vip" : "Nhạc miễn phí") <br />
-                <i style="font-size: 19px" class="fa fa-music"></i> @Model.music_view  Lượt nghe &nbsp;
-                <b data-toggle="modal" data-target="#exampleModal" style="cursor: pointer"><i style="font-size: 19px" class="fa fa-music"></i> Lưu nhạc vào adbums &nbsp;</b>
+                <div class="col-lg-6">
+                    <audio controls autoplay class="mt-3 w-100" style="background-color: none">
+                        <source src="~/Link/MP3/@Model.music_linkdow" type="audio/ogg">
+                        <source src="horse.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="col-lg-3 text-white">
+                    <br />
+                    <i style="font-size: 19px" class="fa fa-download"></i>  Tải nhạc &nbsp;
+                    <i style="font-size: 19px" class="fa fa-audio-description"></i> @(Model.music_vip == true ? "Nhạc vip" : "Nhạc miễn phí") <br />
+                    <i style="font-size: 19px" class="fa fa-music"></i> @Model.music_view  Lượt nghe &nbsp;
+                    <b data-toggle="modal" data-target="#exampleModal" style="cursor: pointer"><i style="font-size: 19px" class="fa fa-music"></i> Lưu nhạc vào adbums &nbsp;</b>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+
 <!-- Call To Action Section End -->
 <div class="modal fade" id="nonevip" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -747,4 +748,95 @@
             $scope.com = response.statusText;
         });
     });
+
+
+
+    app.controller('myFa', function ($scope, $http) {
+        $http({
+            method: "GET",
+            url: "/Musics/JsonFavourite?idmusic=@Model.music_id"
+        }).then(function mySuccess(response) {
+            $scope.fa = response.data;
+            $scope.countfa = $scope.fa.length;
+
+            $scope.createfa = function (id) {
+                $http({
+                    method: "GET",
+                    url: "/Musics/FavouriteMusic?idmusic=" + id
+                }).then(function mySuccess(response) {
+                    $scope.fa = response.data;
+                    $scope.countfa = $scope.fa.length;
+
+                    $(document).ready(function () {
+                        $('#notesave').modal('show');
+                    })
+
+                }, function myError(response) {
+                    $scope.fa = response.statusText;
+                });
+            }
+
+            $scope.fac = function (id) {
+                $http({
+                    method: "GET",
+                    url: "/Musics/CancelFavourite?id=" + id
+                }).then(function mySuccess(response) {
+                    $scope.fa = response.data;
+                    $scope.countfa = $scope.fa.length;
+
+                    $(document).ready(function () {
+                        $('#notecancel').modal('show');
+                    })
+
+                }, function myError(response) {
+                    $scope.fa = response.statusText;
+                });
+            }
+
+
+        }, function myError(response) {
+            $scope.fa = response.statusText;
+        });
+    });
 </script>
+@if (coo.Cookie() != null)
+{
+    <!-- Modal -->
+    <div class="modal fade" id="notesave" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-success font-weight-bold text-uppercase" id="exampleModalLabel"><i class="fa fa-check-circle text-success"></i> Lưu thành công</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body font-weight-bold text-dark">
+                    Bạn đã lưu nhạc "@Model.music_name" thành công. Xem quản lý <a href="/Codes/MyFavouriteCode">tại đây!</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark font-weight-bold" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="notecancel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-danger font-weight-bold text-uppercase" id="exampleModalLabel"><i class="fa fa-ban text-danger"></i> Hủy thành công</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body font-weight-bold text-dark">
+                    Bạn đã hủy nhạc "@Model.music_name" thành công! <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark font-weight-bold" data-dismiss="modal">Đóng</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}

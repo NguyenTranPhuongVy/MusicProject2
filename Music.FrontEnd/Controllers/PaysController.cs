@@ -116,7 +116,7 @@ namespace Music.FrontEnd.Controllers
                     };
                     db.Pays.Add(bills);
                     db.SaveChanges();
-
+                    Session["idpake"] = null;
                     return RedirectToAction("History");
                 }
                 else
@@ -131,7 +131,7 @@ namespace Music.FrontEnd.Controllers
                     };
                     db.Pays.Add(bills);
                     db.SaveChanges();
-
+                    Session["idpake"] = null;
                     return RedirectToAction("History");
                 }
             }
@@ -140,6 +140,7 @@ namespace Music.FrontEnd.Controllers
         {
             var coo = new FunctionController();
             var id = coo.CookieID();
+            Session["idpake"] = null;
 
             return View(db.Pays.Where(n => n.user_id == id.user_id).OrderByDescending(n=>n.pay_datecreate).ToList());
         }

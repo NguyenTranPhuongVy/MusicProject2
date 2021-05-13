@@ -333,5 +333,79 @@ namespace Music.FrontEnd.Controllers
             db.SaveChanges();
             return Json(music.music_avgrate.Value.ToString("0.0"), JsonRequestBehavior.AllowGet);
         }
+
+        //Thich nhac
+        public JsonResult FavouriteMusic(int? idmusic)
+        {
+            var cookie = new FunctionController();
+            var idus = cookie.CookieID();
+
+            Group group = new Group()
+            {
+                music_id = idmusic,
+                user_id = idus.user_id,
+                group_datecreate = DateTime.Now,
+                group_item = 5
+            };
+            db.Groups.Add(group);
+            db.SaveChanges();
+
+            var fa = db.Groups.Where(n => n.group_item == 5 && n.user_id == idus.user_id && n.music_id == idmusic).OrderByDescending(n => n.group_datecreate).Select(n => new
+            {
+                id = n.group_id
+
+            }).ToList();
+
+            return Json(fa, JsonRequestBehavior.AllowGet);
+        }
+        //Danh sách yêu thích theo người dùng
+        public JsonResult JsonFavourite(int? idmusic)
+        {
+            var cookie = new FunctionController();
+            var idus = cookie.CookieID();
+            var music = db.Groups.Where(n => n.group_item == 5 && n.user_id == idus.user_id && n.music_id == idmusic).OrderByDescending(n => n.group_datecreate).Select(n => new
+            {
+                id = n.group_id
+
+            }).ToList();
+            return Json(music, JsonRequestBehavior.AllowGet);
+        }
+        //Hủy lưu
+        public JsonResult CancelFavourite(int? id)
+        {
+            var cookie = new FunctionController();
+            var idus = cookie.CookieID();
+
+            Group group = db.Groups.Find(id);
+            var idmusic = group.music_id;
+            db.Groups.Remove(group);
+            db.SaveChanges();
+
+            var fa = db.Groups.Where(n => n.group_item == 5 && n.user_id == idus.user_id && n.music_id == idmusic).OrderByDescending(n => n.group_datecreate).Select(n => new
+            {
+                id = n.group_id
+
+            }).ToList();
+            return Json(fa, JsonRequestBehavior.AllowGet);
+        }
+        //Quản lý nhạc
+        public ActionResult MyFavouriteMusic()
+        {
+            return View();
+        }
+        public JsonResult JsonIndexFavourite()
+        {
+            var cookie = new FunctionController();
+            var idus = cookie.CookieID();
+            var fa = db.Groups.Where(n => n.group_item == 5 && n.user_id == idus.user_id).OrderByDescending(n => n.group_datecreate).Select(n => new
+            {
+                id = n.group_id,
+                idmusic = n.music_id,
+                title = n.Music.music_name,
+                img = n.Music.music_img
+
+            }).ToList();
+            return Json(fa, JsonRequestBehavior.AllowGet);
+        }
     }
 }
