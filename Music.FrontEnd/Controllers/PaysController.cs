@@ -84,49 +84,56 @@ namespace Music.FrontEnd.Controllers
         }
         public ActionResult ReturnUrl(int errorCode, int amount)
         {
-            var coo = new FunctionController();
-            var id = coo.CookieID();
-
-            User user = db.Users.Find(id.user_id);
-
-            int idpake = int.Parse(Session["idpake"].ToString());
-            Package pakage = db.Packages.Find(idpake);
-
-            if (errorCode.Equals(0))
+            if(Session["idpake"] == null)
             {
-
-                user.user_datevip = DateTime.Now.AddMonths((int)pakage.package_month);
-                user.user_vip = true;
-                db.SaveChanges();
-
-
-                Pay bills = new Pay
-                {
-                    pay_datecreate = DateTime.Now,
-                    pay_status = true,
-                    user_id = id.user_id,
-                    pakage_id = pakage.package_id,
-                    pay_summoney = amount
-                };
-                db.Pays.Add(bills);
-                db.SaveChanges();
-
                 return RedirectToAction("History");
             }
             else
             {
-                Pay bills = new Pay
-                {
-                    pay_datecreate = DateTime.Now,
-                    pay_status = false,
-                    user_id = id.user_id,
-                    pakage_id = pakage.package_id,
-                    pay_summoney = amount
-                };
-                db.Pays.Add(bills);
-                db.SaveChanges();
+                var coo = new FunctionController();
+                var id = coo.CookieID();
 
-                return RedirectToAction("History");
+                User user = db.Users.Find(id.user_id);
+
+                int idpake = int.Parse(Session["idpake"].ToString());
+                Package pakage = db.Packages.Find(idpake);
+
+                if (errorCode.Equals(0))
+                {
+
+                    user.user_datevip = DateTime.Now.AddMonths((int)pakage.package_month);
+                    user.user_vip = true;
+                    db.SaveChanges();
+
+
+                    Pay bills = new Pay
+                    {
+                        pay_datecreate = DateTime.Now,
+                        pay_status = true,
+                        user_id = id.user_id,
+                        pakage_id = pakage.package_id,
+                        pay_summoney = amount
+                    };
+                    db.Pays.Add(bills);
+                    db.SaveChanges();
+
+                    return RedirectToAction("History");
+                }
+                else
+                {
+                    Pay bills = new Pay
+                    {
+                        pay_datecreate = DateTime.Now,
+                        pay_status = false,
+                        user_id = id.user_id,
+                        pakage_id = pakage.package_id,
+                        pay_summoney = amount
+                    };
+                    db.Pays.Add(bills);
+                    db.SaveChanges();
+
+                    return RedirectToAction("History");
+                }
             }
         }
         public ActionResult History()
