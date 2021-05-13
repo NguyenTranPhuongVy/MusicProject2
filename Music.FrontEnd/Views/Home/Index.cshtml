@@ -303,7 +303,7 @@
                 If you hire a videographer of our team you will get a video professional to make a custom
                 video for your business and, once the project is over.
             </p>
-            <a href="#" class="primary-btn">Xem Tất Cả Album</a>
+            <a href="@Url.Action("AllAlbums", "Albums")" class="primary-btn">Xem Tất Cả Album</a>
         </div>
         <div id="billboard-bar">
             <div id="scroll">
@@ -315,7 +315,7 @@
             <div id="cards">
                 @foreach (var item in album.Where(n => n.album_active == true && n.album_bin == false && n.User.role_id == 2).OrderByDescending(n => n.album_datecreate).Take(10).ToList())
                 {
-                    <div class="card-content">
+                    <div class="card-content" onclick="window.location.href = '/Albums/ViewAlbums/@item.album_id'">
                         <img class="thumbnail" src="~/Images/Album/@item.album_img" alt="coloring-book" />
                         <h3 class="text-white">@item.album_name</h3>
                     </div>
@@ -377,7 +377,7 @@
                         If you hire a videographer of our team you will get a video professional to make a custom
                         video for your business and, once the project is over.
                     </p>
-                    <a href="@Url.Action("Musics", "Index")" class="primary-btn">Xem Tất Cả</a>
+                    <a href="@Url.Action("Index", "Music")" class="primary-btn">Xem Tất Cả</a>
                 </div>
             </div>
             <div class="col-lg-8">
@@ -566,7 +566,7 @@
                     <div id="cards">
                         @foreach (var item in album.Where(n => n.album_active == true && n.album_bin == false && n.User.role_id == 2).OrderByDescending(n => n.album_view).Take(2).ToList())
                         {
-                            <div class="card-content">
+                            <div class="card-content" onclick="window.location.href = '/Albums/ViewAlbums/@item.album_id'">
                                 <img class="thumbnail" src="~/Images/Album/@item.album_img" alt="coloring-book" />
                                 <h3 class="text-white">@item.album_name</h3>
                             </div>
@@ -694,7 +694,7 @@
                 </div>
                 <div class="col-lg-12 mt-5 p-0">
                     <div class="team__btn">
-                        <a href="@Url.Action("Musics", "Index")" class="primary-btn">Xem Tất Cả Bài Hát</a>
+                        <a href="@Url.Action("Index", "Music")" class="primary-btn">Xem Tất Cả Bài Hát</a>
                     </div>
                 </div>
             </div>
