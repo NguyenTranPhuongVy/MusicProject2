@@ -222,16 +222,16 @@
                                         var qg = db.QuestGroups.FirstOrDefault(t => t.quest_id == item.quest_id && t.user_id == user1.user_id);
                                         if (qg != null)
                                         {
-                                            <span class="card-media-body-heading" style="font-size: 16px !important; font-weight:bold;">Tiến độ: @(qg.qg_progress)/@item.quest_limit</span>
+                                            <span class="card-media-body-heading" style="font-size: 13px !important; font-weight:bold;">Tiến độ: @(qg.qg_progress)/@item.quest_limit</span>
                                         }
                                         else
                                         {
-                                            <span class="card-media-body-heading" style="font-size: 16px !important; font-weight:bold;">Tiến độ: 0/@item.quest_limit</span>
+                                            <span class="card-media-body-heading" style="font-size: 13px !important; font-weight:bold;">Tiến độ: 0/@item.quest_limit</span>
                                         }
                                     }
                                     else
                                     {
-                                        <span class="card-media-body-heading" style="font-size: 16px !important; font-weight:bold;">Tiến độ: 0/@item.quest_limit</span>
+                                        <span class="card-media-body-heading" style="font-size: 13px !important; font-weight:bold;">Tiến độ: 0/@item.quest_limit</span>
                                     }
                                     <div class="card-media-body-supporting-bottom">
                                         @if (item.quest_category != null)
