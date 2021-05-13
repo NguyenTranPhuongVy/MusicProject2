@@ -1,5 +1,7 @@
 ﻿@using Music.FrontEnd.Function
+@using Music.Model.EF;
 @{
+    MusicProjectDataEntities db = new MusicProjectDataEntities();
     ViewBag.Title = "MyMusisc";
     var coo = new FunctionController();
 
@@ -15,18 +17,50 @@
                         Dịch vụ nghe nhạc Online chất lượng cao, kết hợp cùng các tiện ích dành riêng cho thành viên VIP
                     </p>
                 </center>
-                <center class="mt-2">
-                    <div class="ui search mb-2">
-                        <div class="ui fluid category search">
-                            <div class="ui icon input">
-                                <input ng-model="txtSearch" class="prompt" placeholder="Tìm kiếm..." type="text">
-                                <i class="search icon"></i>
+                <div class="mt-2">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="ui search mb-2">
+                                <div class="ui fluid category search">
+                                    <div class="ui icon input w-100"  style="border-radius: 0px 0px 0px 0px;">
+                                        <input  style="border-radius: 0px 0px 0px 0px;" ng-model="txtSearch.name" class="prompt w-100" placeholder="Tìm kiếm..." type="text">
+                                        <i class="search icon"></i>
+                                    </div>
+                                    <div class="results"></div>
+                                </div>
                             </div>
-                            <div class="results"></div>
+                        </div>
+                        <div class="col-lg-3">
+                            <select class="ui search dropdown w-100" ng-model="txtSearch.singer">
+                                <option value="">Tất cả ca sỹ</option>
+                                @foreach(var item in db.Singers.OrderByDescending(n=>n.singer_name))
+                                {
+                                    <option value="@item.singer_name">@item.singer_name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="ui search mb-2">
+                                <select class="ui search dropdown w-100" ng-model="txtSearch.album">
+                                    <option value="">Tất cả album</option>
+                                    @foreach (var item in db.Albums.Where(n=>n.User.role_id == 2).OrderByDescending(n => n.album_name))
+                                    {
+                                        <option value="@item.album_name">@item.album_name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <select class="ui search dropdown w-100" ng-model="txtSearch.vip">
+                                <option value="">Tất cả loại nhạc</option>
+                                <option value="true">Nhạc cao cấp</option>
+                                <option value="false">Nhạc miển phí</option>
+                                
+                            </select>
                         </div>
                     </div>
                     <b class="text-white">{{(list | filter: txtSearch).length}} kết quả</b>
-                </center>
+                </div>
                 <div class="row mt-2">
                     <div class="col-lg-12" ng-show="(list | filter: txtSearch).length == 0">
                         <center>
@@ -89,5 +123,7 @@
             $scope.list = response.statusText;
         })
     });
-
+    $('.ui.dropdown')
+        .dropdown()
+        ;
 </script>

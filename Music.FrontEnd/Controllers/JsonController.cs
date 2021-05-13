@@ -36,7 +36,9 @@ namespace Music.FrontEnd.Controllers
                             view = m.music_view,
                             download = m.music_dowload,
                             author = m.Author.author_name,
-                            vip = m.music_vip 
+                            vip = m.music_vip,
+                            singer = m.Groups.Select(n=>n.Singer.singer_name),
+                            album = m.PlayLists.Select(n=>n.Album.album_name),
 
                         };
             return Json(music, JsonRequestBehavior.AllowGet);
