@@ -17,10 +17,23 @@
                         <span>@ViewBag.noti_failed</span>
                     </div>
                 }
-                @using (Html.BeginForm("Create", "UsersA", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("Edit", "UsersA", FormMethod.Post, new { @enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
-
+                    @Html.HiddenFor(model => model.user_id)
+                    @Html.HiddenFor(model => model.user_img)
+                    @Html.HiddenFor(model => model.user_active)
+                    @Html.HiddenFor(model => model.user_note)
+                    @Html.HiddenFor(model => model.user_option)
+                    @Html.HiddenFor(model => model.user_bin)
+                    @Html.HiddenFor(model => model.user_token)
+                    @Html.HiddenFor(model => model.user_datecreate)
+                    @Html.HiddenFor(model => model.user_datelogin)
+                    @Html.HiddenFor(model => model.user_datevip)
+                    @Html.HiddenFor(model => model.user_birth)
+                    @Html.HiddenFor(model => model.user_active)
+                    @Html.HiddenFor(model => model.user_vip)
+                    @Html.HiddenFor(model => model.user_code)
                     <div class="form-horizontal mt-3">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
@@ -34,7 +47,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.user_img, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-12">
-                                <input type="file" name="file_img" class="btn btn-danger" required />
+                                <input type="file" name="file_img" class="btn btn-danger"/>
                             </div>
                         </div>
 
